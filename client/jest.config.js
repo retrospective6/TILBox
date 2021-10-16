@@ -7,7 +7,7 @@ module.exports = {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|scss|sass|less)$': '<rootDir>/mocks/styleMock.ts',
   },
 };
