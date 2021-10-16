@@ -10,6 +10,6 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@mocks/(.*)$': '<rootDir>/__mocks__/$1',
     '^@tests/(.*)$': '<rootDir>/__tests__/$1',
-    '\\.(css|scss|sass|less)$': '<rootDir>/mocks/styleMock.ts',
+    '\\.(css|scss|sass|less)$': '<rootDir>/__mocks__/styleMock.ts',
   },
 };
