@@ -12,4 +12,9 @@ module.exports = {
     '^@tests/(.*)$': '<rootDir>/__tests__/$1',
     '\\.(css|scss|sass|less)$': '<rootDir>/__mocks__/styleMock.ts',
   },
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.jest.json',
+    },
+  },
 };
