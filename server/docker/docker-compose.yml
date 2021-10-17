@@ -1,0 +1,19 @@
+version: '3'
+services:
+  local-db:
+    image: mysql:8.0.25
+    container_name: til_mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: til
+      MYSQL_USER: local
+      MYSQL_PASSWORD: local
+      TZ: Asia/Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./db/mysql/init:/docker-entrypoint-initdb.d
