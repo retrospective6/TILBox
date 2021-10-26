@@ -5,13 +5,15 @@ import { ComponentStory } from '@storybook/react';
 export default {
   component: Button,
   title: 'Button',
+  parameters: {
+    actions: { argTypesRegex: '^on.*' },
+  },
 };
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  onClick: () => console.log('clicked'),
   text: 'Button',
   theme: 'primary',
 };
