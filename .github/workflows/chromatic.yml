@@ -1,0 +1,21 @@
+name: "Chromatic Deployment"
+
+on:
+  pull_request:
+    paths:
+      - client/**
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: yarn
+        working-directory: client
+      - uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          workingDir: client
