@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "test": "jest --watchAll",
+    "story": "start-storybook -p 6006",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "start": "next start",
-    "lint": "next lint",
-    "storybook": "start-storybook -p 6006",
-    "test": "jest --watchAll"
+    "build": "next build",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@emotion/styled": "^11.3.0",
@@ -29,6 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "babel-loader": "^8.2.2",
+    "chromatic": "^6.0.5",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",
