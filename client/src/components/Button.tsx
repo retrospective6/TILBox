@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import css, { SerializedStyles } from '@emotion/css';
 
-type ButtonTheme = 'primary' | 'secondary' | 'warning';
+type ButtonTheme = 'primary' | 'secondary' | 'danger';
 
 export interface ButtonProps {
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
@@ -57,7 +57,7 @@ const buttonThemes: { [keys in ButtonTheme]: SerializedStyles } = {
   secondary: css`
     background: #646464;
   `,
-  warning: css`
+  danger: css`
     background: #c90909;
   `,
 };

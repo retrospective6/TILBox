@@ -24,10 +24,10 @@ Secondary.args = {
   theme: 'secondary',
 };
 
-export const Warning = Template.bind({});
-Warning.args = {
+export const Danger = Template.bind({});
+Danger.args = {
   ...Primary.args,
-  theme: 'warning',
+  theme: 'danger',
 };
 
 export const Wide = Template.bind({});
