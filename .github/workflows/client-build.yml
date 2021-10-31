@@ -24,6 +24,11 @@ jobs:
       - name: Check Node v
         run: node -v
 
+      - name: Check lint
+        run: yarn lint
+
+      - name: Check test
+        run: yarn test
+
       - name: Build
-        run: |
-          yarn build
+        run: yarn build
