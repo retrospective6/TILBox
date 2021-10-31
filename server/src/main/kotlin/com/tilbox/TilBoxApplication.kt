@@ -1,11 +1,11 @@
-package com.til
+package com.tilbox
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class TilApplication
+class TilBoxApplication
 
 fun main(args: Array<String>) {
-    runApplication<TilApplication>(*args)
+    runApplication<TilBoxApplication>(*args)
 }
