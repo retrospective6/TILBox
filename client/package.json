@@ -6,9 +6,10 @@
     "dev": "next dev",
     "test": "jest --watchAll",
     "story": "start-storybook -p 6006",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint": "next lint",
     "start": "next start",
     "build": "next build",
+    "test:coverage": "yarn test --watchAll=false --coverage",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
@@ -27,12 +28,15 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.1",
     "@types/jest": "^27.0.2",
-    "@types/react": "^17.0.30",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@types/testing-library__jest-dom": "^5",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-loader": "^8.2.2",
     "chromatic": "^6.0.5",
-    "eslint": "^8.0.1",
+    "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -41,5 +45,6 @@
     "prettier": "^2.4.1",
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.4"
-  }
+  },
+  "packageManager": "yarn@3.1.0"
 }

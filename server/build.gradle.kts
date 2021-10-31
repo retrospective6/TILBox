@@ -16,6 +16,10 @@ repositories {
     mavenCentral()
 }
 
+object Versions {
+    const val KOTEST = "4.6.3"
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-cache")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -31,6 +35,8 @@ dependencies {
     runtimeOnly("mysql:mysql-connector-java")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("io.kotest:kotest-runner-junit5:${Versions.KOTEST}")
+    testImplementation("io.kotest:kotest-assertions-core:${Versions.KOTEST}")
 }
 
 tasks.withType<KotlinCompile> {

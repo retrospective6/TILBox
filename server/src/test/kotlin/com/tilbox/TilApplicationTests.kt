@@ -1,9 +1,9 @@
 package com.tilbox
 
+import com.tilbox.base.test.IntegrationTest
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
+@IntegrationTest
 class TilApplicationTests {
 
     @Test
