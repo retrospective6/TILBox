@@ -7,10 +7,16 @@ on:
   pull_request:
     branches:
       - '**' 
+    paths:
+      - 'server/**'
 
 jobs:          
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+
     steps:
       - name: Checkout source code.   
         uses: actions/checkout@v2
@@ -18,12 +24,6 @@ jobs:
       - name: Check Node v            
         run: node -v
 
-      - name: Install Dependencies
-        run: |
-            cd client
-            yarn install
-
       - name: Build                   
         run: |
-          cd client
           yarn build
