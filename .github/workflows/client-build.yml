@@ -1,0 +1,29 @@
+name: Client deploy                    
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '**' 
+    paths:
+      - 'server/**'
+
+jobs:          
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+
+    steps:
+      - name: Checkout source code.   
+        uses: actions/checkout@v2
+      
+      - name: Check Node v            
+        run: node -v
+
+      - name: Build                   
+        run: |
+          yarn build
