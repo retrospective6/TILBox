@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "test:coverage": "yarn test --watchAll=false --coverage"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",
@@ -29,6 +30,7 @@
     "@types/node": "^16.11.6",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
+    "@types/testing-library__jest-dom": "^5",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-loader": "^8.2.2",
