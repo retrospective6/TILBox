@@ -33,6 +33,7 @@ yarn-error.log*
 # vercel
 .vercel
 
+# yarn
 .yarn/*
 !.yarn/cache
 !.yarn/patches
@@ -40,3 +41,4 @@ yarn-error.log*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+.vscode
