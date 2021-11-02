@@ -1,6 +1,5 @@
 package com.tilbox.core.base
 
-
 import org.springframework.data.domain.AbstractAggregateRoot
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import css, { SerializedStyles } from '@emotion/css';
+import { css, SerializedStyles } from '@emotion/react';
 
 type ButtonTheme = 'primary' | 'secondary' | 'danger';
 
@@ -44,7 +44,6 @@ const Container = styled.button<ContainerProps>`
   color: white;
 
   ${({ selected }) => buttonThemes[selected]}
-
   &:hover {
     cursor: pointer;
   }
