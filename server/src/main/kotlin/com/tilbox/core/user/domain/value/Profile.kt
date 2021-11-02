@@ -4,19 +4,19 @@ import javax.persistence.Column
 import javax.persistence.Embeddable
 
 @Embeddable
-data class Profile (
-    @Column(nullable = false)
+data class Profile(
+    @Column(name = "nickname", nullable = false)
     val nickname: String,
 
-    @Column(nullable = true)
+    @Column(name = "image", nullable = true)
     val image: String?,
 
-    @Column(nullable = false)
+    @Column(name = "title", nullable = false)
     val title: String,
 
-    @Column(nullable = false)
+    @Column(name = "description", nullable = false)
     val description: String,
 
-    @Column(nullable = false)
+    @Column(name = "subscribe_count", nullable = false)
     val subscribeCount: Long = 0L
 )
