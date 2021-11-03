@@ -5,6 +5,9 @@ module.exports = {
     '../__stories__/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  features: {
+    postcss: false,
+  },
   webpackFinal: async (config) => {
     config.resolve.alias['@'] = path.resolve(__dirname, '../src/');
     config.resolve.alias['@mocks'] = path.resolve(__dirname, '../__mocks__/');
