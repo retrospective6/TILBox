@@ -31,7 +31,14 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
         userCreateService.createUser(UserCreateRequest("mintjordy", "nullable@kakao.com", "ks-kim", null))
 
         val exception = shouldThrow<IllegalStateException> {
-            userCreateService.createUser(UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null))
+            userCreateService.createUser(
+                UserCreateRequest(
+                    "nullable",
+                    "nullable@kakao.com",
+                    "ks-kim",
+                    null,
+                )
+            )
         }
 
         exception.message should startWith("이미 가입된 이메일입니다.")
@@ -42,7 +49,14 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
         userCreateService.createUser(UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null))
 
         val exception = shouldThrow<IllegalStateException> {
-            userCreateService.createUser(UserCreateRequest("nullable", "mintjordy@kakao.com", "tj.seok", null))
+            userCreateService.createUser(
+                UserCreateRequest(
+                    "nullable",
+                    "mintjordy@kakao.com",
+                    "tj.seok",
+                    null,
+                )
+            )
         }
 
         exception.message should startWith("이미 사용중인 TIL 이름입니다.")
