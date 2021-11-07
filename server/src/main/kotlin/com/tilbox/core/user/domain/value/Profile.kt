@@ -12,10 +12,10 @@ data class Profile(
     val image: String?,
 
     @Column(name = "title", nullable = false)
-    val title: String,
+    val title: String = "",
 
     @Column(name = "description", nullable = false)
-    val description: String,
+    val description: String = "",
 
     @Column(name = "subscribe_count", nullable = false)
     val subscribeCount: Long = 0L

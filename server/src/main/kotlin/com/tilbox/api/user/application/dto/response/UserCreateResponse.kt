@@ -6,7 +6,7 @@ import com.tilbox.core.user.domain.value.UserStatus
 import java.time.LocalDateTime
 
 data class UserCreateResponse(
-    val loginId: String,
+    val myTilName: String,
 
     var email: String,
 
@@ -19,6 +19,6 @@ data class UserCreateResponse(
     var updatedAt: LocalDateTime,
 ) {
     constructor(user: User) : this(
-        user.loginId, user.email, user.profile, user.status, user.createdAt, user.updatedAt
+        user.myTilName, user.email, user.profile, user.status, user.createdAt, user.updatedAt
     )
 }

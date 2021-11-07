@@ -1,12 +1,14 @@
 package com.tilbox.api.user.application.dto.request
 
 import com.tilbox.core.user.domain.entity.User
+import com.tilbox.core.user.domain.value.Profile
+import java.time.LocalDateTime
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 
 data class UserCreateRequest(
     @field:NotBlank
-    val loginId: String,
+    val myTilName: String,
 
     @field:Email
     var email: String,
@@ -15,13 +17,15 @@ data class UserCreateRequest(
     val nickname: String,
 
     @field:NotBlank
-    val image: String?,
-
-    val title: String,
-
-    val description: String,
+    val image: String? = null,
 ) {
-    fun toEntity(): User {
-        return User(loginId, email, nickname, image, title, description)
+    fun toEntity(createdAt: LocalDateTime): User {
+        return User(
+            myTilName = myTilName,
+            email = email,
+            profile = Profile(nickname = nickname, image = image),
+            createdAt = createdAt,
+            updatedAt = createdAt
+        )
     }
 }
