@@ -1,9 +1,9 @@
 package com.tilbox.base.test
 
 import org.springframework.beans.factory.InitializingBean
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
+import org.springframework.test.context.TestConstructor
 import javax.persistence.Entity
 import javax.persistence.EntityManager
 import javax.transaction.Transactional
@@ -11,7 +11,8 @@ import kotlin.reflect.full.findAnnotation
 
 @Service
 @Profile("test")
-class DatabaseCleanUp @Autowired constructor(private val entityManager: EntityManager) : InitializingBean {
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+class DatabaseCleanUp constructor(private val entityManager: EntityManager) : InitializingBean {
     private lateinit var tableNames: List<String>
 
     override fun afterPropertiesSet() {
