@@ -9,7 +9,6 @@ import javax.persistence.EntityManager
 import javax.transaction.Transactional
 import kotlin.reflect.full.findAnnotation
 
-
 @Service
 @Profile("test")
 class DatabaseCleanUp @Autowired constructor(private val entityManager: EntityManager) : InitializingBean {

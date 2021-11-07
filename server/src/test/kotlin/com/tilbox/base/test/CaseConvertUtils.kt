@@ -6,7 +6,7 @@ class CaseConvertUtils {
 
         fun camelToSnakeCase(value: String): String {
             return CAMEL_REGEX.replace(value) {
-                "_${value}"
+                "_$value"
             }.lowercase()
         }
     }
