@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import { NAV_ITEMS, NAV_LINKS } from '@/utils/constants';
 
 export interface HeaderProps {
+  active: NAV_LINKS;
   onSignUp: () => void;
   onSignIn: () => void;
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { onSignUp, onSignIn } = props;
+  const { active, onSignUp, onSignIn } = props;
 
   return (
     <Container>
@@ -16,15 +18,15 @@ export default function Header(props: HeaderProps): JSX.Element {
         <Logo data-testid="logo">
           <Link href="/">로고</Link>
         </Logo>
-        <NavItem data-testid="main">
-          <Link href="/">전체글</Link>
-        </NavItem>
-        <NavItem data-testid="timeline">
-          <Link href="/timeline">Timeline</Link>
-        </NavItem>
-        <NavItem data-testid="mybox">
-          <Link href="/mybox">MyBOX</Link>
-        </NavItem>
+        {NAV_ITEMS.map((item) => (
+          <NavItem
+            key={item.testId}
+            data-testid={item.testId}
+            selected={active === item.href}
+          >
+            <Link href={item.href}>{item.title}</Link>
+          </NavItem>
+        ))}
       </Navbar>
       <UserInfo>
         <UserInfoItem data-testid="sign-up" onClick={onSignUp}>
@@ -59,10 +61,15 @@ const Logo = styled.div`
   width: 77px;
 `;
 
-const NavItem = styled.div`
+interface NavItemProps {
+  selected: boolean;
+}
+
+const NavItem = styled.div<NavItemProps>`
   height: 14px;
   padding: 0 18px;
   border-right: 1px solid #cdcdcd;
+  font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
 `;
 
 const UserInfo = styled.div`

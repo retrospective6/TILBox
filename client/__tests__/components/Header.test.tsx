@@ -1,8 +1,10 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 import Header, { HeaderProps } from '@/components/Header';
+import { NAV_ITEMS } from '@/utils/constants';
 
 const DEFAULT_ARGS: HeaderProps = {
+  active: '/',
   onSignUp: jest.fn(),
   onSignIn: jest.fn(),
 };
@@ -40,6 +42,14 @@ describe('navbar', () => {
     const myboxLink = getByTestId('mybox').querySelector('a');
 
     expect(myboxLink).toHaveAttribute('href', '/mybox');
+  });
+
+  describe.each(NAV_ITEMS)('with active $href', ({ testId, href }) => {
+    test('has font style bold', () => {
+      const { getByTestId } = renderHeader({ active: href });
+      const link = getByTestId(testId);
+      expect(link).toHaveStyle({ fontWeight: 'bold' });
+    });
   });
 });
 

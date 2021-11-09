@@ -12,4 +12,17 @@ export default {
 
 const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />;
 
-export const Default = Template.bind({});
+export const Main = Template.bind({});
+Main.args = {
+  active: '/',
+};
+
+export const Timeline = Template.bind({});
+Timeline.args = {
+  active: '/timeline',
+};
+
+export const MyBOX = Template.bind({});
+MyBOX.args = {
+  active: '/mybox',
+};
