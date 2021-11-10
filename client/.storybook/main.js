@@ -7,6 +7,9 @@ module.exports = {
     '@storybook/addon-essentials',
     'storybook-addon-next-router',
   ],
+  features: {
+    postcss: false,
+  },
   webpackFinal: async (config) => {
     config.resolve.alias['@'] = path.resolve(__dirname, '../src/');
     config.resolve.alias['@mocks'] = path.resolve(__dirname, '../__mocks__/');
