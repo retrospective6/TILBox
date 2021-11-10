@@ -19,7 +19,7 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
     @Test
     fun `회원가입 성공시 가입된 유저 정보를 반환한다`() {
         val request =
-            UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null)
+            UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password")
 
         val actual = userCreateService.createUser(request)
 
@@ -28,7 +28,7 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
 
     @Test
     fun `이미 가입한 이메일로 가입을 시도하는 경우 예외가 발생한다`() {
-        userCreateService.createUser(UserCreateRequest("mintjordy", "nullable@kakao.com", "ks-kim", null))
+        userCreateService.createUser(UserCreateRequest("mintjordy", "nullable@kakao.com", "ks-kim", null, "password"))
 
         val exception = shouldThrow<IllegalStateException> {
             userCreateService.createUser(
@@ -37,6 +37,7 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
                     "nullable@kakao.com",
                     "ks-kim",
                     null,
+                    "password"
                 )
             )
         }
@@ -46,7 +47,7 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
 
     @Test
     fun `이미 사용중인 TIL 이름으로 가입을 시도하는 경우 예외가 발생한다`() {
-        userCreateService.createUser(UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null))
+        userCreateService.createUser(UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password"))
 
         val exception = shouldThrow<IllegalStateException> {
             userCreateService.createUser(
@@ -55,6 +56,7 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
                     "mintjordy@kakao.com",
                     "tj.seok",
                     null,
+                    "password"
                 )
             )
         }

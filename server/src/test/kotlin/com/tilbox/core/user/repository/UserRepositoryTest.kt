@@ -2,6 +2,7 @@ package com.tilbox.core.user.repository
 
 import com.tilbox.core.user.domain.entity.User
 import com.tilbox.core.user.domain.repository.UserRepository
+import com.tilbox.core.user.domain.value.Password
 import com.tilbox.core.user.domain.value.Profile
 import com.tilbox.core.user.domain.value.UserStatus
 import io.kotest.matchers.shouldBe
@@ -27,6 +28,7 @@ internal class UserRepositoryTest(private val userRepository: UserRepository) {
                 "My name is KS-KIM",
                 "I love kotlin. I hate javascript. javascript is not a language."
             ),
+            Password("password"),
             UserStatus.UNAUTHENTICATED,
             LocalDateTime.now(),
             LocalDateTime.now(),

@@ -1,6 +1,8 @@
 package com.tilbox.core.user.domain.entity
 
 import com.tilbox.core.base.BaseRootEntity
+import com.tilbox.core.user.domain.value.Password
+import com.tilbox.core.user.domain.value.PasswordMatchStrategy
 import com.tilbox.core.user.domain.value.Profile
 import com.tilbox.core.user.domain.value.UserStatus
 import com.tilbox.core.user.event.UserCreatedEvent
@@ -20,6 +22,9 @@ class User(
     @Embedded
     var profile: Profile,
 
+    @Embedded
+    var password: Password,
+
     @Column(name = "status", nullable = false)
     var status: UserStatus = UserStatus.UNAUTHENTICATED,
 
@@ -34,5 +39,9 @@ class User(
     fun create(): User {
         registerEvent(UserCreatedEvent(myTilName, email, profile.nickname, createdAt))
         return this
+    }
+
+    fun isCorrectPassword(rawPassword: String, passwordMatchStrategy: PasswordMatchStrategy): Boolean {
+        return password.match(rawPassword, passwordMatchStrategy)
     }
 }
