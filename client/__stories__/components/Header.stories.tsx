@@ -26,3 +26,12 @@ export const MyBOX = Template.bind({});
 MyBOX.args = {
   active: '/mybox',
 };
+
+export const WithUser = Template.bind({});
+WithUser.args = {
+  ...Main.args,
+  user: {
+    nickname: 'test',
+    image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+  },
+};

@@ -2,15 +2,17 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { NAV_ITEMS, NAV_LINKS } from '@/utils/constants';
+import User from '@/types/User';
 
 export interface HeaderProps {
   active: NAV_LINKS;
   onSignUp: () => void;
   onSignIn: () => void;
+  user?: User;
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { active, onSignUp, onSignIn } = props;
+  const { active, onSignUp, onSignIn, user } = props;
 
   return (
     <Container>
@@ -29,12 +31,23 @@ export default function Header(props: HeaderProps): JSX.Element {
         ))}
       </Navbar>
       <UserInfo>
-        <UserInfoItem data-testid="sign-up" onClick={onSignUp}>
-          회원가입
-        </UserInfoItem>
-        <UserInfoItem data-testid="sign-in" onClick={onSignIn}>
-          로그인
-        </UserInfoItem>
+        {user ? (
+          <>
+            <UserImage src={user.image} alt="user-image" />
+            <UserInfoItem data-testid="user-nickname">
+              {user.nickname} 님
+            </UserInfoItem>
+          </>
+        ) : (
+          <>
+            <UserInfoItem data-testid="sign-up" onClick={onSignUp}>
+              회원가입
+            </UserInfoItem>
+            <UserInfoItem data-testid="sign-in" onClick={onSignIn}>
+              로그인
+            </UserInfoItem>
+          </>
+        )}
       </UserInfo>
     </Container>
   );
@@ -77,10 +90,18 @@ const UserInfo = styled.div`
   margin-left: auto;
   width: 12.5%;
   min-width: 140px;
+  align-items: center;
 `;
 
 const UserInfoItem = styled.div`
   margin-right: 20px;
   font-size: 12px;
   cursor: pointer;
+`;
+
+const UserImage = styled.img`
+  width: 38px;
+  height: 38px;
+  margin-right: 10px;
+  border-radius: 50%;
 `;

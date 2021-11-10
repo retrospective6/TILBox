@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 import Header, { HeaderProps } from '@/components/Header';
 import { NAV_ITEMS } from '@/utils/constants';
+import User from '@/types/User';
 
 const DEFAULT_ARGS: HeaderProps = {
   active: '/',
@@ -71,6 +72,35 @@ describe('user info section', () => {
       const signIn = getByTestId('sign-in');
       fireEvent.click(signIn);
       expect(onSignIn).toBeCalled();
+    });
+  });
+
+  describe('with user', () => {
+    const user: User = {
+      nickname: 'testNickName',
+      image: 'testImage',
+    };
+
+    test('disappear signUp text', () => {
+      const { getByTestId } = renderHeader({ user });
+      expect(() => getByTestId('sign-up')).toThrowError();
+    });
+
+    test('disappear signIn text', () => {
+      const { getByTestId } = renderHeader({ user });
+      expect(() => getByTestId('sign-in')).toThrowError();
+    });
+
+    test('display user nickname', () => {
+      const { getByTestId } = renderHeader({ user });
+      const nickname = getByTestId('user-nickname');
+      expect(nickname).toHaveTextContent(user.nickname);
+    });
+
+    test('display user nickname', () => {
+      const { getByRole } = renderHeader({ user });
+      const img = getByRole('img');
+      expect(img).toHaveAttribute('src', user.image);
     });
   });
 });
