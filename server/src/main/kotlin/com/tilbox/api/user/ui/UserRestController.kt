@@ -17,7 +17,7 @@ class UserRestController(private val userCreateService: UserCreateService) {
     fun createUser(@RequestBody request: UserCreateRequest): ResponseEntity<UserCreateResponse> {
         val response = userCreateService.createUser(request)
         return ResponseEntity
-            .created(URI.create("/v1/users/${response.myTilName}"))
+            .created(URI.create("/v1/users/${response.myTilAddress}"))
             .body(response)
     }
 }

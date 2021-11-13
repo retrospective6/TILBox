@@ -11,9 +11,6 @@ data class Profile(
     @Column(name = "image", nullable = true)
     val image: String?,
 
-    @Column(name = "title", nullable = false)
-    val title: String = "",
-
     @Column(name = "description", nullable = false)
     val description: String = "",
 

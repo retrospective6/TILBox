@@ -19,11 +19,11 @@ class UserCreateService(
 ) {
     fun createUser(request: UserCreateRequest): UserCreateResponse {
         check(!userRepository.existsByEmail(request.email)) { "이미 가입된 이메일입니다." }
-        check(!userRepository.existsByMyTilName(request.myTilName)) { "이미 사용중인 TIL 이름입니다." }
+        check(!userRepository.existsByMyTilAddress(request.myTilAddress)) { "이미 사용중인 TIL 주소입니다." }
 
         val currentDateTime = LocalDateTime.now()
         val user = User(
-            myTilName = request.myTilName,
+            myTilAddress = request.myTilAddress,
             email = request.email,
             profile = Profile(nickname = request.nickname, image = request.image),
             password = Password(value = request.password, passwordEncodingStrategy),

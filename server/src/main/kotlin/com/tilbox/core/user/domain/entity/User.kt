@@ -13,8 +13,8 @@ import javax.persistence.Entity
 
 @Entity
 class User(
-    @Column(name = "login_id", nullable = false, unique = true)
-    val myTilName: String,
+    @Column(name = "myTilAddress", nullable = false, unique = true)
+    val myTilAddress: String,
 
     @Column(name = "email", nullable = false)
     var email: String,
@@ -37,7 +37,7 @@ class User(
     id: Long = 0L
 ) : BaseRootEntity<User>(id) {
     fun create(): User {
-        registerEvent(UserCreatedEvent(myTilName, email, profile.nickname, createdAt))
+        registerEvent(UserCreatedEvent(myTilAddress, email, profile.nickname, createdAt))
         return this
     }
 

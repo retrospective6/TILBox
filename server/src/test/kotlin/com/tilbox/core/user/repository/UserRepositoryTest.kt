@@ -25,7 +25,6 @@ internal class UserRepositoryTest(private val userRepository: UserRepository) {
             Profile(
                 "KS-KIM",
                 null,
-                "My name is KS-KIM",
                 "I love kotlin. I hate javascript. javascript is not a language."
             ),
             Password("password"),
@@ -38,9 +37,9 @@ internal class UserRepositoryTest(private val userRepository: UserRepository) {
 
     @Test
     fun `로그인 ID가 일치하는 사용자를 조회한다`() {
-        val user = userRepository.findByMyTilName("nullable")
+        val user = userRepository.findByMyTilAddress("nullable")
 
-        user!!.myTilName shouldBe "nullable"
+        user!!.myTilAddress shouldBe "nullable"
     }
 
     @Test

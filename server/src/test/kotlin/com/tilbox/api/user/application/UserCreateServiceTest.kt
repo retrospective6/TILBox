@@ -19,16 +19,24 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
     @Test
     fun `회원가입 성공시 가입된 유저 정보를 반환한다`() {
         val request =
-            UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password")
+            UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password12##")
 
         val actual = userCreateService.createUser(request)
 
-        actual.myTilName shouldBe "nullable"
+        actual.myTilAddress shouldBe "nullable"
     }
 
     @Test
     fun `이미 가입한 이메일로 가입을 시도하는 경우 예외가 발생한다`() {
-        userCreateService.createUser(UserCreateRequest("mintjordy", "nullable@kakao.com", "ks-kim", null, "password"))
+        userCreateService.createUser(
+            UserCreateRequest(
+                "mintjordy",
+                "nullable@kakao.com",
+                "ks-kim",
+                null,
+                "password12##"
+            )
+        )
 
         val exception = shouldThrow<IllegalStateException> {
             userCreateService.createUser(
@@ -47,7 +55,15 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
 
     @Test
     fun `이미 사용중인 TIL 이름으로 가입을 시도하는 경우 예외가 발생한다`() {
-        userCreateService.createUser(UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password"))
+        userCreateService.createUser(
+            UserCreateRequest(
+                "nullable",
+                "nullable@kakao.com",
+                "ks-kim",
+                null,
+                "password12##"
+            )
+        )
 
         val exception = shouldThrow<IllegalStateException> {
             userCreateService.createUser(
@@ -56,11 +72,11 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
                     "mintjordy@kakao.com",
                     "tj.seok",
                     null,
-                    "password"
+                    "password12##"
                 )
             )
         }
 
-        exception.message should startWith("이미 사용중인 TIL 이름입니다.")
+        exception.message should startWith("이미 사용중인 TIL 주소입니다.")
     }
 }
