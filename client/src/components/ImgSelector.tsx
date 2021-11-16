@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
 import styled from '@emotion/styled';
+import Image from 'next/image';
 
 export interface ImgSelectorProps {
   img?: string;
@@ -36,7 +37,16 @@ export default function ImgSelector(props: ImgSelectorProps): JSX.Element {
         ref={imgInput}
         onChange={onSelectImg}
       />
-      {selectedImg ? <SelectedImg src={selectedImg} alt="profile-img" /> : '+'}
+      {selectedImg ? (
+        <SelectedImg
+          src={selectedImg}
+          alt="profile-img"
+          width="100%"
+          height="100%"
+        />
+      ) : (
+        '+'
+      )}
     </Container>
   );
 }
@@ -57,9 +67,7 @@ const FileInput = styled.input`
   display: none;
 `;
 
-const SelectedImg = styled.img`
-  width: 100%;
-  height: 100%;
+const SelectedImg = styled(Image)`
   border: none;
   border-radius: 50%;
   object-fit: cover;
