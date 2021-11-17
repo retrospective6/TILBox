@@ -1,6 +1,9 @@
 import React from 'react';
 import ImgSelector, { ImgSelectorProps } from '@/components/ImgSelector';
 import { render, RenderResult } from '@testing-library/react';
+import { MockImage } from '@mocks/MockComponent';
+
+jest.mock('next/image', () => MockImage);
 
 const DEFAULT_ARGS: ImgSelectorProps = {
   onSubmit: jest.fn(),
@@ -15,7 +18,8 @@ describe('with img', () => {
 
   test('render preview img', () => {
     const { getByRole } = renderImgSelector({ img });
-    getByRole('img');
+    const previewImg = getByRole('img');
+    expect(previewImg).toHaveAttribute('src', img);
   });
 });
 
