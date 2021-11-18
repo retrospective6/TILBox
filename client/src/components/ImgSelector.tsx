@@ -19,7 +19,7 @@ export default function ImgSelector(props: ImgSelectorProps): JSX.Element {
 
   const onSelectImg = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const files = event.currentTarget.files as FileList;
+    const files = event.target.files as FileList;
     if (!files[0]) {
       return;
     }
@@ -32,6 +32,7 @@ export default function ImgSelector(props: ImgSelectorProps): JSX.Element {
   return (
     <Container onClick={onClick}>
       <FileInput
+        data-testid="image-input"
         type="file"
         accept="image/*"
         ref={imgInput}

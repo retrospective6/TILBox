@@ -2,7 +2,7 @@ import { MockImage } from '@mocks/MockComponent';
 
 import React from 'react';
 import ImgSelector, { ImgSelectorProps } from '@/components/ImgSelector';
-import { render, RenderResult } from '@testing-library/react';
+import { fireEvent, render, RenderResult } from '@testing-library/react';
 
 jest.mock('next/image', () => MockImage);
 
@@ -31,4 +31,43 @@ describe('without img', () => {
   });
 });
 
-//TODO: 이미지 파일 선택 시 이미지 변경되는지 테스트하기
+describe('on change file input', () => {
+  const file = new File(['test'], 'test.png', { type: 'image/png' });
+
+  const onSubmit = jest.fn();
+
+  const mockedFileConverter = jest.fn((file) => file.toString());
+  URL.createObjectURL = mockedFileConverter;
+
+  test('run file converter', () => {
+    const { getByTestId } = renderImgSelector({ onSubmit });
+    const input = getByTestId('image-input');
+
+    fireEvent.change(input, {
+      target: { files: [file] },
+    });
+    expect(mockedFileConverter).toBeCalledWith(file);
+  });
+
+  test('run onSubmit method with converted file', () => {
+    const { getByTestId } = renderImgSelector({ onSubmit });
+    const input = getByTestId('image-input');
+
+    fireEvent.change(input, {
+      target: { files: [file] },
+    });
+    expect(onSubmit).toBeCalledWith(file.toString());
+  });
+
+  test('change img src', () => {
+    const { getByTestId, getByRole } = renderImgSelector({ onSubmit });
+    const input = getByTestId('image-input');
+
+    fireEvent.change(input, {
+      target: { files: [file] },
+    });
+
+    const img = getByRole('img');
+    expect(img).toHaveAttribute('src', file.toString());
+  });
+});
