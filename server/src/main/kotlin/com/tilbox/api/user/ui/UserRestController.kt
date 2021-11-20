@@ -1,6 +1,6 @@
 package com.tilbox.api.user.ui
 
-import com.tilbox.api.user.application.UserCreateService
+import com.tilbox.api.user.application.EmailUserCreateService
 import com.tilbox.api.user.application.dto.request.UserCreateRequest
 import com.tilbox.api.user.application.dto.response.UserCreateResponse
 import org.springframework.http.ResponseEntity
@@ -12,10 +12,10 @@ import java.net.URI
 
 @RestController
 @RequestMapping("/v1/users")
-class UserRestController(private val userCreateService: UserCreateService) {
+class UserRestController(private val emailUserCreateService: EmailUserCreateService) {
     @PostMapping
     fun createUser(@RequestBody request: UserCreateRequest): ResponseEntity<UserCreateResponse> {
-        val response = userCreateService.createUser(request)
+        val response = emailUserCreateService.createUser(request)
         return ResponseEntity
             .created(URI.create("/v1/users/${response.myTilAddress}"))
             .body(response)

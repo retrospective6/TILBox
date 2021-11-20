@@ -7,13 +7,14 @@ import com.tilbox.core.user.domain.repository.UserRepository
 import com.tilbox.core.user.domain.value.Password
 import com.tilbox.core.user.domain.value.PasswordEncodingStrategy
 import com.tilbox.core.user.domain.value.Profile
+import com.tilbox.core.user.domain.value.RegistrationType
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 import javax.transaction.Transactional
 
 @Transactional
 @Service
-class UserCreateService(
+class EmailUserCreateService(
     private val userRepository: UserRepository,
     private val passwordEncodingStrategy: PasswordEncodingStrategy,
 ) {
@@ -27,6 +28,7 @@ class UserCreateService(
             email = request.email,
             profile = Profile(nickname = request.nickname, image = request.image),
             password = Password(value = request.password, passwordEncodingStrategy),
+            registrationType = RegistrationType.EMAIL,
             createdAt = currentDateTime,
             updatedAt = currentDateTime,
         )

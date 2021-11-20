@@ -15,20 +15,20 @@ import javax.transaction.Transactional
 @SpringBootTest
 @ActiveProfiles("test")
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-class UserCreateServiceTest(private val userCreateService: UserCreateService) {
+class EmailUserCreateServiceTest(private val emailUserCreateService: EmailUserCreateService) {
     @Test
     fun `회원가입 성공시 가입된 유저 정보를 반환한다`() {
         val request =
             UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password12##")
 
-        val actual = userCreateService.createUser(request)
+        val actual = emailUserCreateService.createUser(request)
 
         actual.myTilAddress shouldBe "nullable"
     }
 
     @Test
     fun `이미 가입한 이메일로 가입을 시도하는 경우 예외가 발생한다`() {
-        userCreateService.createUser(
+        emailUserCreateService.createUser(
             UserCreateRequest(
                 "mintjordy",
                 "nullable@kakao.com",
@@ -39,7 +39,7 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
         )
 
         val exception = shouldThrow<IllegalStateException> {
-            userCreateService.createUser(
+            emailUserCreateService.createUser(
                 UserCreateRequest(
                     "nullable",
                     "nullable@kakao.com",
@@ -55,7 +55,7 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
 
     @Test
     fun `이미 사용중인 TIL 이름으로 가입을 시도하는 경우 예외가 발생한다`() {
-        userCreateService.createUser(
+        emailUserCreateService.createUser(
             UserCreateRequest(
                 "nullable",
                 "nullable@kakao.com",
@@ -66,7 +66,7 @@ class UserCreateServiceTest(private val userCreateService: UserCreateService) {
         )
 
         val exception = shouldThrow<IllegalStateException> {
-            userCreateService.createUser(
+            emailUserCreateService.createUser(
                 UserCreateRequest(
                     "nullable",
                     "mintjordy@kakao.com",
