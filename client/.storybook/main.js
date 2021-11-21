@@ -2,7 +2,11 @@ const path = require('path');
 
 module.exports = {
   stories: ['../__stories__/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    'storybook-addon-next-router',
+  ],
   features: {
     postcss: false,
   },
