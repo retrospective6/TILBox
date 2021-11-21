@@ -1,8 +1,14 @@
-import '../src/styles/reset.css';
+import '../src/styles/global.css';
+import { RouterContext } from 'next/dist/shared/lib/router-context';
 import * as NextImage from 'next/image';
 
-const OriginalNextImage = NextImage.default;
+export const parameters = {
+  nextRouter: {
+    Provider: RouterContext.Provider,
+  },
+}
 
+const OriginalNextImage = NextImage.default;
 Object.defineProperty(NextImage, 'default', {
   configurable: true,
   value: (props) => <OriginalNextImage {...props} unoptimized />,
