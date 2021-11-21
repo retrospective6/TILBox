@@ -22,7 +22,11 @@ data class UserCreateRequest(
     @field:Size(min = 2, max = 8)
     val nickname: String,
 
-    @ApiModelProperty("이미지 URL", required = false, example = "https://s3.amazonaws.com/bucketname/foldername/imagename.jpg")
+    @ApiModelProperty(
+        "이미지 URL",
+        required = false,
+        example = "https://s3.amazonaws.com/bucketname/foldername/imagename.jpg"
+    )
     @field:NotBlank
     val image: String? = null,
 
