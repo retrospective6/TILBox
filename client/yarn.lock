@@ -14695,6 +14695,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"storybook-addon-next-router@npm:^3.0.8":
+  version: 3.0.8
+  resolution: "storybook-addon-next-router@npm:3.0.8"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@storybook/addon-actions": ^6.0.0
+    "@storybook/addons": ^6.0.0
+    "@storybook/client-api": ^6.0.0
+    next: ^9.0.0 || ^10.0.0 || ^11.0.0
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  checksum: 895f11e551adab80fd897ee6d16f82e2fb1d38eb457e4567fbc83e0edef427595f276484212f87397aabfdb94f0c4ab897d7758dda2bf4dd7af58e50d32aef92
+  languageName: node
+  linkType: hard
+
 "storybook-addon-outline@npm:^1.4.1":
   version: 1.4.1
   resolution: "storybook-addon-outline@npm:1.4.1"
@@ -15294,6 +15310,7 @@ __metadata:
     prettier: ^2.4.1
     react: ^17.0.2
     react-dom: ^17.0.2
+    storybook-addon-next-router: ^3.0.8
     ts-jest: ^27.0.5
     typescript: ^4.4.4
   languageName: unknown

@@ -62,6 +62,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.4.1"],
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:17.0.2"],
+            ["storybook-addon-next-router", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:3.0.8"],
             ["ts-jest", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:27.0.7"],
             ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=ddd1e8"]
           ],
@@ -20361,6 +20362,49 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["storybook-addon-next-router", [
+        ["npm:3.0.8", {
+          "packageLocation": "./.yarn/cache/storybook-addon-next-router-npm-3.0.8-19bfb172f2-895f11e551.zip/node_modules/storybook-addon-next-router/",
+          "packageDependencies": [
+            ["storybook-addon-next-router", "npm:3.0.8"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:3.0.8", {
+          "packageLocation": "./.yarn/__virtual__/storybook-addon-next-router-virtual-8fe569dae7/0/cache/storybook-addon-next-router-npm-3.0.8-19bfb172f2-895f11e551.zip/node_modules/storybook-addon-next-router/",
+          "packageDependencies": [
+            ["storybook-addon-next-router", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:3.0.8"],
+            ["@storybook/addon-actions", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:6.3.12"],
+            ["@storybook/addons", null],
+            ["@storybook/client-api", null],
+            ["@types/next", null],
+            ["@types/react", "npm:17.0.33"],
+            ["@types/react-dom", "npm:17.0.10"],
+            ["@types/storybook__addon-actions", null],
+            ["@types/storybook__addons", null],
+            ["@types/storybook__client-api", null],
+            ["next", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:11.1.2"],
+            ["react", "npm:17.0.2"],
+            ["react-dom", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:17.0.2"],
+            ["tslib", "npm:2.3.1"]
+          ],
+          "packagePeers": [
+            "@storybook/addon-actions",
+            "@storybook/addons",
+            "@storybook/client-api",
+            "@types/next",
+            "@types/react-dom",
+            "@types/react",
+            "@types/storybook__addon-actions",
+            "@types/storybook__addons",
+            "@types/storybook__client-api",
+            "next",
+            "react-dom",
+            "react"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["storybook-addon-outline", [
         ["npm:1.4.1", {
           "packageLocation": "./.yarn/cache/storybook-addon-outline-npm-1.4.1-1917a3c21b-8896a14489.zip/node_modules/storybook-addon-outline/",
@@ -21074,6 +21118,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.4.1"],
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:17.0.2"],
+            ["storybook-addon-next-router", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:3.0.8"],
             ["ts-jest", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:27.0.7"],
             ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=ddd1e8"]
           ],
