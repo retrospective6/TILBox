@@ -1,7 +1,11 @@
 package com.tilbox.core.user.domain.entity
 
 import com.tilbox.core.base.BaseRootEntity
-import com.tilbox.core.user.domain.value.*
+import com.tilbox.core.user.domain.value.Password
+import com.tilbox.core.user.domain.value.PasswordMatchStrategy
+import com.tilbox.core.user.domain.value.Profile
+import com.tilbox.core.user.domain.value.RegistrationType
+import com.tilbox.core.user.domain.value.UserStatus
 import com.tilbox.core.user.event.UserCreatedEvent
 import java.time.LocalDateTime
 import javax.persistence.Column
