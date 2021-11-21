@@ -5,6 +5,7 @@ import com.tilbox.core.user.domain.repository.UserRepository
 import com.tilbox.core.user.domain.value.Password
 import com.tilbox.core.user.domain.value.Profile
 import com.tilbox.core.user.domain.value.RegistrationType
+import com.tilbox.core.user.domain.value.Role
 import com.tilbox.core.user.domain.value.UserStatus
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.BeforeEach
@@ -31,6 +32,7 @@ internal class UserRepositoryTest(private val userRepository: UserRepository) {
             Password("password"),
             UserStatus.UNAUTHENTICATED,
             RegistrationType.EMAIL,
+            Role.USER,
             LocalDateTime.now(),
             LocalDateTime.now(),
         )

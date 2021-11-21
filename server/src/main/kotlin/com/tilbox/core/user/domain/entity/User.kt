@@ -5,6 +5,7 @@ import com.tilbox.core.user.domain.value.Password
 import com.tilbox.core.user.domain.value.PasswordMatchStrategy
 import com.tilbox.core.user.domain.value.Profile
 import com.tilbox.core.user.domain.value.RegistrationType
+import com.tilbox.core.user.domain.value.Role
 import com.tilbox.core.user.domain.value.UserStatus
 import com.tilbox.core.user.event.UserCreatedEvent
 import java.time.LocalDateTime
@@ -31,6 +32,9 @@ class User(
 
     @Column(name = "registration_type", nullable = false)
     val registrationType: RegistrationType,
+
+    @Column(name = "role", nullable = false)
+    val role: Role,
 
     @Column(name = "created_at", nullable = false, updatable = false)
     val createdAt: LocalDateTime,

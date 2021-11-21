@@ -8,6 +8,7 @@ import com.tilbox.core.user.domain.value.Password
 import com.tilbox.core.user.domain.value.PasswordEncodingStrategy
 import com.tilbox.core.user.domain.value.Profile
 import com.tilbox.core.user.domain.value.RegistrationType
+import com.tilbox.core.user.domain.value.Role
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 import javax.transaction.Transactional
@@ -29,6 +30,7 @@ class EmailUserCreateService(
             profile = Profile(nickname = request.nickname, image = request.image),
             password = Password(value = request.password, passwordEncodingStrategy),
             registrationType = RegistrationType.EMAIL,
+            role = Role.USER,
             createdAt = currentDateTime,
             updatedAt = currentDateTime,
         )
