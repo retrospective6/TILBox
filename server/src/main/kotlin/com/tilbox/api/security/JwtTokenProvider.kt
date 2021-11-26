@@ -33,8 +33,8 @@ class JwtTokenProvider {
 
     fun extractPayload(token: String): JwtPayload {
         val claims = getClaims(token)
-        val userId = claims.get(USER_ID_CLAIM_KEY) as Long
-        val role = UserRole.from(claims.get(AUTHORITY_CLAIM_KEY) as String)
+        val userId = claims[USER_ID_CLAIM_KEY].toString().toLong()
+        val role = UserRole.from(claims[AUTHORITY_CLAIM_KEY].toString())
         return JwtPayload(userId, role)
     }
 

@@ -24,9 +24,9 @@ class JwtAuthenticationFilter(private val jwtTokenProvider: JwtTokenProvider) : 
             val payload = jwtTokenProvider.extractPayload(token)
             SecurityContextHolder.getContext().authentication = UsernamePasswordAuthenticationToken(payload.userId, "", listOf(SimpleGrantedAuthority(payload.userRole.title)))
         } catch (exception: JwtException) {
-            logger.info("로그인에 실패했습니다. message=${exception.message}")
+            logger.info("사용자 인증에 실패했습니다. message=${exception.message}")
         } catch (exception: IllegalArgumentException) {
-            logger.info("올바르지 않은 값을 포함하고 있습니다. message=${exception.message}")
+            logger.info("올바르지 않은 입력값을 포함하고 있습니다. message=${exception.message}")
         }
     }
 }
