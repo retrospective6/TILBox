@@ -35,3 +35,8 @@ a:active {
   text-decoration: none;
   color: black;
 }
+
+button {
+  border: none;
+  cursor: pointer;
+}

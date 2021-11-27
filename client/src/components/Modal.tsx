@@ -85,7 +85,6 @@ const CloseButton = styled.button`
   height: 18px;
   border: none;
   border-radius: 50%;
-  cursor: pointer;
 `;
 
 const Content = styled.div`

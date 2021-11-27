@@ -44,9 +44,6 @@ const Container = styled.button<ContainerProps>`
   color: white;
 
   ${({ selected }) => buttonThemes[selected]}
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const buttonThemes: { [keys in ButtonTheme]: SerializedStyles } = {

@@ -93,10 +93,9 @@ const UserInfo = styled.div`
   align-items: center;
 `;
 
-const UserInfoItem = styled.div`
+const UserInfoItem = styled.button`
   margin-right: 20px;
   font-size: 12px;
-  cursor: pointer;
 `;
 
 const UserImage = styled.img`
