@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 
 export interface ModalProps {
@@ -9,6 +9,16 @@ export interface ModalProps {
 
 export default function Modal(props: ModalProps): JSX.Element {
   const { title, children, onClose } = props;
+
+  useEffect(() => {
+    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = `position: ""; top: "";`;
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    };
+  }, []);
+
   return (
     <Wrapper onClick={onClose} data-testid="modal-wrapper">
       <Container
