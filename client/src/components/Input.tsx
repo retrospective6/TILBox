@@ -8,9 +8,9 @@ export type Rule = {
 };
 
 export interface InputProps {
-  title: string;
-  hint: string;
-  placeholder: string;
+  title?: string;
+  hint?: string;
+  placeholder?: string;
   width?: string;
   height?: string;
   rules: Rule[];
@@ -34,7 +34,7 @@ export default function Input(props: InputProps): JSX.Element {
     <Container width={width}>
       <Label>
         <Title>{title}</Title>
-        {isValid ? <Text>{hint}</Text> : <Feedback>{feedback}</Feedback>}
+        {isValid ? <Hint>{hint}</Hint> : <Feedback>{feedback}</Feedback>}
       </Label>
       <StyledInput
         isValid={isValid}
@@ -57,7 +57,6 @@ const Container = styled.div<ContainerProps>`
       width: ${width};
     `};
   white-space: nowrap;
-  font-style: normal;
 `;
 
 const Label = styled.label`
@@ -73,24 +72,22 @@ const Title = styled.span`
   margin-right: 8px;
 `;
 
-interface StyledInputProps {
-  height?: string;
-  isValid: boolean;
-}
-
 const Feedback = styled.span`
   font-size: 8px;
   line-height: 16px;
   color: #c90909;
-  font-style: normal;
 `;
 
-const Text = styled.span`
+const Hint = styled.span`
   font-size: 8px;
   line-height: 16px;
   color: #666666;
-  font-style: normal;
 `;
+
+interface StyledInputProps {
+  height?: string;
+  isValid: boolean;
+}
 
 const StyledInput = styled.input<StyledInputProps>`
   box-sizing: border-box;
@@ -102,23 +99,10 @@ const StyledInput = styled.input<StyledInputProps>`
   padding: 7px 8px;
   background: #f3f3f3;
 
-  ${({ isValid }) => styleIsValid(isValid)};
+  ${({ isValid }) => css`
+    border-color: ${isValid ? '#f3f3f3' : '#c90909'};
+    &::placeholder {
+      color: ${isValid ? '#cdcdcd' : '#c90909'};
+    }
+  `};
 `;
-
-const styleIsValid = (isValid: boolean) => {
-  if (isValid) {
-    return css`
-      border-color: #f3f3f3;
-      &::placeholder {
-        color: #cdcdcd;
-      }
-    `;
-  } else {
-    return css`
-      border-color: #c90909;
-      &::placeholder {
-        color: #c90909;
-      }
-    `;
-  }
-};
