@@ -31,7 +31,7 @@ export default function Input(props: InputProps): JSX.Element {
   };
 
   return (
-    <Container width={width}>
+    <Container>
       <Label>
         <Title>{title}</Title>
         {isValid ? <Hint>{hint}</Hint> : <Feedback>{feedback}</Feedback>}
@@ -39,6 +39,7 @@ export default function Input(props: InputProps): JSX.Element {
       <StyledInput
         isValid={isValid}
         height={height}
+        width={width}
         placeholder={placeholder}
         onBlur={onBlur}
       />
@@ -46,16 +47,7 @@ export default function Input(props: InputProps): JSX.Element {
   );
 }
 
-interface ContainerProps {
-  width?: string;
-}
-
-const Container = styled.div<ContainerProps>`
-  ${({ width }) =>
-    width &&
-    css`
-      width: ${width};
-    `};
+const Container = styled.div`
   white-space: nowrap;
 `;
 
@@ -85,14 +77,24 @@ const Hint = styled.span`
 `;
 
 interface StyledInputProps {
+  width?: string;
   height?: string;
   isValid: boolean;
 }
 
 const StyledInput = styled.input<StyledInputProps>`
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width};
+    `};
+  ${({ height }) =>
+    height &&
+    css`
+      height: ${height};
+    `};
+
   box-sizing: border-box;
-  width: 100%;
-  height: 30px;
   border: 1px solid;
   border-radius: 8px;
   font-size: 10px;
