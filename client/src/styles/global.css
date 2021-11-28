@@ -1,4 +1,5 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font: inherit;
@@ -33,4 +34,9 @@ a:hover,
 a:active {
   text-decoration: none;
   color: black;
+}
+
+button {
+  border: none;
+  cursor: pointer;
 }
