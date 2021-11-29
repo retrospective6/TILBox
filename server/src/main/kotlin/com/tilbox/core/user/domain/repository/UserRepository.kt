@@ -1,6 +1,7 @@
 package com.tilbox.core.user.domain.repository
 
 import com.tilbox.core.user.domain.entity.User
+import com.tilbox.core.user.domain.value.RegistrationType
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface UserRepository : JpaRepository<User, Long> {
@@ -10,5 +11,5 @@ interface UserRepository : JpaRepository<User, Long> {
 
     fun existsByMyTilAddress(loginId: String): Boolean
 
-    fun existsByEmail(email: String): Boolean
+    fun existsByEmailAndRegistrationType(email: String, registrationType: RegistrationType): Boolean
 }
