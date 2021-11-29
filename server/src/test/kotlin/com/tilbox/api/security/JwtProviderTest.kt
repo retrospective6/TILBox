@@ -9,21 +9,21 @@ import org.springframework.test.context.TestConstructor
 
 @SpringBootTest
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-class JwtTokenProviderTest(private val jwtTokenProvider: JwtTokenProvider) {
+class JwtProviderTest(private val jwtProvider: JwtProvider) {
     @Test
     fun `토큰을 생성한다`() {
         val payload = JwtPayload(1L, UserRole.USER)
 
-        val actual = jwtTokenProvider.createToken(payload)
+        val actual = jwtProvider.createToken(payload)
 
         actual shouldHaveMinLength 1
     }
 
     @Test
     fun `토큰 추출에 성공한다`() {
-        val token = jwtTokenProvider.createToken(JwtPayload(1L, UserRole.USER))
+        val token = jwtProvider.createToken(JwtPayload(1L, UserRole.USER))
 
-        val actual = jwtTokenProvider.extractPayload(token)
+        val actual = jwtProvider.extractPayload(token)
 
         actual.userId shouldBe 1L
         actual.userRole shouldBe UserRole.USER
