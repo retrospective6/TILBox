@@ -70,7 +70,10 @@ const Container = styled.div`
   transition: width 0.35s;
 
   input {
-    display: none;
+    visibility: hidden;
+    width: 0;
+    padding: 0;
+    transition: width 0.35s;
   }
   &:hover,
   &:focus,
@@ -79,21 +82,24 @@ const Container = styled.div`
     width: 550px;
     background-color: #ffffff;
     span:first-child {
-      display: none;
+      visibility: hidden;
     }
     input {
-      display: block;
+      visibility: visible;
+      width: 40%;
     }
   }
 `;
 
 const Text = styled.span`
+  position: absolute;
   font-size: 18px;
   line-height: 22px;
   white-space: nowrap;
 `;
 
 const Input = styled.input`
+  position: absolute;
   flex: 1;
   border: none;
   outline: none;
