@@ -3,16 +3,18 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { NAV_ITEMS, NAV_LINKS } from '@/utils/constants';
 import User from '@/types/User';
+import SearchInput from '@/components/SearchInput';
 
 export interface HeaderProps {
   active: NAV_LINKS;
+  user?: User;
   onSignUp: () => void;
   onSignIn: () => void;
-  user?: User;
+  onSearch: (value: string) => void;
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { active, onSignUp, onSignIn, user } = props;
+  const { active, user, onSignUp, onSignIn, onSearch } = props;
 
   return (
     <Container>
@@ -29,6 +31,12 @@ export default function Header(props: HeaderProps): JSX.Element {
             <Link href={item.href}>{item.title}</Link>
           </NavItem>
         ))}
+        <SearchInput
+          onSearch={onSearch}
+          placeholder={
+            '아이디, 닉네임, 태그, 텍스트와 본문을 검색해볼 수 있습니다'
+          }
+        />
       </Navbar>
       <UserInfo>
         {user ? (
@@ -68,6 +76,7 @@ const Navbar = styled.div`
   align-items: center;
   text-align: center;
   font-size: 18px;
+  line-height: 16px;
 `;
 
 const Logo = styled.div`
@@ -79,8 +88,11 @@ interface NavItemProps {
 }
 
 const NavItem = styled.div<NavItemProps>`
+  display: flex;
+  align-items: center;
   height: 14px;
-  padding: 0 18px;
+  margin-right: 18px;
+  padding-right: 18px;
   border-right: 1px solid #cdcdcd;
   font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
 `;
