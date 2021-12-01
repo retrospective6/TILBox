@@ -91,8 +91,7 @@ const NavItem = styled.div<NavItemProps>`
   display: flex;
   align-items: center;
   height: 14px;
-  margin-right: 18px;
-  padding-right: 18px;
+  padding: 0 18px;
   border-right: 1px solid #cdcdcd;
   font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
 `;

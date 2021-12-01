@@ -60,9 +60,9 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
 
 const Container = styled.div`
   display: flex;
-  width: 75px;
+  width: 55px;
   height: 30px;
-  padding: 9px;
+  margin: 18px;
   border: 0 solid #cdcdcd;
   border-radius: 8px;
   background-color: transparent;
@@ -73,6 +73,7 @@ const Container = styled.div`
     visibility: hidden;
     width: 0;
     padding: 0;
+    margin: 0;
     transition: width 0.35s;
   }
   &:hover,
@@ -86,7 +87,8 @@ const Container = styled.div`
     }
     input {
       visibility: visible;
-      width: 40%;
+      width: 500px;
+      margin: 9px;
     }
   }
 `;
