@@ -82,7 +82,7 @@ const Container = styled.div`
     border: 1px solid #cdcdcd;
     width: 550px;
     background-color: #ffffff;
-    span:first-child {
+    span:first-of-type {
       visibility: hidden;
     }
     input {
