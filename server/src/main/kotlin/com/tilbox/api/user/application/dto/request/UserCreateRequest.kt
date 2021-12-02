@@ -16,7 +16,6 @@ data class UserCreateRequest(
     @field:Size(min = 2, max = 8)
     val nickname: String,
 
-    @field:NotBlank
     val image: String? = null,
 
     @field:Pattern(regexp = "(?=.*[A-Za-z])(?=.*\\d)(?=.*[\$@!%*#?&])[A-Za-z\\d\$@!%*#?&]{8,24}")
