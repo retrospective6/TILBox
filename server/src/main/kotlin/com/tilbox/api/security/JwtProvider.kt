@@ -7,7 +7,7 @@ import io.jsonwebtoken.security.Keys
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Component
 import java.time.Duration
-import java.util.*
+import java.util.Date
 import javax.crypto.SecretKey
 
 @Component
@@ -24,7 +24,12 @@ class JwtProvider {
         val expiration = Date(now.time + EXPIRATION_TIME_MILLISECOND)
 
         return Jwts.builder()
-            .setClaims(mutableMapOf(USER_ID_CLAIM_KEY to userPrincipal.userId, ROLE_CLAIM_KEY to userPrincipal.authorities.first().toString()))
+            .setClaims(
+                mutableMapOf(
+                    USER_ID_CLAIM_KEY to userPrincipal.userId,
+                    ROLE_CLAIM_KEY to userPrincipal.authorities.first().toString()
+                )
+            )
             .setIssuedAt(now)
             .setExpiration(expiration)
             .signWith(SECRET_KEY)
