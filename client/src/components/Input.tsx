@@ -1,4 +1,4 @@
-import React, { FocusEvent, useState } from 'react';
+import React, { FocusEvent, InputHTMLAttributes, useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
@@ -7,17 +7,16 @@ export type Rule = {
   message: string;
 };
 
-export interface InputProps {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   hint?: string;
-  placeholder?: string;
   width?: string;
   height?: string;
   rules: Rule[];
 }
 
 export default function Input(props: InputProps): JSX.Element {
-  const { title, placeholder, hint, width, height, rules } = props;
+  const { title, hint, rules } = props;
   const [feedback, setFeedback] = useState<string>('');
   const [isValid, setIsValid] = useState<boolean>(true);
 
@@ -36,13 +35,7 @@ export default function Input(props: InputProps): JSX.Element {
         <Title>{title}</Title>
         {isValid ? <Hint>{hint}</Hint> : <Feedback>{feedback}</Feedback>}
       </Label>
-      <StyledInput
-        isValid={isValid}
-        height={height}
-        width={width}
-        placeholder={placeholder}
-        onBlur={onBlur}
-      />
+      <StyledInput onBlur={onBlur} isValid={isValid} {...props} />
     </Container>
   );
 }
@@ -83,17 +76,8 @@ interface StyledInputProps {
 }
 
 const StyledInput = styled.input<StyledInputProps>`
-  ${({ width }) =>
-    width &&
-    css`
-      width: ${width};
-    `};
-  ${({ height }) =>
-    height &&
-    css`
-      height: ${height};
-    `};
-
+  width: ${(props) => props.width || '268px'};
+  height: ${(props) => props.height || '28px'};
   box-sizing: border-box;
   border: 1px solid;
   border-radius: 8px;
