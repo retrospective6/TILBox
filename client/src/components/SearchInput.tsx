@@ -1,5 +1,6 @@
-import React, { useRef, KeyboardEvent } from 'react';
+import React, { useRef, KeyboardEvent, useState, ChangeEvent } from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 export interface SearchInputProps {
   placeholder?: string;
@@ -8,10 +9,16 @@ export interface SearchInputProps {
 
 export default function SearchInput(props: SearchInputProps): JSX.Element {
   const { placeholder, onSearch } = props;
+  const [value, setValue] = useState('');
   const input = useRef<HTMLInputElement>(null);
 
   const onClick = () => {
     input.current?.focus();
+  };
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setValue(value);
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -27,13 +34,14 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
   };
 
   return (
-    <Container onClick={onClick}>
+    <Container value={value} onClick={onClick}>
       <Text>검색</Text>
       <Input
         data-testid="search-input"
         type="text"
         placeholder={placeholder}
         ref={input}
+        onChange={onChange}
         onKeyDown={onKeyDown}
       />
       <Icon>
@@ -58,7 +66,25 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
   );
 }
 
-const Container = styled.div`
+interface ContainerProps {
+  value: string;
+}
+
+const activeCSS = css`
+  border: 1px solid #cdcdcd;
+  width: 550px;
+  background-color: #ffffff;
+  span:first-of-type {
+    visibility: hidden;
+  }
+  input {
+    visibility: visible;
+    width: 500px;
+    margin: 9px;
+  }
+`;
+
+const Container = styled.div<ContainerProps>`
   display: flex;
   width: 55px;
   height: 30px;
@@ -79,18 +105,9 @@ const Container = styled.div`
   &:hover,
   &:focus,
   &:focus-within {
-    border: 1px solid #cdcdcd;
-    width: 550px;
-    background-color: #ffffff;
-    span:first-of-type {
-      visibility: hidden;
-    }
-    input {
-      visibility: visible;
-      width: 500px;
-      margin: 9px;
-    }
+    ${activeCSS}
   }
+  ${({ value }) => value && activeCSS}
 `;
 
 const Text = styled.span`
