@@ -2,18 +2,18 @@ package com.tilbox.api.security
 
 import org.springframework.http.HttpHeaders
 import org.springframework.security.authentication.AnonymousAuthenticationToken
+import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.stereotype.Component
-import org.springframework.web.filter.GenericFilterBean
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 import javax.servlet.FilterChain
 import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-@Component
-class JwtCreationFilter(private val jwtProvider: JwtProvider) : GenericFilterBean() {
-    override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
+class JwtCreationFilter(authenticationManager: AuthenticationManager, private val jwtProvider: JwtProvider) :
+    BasicAuthenticationFilter(authenticationManager) {
+    override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
         createJwtToken(request, response)
         chain.doFilter(request, response)
     }
@@ -43,6 +43,5 @@ class JwtCreationFilter(private val jwtProvider: JwtProvider) : GenericFilterBea
 
     private fun setToken(response: HttpServletResponse, token: String) {
         response.setHeader(HttpHeaders.AUTHORIZATION, token)
-        response.writer.flush()
     }
 }
