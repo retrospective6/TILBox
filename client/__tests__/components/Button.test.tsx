@@ -5,6 +5,7 @@ import { RenderResult } from 'next/dist/server/utils';
 
 const DEFAULT_ARGS: ButtonProps = {
   variant: 'default',
+  size: 'small',
   children: 'text',
 };
 

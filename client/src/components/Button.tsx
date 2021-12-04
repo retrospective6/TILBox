@@ -3,20 +3,23 @@ import styled from '@emotion/styled';
 import { css, SerializedStyles } from '@emotion/react';
 
 type ButtonVariant = 'default' | 'primary' | 'secondary' | 'third' | 'danger';
+type ButtonSize = 'small' | 'medium' | 'large';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant;
+  size: ButtonSize;
   width?: string;
 }
 
 export default function Button({
   variant = 'default',
+  size = 'small',
   width,
   children,
   ...props
 }: ButtonProps): JSX.Element {
   return (
-    <Container variant={variant} width={width} {...props}>
+    <Container variant={variant} size={size} width={width} {...props}>
       {children}
     </Container>
   );
@@ -24,6 +27,7 @@ export default function Button({
 
 interface ContainerProps {
   variant: ButtonVariant;
+  size: ButtonSize;
   width?: string;
 }
 
@@ -39,6 +43,7 @@ const Container = styled.button<ContainerProps>`
   width: ${({ width }) => (width ? width : 'auto')}};
 
   ${({ variant }) => variantCSS[variant]};
+  ${({ size }) => sizeCSS[size]};
 `;
 
 const variantCSS: { [keys in ButtonVariant]: SerializedStyles } = {
@@ -65,5 +70,20 @@ const variantCSS: { [keys in ButtonVariant]: SerializedStyles } = {
     background: #c90909;
     color: #ffffff;
     border: none;
+  `,
+};
+
+const sizeCSS: { [keys in ButtonSize]: SerializedStyles } = {
+  small: css`
+    font-size: 12px;
+    line-height: 14px;
+  `,
+  medium: css`
+    font-size: 16px;
+    line-height: 19px;
+  `,
+  large: css`
+    font-size: 18px;
+    line-height: 22px;
   `,
 };

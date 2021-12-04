@@ -16,6 +16,7 @@ export const Default = Template.bind({});
 Default.args = {
   children: 'Button',
   variant: 'default',
+  size: 'small',
 };
 
 export const Primary = Template.bind({});
@@ -40,6 +41,18 @@ export const Danger = Template.bind({});
 Danger.args = {
   ...Default.args,
   variant: 'danger',
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  ...Default.args,
+  size: 'medium',
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  ...Default.args,
+  size: 'large',
 };
 
 export const Wide = Template.bind({});
