@@ -43,7 +43,10 @@ class SecurityConfig(
                 authorize("/**", permitAll)
             }
             addFilterBefore(jwtAuthenticationFilter, HeaderWriterFilter::class.java)
-            addFilterAfter(CustomUsernamePasswordAuthenticationFilter(authenticationManager(), objectMapper), LogoutFilter::class.java)
+            addFilterAfter(
+                CustomUsernamePasswordAuthenticationFilter(authenticationManager(), objectMapper),
+                LogoutFilter::class.java
+            )
             addFilterAfter(jwtCreationFilter, CustomUsernamePasswordAuthenticationFilter::class.java)
             sessionManagement { SessionCreationPolicy.STATELESS }
             formLogin {
