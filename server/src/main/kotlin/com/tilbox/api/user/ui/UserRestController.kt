@@ -19,7 +19,6 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/v1/users")
 class UserRestController(private val emailUserCreateService: EmailUserCreateService) {
-class UserRestController(private val userCreateService: UserCreateService) {
 
     @Operation(summary = "회원가입", description = "이메일 인증을 통한 회원가입을 진행한다.")
     @ApiResponses(
