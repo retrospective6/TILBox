@@ -14,7 +14,7 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class CustomUsernamePasswordAuthenticationFilter(
+class EmailPasswordAuthenticationFilter(
     authenticationManager: AuthenticationManager,
     private val objectMapper: ObjectMapper
 ) : UsernamePasswordAuthenticationFilter(authenticationManager) {

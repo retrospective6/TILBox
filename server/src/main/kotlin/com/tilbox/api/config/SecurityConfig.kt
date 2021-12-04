@@ -1,7 +1,7 @@
 package com.tilbox.api.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.tilbox.api.security.CustomUsernamePasswordAuthenticationFilter
+import com.tilbox.api.security.EmailPasswordAuthenticationFilter
 import com.tilbox.api.security.JwtAuthenticationFilter
 import com.tilbox.api.security.JwtCreationFilter
 import com.tilbox.api.security.JwtProvider
@@ -47,7 +47,7 @@ class SecurityConfig(
             }
             addFilterBefore(jwtAuthenticationFilter, HeaderWriterFilter::class.java)
             addFilterAfter(
-                CustomUsernamePasswordAuthenticationFilter(authenticationManager(), objectMapper),
+                EmailPasswordAuthenticationFilter(authenticationManager(), objectMapper),
                 LogoutFilter::class.java
             )
             addFilterBefore(
