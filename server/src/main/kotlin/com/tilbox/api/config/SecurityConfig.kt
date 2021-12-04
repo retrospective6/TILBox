@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.tilbox.api.security.CustomUsernamePasswordAuthenticationFilter
 import com.tilbox.api.security.JwtAuthenticationFilter
 import com.tilbox.api.security.JwtCreationFilter
+import com.tilbox.api.security.JwtProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -15,13 +16,14 @@ import org.springframework.security.config.web.servlet.invoke
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.logout.LogoutFilter
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 import org.springframework.security.web.header.HeaderWriterFilter
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 class SecurityConfig(
     private val jwtAuthenticationFilter: JwtAuthenticationFilter,
-    private val jwtCreationFilter: JwtCreationFilter,
+    private val jwtProvider: JwtProvider,
     private val objectMapper: ObjectMapper
 ) : WebSecurityConfigurerAdapter() {
     @Bean
@@ -39,6 +41,7 @@ class SecurityConfig(
             cors {
             }
             csrf { disable() }
+            httpBasic { disable() }
             authorizeRequests {
                 authorize("/**", permitAll)
             }
@@ -47,11 +50,11 @@ class SecurityConfig(
                 CustomUsernamePasswordAuthenticationFilter(authenticationManager(), objectMapper),
                 LogoutFilter::class.java
             )
-            addFilterAfter(jwtCreationFilter, CustomUsernamePasswordAuthenticationFilter::class.java)
+            addFilterBefore(
+                JwtCreationFilter(authenticationManager(), jwtProvider),
+                BasicAuthenticationFilter::class.java
+            )
             sessionManagement { SessionCreationPolicy.STATELESS }
-            formLogin {
-                loginProcessingUrl = "/login"
-            }
         }
     }
 }

@@ -25,27 +25,4 @@ class UserRestControllerTest() : RestControllerTest() {
             status { isCreated() }
         }
     }
-
-    @Test
-    fun `회원가입한 계정으로 로그인에 성공한다`() {
-        // given
-        val userCreateRequest = UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password2021!")
-        mockMvc.post("/v1/users") {
-            content = jacksonObjectMapper().writeValueAsBytes(userCreateRequest)
-            accept = MediaType.APPLICATION_JSON
-            contentType = MediaType.APPLICATION_JSON
-        }
-
-        // when
-        val actual = mockMvc.post("/login") {
-            param("username", "nullable@kakao.com")
-            param("password", "password2021!")
-            contentType = MediaType.APPLICATION_FORM_URLENCODED
-        }
-
-        // then
-        actual.andExpect {
-            status { isOk() }
-        }
-    }
 }
