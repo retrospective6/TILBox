@@ -20,6 +20,7 @@ repositories {
 object Versions {
     const val KOTEST = "4.6.3"
     const val JJWT = "0.11.2"
+    const val SWAGGER = "3.0.0"
 }
 
 dependencies {
@@ -30,6 +31,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-cache")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("io.springfox:springfox-boot-starter:${Versions.SWAGGER}")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
 
     implementation("org.springframework.boot:spring-boot-starter-security")
