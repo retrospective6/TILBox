@@ -6,8 +6,14 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-data class UserPrincipal(val userId: Long, val email: String?, private val password: String?, private val authorities: Collection<GrantedAuthority>) : UserDetails {
-    constructor(userId: Long, email: String, password: Password, userRole: UserRole) : this(userId, email, password.value, listOf(SimpleGrantedAuthority(userRole.title)))
+data class UserPrincipal(
+    val userId: Long,
+    val email: String?,
+    private val password: String?,
+    private val authorities: Collection<GrantedAuthority>
+) : UserDetails {
+    constructor(userId: Long, email: String, password: Password, userRole: UserRole) :
+        this(userId, email, password.value, listOf(SimpleGrantedAuthority(userRole.title)))
 
     override fun isAccountNonExpired(): Boolean {
         return true

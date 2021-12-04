@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 class EmailPasswordUserDetailsService(private val userRepository: UserRepository) : UserDetailsService {
     override fun loadUserByUsername(email: String): UserDetails {
         val user = userRepository.findByEmailAndRegistrationType(email, RegistrationType.EMAIL)
-            ?: throw UsernameNotFoundException("사용자를 찾을 수 없습니다. email=${email}")
+            ?: throw UsernameNotFoundException("사용자를 찾을 수 없습니다. email=$email")
         return UserPrincipal(user.id, user.email, user.password, user.userRole)
     }
 }

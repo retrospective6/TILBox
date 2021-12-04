@@ -15,8 +15,8 @@ class JwtProvider {
     companion object {
         private val SECRET_KEY: SecretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256) // TODO secret key 변경
         private val EXPIRATION_TIME_MILLISECOND: Long = Duration.ofDays(30L).toMillis()
-        private const val USER_ID_CLAIM_KEY = "userId";
-        private const val ROLE_CLAIM_KEY = "role";
+        private const val USER_ID_CLAIM_KEY = "userId"
+        private const val ROLE_CLAIM_KEY = "role"
     }
 
     fun createToken(userPrincipal: UserPrincipal): String {

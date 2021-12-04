@@ -7,11 +7,11 @@ enum class UserRole(val title: String) {
     companion object {
         fun from(title: String): UserRole {
             return values()
-                .find { it.equalsTitle(title) } ?: throw IllegalArgumentException("권한을 찾지 못했습니다. title=${title}")
+                .find { it.equalsTitle(title) } ?: throw IllegalArgumentException("권한을 찾지 못했습니다. title=$title")
         }
     }
 
     private fun equalsTitle(title: String): Boolean {
-        return this.title==title
+        return this.title == title
     }
 }

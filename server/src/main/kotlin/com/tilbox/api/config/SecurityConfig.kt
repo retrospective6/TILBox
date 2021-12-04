@@ -1,5 +1,6 @@
 package com.tilbox.api.config
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.tilbox.api.security.CustomUsernamePasswordAuthenticationFilter
 import com.tilbox.api.security.JwtAuthenticationFilter
 import com.tilbox.api.security.JwtCreationFilter
@@ -13,44 +14,41 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.config.web.servlet.invoke
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.security.web.authentication.logout.LogoutFilter
 import org.springframework.security.web.header.HeaderWriterFilter
 
 @Configuration
-@EnableWebSecurity
-class SecurityConfig(private val jwtCreationFilter: JwtCreationFilter, private val jwtAuthenticationFilter: JwtAuthenticationFilter) : WebSecurityConfigurerAdapter() {
+@EnableWebSecurity(debug = true)
+class SecurityConfig(
+    private val jwtAuthenticationFilter: JwtAuthenticationFilter,
+    private val jwtCreationFilter: JwtCreationFilter,
+    private val objectMapper: ObjectMapper
+) : WebSecurityConfigurerAdapter() {
     @Bean
     fun passwordEncoder(): PasswordEncoder {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
 
     @Bean
-    override fun authenticationManager(): AuthenticationManager {
+    override fun authenticationManagerBean(): AuthenticationManager {
         return super.authenticationManagerBean()
-    }
-
-    @Bean
-    fun usernamePasswordAuthenticationFilter(): UsernamePasswordAuthenticationFilter {
-        return CustomUsernamePasswordAuthenticationFilter(authenticationManager())
     }
 
     override fun configure(http: HttpSecurity) {
         http {
-            formLogin {
-            }
-            headers {
-                frameOptions { sameOrigin }
-            }
             cors {
             }
+            csrf { disable() }
             authorizeRequests {
                 authorize("/**", permitAll)
             }
-            addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
-            addFilterAfter(usernamePasswordAuthenticationFilter(), LogoutFilter::class.java)
-            addFilterAfter(jwtCreationFilter, HeaderWriterFilter::class.java)
+            addFilterBefore(jwtAuthenticationFilter, HeaderWriterFilter::class.java)
+            addFilterAfter(CustomUsernamePasswordAuthenticationFilter(authenticationManager(), objectMapper), LogoutFilter::class.java)
+            addFilterAfter(jwtCreationFilter, CustomUsernamePasswordAuthenticationFilter::class.java)
             sessionManagement { SessionCreationPolicy.STATELESS }
+            formLogin {
+                loginProcessingUrl = "/login"
+            }
         }
     }
 }

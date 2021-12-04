@@ -20,7 +20,9 @@ class EmailUserCreateService(
     private val passwordEncodingStrategy: PasswordEncodingStrategy,
 ) {
     fun createUser(request: UserCreateRequest): UserCreateResponse {
-        check(!userRepository.existsByEmailAndRegistrationType(request.email, RegistrationType.EMAIL)) { "이미 가입된 이메일입니다." }
+        check(!userRepository.existsByEmailAndRegistrationType(request.email, RegistrationType.EMAIL)) {
+            "이미 가입된 이메일입니다."
+        }
         check(!userRepository.existsByMyTilAddress(request.myTilAddress)) { "이미 사용중인 TIL 주소입니다." }
 
         val currentDateTime = LocalDateTime.now()
