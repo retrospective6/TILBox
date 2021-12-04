@@ -9,7 +9,7 @@ export interface SearchInputProps {
 
 export default function SearchInput(props: SearchInputProps): JSX.Element {
   const { placeholder, onSearch } = props;
-  const [value, setValue] = useState('');
+  const [isActive, setIsActive] = useState<boolean>(false);
   const input = useRef<HTMLInputElement>(null);
 
   const onClick = () => {
@@ -18,7 +18,7 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setValue(value);
+    setIsActive(!!value);
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -34,7 +34,7 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
   };
 
   return (
-    <Container value={value} onClick={onClick}>
+    <Container isActive={isActive} onClick={onClick}>
       <Text>검색</Text>
       <Input
         data-testid="search-input"
@@ -67,7 +67,7 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
 }
 
 interface ContainerProps {
-  value: string;
+  isActive: boolean;
 }
 
 const activeCSS = css`
@@ -107,7 +107,7 @@ const Container = styled.div<ContainerProps>`
   &:focus-within {
     ${activeCSS}
   }
-  ${({ value }) => value && activeCSS}
+  ${({ isActive }) => isActive && activeCSS}
 `;
 
 const Text = styled.span`
