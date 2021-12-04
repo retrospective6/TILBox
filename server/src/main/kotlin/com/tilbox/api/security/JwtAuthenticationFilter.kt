@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse
 
 @Component
 class JwtAuthenticationFilter(private val jwtProvider: JwtProvider) : OncePerRequestFilter() {
-    override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
+    override fun doFilterInternal(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        filterChain: FilterChain
+    ) {
         authenticate(request)
         filterChain.doFilter(request, response)
     }
@@ -21,7 +25,9 @@ class JwtAuthenticationFilter(private val jwtProvider: JwtProvider) : OncePerReq
         try {
             val token = extractTokenFromHeader(request)
             val payload = jwtProvider.extractPayload(token)
-            SecurityContextHolder.getContext().authentication = UsernamePasswordAuthenticationToken(payload.userId, "", payload.authorities)
+            SecurityContextHolder.getContext().authentication = UsernamePasswordAuthenticationToken(
+                payload.userId, "", payload.authorities
+            )
         } catch (exception: JwtException) {
             logger.info("사용자 인증에 실패했습니다. message=${exception.message}")
         } catch (exception: IllegalArgumentException) {
