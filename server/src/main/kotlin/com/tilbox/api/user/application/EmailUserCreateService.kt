@@ -10,8 +10,8 @@ import com.tilbox.core.user.domain.value.Profile
 import com.tilbox.core.user.domain.value.RegistrationType
 import com.tilbox.core.user.domain.value.UserRole
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
-import javax.transaction.Transactional
 
 @Transactional
 @Service
@@ -26,17 +26,19 @@ class EmailUserCreateService(
         check(!userRepository.existsByMyTilAddress(request.myTilAddress)) { "이미 사용중인 TIL 주소입니다." }
 
         val currentDateTime = LocalDateTime.now()
-        val user = User(
-            myTilAddress = request.myTilAddress,
-            email = request.email,
-            profile = Profile(nickname = request.nickname, image = request.image),
-            password = Password(value = request.password, passwordEncodingStrategy),
-            registrationType = RegistrationType.EMAIL,
-            userRole = UserRole.USER,
-            createdAt = currentDateTime,
-            updatedAt = currentDateTime,
+        val user = userRepository.save(
+            User(
+                myTilAddress = request.myTilAddress,
+                email = request.email,
+                profile = Profile(nickname = request.nickname, image = request.image),
+                password = Password(value = request.password, passwordEncodingStrategy),
+                registrationType = RegistrationType.EMAIL,
+                userRole = UserRole.USER,
+                createdAt = currentDateTime,
+                updatedAt = currentDateTime,
+                deletedAt = null
+            )
         )
-        val createdUser = userRepository.save(user.create())
-        return UserCreateResponse(createdUser)
+        return UserCreateResponse(user.create())
     }
 }

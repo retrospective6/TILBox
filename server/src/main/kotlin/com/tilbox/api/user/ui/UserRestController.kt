@@ -1,6 +1,8 @@
 package com.tilbox.api.user.ui
 
+import com.tilbox.api.security.UserPrincipal
 import com.tilbox.api.user.application.EmailUserCreateService
+import com.tilbox.api.user.application.UserWithdrawalService
 import com.tilbox.api.user.application.dto.request.UserCreateRequest
 import com.tilbox.api.user.application.dto.response.UserCreateResponse
 import io.swagger.annotations.Api
@@ -8,6 +10,8 @@ import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
 import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -18,7 +22,10 @@ import javax.validation.Valid
 @Api(description = "회원 API")
 @RestController
 @RequestMapping("/v1/users")
-class UserRestController(private val emailUserCreateService: EmailUserCreateService) {
+class UserRestController(
+    private val emailUserCreateService: EmailUserCreateService,
+    private val userWithdrawalService: UserWithdrawalService
+) {
 
     @Operation(summary = "회원가입", description = "이메일 인증을 통한 회원가입을 진행한다.")
     @ApiResponses(
@@ -31,5 +38,18 @@ class UserRestController(private val emailUserCreateService: EmailUserCreateServ
         return ResponseEntity
             .created(URI.create("/v1/users/${response.myTilAddress}"))
             .body(response)
+    }
+
+    @Operation(summary = "회원탈퇴", description = "현재 로그인한 사용자의 회원탈퇴를 진행한다.")
+    @ApiResponses(
+        ApiResponse(code = 204, message = "회원탈퇴 완료"),
+        ApiResponse(code = 409, message = "회원탈퇴 실패")
+    )
+    @DeleteMapping
+    fun withdrawUser(@AuthenticationPrincipal loginUser: UserPrincipal): ResponseEntity<Void> {
+        userWithdrawalService.withdraw(loginUser)
+        return ResponseEntity
+            .noContent()
+            .build()
     }
 }

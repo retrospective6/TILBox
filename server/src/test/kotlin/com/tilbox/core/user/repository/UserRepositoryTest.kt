@@ -35,6 +35,7 @@ internal class UserRepositoryTest(private val userRepository: UserRepository) {
             UserRole.USER,
             LocalDateTime.now(),
             LocalDateTime.now(),
+            null
         )
         userRepository.save(actual)
     }

@@ -42,6 +42,9 @@ class User(
     @Column(name = "updated_at", nullable = false)
     var updatedAt: LocalDateTime,
 
+    @Column(name = "deleted_at", nullable = true)
+    var deletedAt: LocalDateTime?,
+
     id: Long = 0L
 ) : BaseRootEntity<User>(id) {
     fun create(): User {
@@ -51,5 +54,18 @@ class User(
 
     fun isCorrectPassword(rawPassword: String, passwordMatchStrategy: PasswordMatchStrategy): Boolean {
         return password.match(rawPassword, passwordMatchStrategy)
+    }
+
+    fun withdraw(deletedAt: LocalDateTime) {
+        status = UserStatus.DEACTIVATED
+        this.deletedAt = deletedAt
+    }
+
+    fun canNotLogin(): Boolean {
+        return status === UserStatus.DEACTIVATED || status === UserStatus.BLOCKED
+    }
+
+    fun canWithdrawal(): Boolean {
+        return status === UserStatus.AUTHENTICATED
     }
 }
