@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "storybook": "start-storybook -p 6006",
     "test": "jest --watchAll",
-    "test:coverage": "yarn test --watchAll=false --coverage"
+    "story": "start-storybook -p 6006",
+    "lint": "next lint",
+    "start": "next start",
+    "build": "next build",
+    "test:coverage": "yarn test --watchAll=false --coverage",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",
@@ -34,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-loader": "^8.2.2",
+    "chromatic": "^6.0.5",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
@@ -41,6 +43,9 @@
     "eslint-plugin-react": "^7.26.1",
     "jest": "^27.2.4",
     "prettier": "^2.4.1",
+    "storybook-addon-next-router": "^3.0.8",
+    "stylelint": "^14.1.0",
+    "stylelint-config-standard": "^24.0.0",
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.4"
   },
