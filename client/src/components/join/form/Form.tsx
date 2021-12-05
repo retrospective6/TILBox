@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from '@/components/Input';
 import * as Styled from './Form.styles';
+import Button from '@/components/Button';
 
 export default function Form(): JSX.Element {
   return (
@@ -40,6 +41,7 @@ export default function Form(): JSX.Element {
         hint="비밀번호를 다시 입력해주세요"
         placeholder="til365master!"
       />
+      <Button variant="primary">회원가입 완료</Button>
     </Styled.Form>
   );
 }

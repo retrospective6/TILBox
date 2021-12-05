@@ -9,11 +9,13 @@ export default function Index(): JSX.Element {
   };
 
   return (
-    <>
+    <Styled.Container>
       <Styled.Title>회원가입</Styled.Title>
-      <ImgSelector onSubmit={onImgSubmit} />
-      <p>프로필 사진은 수정 가능합니다.</p>
+      <Styled.ProfileWrap>
+        <ImgSelector onSubmit={onImgSubmit} />
+        <p>프로필 사진은 수정 가능합니다.</p>
+      </Styled.ProfileWrap>
       <Form />
-    </>
+    </Styled.Container>
   );
 }
