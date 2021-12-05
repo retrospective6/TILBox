@@ -41,6 +41,21 @@ export default function Form(): JSX.Element {
         hint="비밀번호를 다시 입력해주세요"
         placeholder="til365master!"
       />
+      <div className="check-email-reception">
+        <label>
+          <div>
+            <span className="title">이메일 수신</span>
+            <span className="description">
+              정해진 시간에 맞춰 TIL 미작성시 알림 메일이 발신됩니다
+            </span>
+          </div>
+        </label>
+        <label className="checkbox-wrap">
+          <input name="email" type="checkbox" />
+          <span className="checkbox-desc">이메일 수신 동의</span>
+        </label>
+      </div>
+
       <Button variant="primary">회원가입 완료</Button>
     </Styled.Form>
   );
