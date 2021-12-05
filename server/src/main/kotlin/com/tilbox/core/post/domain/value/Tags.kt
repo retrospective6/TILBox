@@ -1,4 +1,4 @@
-package com.tilbox.core.post.domain.entity
+package com.tilbox.core.post.domain.value
 
 import javax.persistence.CollectionTable
 import javax.persistence.ElementCollection
