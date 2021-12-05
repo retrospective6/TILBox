@@ -3,25 +3,25 @@ import '@/styles/global.css';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import Header from '@/components/Header';
-import SignInModal from '@/components/SignInModal';
+import LoginModal from '@/components/LoginModal';
 
 function TILApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
-  const [signInModal, setSignInModal] = useState<boolean>(false);
+  const [loginModal, setLoginModal] = useState<boolean>(false);
 
   const handleSignUp = () => {
     // TODO: 회원가입 버튼 클릭 시 로직
   };
 
-  const handleSignIn = () => {
-    setSignInModal(true);
+  const handleOpenLoginModal = () => {
+    setLoginModal(true);
   };
 
-  const handleCloseSignIn = () => {
-    setSignInModal(false);
+  const handleCloseLoginModal = () => {
+    setLoginModal(false);
   };
 
-  const handleSubmitSignIn = () => {
+  const handleLogin = () => {
     // TODO: 로그인 시 로직
   };
 
@@ -34,15 +34,12 @@ function TILApp({ Component, pageProps }: AppProps): JSX.Element {
       <Header
         active={router.pathname}
         onSignUp={handleSignUp}
-        onSignIn={handleSignIn}
+        onLogin={handleOpenLoginModal}
         onSearch={handleSearch}
       />
       <Component {...pageProps} />
-      {signInModal && (
-        <SignInModal
-          onClose={handleCloseSignIn}
-          onSubmit={handleSubmitSignIn}
-        />
+      {loginModal && (
+        <LoginModal onClose={handleCloseLoginModal} onSubmit={handleLogin} />
       )}
     </>
   );

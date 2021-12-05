@@ -9,12 +9,12 @@ export interface HeaderProps {
   active: string;
   user?: User;
   onSignUp: () => void;
-  onSignIn: () => void;
+  onLogin: () => void;
   onSearch: (value: string) => void;
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { active, user, onSignUp, onSignIn, onSearch } = props;
+  const { active, user, onSignUp, onLogin, onSearch } = props;
 
   return (
     <Container>
@@ -51,7 +51,7 @@ export default function Header(props: HeaderProps): JSX.Element {
             <UserInfoItem data-testid="sign-up" onClick={onSignUp}>
               회원가입
             </UserInfoItem>
-            <UserInfoItem data-testid="sign-in" onClick={onSignIn}>
+            <UserInfoItem data-testid="login" onClick={onLogin}>
               로그인
             </UserInfoItem>
           </>

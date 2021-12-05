@@ -4,17 +4,17 @@ import Modal from '@/components/Modal';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 
-export interface SignInFormProps {
+export interface LoginFormProps {
   email: string;
   password: string;
 }
 
-export interface SignInModalProps {
+export interface LoginModalProps {
   onClose: () => void;
-  onSubmit: (values: SignInFormProps) => void;
+  onSubmit: (values: LoginFormProps) => void;
 }
 
-export default function SignInModal(props: SignInModalProps): JSX.Element {
+export default function LoginModal(props: LoginModalProps): JSX.Element {
   const { onClose, onSubmit } = props;
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -37,7 +37,7 @@ export default function SignInModal(props: SignInModalProps): JSX.Element {
 
   return (
     <Modal title="이메일 로그인" onClose={onClose}>
-      <Form data-testid="sign-in-modal" onSubmit={onSubmitValue}>
+      <Form data-testid="login-modal" onSubmit={onSubmitValue}>
         <Input
           data-testid="email-input"
           title="이메일"
