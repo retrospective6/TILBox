@@ -13,7 +13,7 @@ class UserWithdrawalService(private val userRepository: UserRepository) {
         val user = userRepository.findById(loginUser.userId).orElseThrow {
             throw IllegalStateException("사용자가 존재하지 않습니다. userId=${loginUser.userId}")
         }
-        check(user.canWithdrawal()) { "회원 탈퇴할 수 없는 계정입니다. userId=${loginUser.userId}, status=${user.status}" }
+        check(user.isAuthenticated()) { "회원 탈퇴할 수 없는 계정입니다. userId=${loginUser.userId}, status=${user.status}" }
 
         val currentDateTime = LocalDateTime.now()
         user.withdraw(currentDateTime)

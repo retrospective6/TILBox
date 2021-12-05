@@ -52,6 +52,16 @@ class User(
         return this
     }
 
+    fun updateProfile(
+        nickname: String,
+        image: String?,
+        description: String,
+        updatedAt: LocalDateTime
+    ) {
+        this.profile = Profile(nickname, image, description, this.profile.subscribeCount)
+        this.updatedAt = updatedAt
+    }
+
     fun isCorrectPassword(rawPassword: String, passwordMatchStrategy: PasswordMatchStrategy): Boolean {
         return password.match(rawPassword, passwordMatchStrategy)
     }
@@ -65,7 +75,7 @@ class User(
         return status === UserStatus.DEACTIVATED || status === UserStatus.BLOCKED
     }
 
-    fun canWithdrawal(): Boolean {
+    fun isAuthenticated(): Boolean {
         return status === UserStatus.AUTHENTICATED
     }
 }
