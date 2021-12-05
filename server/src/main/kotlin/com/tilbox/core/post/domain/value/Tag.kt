@@ -5,6 +5,6 @@ import javax.persistence.Embeddable
 
 @Embeddable
 class Tag(
-    @Column(nullable = false, length = 10, columnDefinition = "태그의 이름")
+    @Column(nullable = false, length = 10)
     private val name: String
 )

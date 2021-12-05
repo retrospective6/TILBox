@@ -13,16 +13,16 @@ import javax.persistence.Lob
 
 @Entity
 class Post(
-    @Column(name = "user_id", nullable = false, columnDefinition = "게시물 작성자 id")
+    @Column(name = "user_id", nullable = false)
     private val userId: Long,
 
-    @Column(name = "title", nullable = false, length = 40, columnDefinition = "TIL 제목")
+    @Column(name = "title", nullable = false, length = 40)
     private var title: String,
 
     @Lob
     private var content: String,
 
-    @Column(name = "summary", nullable = false, length = 150, columnDefinition = "게시물 요약")
+    @Column(name = "summary", nullable = false, length = 150)
     private var summary: String,
 
     @Embedded
@@ -31,17 +31,17 @@ class Post(
     @Lob
     private var thumbnailUrl: String?,
 
-    @Column(name = "visibleLevel", nullable = false, length = 10, columnDefinition = "게시물 공개범위")
+    @Column(name = "visibleLevel", nullable = false, length = 10)
     @Enumerated(EnumType.STRING)
     private var visibleLevel: PostVisibleLevel,
 
-    @Column(name = "likeCount", nullable = false, columnDefinition = "댓글 좋아요 갯수")
+    @Column(name = "likeCount", nullable = false)
     private var likeCount: Long = 0,
 
-    @Column(name = "created_at", nullable = false, columnDefinition = "게시물 작성시간")
+    @Column(name = "created_at", nullable = false)
     private val createdAt: LocalDateTime,
 
-    @Column(name = "modified_at", nullable = false, columnDefinition = "게시물 수정시간")
+    @Column(name = "modified_at", nullable = false)
     private var updatedAt: LocalDateTime,
 
     id: Long = 0L
