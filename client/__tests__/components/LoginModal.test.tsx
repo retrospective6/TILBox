@@ -19,8 +19,8 @@ describe('with onSubmit method', () => {
   });
 
   describe('with email, password', () => {
-    const email = 'email';
-    const password = 'password';
+    const email = 'test@test.com';
+    const password = 'testtest';
 
     test('run method with email, password on click button', () => {
       const { getByTestId } = renderLoginModal({ onSubmit });
