@@ -9,10 +9,10 @@ export type Rule = {
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
+  rules?: Rule[];
   hint?: string;
   width?: string;
   height?: string;
-  rules: Rule[];
 }
 
 export default function Input(props: InputProps): JSX.Element {
@@ -21,6 +21,9 @@ export default function Input(props: InputProps): JSX.Element {
   const [isValid, setIsValid] = useState<boolean>(true);
 
   const onBlur = (event: FocusEvent<HTMLInputElement>) => {
+    if (!rules) {
+      return;
+    }
     const value = event.target.value;
     const invalidRule = rules.find(({ rule }) => rule(value));
     setIsValid(!invalidRule);
