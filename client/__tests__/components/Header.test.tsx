@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  fireEvent,
-  render,
-  RenderResult,
-  waitFor,
-} from '@testing-library/react';
+import { fireEvent, render, RenderResult } from '@testing-library/react';
 import Header, { HeaderProps } from '@/components/Header';
 import { NAV_ITEMS } from '@/utils/constants';
 import User from '@/types/User';
@@ -63,7 +58,7 @@ describe('navbar', () => {
 describe('user info section', () => {
   describe('with onSignUp method', () => {
     const onSignUp = jest.fn();
-    test('run on click sign up text', () => {
+    test('run method on click sign up text', () => {
       const { getByTestId } = renderHeader({ onSignUp });
       const signUp = getByTestId('sign-up');
       fireEvent.click(signUp);
@@ -71,15 +66,13 @@ describe('user info section', () => {
     });
   });
 
-  describe('on click sign in text', () => {
-    test('visible sign in modal', async () => {
-      const { getByTestId } = renderHeader();
+  describe('with onSignIn method', () => {
+    const onSignIn = jest.fn();
+    test('run method on click sign in text', () => {
+      const { getByTestId } = renderHeader({ onSignIn });
       const signIn = getByTestId('sign-in');
       fireEvent.click(signIn);
-
-      await waitFor(() =>
-        expect(getByTestId('sign-in-modal')).toBeInTheDocument(),
-      );
+      expect(onSignIn).toBeCalled();
     });
   });
 
