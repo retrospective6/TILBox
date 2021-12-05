@@ -41,7 +41,7 @@ export default function Form(): JSX.Element {
         hint="비밀번호를 다시 입력해주세요"
         placeholder="til365master!"
       />
-      <div className="check-email-reception">
+      <Styled.CheckEmailReception>
         <label>
           <div>
             <span className="title">이메일 수신</span>
@@ -54,7 +54,7 @@ export default function Form(): JSX.Element {
           <input name="email" type="checkbox" />
           <span className="checkbox-desc">이메일 수신 동의</span>
         </label>
-      </div>
+      </Styled.CheckEmailReception>
 
       <Button variant="primary">회원가입 완료</Button>
     </Styled.Form>
