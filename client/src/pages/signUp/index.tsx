@@ -1,7 +1,7 @@
 import React from 'react';
 import ImgSelector from '@/components/ImgSelector';
 import Form from '@/components/signUp/form/Form';
-import * as Styled from '@/pages/signUp/Index.styles';
+import * as Styled from '@/pages/signUp/index.styles';
 
 export default function Index(): JSX.Element {
   const onImgSubmit = () => {

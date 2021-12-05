@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchInput from '@/components/SearchInput';
 import { ComponentStory } from '@storybook/react';
-import Index from '@/pages/signUp/Index';
+import Index from '@/pages/signUp';
 
 export default {
   component: Index,
