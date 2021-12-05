@@ -1,17 +1,17 @@
 import React from 'react';
-import LoginModal from '@/components/LoginModal';
+import SignInModal from '@/components/SignInModal';
 import { ComponentStory } from '@storybook/react';
 
 export default {
-  component: LoginModal,
+  component: SignInModal,
   title: 'LoginModal',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
 };
 
-const Template: ComponentStory<typeof LoginModal> = (args) => (
-  <LoginModal {...args} />
+const Template: ComponentStory<typeof SignInModal> = (args) => (
+  <SignInModal {...args} />
 );
 
 export const Default = Template.bind({});

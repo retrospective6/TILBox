@@ -1,14 +1,14 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import LoginModal, { LoginModalProps } from '@/components/LoginModal';
+import SignInModal, { SignInModalProps } from '@/components/SignInModal';
 
-const DEFAULT_ARGS: LoginModalProps = {
+const DEFAULT_ARGS: SignInModalProps = {
   onClose: jest.fn(),
   onSubmit: jest.fn(),
 };
 
-const renderLoginModal = (props: Partial<LoginModalProps>): RenderResult => {
-  return render(<LoginModal {...DEFAULT_ARGS} {...props} />);
+const renderLoginModal = (props: Partial<SignInModalProps>): RenderResult => {
+  return render(<SignInModal {...DEFAULT_ARGS} {...props} />);
 };
 
 describe('with onSubmit method', () => {
