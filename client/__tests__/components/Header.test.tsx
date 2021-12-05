@@ -1,5 +1,10 @@
 import React from 'react';
-import { fireEvent, render, RenderResult } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  RenderResult,
+  waitFor,
+} from '@testing-library/react';
 import Header, { HeaderProps } from '@/components/Header';
 import { NAV_ITEMS } from '@/utils/constants';
 import User from '@/types/User';
@@ -66,13 +71,15 @@ describe('user info section', () => {
     });
   });
 
-  describe('with onSignUp method', () => {
-    const onSignIn = jest.fn();
-    test('run on click sign up text', () => {
-      const { getByTestId } = renderHeader({ onSignIn });
+  describe('on click sign in text', () => {
+    test('visible sign in modal', async () => {
+      const { getByTestId } = renderHeader();
       const signIn = getByTestId('sign-in');
       fireEvent.click(signIn);
-      expect(onSignIn).toBeCalled();
+
+      await waitFor(() =>
+        expect(getByTestId('sign-in-modal')).toBeInTheDocument(),
+      );
     });
   });
 

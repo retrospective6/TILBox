@@ -11,7 +11,7 @@ export interface SignInFormProps {
 
 export interface SignInModalProps {
   onClose: () => void;
-  onSubmit: (props: SignInFormProps) => void;
+  onSubmit: (values: SignInFormProps) => void;
 }
 
 export default function SignInModal(props: SignInModalProps): JSX.Element {
@@ -37,7 +37,7 @@ export default function SignInModal(props: SignInModalProps): JSX.Element {
 
   return (
     <Modal title="이메일 로그인" onClose={onClose}>
-      <Form onSubmit={onSubmitValue}>
+      <Form data-testid="sign-in-modal" onSubmit={onSubmitValue}>
         <Input
           data-testid="email-input"
           title="이메일"

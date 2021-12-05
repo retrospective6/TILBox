@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { NAV_ITEMS, NAV_LINKS } from '@/utils/constants';
 import User from '@/types/User';
 import SearchInput from '@/components/SearchInput';
+import SignInModal, { SignInFormProps } from '@/components/SignInModal';
 
 export interface HeaderProps {
   active: NAV_LINKS;
   user?: User;
   onSignUp: () => void;
-  onSignIn: () => void;
+  onSignIn: (values: SignInFormProps) => void;
   onSearch: (value: string) => void;
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
   const { active, user, onSignUp, onSignIn, onSearch } = props;
+  const [signInModal, setSignInModal] = useState<boolean>(false);
+
+  const handleSignIn = () => {
+    setSignInModal(true);
+  };
+
+  const handleCloseSignIn = () => {
+    setSignInModal(false);
+  };
 
   return (
     <Container>
@@ -51,12 +61,15 @@ export default function Header(props: HeaderProps): JSX.Element {
             <UserInfoItem data-testid="sign-up" onClick={onSignUp}>
               회원가입
             </UserInfoItem>
-            <UserInfoItem data-testid="sign-in" onClick={onSignIn}>
+            <UserInfoItem data-testid="sign-in" onClick={handleSignIn}>
               로그인
             </UserInfoItem>
           </>
         )}
       </UserInfo>
+      {signInModal && (
+        <SignInModal onClose={handleCloseSignIn} onSubmit={onSignIn} />
+      )}
     </Container>
   );
 }

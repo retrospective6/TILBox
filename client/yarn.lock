@@ -3547,7 +3547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^12.1.1":
+"@testing-library/react@npm:^12.1.2":
   version: 12.1.2
   resolution: "@testing-library/react@npm:12.1.2"
   dependencies:
@@ -15653,7 +15653,7 @@ __metadata:
     "@storybook/addon-links": ^6.3.12
     "@storybook/react": ^6.3.12
     "@testing-library/jest-dom": ^5.14.1
-    "@testing-library/react": ^12.1.1
+    "@testing-library/react": ^12.1.2
     "@types/jest": ^27.0.2
     "@types/node": ^16.11.6
     "@types/react": ^17.0.33
