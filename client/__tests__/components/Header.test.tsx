@@ -8,6 +8,7 @@ const DEFAULT_ARGS: HeaderProps = {
   active: '/',
   onSignUp: jest.fn(),
   onSignIn: jest.fn(),
+  onSearch: jest.fn(),
 };
 
 const renderHeader = (props: Partial<HeaderProps> = {}): RenderResult => {
