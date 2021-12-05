@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const Form = styled.form`
-  width: 268px;
   height: 358px;
 
   .check-email-reception {
@@ -22,6 +21,7 @@ export const Form = styled.form`
     }
 
     .checkbox-wrap {
+      margin-top: 8px;
       display: flex;
       align-items: center;
 
@@ -30,5 +30,9 @@ export const Form = styled.form`
         margin-left: 8px;
       }
     }
+  }
+
+  button {
+    margin: 0 auto;
   }
 `;
