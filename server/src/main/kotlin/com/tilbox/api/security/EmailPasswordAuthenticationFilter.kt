@@ -5,7 +5,6 @@ import org.springframework.core.log.LogMessage
 import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationServiceException
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
@@ -23,13 +22,8 @@ class EmailPasswordAuthenticationFilter(
             throw AuthenticationServiceException("Authentication method not supported: " + request.method)
         }
         val loginRequest = objectMapper.readValue(request.inputStream, LoginRequest::class.java)
-        var username = loginRequest?.email ?: ""
-        username = username.trim { it <= ' ' }
-        val password = loginRequest?.password ?: ""
-        val authRequest = UsernamePasswordAuthenticationToken(username, password)
-        // Allow subclasses to set the "details" property
-        setDetails(request, authRequest)
-        return authenticationManager.authenticate(authRequest)
+        setDetails(request, loginRequest.toAuthRequest())
+        return authenticationManager.authenticate(loginRequest.toAuthRequest())
     }
 
     override fun successfulAuthentication(
