@@ -12,26 +12,51 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
+export const Default = Template.bind({});
+Default.args = {
+  children: 'Button',
+  variant: 'default',
+  size: 'small',
+};
+
 export const Primary = Template.bind({});
 Primary.args = {
-  text: 'Button',
-  theme: 'primary',
+  ...Default.args,
+  variant: 'primary',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  ...Primary.args,
-  theme: 'secondary',
+  ...Default.args,
+  variant: 'secondary',
+};
+
+export const Third = Template.bind({});
+Third.args = {
+  ...Default.args,
+  variant: 'third',
 };
 
 export const Danger = Template.bind({});
 Danger.args = {
-  ...Primary.args,
-  theme: 'danger',
+  ...Default.args,
+  variant: 'danger',
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  ...Default.args,
+  size: 'medium',
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  ...Default.args,
+  size: 'large',
 };
 
 export const Wide = Template.bind({});
 Wide.args = {
-  ...Primary.args,
+  ...Default.args,
   width: '266px',
 };
