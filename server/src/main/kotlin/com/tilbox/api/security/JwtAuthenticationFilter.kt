@@ -38,7 +38,7 @@ class JwtAuthenticationFilter(private val jwtProvider: JwtProvider) : OncePerReq
     }
 
     private fun hasAuthorizationHeader(request: HttpServletRequest): Boolean {
-        return request.getHeader(HttpHeaders.AUTHORIZATION) != null;
+        return request.getHeader(HttpHeaders.AUTHORIZATION) != null
     }
 
     private fun extractTokenFromHeader(request: HttpServletRequest): String {
