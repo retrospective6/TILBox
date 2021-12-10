@@ -68,7 +68,7 @@ const activeCSS = css`
   }
   input {
     visibility: visible;
-    width: 500px;
+    width: 450px;
     margin: 9px;
   }
 `;
