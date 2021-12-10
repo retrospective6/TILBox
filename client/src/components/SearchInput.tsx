@@ -17,20 +17,23 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
     input.current?.focus();
   };
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleClick = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setActive(!!value);
   };
 
-  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeydown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== 'Enter') {
       return;
     }
-    onSubmitValue();
+    handleSubmit();
   };
 
-  const onSubmitValue = () => {
-    const value = input.current?.value || '';
+  const handleSubmit = () => {
+    if (!input.current?.value) {
+      return;
+    }
+    const value = input.current?.value;
     onSearch(value);
   };
 
@@ -42,10 +45,10 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
         type="text"
         placeholder={placeholder}
         ref={input}
-        onChange={onChange}
-        onKeyDown={onKeyDown}
+        onChange={handleClick}
+        onKeyDown={handleKeydown}
       />
-      <Icon>
+      <Icon onClick={handleSubmit}>
         <SearchIcon />
       </Icon>
     </Container>
