@@ -70,7 +70,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.1.0, @babel/core@npm:^7.12.10, @babel/core@npm:^7.12.3, @babel/core@npm:^7.15.5, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
+"@babel/core@npm:^7.1.0, @babel/core@npm:^7.12.10, @babel/core@npm:^7.12.3, @babel/core@npm:^7.15.5, @babel/core@npm:^7.16.0, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
   version: 7.16.0
   resolution: "@babel/core@npm:7.16.0"
   dependencies:
@@ -4147,6 +4147,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/babel__core@npm:^7":
+  version: 7.1.17
+  resolution: "@types/babel__core@npm:7.1.17"
+  dependencies:
+    "@babel/parser": ^7.1.0
+    "@babel/types": ^7.0.0
+    "@types/babel__generator": "*"
+    "@types/babel__template": "*"
+    "@types/babel__traverse": "*"
+  checksum: 0108efab8acb6a8e0aab6f8113d5ef1fc4b58d40737aa70a3ee83112959e0880e5548374e7edb562e4e837cde4ae47265348b04eb7e684283b0dea418d013420
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.0.0, @types/babel__core@npm:^7.1.14":
   version: 7.1.16
   resolution: "@types/babel__core@npm:7.1.16"
@@ -5541,7 +5554,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-loader@npm:^8.0.0, babel-loader@npm:^8.2.2":
+"babel-loader@npm:^8.0.0, babel-loader@npm:^8.2.3":
   version: 8.2.3
   resolution: "babel-loader@npm:8.2.3"
   dependencies:
@@ -16199,7 +16212,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tilbox@workspace:."
   dependencies:
-    "@babel/core": ^7.15.5
+    "@babel/core": ^7.16.0
     "@emotion/react": ^11.5.0
     "@emotion/styled": ^11.3.0
     "@storybook/addon-actions": ^6.4.9
@@ -16211,6 +16224,7 @@ __metadata:
     "@svgr/webpack": ^6.1.1
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^12.1.1
+    "@types/babel__core": ^7
     "@types/jest": ^27.0.2
     "@types/node": ^16.11.6
     "@types/react": ^17.0.33
@@ -16218,7 +16232,7 @@ __metadata:
     "@types/testing-library__jest-dom": ^5
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
-    babel-loader: ^8.2.2
+    babel-loader: ^8.2.3
     chromatic: ^6.0.5
     eslint: ^7.32.0
     eslint-config-next: ^11.1.2

@@ -48,7 +48,7 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
         onChange={handleClick}
         onKeyDown={handleKeydown}
       />
-      <Icon onClick={handleSubmit}>
+      <Icon data-testid="search-icon" onClick={handleSubmit}>
         <SearchIcon />
       </Icon>
     </Container>
