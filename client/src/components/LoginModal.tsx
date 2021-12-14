@@ -4,14 +4,14 @@ import Modal from '@/components/Modal';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 
-interface FormProps {
+export interface LoginFormProps {
   email: string;
   password: string;
 }
 
 export interface LoginModalProps {
   onClose: () => void;
-  onSubmit: (props: FormProps) => void;
+  onSubmit: (values: LoginFormProps) => void;
 }
 
 export default function LoginModal(props: LoginModalProps): JSX.Element {
@@ -37,7 +37,7 @@ export default function LoginModal(props: LoginModalProps): JSX.Element {
 
   return (
     <Modal title="이메일 로그인" onClose={onClose}>
-      <Form onSubmit={onSubmitValue}>
+      <Form data-testid="login-modal" onSubmit={onSubmitValue}>
         <Input
           data-testid="email-input"
           title="이메일"
