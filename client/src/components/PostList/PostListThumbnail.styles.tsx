@@ -39,6 +39,7 @@ const LongTextCss = css`
 
 export const ThumbnailText = styled.div<ThumbnailTextProps>`
   width: 150px;
+  font-weight: 700;
   text-align: center;
   color: #ffffff;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
