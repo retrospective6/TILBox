@@ -21,3 +21,5 @@ export const NAV_ITEMS: {
     title: 'MyBOX',
   },
 ];
+
+export const ADMIN_NICKNAME = '운영자';

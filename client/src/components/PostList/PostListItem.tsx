@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as Styled from './PostListItem.styles';
 import Post from '@/types/Post';
 import PostListThumbnail from '@/components/PostList/PostListThumbnail';
+import { ADMIN_NICKNAME } from '@/utils/constants';
 
 export interface PostListItemProps {
   post: Post;
@@ -9,13 +10,17 @@ export interface PostListItemProps {
 
 export default function PostListItem(props: PostListItemProps): JSX.Element {
   const { post } = props;
+  const isAdmin = useMemo<boolean>(
+    () => post.user.nickname === ADMIN_NICKNAME,
+    [post],
+  );
 
   return (
     <Styled.PostListItem>
       <Styled.Thumbnail>
         <PostListThumbnail {...post} />
       </Styled.Thumbnail>
-      <Styled.UserInfo>
+      <Styled.UserInfo admin={isAdmin}>
         <Styled.UserImage
           src={post.user.image}
           alt={post.user.nickname}
