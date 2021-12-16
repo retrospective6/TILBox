@@ -21,7 +21,8 @@ export default function PostListThumbnail(
       return;
     }
 
-    const text = title.length <= 8 ? title : title.substring(0, 20);
+    const text =
+      title.length <= 20 ? title : title.substring(0, 20).concat('...');
     setThumbnailText(text);
 
     const gradients = thumbnail.split(' ');

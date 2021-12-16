@@ -35,9 +35,6 @@ const LongTextCss = css`
   font-size: 18px;
   line-height: 24px;
   word-break: keep-all;
-  &:after {
-    content: '...';
-  }
 `;
 
 export const ThumbnailText = styled.div<ThumbnailTextProps>`
