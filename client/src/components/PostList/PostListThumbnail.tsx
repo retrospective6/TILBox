@@ -16,8 +16,8 @@ export default function PostListThumbnail(
 
   useEffect(() => {
     const src = thumbnail.startsWith('http') ? thumbnail : null;
-    setImgSrc(src);
-    if (imgSrc) {
+    if (src) {
+      setImgSrc(src);
       return;
     }
 
