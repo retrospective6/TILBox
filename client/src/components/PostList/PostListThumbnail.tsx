@@ -3,10 +3,10 @@ import * as Styled from './PostListThumbnail.styles';
 import { ThumbnailProps } from './PostListThumbnail.styles';
 import Post from '@/types/Post';
 
-export type PostThumbnailProps = Pick<Post, 'title' | 'thumbnail'>;
+export type PostListThumbnailProps = Pick<Post, 'title' | 'thumbnail'>;
 
 export default function PostListThumbnail(
-  props: PostThumbnailProps,
+  props: PostListThumbnailProps,
 ): JSX.Element {
   const { title, thumbnail } = props;
   const [imgSrc, setImgSrc] = useState<string | null>(null);
