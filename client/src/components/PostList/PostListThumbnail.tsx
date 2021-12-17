@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as Styled from './PostListThumbnail.styles';
-import Image from 'next/image';
 import { ThumbnailProps } from './PostListThumbnail.styles';
 import Post from '@/types/Post';
 
@@ -15,15 +14,15 @@ export default function PostListThumbnail(
   const [gradient, setGradient] = useState<ThumbnailProps>();
 
   useEffect(() => {
-    const src = thumbnail.startsWith('http') ? thumbnail : null;
-    if (src) {
-      setImgSrc(src);
-      return;
-    }
-
     const text =
       title.length <= 20 ? title : title.substring(0, 20).concat('...');
     setThumbnailText(text);
+
+    const src = thumbnail.startsWith('http') ? thumbnail : null;
+
+    if (src) {
+      setImgSrc(src);
+    }
 
     const gradients = thumbnail.split(' ');
     setGradient({
@@ -34,13 +33,10 @@ export default function PostListThumbnail(
 
   return (
     <Styled.Thumbnail start={gradient?.start} end={gradient?.end}>
-      {imgSrc ? (
-        <Image src={imgSrc} alt={title} layout="fill" />
-      ) : (
-        <Styled.ThumbnailText length={title.length}>
-          {thumbnailText}
-        </Styled.ThumbnailText>
-      )}
+      {imgSrc && <Styled.ThumbnailImg src={imgSrc} alt={title} layout="fill" />}
+      <Styled.ThumbnailText length={title.length}>
+        {thumbnailText}
+      </Styled.ThumbnailText>
     </Styled.Thumbnail>
   );
 }

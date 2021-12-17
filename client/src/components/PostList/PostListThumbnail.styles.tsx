@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import Image from 'next/image';
 
 export interface ThumbnailProps {
   start?: string;
@@ -14,12 +15,14 @@ export const Thumbnail = styled.div<ThumbnailProps>`
   justify-content: center;
   align-items: center;
 
-  ${({ start, end }) =>
-    !!start &&
-    !!end &&
-    css`
-      background: linear-gradient(111.34deg, ${start} 3.55%, ${end} 113.48%);
-    `}
+  background: ${({ start, end }) =>
+    start && end
+      ? css`linear-gradient(111.34deg, ${start} 3.55%, ${end} 113.48%)`
+      : 'black'};
+`;
+
+export const ThumbnailImg = styled(Image)`
+  opacity: 0.8;
 `;
 
 export interface ThumbnailTextProps {
@@ -38,7 +41,7 @@ const LongTextCss = css`
 `;
 
 export const ThumbnailText = styled.div<ThumbnailTextProps>`
-  width: 150px;
+  z-index: 1;
   font-weight: 700;
   text-align: center;
   color: #ffffff;
