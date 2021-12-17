@@ -1,6 +1,6 @@
 import React from 'react';
 import { RenderResult } from 'next/dist/server/utils';
-import Input, { InputProps } from '@/components/Input';
+import Input, { InputProps } from '@/components/common/Input';
 import { render } from '@testing-library/react';
 
 const DEFAULT_ARGS: InputProps = {

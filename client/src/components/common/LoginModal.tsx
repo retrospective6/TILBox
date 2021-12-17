@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styled from '@emotion/styled';
-import Modal from '@/components/Modal';
-import Input from '@/components/Input';
-import Button from '@/components/Button';
+import Modal from '@/components/common/Modal';
+import Input from '@/components/common/Input';
+import Button from '@/components/common/Button';
 
 export interface LoginFormProps {
   email: string;

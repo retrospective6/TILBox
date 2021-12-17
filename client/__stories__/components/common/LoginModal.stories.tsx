@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginModal from '@/components/LoginModal';
+import LoginModal from '@/components/common/LoginModal';
 import { ComponentStory } from '@storybook/react';
 
 export default {

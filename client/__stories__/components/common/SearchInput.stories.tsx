@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchInput from '@/components/SearchInput';
+import SearchInput from '@/components/common/SearchInput';
 import { ComponentStory } from '@storybook/react';
 
 export default {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import { ComponentStory } from '@storybook/react';
 
 export default {

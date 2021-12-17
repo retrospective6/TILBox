@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { NAV_ITEMS } from '@/utils/constants';
 import User from '@/types/User';
-import SearchInput from '@/components/SearchInput';
+import SearchInput from '@/components/common/SearchInput';
 
 export interface HeaderProps {
   active: string;
