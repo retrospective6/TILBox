@@ -47,5 +47,6 @@ export const ThumbnailText = styled.div<ThumbnailTextProps>`
   color: #ffffff;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
-  ${({ length }) => (length <= 8 ? ShortTextCss : LongTextCss)}
+  ${({ length }) => (length <= 8 ? ShortTextCss : LongTextCss)};
+  width: ${({ length }) => length > 12 && '70%'};
 `;
