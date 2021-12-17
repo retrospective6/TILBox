@@ -1,6 +1,7 @@
 import Post from '@/types/Post';
 
 export const POST: Post = {
+  id: 0,
   title: '여덟글자하이용',
   user: {
     nickname: 'KS-KIM',
@@ -16,6 +17,7 @@ export const POST: Post = {
 };
 
 export const ADMIN_POST: Post = {
+  id: 1,
   title: '뭔가 공지를 하는 글입니다.',
   user: {
     nickname: '운영자',
@@ -29,3 +31,17 @@ export const ADMIN_POST: Post = {
   createdAt: '21.12.15',
   tags: ['tag', 'tag'],
 };
+
+export const POSTS: Post[] = [
+  POST,
+  { ...POST, id: 2 },
+  { ...POST, id: 3 },
+  { ...POST, id: 4 },
+  { ...POST, id: 5 },
+  { ...POST, id: 6 },
+  { ...POST, id: 7 },
+  { ...POST, id: 8 },
+  { ...POST, id: 9 },
+  { ...POST, id: 10 },
+  ADMIN_POST,
+];
