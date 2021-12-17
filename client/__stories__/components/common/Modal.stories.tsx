@@ -4,7 +4,7 @@ import { ComponentStory } from '@storybook/react';
 
 export default {
   component: Modal,
-  title: 'Modal',
+  title: 'common/Modal',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

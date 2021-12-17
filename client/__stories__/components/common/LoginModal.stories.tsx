@@ -4,7 +4,7 @@ import { ComponentStory } from '@storybook/react';
 
 export default {
   component: LoginModal,
-  title: 'LoginModal',
+  title: 'common/LoginModal',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

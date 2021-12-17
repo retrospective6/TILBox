@@ -4,7 +4,7 @@ import { ComponentStory } from '@storybook/react';
 
 export default {
   component: Input,
-  title: 'Input',
+  title: 'common/Input',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

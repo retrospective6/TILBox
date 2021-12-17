@@ -4,7 +4,7 @@ import { ComponentStory } from '@storybook/react';
 
 export default {
   component: Button,
-  title: 'Button',
+  title: 'common/Button',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

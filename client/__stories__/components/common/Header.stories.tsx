@@ -4,7 +4,7 @@ import { ComponentStory } from '@storybook/react';
 
 export default {
   component: Header,
-  title: 'Header',
+  title: 'common/Header',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

@@ -4,7 +4,7 @@ import { ComponentStory } from '@storybook/react';
 
 export default {
   component: SearchInput,
-  title: 'SearchInput',
+  title: 'common/SearchInput',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

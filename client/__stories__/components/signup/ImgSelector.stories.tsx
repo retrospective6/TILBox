@@ -4,7 +4,7 @@ import { ComponentStory } from '@storybook/react';
 
 export default {
   component: ImgSelector,
-  title: 'ImgSelector',
+  title: 'signup/ImgSelector',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
