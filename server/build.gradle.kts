@@ -19,6 +19,8 @@ repositories {
 
 object Versions {
     const val KOTEST = "4.6.3"
+    const val SWAGGER = "3.0.0"
+    const val KOTLIN_LOGGING = "1.12.5"
 }
 
 dependencies {
@@ -28,12 +30,14 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("io.springfox:springfox-boot-starter:${Versions.SWAGGER}")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("io.github.microutils:kotlin-logging:${Versions.KOTLIN_LOGGING}")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

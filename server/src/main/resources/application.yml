@@ -36,3 +36,8 @@ spring:
                         enable: true
                 mime:
                     charset: UTF-8
+
+springfox:
+    documentation:
+        swagger-ui:
+            base-url: /documentation

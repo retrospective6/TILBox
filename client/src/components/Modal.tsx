@@ -67,7 +67,7 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  background-color: #cdcdcd;
+  background-color: rgba(205, 205, 205, 0.5);
 `;
 
 const Container = styled.div`
