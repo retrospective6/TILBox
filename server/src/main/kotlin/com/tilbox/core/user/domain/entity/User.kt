@@ -44,4 +44,8 @@ class User(
     fun isCorrectPassword(rawPassword: String, passwordMatchStrategy: PasswordMatchStrategy): Boolean {
         return password.match(rawPassword, passwordMatchStrategy)
     }
+
+    fun changeStatus(status: UserStatus) {
+        this.status = status
+    }
 }

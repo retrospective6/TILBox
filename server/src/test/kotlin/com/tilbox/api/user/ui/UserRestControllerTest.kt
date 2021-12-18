@@ -5,6 +5,7 @@ import com.tilbox.api.user.application.dto.request.UserCreateRequest
 import com.tilbox.base.test.RestControllerTest
 import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
+import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 
 class UserRestControllerTest() : RestControllerTest() {
@@ -17,6 +18,14 @@ class UserRestControllerTest() : RestControllerTest() {
             accept = MediaType.APPLICATION_JSON
             contentType = MediaType.APPLICATION_JSON
         }.andExpect {
+            status { isCreated() }
+        }
+    }
+
+    @Test
+    fun `어디 한번 인증을 해볼까`() {
+        mockMvc.get("/v1/users?email=jnunseok@gmail.com&code=ASDFWARG")
+            .andExpect {
             status { isCreated() }
         }
     }
