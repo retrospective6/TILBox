@@ -1,5 +1,7 @@
 package com.tilbox.api.user.ui
 
+import com.tilbox.api.authenticationcode.application.AuthenticationCodeService
+import com.tilbox.api.mail.application.MailService
 import com.tilbox.api.user.application.UserCreateService
 import com.tilbox.api.user.application.dto.request.UserCreateRequest
 import com.tilbox.api.user.application.dto.response.UserCreateResponse
@@ -12,7 +14,11 @@ import java.net.URI
 
 @RestController
 @RequestMapping("/v1/users")
-class UserRestController(private val userCreateService: UserCreateService) {
+class UserRestController(
+    private val userCreateService: UserCreateService,
+    private val authenticationCodeService: AuthenticationCodeService,
+    private val mailService: MailService
+) {
     @PostMapping
     fun createUser(@RequestBody request: UserCreateRequest): ResponseEntity<UserCreateResponse> {
         val response = userCreateService.createUser(request)
