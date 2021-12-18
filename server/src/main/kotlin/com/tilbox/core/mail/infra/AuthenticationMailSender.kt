@@ -7,7 +7,7 @@ import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.stereotype.Component
 
 @Component
-class AuthenticationMailSender (
+class AuthenticationMailSender(
     private val mailProperties: MailProperties,
     private val mailSender: JavaMailSender
 ) : MailSender {
@@ -21,5 +21,4 @@ class AuthenticationMailSender (
         }
         mailSender.send(message)
     }
-
 }

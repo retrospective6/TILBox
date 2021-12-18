@@ -3,7 +3,7 @@ package com.tilbox.core.emailauthentication.entity
 import com.tilbox.core.base.BaseEntity
 import java.time.Duration
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
 
@@ -25,8 +25,8 @@ class EmailAuthentication(
         get() = createdDateTime + EXPIRY_MINUTE_TIME
 
     fun authenticate(code: String) {
-        require(this.code == code) {"인증코드가 일치하지 않습니다."}
-        check(!authenticated) {"이미 인증되었습니다."}
+        require(this.code == code) { "인증코드가 일치하지 않습니다." }
+        check(!authenticated) { "이미 인증되었습니다." }
         check(expiryDateTime > LocalDateTime.now()) { "인증 시간이 만료되었습니다." }
         authenticated = true
     }

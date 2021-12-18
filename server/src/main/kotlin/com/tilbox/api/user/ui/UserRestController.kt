@@ -6,10 +6,18 @@ import com.tilbox.api.user.application.UserCreateService
 import com.tilbox.api.user.application.dto.request.EmailAuthenticationParam
 import com.tilbox.api.user.application.dto.request.UserCreateRequest
 import com.tilbox.api.user.application.dto.response.UserCreateResponse
-import io.swagger.annotations.*
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiResponses
+import io.swagger.annotations.ApiResponse
+import io.swagger.annotations.ApiImplicitParams
+import io.swagger.annotations.ApiImplicitParam
 import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.GetMapping
 import java.net.URI
 
 @Api(description = "회원 API")
@@ -45,7 +53,8 @@ class UserRestController(
         ApiResponse(code = 200, message = "인증 성공"),
     )
     @GetMapping
-    fun checkAuthenticationCode(emailAuthenticationParam: EmailAuthenticationParam): ResponseEntity<UserCreateResponse> {
+    fun checkAuthenticationCode(
+        emailAuthenticationParam: EmailAuthenticationParam): ResponseEntity<UserCreateResponse> {
         val response = emailAuthenticationService.authenticateEmail(emailAuthenticationParam)
         return ResponseEntity
             .ok(response)

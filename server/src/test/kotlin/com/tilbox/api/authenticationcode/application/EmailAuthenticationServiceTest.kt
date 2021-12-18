@@ -34,7 +34,7 @@ class EmailAuthenticationServiceTest(
 
     @Test
     fun `이메일 인증을 하면 사용자의 상태가 인증 상태로 바뀐다`() {
-        val user = userRepository.save(
+        userRepository.save(
             User(
                 myTilAddress = "mintjordy",
                 email = "jnunseok@gmail.com",
