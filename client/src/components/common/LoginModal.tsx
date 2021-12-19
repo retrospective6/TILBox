@@ -1,17 +1,17 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styled from '@emotion/styled';
-import Modal from '@/components/Modal';
-import Input from '@/components/Input';
-import Button from '@/components/Button';
+import Modal from '@/components/common/Modal';
+import TextInput from '@/components/common/TextInput';
+import Button from '@/components/common/Button';
 
-interface FormProps {
+export interface LoginFormProps {
   email: string;
   password: string;
 }
 
 export interface LoginModalProps {
   onClose: () => void;
-  onSubmit: (props: FormProps) => void;
+  onSubmit: (values: LoginFormProps) => void;
 }
 
 export default function LoginModal(props: LoginModalProps): JSX.Element {
@@ -37,14 +37,14 @@ export default function LoginModal(props: LoginModalProps): JSX.Element {
 
   return (
     <Modal title="이메일 로그인" onClose={onClose}>
-      <Form onSubmit={onSubmitValue}>
-        <Input
+      <Form data-testid="login-modal" onSubmit={onSubmitValue}>
+        <TextInput
           data-testid="email-input"
           title="이메일"
           width="100%"
           onChange={onChangeEmail}
         />
-        <Input
+        <TextInput
           data-testid="password-input"
           type="password"
           title="비밀번호"

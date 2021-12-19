@@ -7,7 +7,7 @@ export type Rule = {
   message: string;
 };
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   rules?: Rule[];
   hint?: string;
@@ -15,7 +15,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   height?: string;
 }
 
-export default function Input(props: InputProps): JSX.Element {
+export default function TextInput(props: TextInputProps): JSX.Element {
   const { title, hint, rules } = props;
   const [feedback, setFeedback] = useState<string>('');
   const [isValid, setIsValid] = useState<boolean>(true);

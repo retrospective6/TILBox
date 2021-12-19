@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import Modal, { ModalProps } from '@/components/Modal';
+import Modal, { ModalProps } from '@/components/common/Modal';
 
 const DEFAULT_ARGS: ModalProps = {
   title: 'title',

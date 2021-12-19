@@ -1,13 +1,13 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import Header, { HeaderProps } from '@/components/Header';
+import Header, { HeaderProps } from '@/components/common/Header';
 import { NAV_ITEMS } from '@/utils/constants';
 import User from '@/types/User';
 
 const DEFAULT_ARGS: HeaderProps = {
   active: '/',
   onSignUp: jest.fn(),
-  onSignIn: jest.fn(),
+  onLogin: jest.fn(),
   onSearch: jest.fn(),
 };
 
@@ -58,7 +58,7 @@ describe('navbar', () => {
 describe('user info section', () => {
   describe('with onSignUp method', () => {
     const onSignUp = jest.fn();
-    test('run on click sign up text', () => {
+    test('run method on click sign up text', () => {
       const { getByTestId } = renderHeader({ onSignUp });
       const signUp = getByTestId('sign-up');
       fireEvent.click(signUp);
@@ -66,13 +66,13 @@ describe('user info section', () => {
     });
   });
 
-  describe('with onSignUp method', () => {
-    const onSignIn = jest.fn();
-    test('run on click sign up text', () => {
-      const { getByTestId } = renderHeader({ onSignIn });
-      const signIn = getByTestId('sign-in');
-      fireEvent.click(signIn);
-      expect(onSignIn).toBeCalled();
+  describe('with onLogin method', () => {
+    const onLogin = jest.fn();
+    test('run method on click sign in text', () => {
+      const { getByTestId } = renderHeader({ onLogin });
+      const login = getByTestId('login');
+      fireEvent.click(login);
+      expect(onLogin).toBeCalled();
     });
   });
 
@@ -87,9 +87,9 @@ describe('user info section', () => {
       expect(() => getByTestId('sign-up')).toThrowError();
     });
 
-    test('disappear signIn text', () => {
+    test('disappear login text', () => {
       const { getByTestId } = renderHeader({ user });
-      expect(() => getByTestId('sign-in')).toThrowError();
+      expect(() => getByTestId('login')).toThrowError();
     });
 
     test('display user nickname', () => {

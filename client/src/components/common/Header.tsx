@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { NAV_ITEMS, NAV_LINKS } from '@/utils/constants';
+import { NAV_ITEMS } from '@/utils/constants';
 import User from '@/types/User';
-import SearchInput from '@/components/SearchInput';
+import SearchInput from '@/components/common/SearchInput';
 
 export interface HeaderProps {
-  active: NAV_LINKS;
+  active: string;
   user?: User;
   onSignUp: () => void;
-  onSignIn: () => void;
+  onLogin: () => void;
   onSearch: (value: string) => void;
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { active, user, onSignUp, onSignIn, onSearch } = props;
+  const { active, user, onSignUp, onLogin, onSearch } = props;
 
   return (
     <Container>
@@ -26,7 +26,7 @@ export default function Header(props: HeaderProps): JSX.Element {
           <NavItem
             key={item.testId}
             data-testid={item.testId}
-            selected={active === item.href}
+            active={active === item.href}
           >
             <Link href={item.href}>{item.title}</Link>
           </NavItem>
@@ -51,7 +51,7 @@ export default function Header(props: HeaderProps): JSX.Element {
             <UserInfoItem data-testid="sign-up" onClick={onSignUp}>
               회원가입
             </UserInfoItem>
-            <UserInfoItem data-testid="sign-in" onClick={onSignIn}>
+            <UserInfoItem data-testid="login" onClick={onLogin}>
               로그인
             </UserInfoItem>
           </>
@@ -84,7 +84,7 @@ const Logo = styled.div`
 `;
 
 interface NavItemProps {
-  selected: boolean;
+  active: boolean;
 }
 
 const NavItem = styled.div<NavItemProps>`
@@ -93,7 +93,7 @@ const NavItem = styled.div<NavItemProps>`
   height: 14px;
   padding: 0 18px;
   border-right: 1px solid #cdcdcd;
-  font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
+  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
 `;
 
 const UserInfo = styled.div`
