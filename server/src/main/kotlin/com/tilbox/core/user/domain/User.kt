@@ -1,7 +1,6 @@
 package com.tilbox.core.user.domain
 
 import com.tilbox.core.base.BaseRootEntity
-import com.tilbox.core.user.event.UserCreatedEvent
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Embedded
