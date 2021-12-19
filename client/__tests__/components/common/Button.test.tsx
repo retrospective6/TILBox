@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Button, { ButtonProps } from '@/components/Button';
+import Button, { ButtonProps } from '@/components/common/Button';
 import { RenderResult } from 'next/dist/server/utils';
 
 const DEFAULT_ARGS: ButtonProps = {

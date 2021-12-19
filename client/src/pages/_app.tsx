@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import '@/styles/global.css';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import Header from '@/components/Header';
-import LoginModal from '@/components/LoginModal';
+import Header from '@/components/common/Header';
+import LoginModal from '@/components/common/LoginModal';
 
 function TILApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();

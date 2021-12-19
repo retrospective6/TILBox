@@ -1,9 +1,9 @@
 import React from 'react';
 import { RenderResult } from 'next/dist/server/utils';
-import Input, { InputProps } from '@/components/Input';
+import TextInput, { TextInputProps } from '@/components/common/TextInput';
 import { render } from '@testing-library/react';
 
-const DEFAULT_ARGS: InputProps = {
+const DEFAULT_ARGS: TextInputProps = {
   title: 'My TIL 주소',
   placeholder: 'www.tilbox/til356list',
   hint: '숫자, 영어를 조합해 나만의 TIL 주소를 만들 수 있습니다.',
@@ -15,8 +15,8 @@ const DEFAULT_ARGS: InputProps = {
   ],
 };
 
-const renderInput = (props: Partial<InputProps>): RenderResult => {
-  return render(<Input {...DEFAULT_ARGS} {...props} />);
+const renderInput = (props: Partial<TextInputProps>): RenderResult => {
+  return render(<TextInput {...DEFAULT_ARGS} {...props} />);
 };
 
 describe('props Test', () => {

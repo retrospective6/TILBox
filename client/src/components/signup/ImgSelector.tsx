@@ -24,9 +24,9 @@ export default function ImgSelector(props: ImgSelectorProps): JSX.Element {
       return;
     }
 
-    const img = URL.createObjectURL(files[0]);
-    onSubmit(img);
-    setSelectedImg(img);
+    const imgURL = URL.createObjectURL(files[0]);
+    onSubmit(imgURL);
+    setSelectedImg(imgURL);
   };
 
   return (

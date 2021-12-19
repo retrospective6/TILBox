@@ -1,11 +1,11 @@
 import React from 'react';
-import PostList from '@/components/PostList/PostList';
+import PostList from '@/components/common/PostList/PostList';
 import { ComponentStory } from '@storybook/react';
 import { POSTS } from '@mocks/MockData';
 
 export default {
   component: PostList,
-  title: 'PostList/PostList',
+  title: 'common/PostList/PostList',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

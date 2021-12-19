@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Styled from './PostList.styles';
 import Post from '@/types/Post';
-import PostListItem from '@/components/PostList/PostListItem';
+import PostListItem from '@/components/common/PostList/PostListItem';
 
 export interface PostListProps {
   posts: Post[];

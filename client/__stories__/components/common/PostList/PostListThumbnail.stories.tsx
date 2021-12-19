@@ -1,11 +1,11 @@
 import React from 'react';
-import PostListThumbnail from '@/components/PostList/PostListThumbnail';
+import PostListThumbnail from '@/components/common/PostList/PostListThumbnail';
 import { ComponentStory } from '@storybook/react';
 import styled from '@emotion/styled';
 
 export default {
   component: PostListThumbnail,
-  title: 'PostList/PostListThumbnail',
+  title: 'common/PostList/PostListThumbnail',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

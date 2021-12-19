@@ -1,16 +1,18 @@
 import React from 'react';
-import Input from '@/components/Input';
+import TextInput from '@/components/common/TextInput';
 import { ComponentStory } from '@storybook/react';
 
 export default {
-  component: Input,
-  title: 'Input',
+  component: TextInput,
+  title: 'common/TextInput',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
 };
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof TextInput> = (args) => (
+  <TextInput {...args} />
+);
 
 export const Default = Template.bind({});
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import { ComponentStory } from '@storybook/react';
 
 export default {
   component: Button,
-  title: 'Button',
+  title: 'common/Button',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

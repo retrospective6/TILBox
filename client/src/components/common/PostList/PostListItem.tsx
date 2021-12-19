@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import * as Styled from './PostListItem.styles';
 import Post from '@/types/Post';
-import PostListThumbnail from '@/components/PostList/PostListThumbnail';
+import PostListThumbnail from '@/components/common/PostList/PostListThumbnail';
 import { ADMIN_NICKNAME } from '@/utils/constants';
 
 export interface PostListItemProps {

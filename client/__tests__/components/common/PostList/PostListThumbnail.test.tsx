@@ -4,7 +4,7 @@ import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import PostListThumbnail, {
   PostListThumbnailProps,
-} from '@/components/PostList/PostListThumbnail';
+} from '@/components/common/PostList/PostListThumbnail';
 
 jest.mock('next/image', () => MockImage);
 

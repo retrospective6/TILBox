@@ -1,11 +1,11 @@
 import React from 'react';
-import PostListItem from '@/components/PostList/PostListItem';
+import PostListItem from '@/components/common/PostList/PostListItem';
 import { ComponentStory } from '@storybook/react';
 import { ADMIN_POST, POST } from '@mocks/MockData';
 
 export default {
   component: PostListItem,
-  title: 'PostList/PostListItem',
+  title: 'common/PostList/PostListItem',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
