@@ -2,12 +2,12 @@ package com.tilbox.api.user.ui
 
 import com.tilbox.api.security.UserPrincipal
 import com.tilbox.api.user.application.EmailUserCreateService
+import com.tilbox.api.user.application.UserCreateRequest
+import com.tilbox.api.user.application.UserCreateResponse
+import com.tilbox.api.user.application.UserUpdateRequest
+import com.tilbox.api.user.application.UserUpdateResponse
 import com.tilbox.api.user.application.UserUpdateService
 import com.tilbox.api.user.application.UserWithdrawalService
-import com.tilbox.api.user.application.dto.request.UserCreateRequest
-import com.tilbox.api.user.application.dto.request.UserUpdateRequest
-import com.tilbox.api.user.application.dto.response.UserCreateResponse
-import com.tilbox.api.user.application.dto.response.UserUpdateResponse
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
@@ -25,7 +25,7 @@ import javax.validation.Valid
 
 @Api(description = "회원 API")
 @RestController
-@RequestMapping("/v1/users")
+@RequestMapping("/v1")
 class UserRestController(
     private val emailUserCreateService: EmailUserCreateService,
     private val userWithdrawalService: UserWithdrawalService,
@@ -37,7 +37,7 @@ class UserRestController(
         ApiResponse(code = 201, message = "회원가입 완료"),
         ApiResponse(code = 409, message = "회원가입 실패"),
     )
-    @PostMapping
+    @PostMapping("/signup")
     fun createUser(@Valid @RequestBody request: UserCreateRequest): ResponseEntity<UserCreateResponse> {
         val response = emailUserCreateService.createUser(request)
         return ResponseEntity
@@ -51,7 +51,7 @@ class UserRestController(
         ApiResponse(code = 400, message = "잘못된 요청"),
         ApiResponse(code = 409, message = "프로필 업데이트 실패")
     )
-    @PutMapping
+    @PutMapping("/users")
     fun updateUser(
         @Valid @RequestBody request: UserUpdateRequest,
         @AuthenticationPrincipal loginUser: UserPrincipal
@@ -66,7 +66,7 @@ class UserRestController(
         ApiResponse(code = 204, message = "회원탈퇴 완료"),
         ApiResponse(code = 409, message = "회원탈퇴 실패")
     )
-    @DeleteMapping
+    @DeleteMapping("/users")
     fun withdrawUser(@AuthenticationPrincipal loginUser: UserPrincipal): ResponseEntity<Void> {
         userWithdrawalService.withdraw(loginUser)
         return ResponseEntity

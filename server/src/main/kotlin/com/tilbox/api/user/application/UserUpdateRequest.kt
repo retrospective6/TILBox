@@ -1,4 +1,4 @@
-package com.tilbox.api.user.application.dto.request
+package com.tilbox.api.user.application
 
 import io.swagger.annotations.ApiModelProperty
 import javax.validation.constraints.NotNull

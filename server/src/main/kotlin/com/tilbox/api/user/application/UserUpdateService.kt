@@ -1,9 +1,7 @@
 package com.tilbox.api.user.application
 
 import com.tilbox.api.security.UserPrincipal
-import com.tilbox.api.user.application.dto.request.UserUpdateRequest
-import com.tilbox.api.user.application.dto.response.UserUpdateResponse
-import com.tilbox.core.user.domain.repository.UserRepository
+import com.tilbox.core.user.domain.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime

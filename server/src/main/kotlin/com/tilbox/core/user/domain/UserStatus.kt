@@ -1,4 +1,4 @@
-package com.tilbox.core.user.domain.value
+package com.tilbox.core.user.domain
 
 enum class UserStatus(val title: String) {
     UNAUTHENTICATED("인증 대기중"),

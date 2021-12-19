@@ -1,14 +1,12 @@
 package com.tilbox.api.user.application
 
-import com.tilbox.api.user.application.dto.request.UserCreateRequest
-import com.tilbox.api.user.application.dto.response.UserCreateResponse
-import com.tilbox.core.user.domain.entity.User
-import com.tilbox.core.user.domain.repository.UserRepository
-import com.tilbox.core.user.domain.value.Password
-import com.tilbox.core.user.domain.value.PasswordEncodingStrategy
-import com.tilbox.core.user.domain.value.Profile
-import com.tilbox.core.user.domain.value.RegistrationType
-import com.tilbox.core.user.domain.value.UserRole
+import com.tilbox.core.user.domain.Password
+import com.tilbox.core.user.domain.PasswordEncodingStrategy
+import com.tilbox.core.user.domain.Profile
+import com.tilbox.core.user.domain.RegistrationType
+import com.tilbox.core.user.domain.User
+import com.tilbox.core.user.domain.UserRepository
+import com.tilbox.core.user.domain.UserRole
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime

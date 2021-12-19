@@ -1,13 +1,13 @@
 package com.tilbox.api.user.application
 
 import com.tilbox.api.security.UserPrincipal
-import com.tilbox.core.user.domain.entity.User
-import com.tilbox.core.user.domain.repository.UserRepository
-import com.tilbox.core.user.domain.value.Password
-import com.tilbox.core.user.domain.value.Profile
-import com.tilbox.core.user.domain.value.RegistrationType
-import com.tilbox.core.user.domain.value.UserRole
-import com.tilbox.core.user.domain.value.UserStatus
+import com.tilbox.core.user.domain.Password
+import com.tilbox.core.user.domain.Profile
+import com.tilbox.core.user.domain.RegistrationType
+import com.tilbox.core.user.domain.User
+import com.tilbox.core.user.domain.UserRepository
+import com.tilbox.core.user.domain.UserRole
+import com.tilbox.core.user.domain.UserStatus
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe

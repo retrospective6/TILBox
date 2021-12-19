@@ -1,4 +1,4 @@
-package com.tilbox.core.user.domain.value
+package com.tilbox.core.user.domain
 
 enum class RegistrationType(val title: String) {
     EMAIL("EMAIL"),

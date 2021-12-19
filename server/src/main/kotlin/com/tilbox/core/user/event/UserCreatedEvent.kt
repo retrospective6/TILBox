@@ -1,6 +1,6 @@
 package com.tilbox.core.user.event
 
-import com.tilbox.core.user.domain.value.RegistrationType
+import com.tilbox.core.user.domain.RegistrationType
 import java.time.LocalDateTime
 
 data class UserCreatedEvent(

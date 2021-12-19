@@ -1,4 +1,4 @@
-package com.tilbox.core.user.domain.value
+package com.tilbox.core.user.domain
 
 enum class UserRole(val title: String) {
     ADMIN("ROLE_ADMIN"),

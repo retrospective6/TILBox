@@ -10,6 +10,9 @@ spring:
             idle-timeout: 600000
             max-lifetime: 1800000
             transaction-isolation: TRANSACTION_READ_COMMITTED
+        url: jdbc:h2:mem:tilbox
+        username: tilbox
+        password: retrospective6
     jpa:
         generate-ddl: true
         open-in-view: false

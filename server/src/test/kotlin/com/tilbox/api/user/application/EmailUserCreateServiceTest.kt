@@ -1,6 +1,5 @@
 package com.tilbox.api.user.application
 
-import com.tilbox.api.user.application.dto.request.UserCreateRequest
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe

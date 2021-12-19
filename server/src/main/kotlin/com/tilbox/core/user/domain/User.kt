@@ -1,17 +1,13 @@
-package com.tilbox.core.user.domain.entity
+package com.tilbox.core.user.domain
 
 import com.tilbox.core.base.BaseRootEntity
-import com.tilbox.core.user.domain.value.Password
-import com.tilbox.core.user.domain.value.PasswordMatchStrategy
-import com.tilbox.core.user.domain.value.Profile
-import com.tilbox.core.user.domain.value.RegistrationType
-import com.tilbox.core.user.domain.value.UserRole
-import com.tilbox.core.user.domain.value.UserStatus
 import com.tilbox.core.user.event.UserCreatedEvent
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Embedded
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 
 @Entity
 class User(
@@ -27,12 +23,15 @@ class User(
     @Embedded
     var password: Password,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     var status: UserStatus = UserStatus.UNAUTHENTICATED,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "registration_type", nullable = false)
     val registrationType: RegistrationType,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     val userRole: UserRole,
 
@@ -72,7 +71,7 @@ class User(
     }
 
     fun canNotLogin(): Boolean {
-        return status === UserStatus.DEACTIVATED || status === UserStatus.BLOCKED
+        return status !== UserStatus.AUTHENTICATED
     }
 
     fun isAuthenticated(): Boolean {

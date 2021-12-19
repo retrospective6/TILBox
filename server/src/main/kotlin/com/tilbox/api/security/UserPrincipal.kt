@@ -1,7 +1,7 @@
 package com.tilbox.api.security
 
-import com.tilbox.core.user.domain.value.Password
-import com.tilbox.core.user.domain.value.UserRole
+import com.tilbox.core.user.domain.Password
+import com.tilbox.core.user.domain.UserRole
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

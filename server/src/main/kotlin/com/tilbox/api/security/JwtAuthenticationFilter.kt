@@ -23,6 +23,10 @@ class JwtAuthenticationFilter(private val jwtProvider: JwtProvider) : OncePerReq
         filterChain.doFilter(request, response)
     }
 
+    private fun hasAuthorizationHeader(request: HttpServletRequest): Boolean {
+        return request.getHeader(HttpHeaders.AUTHORIZATION) != null
+    }
+
     private fun authenticate(request: HttpServletRequest) {
         try {
             val token = extractTokenFromHeader(request)
@@ -35,10 +39,6 @@ class JwtAuthenticationFilter(private val jwtProvider: JwtProvider) : OncePerReq
         } catch (exception: IllegalArgumentException) {
             logger.info("올바르지 않은 입력값을 포함하고 있습니다. message=${exception.message}")
         }
-    }
-
-    private fun hasAuthorizationHeader(request: HttpServletRequest): Boolean {
-        return request.getHeader(HttpHeaders.AUTHORIZATION) != null
     }
 
     private fun extractTokenFromHeader(request: HttpServletRequest): String {

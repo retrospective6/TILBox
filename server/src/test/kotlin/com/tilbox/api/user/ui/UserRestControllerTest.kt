@@ -1,7 +1,7 @@
 package com.tilbox.api.user.ui
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.tilbox.api.user.application.dto.request.UserCreateRequest
+import com.tilbox.api.user.application.UserCreateRequest
 import com.tilbox.base.test.RestControllerTest
 import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
@@ -14,7 +14,7 @@ class UserRestControllerTest() : RestControllerTest() {
         val request = UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password2021##@@")
 
         // when
-        val actual = mockMvc.post("/v1/users") {
+        val actual = mockMvc.post("/v1/signup") {
             content = jacksonObjectMapper().writeValueAsBytes(request)
             accept = MediaType.APPLICATION_JSON
             contentType = MediaType.APPLICATION_JSON
