@@ -23,5 +23,5 @@ Default.args = {
 export const ZigZag = Template.bind({});
 ZigZag.args = {
   posts: POSTS,
-  zigzag: true,
+  type: 'zigzag',
 };
