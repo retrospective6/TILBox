@@ -1,4 +1,4 @@
-package com.tilbox.core.user.repository
+package com.tilbox.core.user
 
 import com.tilbox.core.user.domain.Password
 import com.tilbox.core.user.domain.Profile
