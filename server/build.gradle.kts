@@ -20,6 +20,7 @@ repositories {
 object Versions {
     const val KOTEST = "4.6.3"
     const val SWAGGER = "3.0.0"
+    const val SPRING_CLOUD_AWS = "2.2.6.RELEASE"
 }
 
 dependencies {
@@ -29,6 +30,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.cloud:spring-cloud-starter-aws")
     implementation("io.springfox:springfox-boot-starter:${Versions.SWAGGER}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
@@ -40,6 +42,13 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.kotest:kotest-runner-junit5:${Versions.KOTEST}")
     testImplementation("io.kotest:kotest-assertions-core:${Versions.KOTEST}")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-aws:${Versions.SPRING_CLOUD_AWS}")
+    }
 }
 
 tasks.withType<KotlinCompile> {

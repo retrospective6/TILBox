@@ -1,6 +1,9 @@
 spring:
     profiles:
         active: local
+        include:
+            - aws
+            - aws-credential
     datasource:
         hikari:
             pool-name: tilbox-pool
