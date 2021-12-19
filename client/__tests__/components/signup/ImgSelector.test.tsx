@@ -36,7 +36,7 @@ describe('on change file input', () => {
 
   const onSubmit = jest.fn();
 
-  const mockedFileConverter = jest.fn((file) => file.toString());
+  const mockedFileConverter = jest.fn((value) => value.toString());
   URL.createObjectURL = mockedFileConverter;
 
   test('run file converter', () => {
