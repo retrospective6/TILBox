@@ -32,4 +32,16 @@ class LoginRestController(private val loginService: LoginService) {
             .header(HttpHeaders.AUTHORIZATION, response.token)
             .build()
     }
+
+    @Operation(summary = "로그아웃", description = "로그아웃을 진행한다.")
+    @ApiResponses(
+        ApiResponse(code = 200, message = "로그아웃 성공"),
+        ApiResponse(code = 409, message = "로그아웃 실패")
+    )
+    @PostMapping("/logout")
+    fun logout(): ResponseEntity<Void> {
+        return ResponseEntity.noContent()
+            .header(HttpHeaders.AUTHORIZATION, null)
+            .build()
+    }
 }
