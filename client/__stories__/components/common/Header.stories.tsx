@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '@/components/Header';
+import Header from '@/components/common/Header';
 import { ComponentStory } from '@storybook/react';
 
 export default {
   component: Header,
-  title: 'Header',
+  title: 'common/Header',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

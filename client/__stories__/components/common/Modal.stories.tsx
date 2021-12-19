@@ -1,10 +1,10 @@
 import React from 'react';
-import Modal from '@/components/Modal';
+import Modal from '@/components/common/Modal';
 import { ComponentStory } from '@storybook/react';
 
 export default {
   component: Modal,
-  title: 'Modal',
+  title: 'common/Modal',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

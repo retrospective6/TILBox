@@ -1,7 +1,7 @@
 import { MockImage } from '@mocks/MockComponent';
 
 import React from 'react';
-import ImgSelector, { ImgSelectorProps } from '@/components/ImgSelector';
+import ImgSelector, { ImgSelectorProps } from '@/components/signup/ImgSelector';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 
 jest.mock('next/image', () => MockImage);
@@ -36,7 +36,7 @@ describe('on change file input', () => {
 
   const onSubmit = jest.fn();
 
-  const mockedFileConverter = jest.fn((file) => file.toString());
+  const mockedFileConverter = jest.fn((value) => value.toString());
   URL.createObjectURL = mockedFileConverter;
 
   test('run file converter', () => {

@@ -1,10 +1,10 @@
 import React from 'react';
-import ImgSelector from '@/components/ImgSelector';
+import ImgSelector from '@/components/signup/ImgSelector';
 import { ComponentStory } from '@storybook/react';
 
 export default {
   component: ImgSelector,
-  title: 'ImgSelector',
+  title: 'signup/ImgSelector',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
