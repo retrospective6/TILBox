@@ -9,7 +9,7 @@ export default function PostListThumbnail(
   props: PostListThumbnailProps,
 ): JSX.Element {
   const { title, thumbnail } = props;
-  const [imgSrc, setImgSrc] = useState<string | null>(null);
+  const [imgSrc, setImgSrc] = useState<string>();
   const [thumbnailText, setThumbnailText] = useState<string>('');
   const [gradient, setGradient] = useState<ThumbnailProps>();
 
@@ -18,10 +18,10 @@ export default function PostListThumbnail(
       title.length <= 20 ? title : title.substring(0, 20).concat('...');
     setThumbnailText(text);
 
-    const src = thumbnail.startsWith('http') ? thumbnail : null;
-
-    if (src) {
-      setImgSrc(src);
+    // TODO: 서버의 thumbnail 제공 방식에 따른 로직 변경 필요
+    if (thumbnail.startsWith('http')) {
+      setImgSrc(thumbnail);
+      return;
     }
 
     const gradients = thumbnail.split(' ');
