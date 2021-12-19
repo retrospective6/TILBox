@@ -20,6 +20,7 @@ repositories {
 object Versions {
     const val KOTEST = "4.6.3"
     const val SWAGGER = "3.0.0"
+    const val KOTLIN_LOGGING = "1.12.5"
     const val SPRING_CLOUD_AWS = "2.2.6.RELEASE"
 }
 
@@ -36,6 +37,7 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("io.github.microutils:kotlin-logging:${Versions.KOTLIN_LOGGING}")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
