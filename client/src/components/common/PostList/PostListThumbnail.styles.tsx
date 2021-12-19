@@ -35,6 +35,10 @@ const ShortTextCss = css`
 `;
 
 const LongTextCss = css`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-size: 18px;
   line-height: 24px;
   word-break: keep-all;
@@ -48,5 +52,5 @@ export const ThumbnailText = styled.div<ThumbnailTextProps>`
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
   ${({ length }) => (length <= 8 ? ShortTextCss : LongTextCss)};
-  width: ${({ length }) => length > 12 && '70%'};
+  max-width: ${({ length }) => length > 12 && '70%'};
 `;
