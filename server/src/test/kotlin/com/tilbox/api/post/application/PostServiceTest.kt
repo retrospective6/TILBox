@@ -1,20 +1,30 @@
 package com.tilbox.api.post.application
 
 import com.tilbox.api.post.application.dto.request.PostCreateRequest
+import com.tilbox.api.post.application.dto.request.PostUpdateRequest
+import com.tilbox.core.post.domain.entity.Post
+import com.tilbox.core.post.domain.repository.PostRepository
 import com.tilbox.core.post.domain.value.PostVisibleLevel
+import com.tilbox.core.post.domain.value.Tags
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.longs.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import org.springframework.transaction.annotation.Transactional
+import java.lang.IllegalArgumentException
 import java.time.LocalDateTime
 
 @Transactional
 @SpringBootTest
 @ActiveProfiles("test")
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-class PostServiceTest(private val postService: PostService) {
+class PostServiceTest(
+    private val postService: PostService,
+    private val postRepository: PostRepository
+) {
     @Test
     fun `게시글 작성시 새로 생성된 게시글 ID를 반환한다`() {
         val request = PostCreateRequest(
@@ -39,6 +49,59 @@ class PostServiceTest(private val postService: PostService) {
 
         val actual = postService.savePost(request, createDateTime)
 
-        actual shouldBe 1
+        actual shouldBeGreaterThan 0
+    }
+
+    @Test
+    fun `게시글 업데이트시 새로 생성된 게시글 ID를 반환한다`() {
+        val createdPost = postRepository.save(
+            Post(
+                userId = 1L,
+                title = "title",
+                content = "content",
+                summary = "summary",
+                tags = Tags.of(listOf("tag1")),
+                thumbnailUrl = "thumbnailUrl",
+                visibleLevel = PostVisibleLevel.PRIVATE,
+                createdAt = LocalDateTime.of(2021, 12, 10, 10, 35),
+                updatedAt = LocalDateTime.of(2021, 12, 10, 10, 35)
+            )
+        )
+
+        val targetId = createdPost.id
+        val request = PostUpdateRequest(
+            userId = 1L,
+            title = "newTitle",
+            content = "newContent",
+            summary = "newSummary",
+            tags = listOf("new", "tag2"),
+            thumbnailUrl = "https://s3.amazonaws/sample/bucket/file.jpg",
+            visibleLevel = PostVisibleLevel.PUBLIC
+        )
+        val updateDateTime = LocalDateTime.of(2021, 12, 23, 15, 30, 10)
+
+        val actual = postService.updatePost(targetId, request, updateDateTime)
+
+        actual shouldBe targetId
+    }
+
+    @Test
+    fun `존재하지 않는 게시글은 업데이트 실패`() {
+        val notExistPostId = 1L
+        val request = PostUpdateRequest(
+            userId = 1L,
+            title = "newTitle",
+            content = "newContent",
+            summary = "newSummary",
+            tags = listOf("new", "tag2"),
+            thumbnailUrl = "https://s3.amazonaws/sample/bucket/file.jpg",
+            visibleLevel = PostVisibleLevel.PUBLIC
+        )
+        val updateDateTime = LocalDateTime.of(2021, 12, 23, 15, 30, 10)
+
+        val exception =
+            shouldThrow<IllegalArgumentException> { postService.updatePost(notExistPostId, request, updateDateTime) }
+
+        exception.message shouldBe "해당하는 ID(1)의 게시글이 존재하지 않습니다."
     }
 }

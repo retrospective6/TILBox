@@ -1,6 +1,7 @@
 package com.tilbox.api.post.application
 
 import com.tilbox.api.post.application.dto.request.PostCreateRequest
+import com.tilbox.api.post.application.dto.request.PostUpdateRequest
 import com.tilbox.core.post.domain.entity.Post
 import com.tilbox.core.post.domain.repository.PostRepository
 import com.tilbox.core.post.domain.value.Tags
@@ -27,5 +28,23 @@ class PostService(
         )
         val createdPost = postRepository.save(post)
         return createdPost.id
+    }
+
+    fun updatePost(postId: Long, request: PostUpdateRequest, updateDateTime: LocalDateTime): Long {
+        val target = postRepository.findById(postId)
+            .orElseThrow { IllegalArgumentException("해당하는 ID($postId)의 게시글이 존재하지 않습니다.") }
+
+        target.update(
+            userId = request.userId,
+            title = request.title,
+            content = request.content,
+            summary = request.summary,
+            tags = Tags.of(request.tags),
+            thumbnailUrl = request.thumbnailUrl,
+            visibleLevel = request.visibleLevel,
+            updatedAt = updateDateTime
+        )
+
+        return postId
     }
 }

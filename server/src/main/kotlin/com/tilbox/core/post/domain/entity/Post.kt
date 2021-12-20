@@ -26,7 +26,7 @@ class Post(
     private var summary: String,
 
     @Embedded
-    private val tags: Tags,
+    private var tags: Tags,
 
     @Lob
     private var thumbnailUrl: String?,
@@ -45,4 +45,26 @@ class Post(
     private var updatedAt: LocalDateTime,
 
     id: Long = 0L
-) : BaseRootEntity<Post>(id)
+) : BaseRootEntity<Post>(id) {
+    fun update(
+        userId: Long,
+        title: String,
+        content: String,
+        summary: String,
+        tags: Tags,
+        thumbnailUrl: String?,
+        visibleLevel: PostVisibleLevel,
+        updatedAt: LocalDateTime
+    ) {
+        if (userId != this.userId) {
+            throw IllegalStateException("본인이 작성한 게시글만 수정할 수 있습니다.")
+        }
+        this.title = title
+        this.content = content
+        this.summary = summary
+        this.tags = tags
+        this.thumbnailUrl = thumbnailUrl
+        this.visibleLevel = visibleLevel
+        this.updatedAt = updatedAt
+    }
+}
