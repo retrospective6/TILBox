@@ -2,7 +2,6 @@ package com.tilbox.api.post.ui
 
 import com.tilbox.api.post.application.PostService
 import com.tilbox.api.post.application.dto.request.PostCreateRequest
-import com.tilbox.api.user.application.dto.response.UserCreateResponse
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
@@ -26,10 +25,10 @@ class PostRestController(private val postService: PostService) {
         ApiResponse(code = 400, message = "필수 값 누락으로 생성 실패")
     )
     @PostMapping
-    fun createUser(@RequestBody request: PostCreateRequest): ResponseEntity<UserCreateResponse> {
+    fun createPost(@RequestBody request: PostCreateRequest): ResponseEntity<Long> {
         val createdPostId = postService.savePost(request, LocalDateTime.now())
         return ResponseEntity
             .created(URI.create("/v1/posts/$createdPostId"))
-            .build()
+            .body(createdPostId)
     }
 }
