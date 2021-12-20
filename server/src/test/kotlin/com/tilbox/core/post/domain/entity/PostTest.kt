@@ -1,5 +1,6 @@
 package com.tilbox.core.post.domain.entity
 
+import com.tilbox.core.post.domain.fixture.defaultPost
 import com.tilbox.core.post.domain.value.PostVisibleLevel
 import com.tilbox.core.post.domain.value.Tags
 import io.kotest.assertions.throwables.shouldThrow
@@ -15,18 +16,7 @@ import java.util.stream.Stream
 class PostTest {
     @Test
     fun `본인이 작성하지 않은 게시글은 업데이트 할 수 없다`() {
-        val createdPost = Post(
-            id = 1L,
-            userId = 1L,
-            title = "title",
-            content = "content",
-            summary = "summary",
-            tags = Tags.of(listOf("tag1")),
-            thumbnailUrl = "thumbnailUrl",
-            visibleLevel = PostVisibleLevel.PRIVATE,
-            createdAt = LocalDateTime.of(2021, 12, 10, 10, 35),
-            updatedAt = LocalDateTime.of(2021, 12, 10, 10, 35)
-        )
+        val createdPost = defaultPost(userId = 1L)
 
         val exception = shouldThrow<IllegalStateException> {
             createdPost.update(
@@ -46,18 +36,7 @@ class PostTest {
 
     @Test
     fun `본인이 작성한 게시글은 수정가능하다`() {
-        val post = Post(
-            id = 1L,
-            userId = 1L,
-            title = "title",
-            content = "content",
-            summary = "summary",
-            tags = Tags.of(listOf("tag1")),
-            thumbnailUrl = "thumbnailUrl",
-            visibleLevel = PostVisibleLevel.PRIVATE,
-            createdAt = LocalDateTime.of(2021, 12, 10, 10, 35),
-            updatedAt = LocalDateTime.of(2021, 12, 10, 10, 35)
-        )
+        val post = defaultPost(userId = 1L)
 
         post.update(
             userId = 1L,
@@ -87,19 +66,8 @@ class PostTest {
 
     @ParameterizedTest
     @MethodSource("테스트셋 - 특정 유저가 작성한 게시물인지 확인")
-    fun `특정 유저가 작성한 게시물인지 확인`(postUserId: Long, checkTargetUserId: Long, expected: Boolean) {
-        val post = Post(
-            id = postUserId,
-            userId = 1L,
-            title = "title",
-            content = "content",
-            summary = "summary",
-            tags = Tags.of(listOf("tag1")),
-            thumbnailUrl = "thumbnailUrl",
-            visibleLevel = PostVisibleLevel.PRIVATE,
-            createdAt = LocalDateTime.of(2021, 12, 10, 10, 35),
-            updatedAt = LocalDateTime.of(2021, 12, 10, 10, 35)
-        )
+    fun `특정 유저가 작성한 게시물인지 확인`(checkTargetUserId: Long, expected: Boolean) {
+        val post = defaultPost(userId = 1L)
 
         val result = post.sameUser(checkTargetUserId)
 
@@ -109,8 +77,8 @@ class PostTest {
     companion object {
         @JvmStatic
         fun `테스트셋 - 특정 유저가 작성한 게시물인지 확인`(): Stream<Arguments> = Stream.of(
-            Arguments.of(1L, 1L, true),
-            Arguments.of(1L, 2L, false),
+            Arguments.of(1L, true),
+            Arguments.of(2L, false),
         )
     }
 }
