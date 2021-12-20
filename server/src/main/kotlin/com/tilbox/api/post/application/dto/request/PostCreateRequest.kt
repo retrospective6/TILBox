@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
 import javax.validation.constraints.NotBlank
 
-@ApiModel("작성 게시글 정보", description = "게시글 작성시 필요한 정보")
+@ApiModel("작성 게시글 정보", description = "게시글 작성/수정시 필요한 정보")
 data class PostCreateRequest(
     @ApiModelProperty("TIL 작성 회원 ID번호", required = true, example = "30")
     @field:NotBlank

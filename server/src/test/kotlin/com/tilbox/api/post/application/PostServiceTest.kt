@@ -1,7 +1,6 @@
 package com.tilbox.api.post.application
 
 import com.tilbox.api.post.application.dto.request.PostCreateRequest
-import com.tilbox.api.post.application.dto.request.PostUpdateRequest
 import com.tilbox.core.post.domain.entity.Post
 import com.tilbox.core.post.domain.repository.PostRepository
 import com.tilbox.core.post.domain.value.PostVisibleLevel
@@ -68,7 +67,7 @@ class PostServiceTest(
         )
 
         val targetId = createdPost.id
-        val request = PostUpdateRequest(
+        val request = PostCreateRequest(
             userId = 1L,
             title = "newTitle",
             content = "newContent",
@@ -87,7 +86,7 @@ class PostServiceTest(
     @Test
     fun `존재하지 않는 게시글은 업데이트 실패`() {
         val notExistPostId = 1L
-        val request = PostUpdateRequest(
+        val request = PostCreateRequest(
             userId = 1L,
             title = "newTitle",
             content = "newContent",

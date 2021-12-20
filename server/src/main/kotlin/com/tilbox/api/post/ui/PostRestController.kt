@@ -2,7 +2,6 @@ package com.tilbox.api.post.ui
 
 import com.tilbox.api.post.application.PostService
 import com.tilbox.api.post.application.dto.request.PostCreateRequest
-import com.tilbox.api.post.application.dto.request.PostUpdateRequest
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
@@ -40,7 +39,7 @@ class PostRestController(private val postService: PostService) {
         ApiResponse(code = 400, message = "필수 값 누락으로 수정 실패")
     )
     @PutMapping("/{postId}")
-    fun updatePost(@PathVariable postId: Long, @RequestBody request: PostUpdateRequest): ResponseEntity<Long> {
+    fun updatePost(@PathVariable postId: Long, @RequestBody request: PostCreateRequest): ResponseEntity<Long> {
         val updatedPostId = postService.updatePost(postId, request, LocalDateTime.now())
         return ResponseEntity.ok(updatedPostId)
     }

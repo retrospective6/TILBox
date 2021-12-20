@@ -2,7 +2,6 @@ package com.tilbox.api.post.ui
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.tilbox.api.post.application.dto.request.PostCreateRequest
-import com.tilbox.api.post.application.dto.request.PostUpdateRequest
 import com.tilbox.base.test.RestControllerTest
 import com.tilbox.core.post.domain.entity.Post
 import com.tilbox.core.post.domain.repository.PostRepository
@@ -67,7 +66,7 @@ class PostRestControllerTest() : RestControllerTest() {
         )
 
         val postId = savedPost.id
-        val request = PostUpdateRequest(
+        val request = PostCreateRequest(
             userId = 3L,
             title = "10/23일 TIL",
             content = "new content",
