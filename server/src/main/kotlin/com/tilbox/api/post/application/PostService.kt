@@ -47,4 +47,12 @@ class PostService(
 
         return postId
     }
+
+    fun remove(postId: Long, userId: Long) {
+        val target = postRepository.findById(postId).orElseThrow { IllegalArgumentException("존재하지 않는 게시글입니다.") }
+        if (!target.sameUser(userId)) {
+            throw IllegalArgumentException("본인이 작성한 게시글만 삭제할 수 있습니다.")
+        }
+        postRepository.delete(target)
+    }
 }

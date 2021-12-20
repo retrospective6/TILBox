@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import org.springframework.transaction.annotation.Transactional
-import java.lang.IllegalArgumentException
 import java.time.LocalDateTime
 
 @Transactional
@@ -103,5 +102,37 @@ class PostServiceTest(
             shouldThrow<IllegalArgumentException> { postService.updatePost(notExistPostId, request, updateDateTime) }
 
         exception.message shouldBe "해당하는 ID(1)의 게시글이 존재하지 않습니다."
+    }
+
+    @Test
+    fun `존재하지 않는 게시물 삭제시도시 실패`() {
+        val notExistPostId = 1L
+
+        val exception = shouldThrow<IllegalArgumentException> { postService.remove(notExistPostId, 1L) }
+
+        exception.message shouldBe "존재하지 않는 게시글입니다."
+    }
+
+    @Test
+    fun `본인이 작성하지 않은 게시물 삭제시도시 실패`() {
+        val createUserId = 1L
+        val createdPostId = postRepository.save(
+            Post(
+                userId = createUserId,
+                title = "title",
+                content = "content",
+                summary = "summary",
+                tags = Tags.of(listOf("tag1")),
+                thumbnailUrl = "thumbnailUrl",
+                visibleLevel = PostVisibleLevel.PRIVATE,
+                createdAt = LocalDateTime.of(2021, 12, 10, 10, 35),
+                updatedAt = LocalDateTime.of(2021, 12, 10, 10, 35)
+            )
+        ).id
+        val requestUserId = 2L
+
+        val exception = shouldThrow<IllegalArgumentException> { postService.remove(createdPostId, requestUserId) }
+
+        exception.message shouldBe "본인이 작성한 게시글만 삭제할 수 있습니다."
     }
 }

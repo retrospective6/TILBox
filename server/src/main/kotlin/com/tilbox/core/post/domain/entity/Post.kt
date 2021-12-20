@@ -67,4 +67,6 @@ class Post(
         this.visibleLevel = visibleLevel
         this.updatedAt = updatedAt
     }
+
+    fun sameUser(userId: Long): Boolean = userId == this.userId
 }
