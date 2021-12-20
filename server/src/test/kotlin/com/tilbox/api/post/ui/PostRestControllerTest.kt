@@ -53,7 +53,7 @@ class PostRestControllerTest() : RestControllerTest() {
     fun `게시글 수정 요청이 오면 게시글 수정후, 수정된 게시글의 ID를 반환한다`() {
         val savedPost = postRepository.save(
             Post(
-                userId = 1L,
+                userId = 3L,
                 title = "title",
                 content = "content",
                 summary = "summary",
