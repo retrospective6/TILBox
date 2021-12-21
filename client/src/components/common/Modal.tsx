@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { Portal } from 'next/dist/client/portal';
+import FONT from '@/styles/font';
 
 export interface ModalProps {
   title: string;
@@ -87,9 +88,7 @@ const Header = styled.header`
 `;
 
 const Title = styled.span`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
+  ${FONT.body1};
   color: #000000;
 `;
 
