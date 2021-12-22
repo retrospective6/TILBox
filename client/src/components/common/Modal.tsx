@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
+import CloseIcon from '@/assets/icon/CloseIcon.svg';
 import { Portal } from 'next/dist/client/portal';
 
 export interface ModalProps {
@@ -30,27 +31,7 @@ export default function Modal(props: ModalProps): JSX.Element {
           <Header>
             <Title>{title}</Title>
             <CloseButton onClick={onClose} data-testid="modal-close">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="9" cy="9" r="9" fill="black" />
-                <rect
-                  width="10.1425"
-                  height="1.44893"
-                  transform="matrix(-0.697372 0.71671 -0.697371 -0.71671 12.9297 5.88464)"
-                  fill="white"
-                />
-                <rect
-                  width="10.1425"
-                  height="1.44893"
-                  transform="matrix(0.697372 0.71671 -0.697372 0.71671 6.08081 4.84619)"
-                  fill="white"
-                />
-              </svg>
+              <CloseIcon />
             </CloseButton>
           </Header>
           <Content>{children}</Content>

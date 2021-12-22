@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
 import styled from '@emotion/styled';
+import PlusIcon from '@/assets/icon/PlusIcon.svg';
 import Image from 'next/image';
 
 export interface ImgSelectorProps {
@@ -46,13 +47,16 @@ export default function ImgSelector(props: ImgSelectorProps): JSX.Element {
           height="100%"
         />
       ) : (
-        '+'
+        <PlusIcon />
       )}
     </Container>
   );
 }
 
 const Container = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 82px;
   height: 82px;
   padding: 0;
