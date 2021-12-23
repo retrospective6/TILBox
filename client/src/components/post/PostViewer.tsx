@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import * as Styled from '@/components/post/PostViewer.style';
-import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-import { Viewer } from '@toast-ui/react-editor';
-import Post from '@/types/Post';
 import { TitleProps } from '@/components/post/PostViewer.style';
+
+import Post from '@/types/Post';
+
 import TagList from '@/components/common/Tag/TagList';
+
+import dynamic from 'next/dynamic';
+const ToastViewer = dynamic(() => import('./ToastViewer'), {
+  ssr: false,
+});
 
 export interface PostViewerProps {
   post: Post;
@@ -51,7 +56,7 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
           <Styled.CreatedAt>{createdAt}</Styled.CreatedAt>
         </Styled.Info>
         <Styled.Content>
-          <Viewer initialValue={content} />
+          <ToastViewer initialValue={content} />
         </Styled.Content>
         {tags && <TagList tags={tags} />}
       </Styled.Section>
