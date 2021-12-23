@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from '@/types/Post';
-import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
+import { GetServerSidePropsResult } from 'next';
 import { POST } from '@mocks/MockData';
 import PostViewer from '@/components/post/PostViewer';
 
@@ -13,9 +13,9 @@ export default function PostPage(props: PostPageProps): JSX.Element {
   return <PostViewer post={post} />;
 }
 
-export async function getServerSideProps(
-  context: GetServerSidePropsContext,
-): Promise<GetServerSidePropsResult<PostPageProps>> {
+export async function getServerSideProps(): Promise<
+  GetServerSidePropsResult<PostPageProps>
+> {
   // TODO: api 연동
   const post = POST;
   return { props: { post } };
