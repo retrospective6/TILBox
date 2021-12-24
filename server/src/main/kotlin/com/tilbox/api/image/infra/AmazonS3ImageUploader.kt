@@ -7,8 +7,10 @@ import com.tilbox.api.image.application.ImageUploadRequest
 import com.tilbox.api.image.application.ImageUploadResponse
 import com.tilbox.api.image.application.ImageUploader
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
+@Profile("!test")
 @Component
 class AmazonS3ImageUploader(
     @Value("\${cloud.aws.s3.bucket}") private val bucket: String,
