@@ -42,9 +42,6 @@ export const Info = styled.header`
 export const UserInfo = styled.span`
   display: flex;
   align-items: center;
-  font-size: 12px;
-  line-height: 34px;
-  font-weight: bold;
 `;
 
 export const UserImage = styled(Image)`
@@ -53,6 +50,9 @@ export const UserImage = styled(Image)`
 
 export const UserNickname = styled.span`
   margin-left: 5px;
+  font-size: 12px;
+  line-height: 34px;
+  font-weight: bold;
 `;
 
 export const CreatedAt = styled.span`
