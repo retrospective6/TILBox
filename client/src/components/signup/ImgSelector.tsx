@@ -63,8 +63,6 @@ const Container = styled.button`
   border: none;
   border-radius: 50%;
   background: linear-gradient(111.34deg, #3ead17 3.55%, #09abce 113.48%);
-  color: white;
-  font-size: 28px;
 `;
 
 const FileInput = styled.input`

@@ -1,6 +1,7 @@
 import React, { useRef, KeyboardEvent, useState, ChangeEvent } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import FONT from '@/styles/font';
 import SearchIcon from '@/assets/icon/SearchIcon.svg';
 
 export interface SearchInputProps {
@@ -60,16 +61,16 @@ interface ContainerProps {
 }
 
 const activeCSS = css`
-  border: 1px solid #cdcdcd;
   width: 550px;
+  padding: 0 12px;
+  border: 1px solid #cdcdcd;
   background-color: #ffffff;
   span:first-of-type {
     visibility: hidden;
   }
   input {
     visibility: visible;
-    width: 450px;
-    margin: 9px;
+    width: 500px;
   }
 `;
 
@@ -101,8 +102,6 @@ const Container = styled.div<ContainerProps>`
 
 const Text = styled.span`
   position: absolute;
-  font-size: 18px;
-  line-height: 22px;
   white-space: nowrap;
 `;
 
@@ -111,8 +110,7 @@ const Input = styled.input`
   flex: 1;
   border: none;
   outline: none;
-  font-size: 10px;
-  line-height: 16px;
+  ${FONT.body4};
 
   ::placeholder {
     color: #cdcdcd;
@@ -120,7 +118,7 @@ const Input = styled.input`
 `;
 
 const Icon = styled.span`
+  margin-top: 4px;
   margin-left: auto;
-  margin-right: 5px;
   cursor: pointer;
 `;

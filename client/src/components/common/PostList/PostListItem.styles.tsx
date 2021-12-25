@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import FONT from '@/styles/font';
 import Image from 'next/image';
 
 export const PostListItem = styled.div`
@@ -21,8 +22,7 @@ export const UserInfo = styled.div<UserInfoProps>`
   padding: 0 14px;
   display: flex;
   align-items: center;
-  font-size: 10px;
-  line-height: 16px;
+  ${FONT.caption2};
   color: #dddddd;
   background-color: ${({ admin }) => (admin ? '#C90909' : '#000000')};
 `;
@@ -47,16 +47,16 @@ export const Contents = styled.div`
 export const Description = styled.p`
   margin-bottom: 15px;
   width: 227px;
-  height: 54px;
-  font-size: 14px;
-  line-height: 18px;
+  ${FONT.body4};
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow-y: hidden;
 `;
 
 export const SocialInfo = styled.div`
   margin-top: 15px;
-  font-size: 10px;
-  line-height: 16px;
+  ${FONT.caption2};
   color: #666666;
 `;
 

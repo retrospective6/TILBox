@@ -68,7 +68,7 @@ const Container = styled.header`
   background-color: #f3f3f3;
   justify-content: center;
   padding-left: 76px;
-  align-items: center;
+  white-space: nowrap;
 `;
 
 const Navbar = styled.div`
@@ -76,7 +76,6 @@ const Navbar = styled.div`
   align-items: center;
   text-align: center;
   font-size: 18px;
-  line-height: 16px;
 `;
 
 const Logo = styled.div`

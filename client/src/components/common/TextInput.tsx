@@ -1,6 +1,7 @@
 import React, { FocusEvent, InputHTMLAttributes, useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import FONT from '@/styles/font';
 
 export type Rule = {
   rule: (value: string) => boolean;
@@ -54,21 +55,17 @@ const Label = styled.label`
 `;
 
 const Title = styled.span`
-  font-size: 10px;
-  line-height: 16px;
-  font-weight: bold;
   margin-right: 8px;
+  ${FONT.caption1};
 `;
 
 const Feedback = styled.span`
-  font-size: 8px;
-  line-height: 16px;
+  ${FONT.caption4};
   color: #c90909;
 `;
 
 const Hint = styled.span`
-  font-size: 8px;
-  line-height: 16px;
+  ${FONT.caption4};
   color: #666666;
 `;
 
@@ -84,9 +81,9 @@ const StyledInput = styled.input<StyledInputProps>`
   box-sizing: border-box;
   border: 1px solid;
   border-radius: 8px;
-  font-size: 10px;
   padding: 7px 8px;
   background: #f3f3f3;
+  ${FONT.body4};
 
   ${({ isValid }) => css`
     border-color: ${isValid ? '#f3f3f3' : '#c90909'};

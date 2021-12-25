@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import Image from 'next/image';
+import FONT from '@/styles/font';
 
 export interface TitleProps {
   start?: string;
@@ -12,9 +13,7 @@ export const Title = styled.h1<TitleProps>`
   position: relative;
   width: 100%;
   height: 300px;
-  font-size: 24px;
-  line-height: 34px;
-  font-weight: bold;
+  ${FONT.title1};
   align-items: center;
   justify-content: center;
   color: white;
@@ -43,9 +42,6 @@ export const Info = styled.header`
 export const UserInfo = styled.span`
   display: flex;
   align-items: center;
-  font-size: 12px;
-  line-height: 34px;
-  font-weight: bold;
 `;
 
 export const UserImage = styled(Image)`
@@ -54,11 +50,13 @@ export const UserImage = styled(Image)`
 
 export const UserNickname = styled.span`
   margin-left: 5px;
+  font-size: 12px;
+  line-height: 34px;
+  font-weight: bold;
 `;
 
 export const CreatedAt = styled.span`
-  font-size: 8px;
-  line-height: 16px;
+  ${FONT.caption4}
 `;
 
 export const Content = styled.article`

@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
+import FONT from '@/styles/font';
 
 export const TagList = styled.ul`
   display: flex;
-  font-size: 10px;
-  line-height: 16px;
+  margin: 15px 0;
   overflow-x: hidden;
+  ${FONT.caption2};
   li {
     margin-right: 4px;
   }
