@@ -45,6 +45,7 @@ export const Contents = styled.div`
 `;
 
 export const Description = styled.p`
+  margin-bottom: 15px;
   width: 227px;
   ${FONT.body4};
   display: -webkit-box;
@@ -53,26 +54,8 @@ export const Description = styled.p`
   overflow-y: hidden;
 `;
 
-export const TagList = styled.ul`
-  display: flex;
-  margin: 15px 0;
-  overflow-x: hidden;
-  ${FONT.caption2};
-  li {
-    margin-right: 4px;
-  }
-`;
-
-export const TagListItem = styled.li`
-  padding: 1px 8px 2px;
-  height: 19px;
-  background: #f3f3f3;
-  border-radius: 8px;
-  color: #666666;
-  text-align: center;
-`;
-
 export const SocialInfo = styled.div`
+  margin-top: 15px;
   ${FONT.caption2};
   color: #666666;
 `;
