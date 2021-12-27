@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '@/styles/global.css';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
+
+import Head from 'next/head';
 import Header from '@/components/common/Header';
 import LoginModal from '@/components/common/LoginModal';
 
@@ -31,6 +33,9 @@ function TILApp({ Component, pageProps }: AppProps): JSX.Element {
 
   return (
     <>
+      <Head>
+        <title>TILBox</title>
+      </Head>
       <Header
         active={router.pathname}
         onSignUp={handleSignUp}
