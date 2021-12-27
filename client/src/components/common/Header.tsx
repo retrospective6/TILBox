@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { NAV_ITEMS } from '@/utils/constants';
 import User from '@/types/User';
 import SearchInput from '@/components/common/SearchInput';
+import LogoIcon from '@/assets/icon/LogoIcon.svg';
+import LogoTitle from '@/assets/icon/LogoTitle.svg';
 
 export interface HeaderProps {
   active: string;
@@ -19,9 +21,12 @@ export default function Header(props: HeaderProps): JSX.Element {
   return (
     <Container>
       <Navbar>
-        <Logo data-testid="logo">
-          <Link href="/">로고</Link>
-        </Logo>
+        <Link href="/" passHref>
+          <Logo>
+            <LogoIcon />
+            <LogoTitle />
+          </Logo>
+        </Link>
         {NAV_ITEMS.map((item) => (
           <NavItem
             key={item.testId}
@@ -78,8 +83,9 @@ const Navbar = styled.div`
   font-size: 18px;
 `;
 
-const Logo = styled.div`
-  width: 77px;
+const Logo = styled.a`
+  display: flex;
+  align-items: center;
 `;
 
 interface NavItemProps {
