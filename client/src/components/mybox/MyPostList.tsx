@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import * as Styled from './MyPostList.styles';
-import MyPostListItem from '@/components/mybox/MyPostListItem';
+import PostListItem from '@/components/common/PostList/PostListItem';
 import Post from '@/types/Post';
 import { daysInMonth } from '@/utils/days';
 import { range } from '@/utils';
@@ -37,9 +37,9 @@ export default function MyPostList(props: PostListProps): JSX.Element {
       </Styled.Header>
       <Styled.PostList>
         {posts.map((post) => (
-          <div key={post.id} className="post-list-item">
-            <MyPostListItem post={post} />
-          </div>
+          <Styled.PostListItem key={post.id} className="post-list-item" active>
+            <PostListItem post={post} />
+          </Styled.PostListItem>
         ))}
       </Styled.PostList>
     </Styled.Container>

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import FONT from '@/styles/font';
 import { css } from '@emotion/react';
+import FONT from '@/styles/font';
 
 export const Container = styled.div`
   max-width: 1104px;
@@ -47,4 +47,23 @@ export const PostList = styled.div`
   grid-template-columns: repeat(auto-fill, 264px);
   column-gap: 16px;
   row-gap: 38px;
+`;
+
+interface PostListItemProps {
+  active: boolean;
+}
+
+const activeCSS = css`
+  background: white;
+  opacity: 0.4;
+  box-shadow: 4px 6px 16px rgba(174, 174, 174, 0.25);
+  border-radius: 0 0 16px 16px;
+  div {
+    box-shadow: none;
+  }
+`;
+
+export const PostListItem = styled.div<PostListItemProps>`
+  width: min-content;
+  ${({ active }) => active || activeCSS};
 `;
