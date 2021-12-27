@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import * as Styled from './MyPostList.styles';
+
 import PostListItem from '@/components/common/PostList/PostListItem';
+import DateList from '@/components/mybox/DateList';
+
 import Post from '@/types/Post';
-import { daysInMonth } from '@/utils/days';
-import { range } from '@/utils';
 
 export interface PostListProps {
   posts: Post[];
@@ -13,10 +14,6 @@ export interface PostListProps {
 
 export default function MyPostList(props: PostListProps): JSX.Element {
   const { posts, month, year } = props;
-  const days = useMemo<number[]>(() => {
-    const monthEnd = daysInMonth(year, month);
-    return range(monthEnd, 1);
-  }, [month, year]);
 
   return (
     <Styled.Container>
@@ -24,16 +21,7 @@ export default function MyPostList(props: PostListProps): JSX.Element {
         <Styled.Month>
           {month}월({posts.length}개)
         </Styled.Month>
-        <Styled.Days>
-          {days.map((day) => (
-            <Styled.Day
-              key={`${year}.${month}.${day}`}
-              day={new Date(`${year}.${month}.${day}`).getDay()}
-            >
-              {day}
-            </Styled.Day>
-          ))}
-        </Styled.Days>
+        <DateList year={year} month={month} />
       </Styled.Header>
       <Styled.PostList>
         {posts.map((post) => (

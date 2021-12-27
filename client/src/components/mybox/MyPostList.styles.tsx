@@ -17,30 +17,6 @@ export const Month = styled.span`
   ${FONT.title1};
 `;
 
-export const Days = styled.ul`
-  display: flex;
-  ${FONT.body4}
-`;
-
-interface DayProps {
-  day: number;
-}
-
-export const Day = styled.li<DayProps>`
-  margin-left: 16px;
-  color: ${({ day }) => getColor(day)};
-`;
-
-const getColor = (day: number) => {
-  if (day !== 0 && day !== 6) {
-    return '#000000';
-  }
-  if (day === 6) {
-    return '#0068d5';
-  }
-  return '#c90909';
-};
-
 export const PostList = styled.div`
   display: grid;
   width: 100%;
