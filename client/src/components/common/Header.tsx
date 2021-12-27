@@ -22,7 +22,7 @@ export default function Header(props: HeaderProps): JSX.Element {
     <Container>
       <Navbar>
         <Link href="/" passHref>
-          <Logo>
+          <Logo data-testid="logo">
             <LogoIcon />
             <LogoTitle />
           </Logo>
