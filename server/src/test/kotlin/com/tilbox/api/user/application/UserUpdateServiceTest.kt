@@ -1,6 +1,5 @@
 package com.tilbox.api.user.application
 
-import com.tilbox.api.security.UserPrincipal
 import com.tilbox.core.user.domain.Password
 import com.tilbox.core.user.domain.Profile
 import com.tilbox.core.user.domain.RegistrationType
@@ -31,11 +30,10 @@ class UserUpdateServiceTest(
     fun `회원 정보 수정에 성공한다`() {
         // given
         val user = 사용자를_생성한다(UserStatus.AUTHENTICATED)
-        val loginUser = UserPrincipal(user.id, user.email, user.password, user.userRole)
 
         // when
         val actual =
-            userUpdateService.updateUser(UserUpdateRequest("hello", "https://s3.image.url/", "desc"), loginUser)
+            userUpdateService.updateUser(UserUpdateRequest("hello", "https://s3.image.url/", "desc"), user.id)
 
         // then
         actual.profile.nickname shouldBe "hello"
@@ -48,11 +46,10 @@ class UserUpdateServiceTest(
     fun `활성화되지 않은 계정은 정보를 수정할 수 없다`(userStatus: UserStatus) {
         // given
         val user = 사용자를_생성한다(userStatus)
-        val loginUser = UserPrincipal(user.id, user.email, user.password, user.userRole)
 
         // when
         val exception = shouldThrow<IllegalStateException> {
-            userUpdateService.updateUser(UserUpdateRequest("hello", "https://s3.image.url/", "desc"), loginUser)
+            userUpdateService.updateUser(UserUpdateRequest("hello", "https://s3.image.url/", "desc"), user.id)
         }
 
         // then

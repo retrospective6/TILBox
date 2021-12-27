@@ -1,6 +1,6 @@
 package com.tilbox.api.user.ui
 
-import com.tilbox.api.security.UserPrincipal
+import com.tilbox.api.security.LoginUserId
 import com.tilbox.api.user.application.EmailUserCreateService
 import com.tilbox.api.user.application.UserCreateRequest
 import com.tilbox.api.user.application.UserCreateResponse
@@ -13,7 +13,6 @@ import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
 import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -54,9 +53,9 @@ class UserRestController(
     @PutMapping("/users")
     fun updateUser(
         @Valid @RequestBody request: UserUpdateRequest,
-        @AuthenticationPrincipal loginUser: UserPrincipal
+        @LoginUserId userId: Long
     ): ResponseEntity<UserUpdateResponse> {
-        val response = userUpdateService.updateUser(request, loginUser)
+        val response = userUpdateService.updateUser(request, userId)
         return ResponseEntity
             .ok(response)
     }
@@ -67,8 +66,8 @@ class UserRestController(
         ApiResponse(code = 409, message = "회원탈퇴 실패")
     )
     @DeleteMapping("/users")
-    fun withdrawUser(@AuthenticationPrincipal loginUser: UserPrincipal): ResponseEntity<Void> {
-        userWithdrawalService.withdraw(loginUser)
+    fun withdrawUser(@LoginUserId userId: Long): ResponseEntity<Void> {
+        userWithdrawalService.withdraw(userId)
         return ResponseEntity
             .noContent()
             .build()

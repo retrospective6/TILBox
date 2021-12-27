@@ -30,9 +30,9 @@ class JwtAuthenticationFilter(private val jwtProvider: JwtProvider) : OncePerReq
     private fun authenticate(request: HttpServletRequest) {
         try {
             val token = extractTokenFromHeader(request)
-            val payload = jwtProvider.extractPayload(token)
+            val userPrincipal = jwtProvider.extractPayload(token)
             SecurityContextHolder.getContext().authentication = UsernamePasswordAuthenticationToken(
-                payload.userId, "", payload.authorities
+                userPrincipal, "", userPrincipal.authorities
             )
         } catch (exception: JwtException) {
             logger.info("사용자 인증에 실패했습니다. message=${exception.message}")

@@ -1,6 +1,5 @@
 package com.tilbox.api.user.application
 
-import com.tilbox.api.security.UserPrincipal
 import com.tilbox.core.user.domain.Password
 import com.tilbox.core.user.domain.Profile
 import com.tilbox.core.user.domain.RegistrationType
@@ -32,10 +31,9 @@ class UserWithdrawalServiceTest(
     fun `회원 탈퇴에 성공한다`() {
         // given
         val user = 사용자를_생성한다(UserStatus.AUTHENTICATED)
-        val loginUser = UserPrincipal(user.id, user.email, user.password, user.userRole)
 
         // when
-        userWithdrawalService.withdraw(loginUser)
+        userWithdrawalService.withdraw(user.id)
         val actual = userRepository.getById(user.id)
 
         // then
@@ -49,11 +47,10 @@ class UserWithdrawalServiceTest(
     fun `회원 탈퇴가 불가능한 상태인 계정은 탈퇴할 수 없다`(userStatus: UserStatus) {
         // given
         val user = 사용자를_생성한다(userStatus)
-        val loginUser = UserPrincipal(user.id, user.email, user.password, user.userRole)
 
         // when
         val exception = shouldThrow<IllegalStateException> {
-            userWithdrawalService.withdraw(loginUser)
+            userWithdrawalService.withdraw(user.id)
         }
 
         // then
