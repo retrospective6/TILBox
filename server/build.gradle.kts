@@ -22,6 +22,7 @@ object Versions {
     const val JJWT = "0.11.2"
     const val SWAGGER = "3.0.0"
     const val KOTLIN_LOGGING = "1.12.5"
+    const val SPRING_MOCKK = "3.1.0"
 }
 
 dependencies {
@@ -58,6 +59,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.kotest:kotest-runner-junit5:${Versions.KOTEST}")
     testImplementation("io.kotest:kotest-assertions-core:${Versions.KOTEST}")
+    testImplementation("com.ninja-squad:springmockk:${Versions.SPRING_MOCKK}")
 }
 
 tasks.withType<KotlinCompile> {
