@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchInput from '@/components/SearchInput';
 import { ComponentStory } from '@storybook/react';
 import SignUpPage from '@/pages/signUp/signUpPage';
 
@@ -11,6 +10,6 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof SearchInput> = () => <SignUpPage />;
+const Template: ComponentStory<typeof SignUpPage> = () => <SignUpPage />;
 
 export const Default = Template;
