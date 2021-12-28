@@ -26,6 +26,7 @@ export default function Form(): JSX.Element {
         width="100%"
         hint="로그인과 알림 메일을 받을 이메일입니다"
         placeholder="test@gogle.com"
+        type="email"
       />
       <Input
         data-testid="email-input"
@@ -33,6 +34,7 @@ export default function Form(): JSX.Element {
         width="100%"
         hint="숫자, 영문, 특문(!, @, #, $, %, ^, &, *) 모두 포함 8자 이상 입력해주세요"
         placeholder="til365master!"
+        type="password"
       />
       <Input
         data-testid="email-input"
@@ -40,6 +42,7 @@ export default function Form(): JSX.Element {
         width="100%"
         hint="비밀번호를 다시 입력해주세요"
         placeholder="til365master!"
+        type="password"
       />
       <Styled.CheckEmailReception>
         <label>
