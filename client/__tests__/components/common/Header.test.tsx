@@ -18,9 +18,9 @@ const renderHeader = (props: Partial<HeaderProps> = {}): RenderResult => {
 describe('logo', () => {
   test('has a tag with /', () => {
     const { getByTestId } = renderHeader();
-    const logoLink = getByTestId('logo').querySelector('a');
+    const logo = getByTestId('logo');
 
-    expect(logoLink).toHaveAttribute('href', '/');
+    expect(logo).toHaveAttribute('href', '/');
   });
 });
 
