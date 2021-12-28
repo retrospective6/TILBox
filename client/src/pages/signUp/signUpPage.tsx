@@ -1,5 +1,5 @@
 import React from 'react';
-import ImgSelector from '@/components/ImgSelector';
+import ImgSelector from '@/components/signUp/ImgSelector';
 import SignUpForm from '@/components/signUp/form/SignUpForm';
 import styled from '@emotion/styled';
 

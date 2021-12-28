@@ -1,7 +1,7 @@
 import React from 'react';
-import Input from '@/components/Input';
+import Input from '@/components/common/TextInput';
 import * as Styled from './Form.styles';
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 
 export default function SignUpForm(): JSX.Element {
   return (

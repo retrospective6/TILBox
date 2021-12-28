@@ -1,6 +1,6 @@
 import React from 'react';
-import ImgSelector from '@/components/signup/ImgSelector';
 import { ComponentStory } from '@storybook/react';
+import ImgSelector from '@/components/signUp/ImgSelector';
 
 export default {
   component: ImgSelector,
