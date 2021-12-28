@@ -1,16 +1,16 @@
 import React from 'react';
 import SearchInput from '@/components/SearchInput';
 import { ComponentStory } from '@storybook/react';
-import Index from '@/pages/signUp';
+import SignUpPage from '@/pages/signUp/signUpPage';
 
 export default {
-  component: Index,
-  title: 'signUpIndex',
+  component: SignUpPage,
+  title: 'page/SignUpPage',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
 };
 
-const Template: ComponentStory<typeof SearchInput> = () => <Index />;
+const Template: ComponentStory<typeof SearchInput> = () => <SignUpPage />;
 
 export const Default = Template;

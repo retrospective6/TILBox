@@ -1,9 +1,9 @@
 import React from 'react';
 import ImgSelector from '@/components/ImgSelector';
-import Form from '@/components/signUp/form/Form';
+import SignUpForm from '@/components/signUp/form/SignUpForm';
 import styled from '@emotion/styled';
 
-export default function Index(): JSX.Element {
+export default function SignUpPage(): JSX.Element {
   const onImgSubmit = () => {
     return 0;
   };
@@ -11,11 +11,11 @@ export default function Index(): JSX.Element {
   return (
     <Container>
       <Title>회원가입</Title>
-      <ProfileWrap>
+      <ProfileWrapper>
         <ImgSelector onSubmit={onImgSubmit} />
         <p>프로필 사진은 수정 가능합니다.</p>
-      </ProfileWrap>
-      <Form />
+      </ProfileWrapper>
+      <SignUpForm />
     </Container>
   );
 }
@@ -31,7 +31,7 @@ export const Title = styled.h1`
   font-weight: bold;
 `;
 
-export const ProfileWrap = styled.div`
+export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

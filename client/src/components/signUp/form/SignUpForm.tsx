@@ -3,7 +3,7 @@ import Input from '@/components/Input';
 import * as Styled from './Form.styles';
 import Button from '@/components/Button';
 
-export default function Form(): JSX.Element {
+export default function SignUpForm(): JSX.Element {
   return (
     <Styled.Form>
       <Input
