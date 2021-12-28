@@ -7,14 +7,14 @@ export default function Form(): JSX.Element {
   return (
     <Styled.Form>
       <Input
-        data-testid="email-input"
+        data-testid="url-input"
         title="My TIL 주소"
         width="100%"
         hint="숫자, 영어를 조합해 나만의 TIL 주소를 만들 수 있습니다"
         placeholder="www.tilbox/til356list"
       />
       <Input
-        data-testid="email-input"
+        data-testid="nickname-input"
         title="닉네임"
         width="100%"
         hint="2자 이상 8자 이하로 입력해주세요"
@@ -29,7 +29,7 @@ export default function Form(): JSX.Element {
         type="email"
       />
       <Input
-        data-testid="email-input"
+        data-testid="password-input"
         title="비밀번호"
         width="100%"
         hint="숫자, 영문, 특문(!, @, #, $, %, ^, &, *) 모두 포함 8자 이상 입력해주세요"
@@ -37,7 +37,7 @@ export default function Form(): JSX.Element {
         type="password"
       />
       <Input
-        data-testid="email-input"
+        data-testid="password-check-input"
         title="비밀번호 확인"
         width="100%"
         hint="비밀번호를 다시 입력해주세요"
