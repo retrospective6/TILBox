@@ -11,7 +11,7 @@ data class LoginRequest(
     @field:Email
     val email: String,
 
-    @ApiModelProperty("비밀번호", required = true, example = "password123!")
+    @ApiModelProperty("특수문자, 숫자, 알파벳을 최소 한개씩 포함한 비밀번호", required = true, example = "password123!")
     @field:Pattern(regexp = "(?=.*[A-Za-z])(?=.*\\d)(?=.*[\$@!%*#?&])[A-Za-z\\d\$@!%*#?&]{8,24}")
     val password: String
 )
