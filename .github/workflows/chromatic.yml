@@ -6,6 +6,12 @@ on:
       - client/**
     branches:
       - '**'
+  push:
+    paths:
+      - client/**
+    branches:
+      - main
+
 
 jobs:
   deploy-chromatic:
