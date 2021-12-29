@@ -19,9 +19,9 @@ class EmailUserCreateService(
 ) {
     fun createUser(request: UserCreateRequest): UserCreateResponse {
         check(!userRepository.existsByEmailAndRegistrationType(request.email, RegistrationType.EMAIL)) {
-            "이미 가입된 이메일입니다."
+            "이미 가입된 이메일입니다. email=${request.email}"
         }
-        check(!userRepository.existsByMyTilAddress(request.myTilAddress)) { "이미 사용중인 TIL 주소입니다." }
+        check(!userRepository.existsByMyTilAddress(request.myTilAddress)) { "이미 사용중인 TIL 주소입니다. myTilAddress=${request.myTilAddress}" }
 
         val currentDateTime = LocalDateTime.now()
         val user = userRepository.save(
