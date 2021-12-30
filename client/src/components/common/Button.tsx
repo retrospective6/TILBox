@@ -39,9 +39,8 @@ const Container = styled.button<ContainerProps>`
   padding: 8px 16px;
   border-radius: 24px;
   font-weight: 700;
-  
-  width: ${({ width }) => (width ? width : 'auto')}};
 
+  width: ${({ width }) => (width ? width : 'auto')};
   ${({ variant }) => variantCSS[variant]};
   ${({ size }) => sizeCSS[size]};
 `;
