@@ -26,8 +26,8 @@ export default class DateItems {
     if (target.isInactive()) {
       return;
     }
-    const prev = this.dates[index - 1];
-    const next = this.dates[index + 1];
+    const prev = this.dates[index - 1] || new DateItem(new Date());
+    const next = this.dates[index + 1] || new DateItem(new Date());
     if (prev.isInactive() && next.isInactive()) {
       return;
     }
