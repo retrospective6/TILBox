@@ -21,7 +21,7 @@ export default function DateList(props: DateListProps): JSX.Element {
   return (
     <Styled.DateList>
       {dateItems.getDates().map(({ date, shape }, index) => (
-        <Styled.Date key={index} day={date.getDay()} shape={shape}>
+        <Styled.Date key={index} date={date} shape={shape}>
           {date.getDate()}
         </Styled.Date>
       ))}

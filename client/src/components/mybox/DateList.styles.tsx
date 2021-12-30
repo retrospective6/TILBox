@@ -13,38 +13,14 @@ export const DateList = styled.ul`
 export type DateShapeType = 'inactive' | 'alone' | 'left' | 'center' | 'right';
 
 interface DateProps {
-  day: number;
+  date: Date;
   shape?: DateShapeType;
 }
-
-const shapeCSS: { [keys in DateShapeType]: SerializedStyles } = {
-  inactive: css``,
-  alone: css`
-    width: 20px;
-    background: #000000;
-    border-radius: 50%;
-  `,
-  left: css`
-    width: 28px;
-    background: #000000;
-    border-radius: 50% 0 0 50%;
-  `,
-  center: css`
-    width: 36px;
-    background: #000000;
-    border-radius: 0;
-  `,
-  right: css`
-    width: 28px;
-    background: #000000;
-    border-radius: 0 50% 50% 0;
-  `,
-};
 
 export const Date = styled.li<DateProps>`
   position: relative;
   text-align: center;
-  color: ${({ day }) => getColor(day)};
+  color: ${({ date }) => getColor(date.getDay())};
   ${({ shape }) =>
     shape !== 'inactive' &&
     css`
@@ -54,12 +30,12 @@ export const Date = styled.li<DateProps>`
   &:after {
     content: '';
     z-index: -1;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: absolute;
     height: 20px;
-    ${({ shape }) => shape && shapeCSS[shape]};
+    ${({ date, shape }) => shape && shapeCSS[shape](date.getDate())};
   }
 `;
 
@@ -71,4 +47,30 @@ const getColor = (day: number) => {
     return '#0068d5';
   }
   return '#c90909';
+};
+
+const shapeCSS: {
+  [keys in DateShapeType]: (date: number) => SerializedStyles;
+} = {
+  inactive: () => css``,
+  alone: () => css`
+    width: 20px;
+    background: #000000;
+    border-radius: 50%;
+  `,
+  left: (date: number) => css`
+    width: ${date < 10 ? 24 : date < 20 ? 32 : 36}px;
+    background: #000000;
+    border-radius: 9px 0 0 9px;
+  `,
+  center: () => css`
+    width: 40px;
+    background: #000000;
+    border-radius: 0;
+  `,
+  right: (date: number) => css`
+    width: ${date < 10 ? 24 : date < 20 ? 32 : 36}px;
+    background: #000000;
+    border-radius: 0 9px 9px 0;
+  `,
 };
