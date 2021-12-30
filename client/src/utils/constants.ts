@@ -23,3 +23,5 @@ export const NAV_ITEMS: {
 ];
 
 export const ADMIN_NICKNAME = '운영자';
+
+export const DATE_FORMAT = 'YYYY.MM.DD';

@@ -53,7 +53,7 @@ export const POST: Post = {
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 0,
   comments: 0,
-  createdAt: '21.12.15',
+  createdAt: new Date('2021.12.15'),
   tags: ['tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag'],
 };
 
@@ -70,7 +70,7 @@ export const ADMIN_POST: Post = {
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 1,
   comments: 10,
-  createdAt: '21.12.15',
+  createdAt: new Date('2021.12.15'),
   tags: ['tag', 'tag'],
 };
 
