@@ -1,32 +1,29 @@
 import React, { useMemo } from 'react';
-import * as Styled from '@/components/mybox/DateList.styles';
+import * as Styled from './DateList.styles';
 
-import DateListItem from '@/components/mybox/DateListItem';
+import DateItems from './utils/DateItems';
 
-import { daysInMonth } from '@/utils/days';
-import { range } from '@/utils';
-
-export interface DayListProps {
+export interface DateListProps {
   year: number;
   month: number;
+  postDates: number[];
 }
 
-export default function DateList(props: DayListProps): JSX.Element {
-  const { month, year } = props;
-  const dates = useMemo<number[]>(() => {
-    const monthEnd = daysInMonth(year, month);
-    return range(monthEnd, 1);
-  }, [month, year]);
+export default function DateList(props: DateListProps): JSX.Element {
+  const { year, month, postDates } = props;
+
+  const dateItems = useMemo<DateItems>(
+    () => new DateItems(year, month),
+    [month, year],
+  );
+  dateItems.setShapes(postDates);
 
   return (
     <Styled.DateList>
-      {dates.map((date) => (
-        <DateListItem
-          key={`${year}.${month}.${date}`}
-          year={year}
-          month={month}
-          date={date}
-        />
+      {dateItems.getDates().map(({ date, shape }, index) => (
+        <Styled.Date key={index} day={date.getDay()} shape={shape}>
+          {date.getDate()}
+        </Styled.Date>
       ))}
     </Styled.DateList>
   );

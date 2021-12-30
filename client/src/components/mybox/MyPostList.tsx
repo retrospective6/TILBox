@@ -14,6 +14,7 @@ export interface PostListProps {
 
 export default function MyPostList(props: PostListProps): JSX.Element {
   const { posts, month, year } = props;
+  const postDates = posts.map((post) => post.createdAt.getDate());
 
   return (
     <Styled.Container>
@@ -21,7 +22,7 @@ export default function MyPostList(props: PostListProps): JSX.Element {
         <Styled.Month>
           {month}월({posts.length}개)
         </Styled.Month>
-        <DateList year={year} month={month} />
+        <DateList year={year} month={month} postDates={postDates} />
       </Styled.Header>
       <Styled.PostList>
         {posts.map((post) => (
