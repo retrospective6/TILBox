@@ -17,7 +17,7 @@ export default class DateItem {
     return this.shape !== 'inactive';
   }
 
-  isIncluded(dates: number[]) {
+  isIncluded(dates: number[]): boolean {
     return dates.includes(this.date.getDate());
   }
 

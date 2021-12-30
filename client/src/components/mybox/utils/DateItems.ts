@@ -12,7 +12,7 @@ export default class DateItems {
       .map((date) => new DateItem(date));
   }
 
-  setShapes(postDates: number[]) {
+  setShapes(postDates: number[]): void {
     this.dates.forEach((date) => {
       const initShape = date.isIncluded(postDates) ? 'alone' : 'inactive';
       date.setShape(initShape);
