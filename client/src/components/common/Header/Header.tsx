@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { NAV_ITEMS } from '@/utils/constants';
 import User from '@/types/User';
-import SearchInput from '@/components/common/SearchInput';
+import SearchInput from '@/components/common/Header/SearchInput';
 import LogoIcon from '@/assets/icon/LogoIcon.svg';
 import LogoTitle from '@/assets/icon/LogoTitle.svg';
 

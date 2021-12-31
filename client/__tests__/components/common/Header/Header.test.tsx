@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import Header, { HeaderProps } from '@/components/common/Header';
+import Header, { HeaderProps } from '@/components/common/Header/Header';
 import { NAV_ITEMS } from '@/utils/constants';
 import User from '@/types/User';
 

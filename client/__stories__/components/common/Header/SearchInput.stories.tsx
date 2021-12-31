@@ -1,10 +1,10 @@
 import React from 'react';
-import SearchInput from '@/components/common/SearchInput';
+import SearchInput from '@/components/common/Header/SearchInput';
 import { ComponentStory } from '@storybook/react';
 
 export default {
   component: SearchInput,
-  title: 'common/SearchInput',
+  title: 'common/Header/SearchInput',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
