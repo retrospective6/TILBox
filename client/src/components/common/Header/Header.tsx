@@ -1,11 +1,13 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import * as Styled from './Header.styles';
+
 import Link from 'next/link';
-import { NAV_ITEMS } from '@/utils/constants';
-import User from '@/types/User';
 import SearchInput from '@/components/common/Header/SearchInput';
 import LogoIcon from '@/assets/icon/LogoIcon.svg';
 import LogoTitle from '@/assets/icon/LogoTitle.svg';
+
+import { NAV_ITEMS } from '@/utils/constants';
+import User from '@/types/User';
 
 export interface HeaderProps {
   active: string;
@@ -19,22 +21,22 @@ export default function Header(props: HeaderProps): JSX.Element {
   const { active, user, onSignUp, onLogin, onSearch } = props;
 
   return (
-    <Container>
-      <Navbar>
+    <Styled.Header>
+      <Styled.Navbar>
         <Link href="/" passHref>
-          <Logo data-testid="logo">
+          <Styled.Logo data-testid="logo">
             <LogoIcon />
             <LogoTitle />
-          </Logo>
+          </Styled.Logo>
         </Link>
         {NAV_ITEMS.map((item) => (
-          <NavItem
+          <Styled.NavItem
             key={item.testId}
             data-testid={item.testId}
             active={active === item.href}
           >
             <Link href={item.href}>{item.title}</Link>
-          </NavItem>
+          </Styled.NavItem>
         ))}
         <SearchInput
           onSearch={onSearch}
@@ -42,81 +44,26 @@ export default function Header(props: HeaderProps): JSX.Element {
             '아이디, 닉네임, 태그, 텍스트와 본문을 검색해볼 수 있습니다'
           }
         />
-      </Navbar>
-      <UserInfo>
+      </Styled.Navbar>
+      <Styled.UserInfo>
         {user ? (
           <>
-            <UserImage src={user.image} alt="user-image" />
-            <UserInfoItem data-testid="user-nickname">
+            <Styled.UserImage src={user.image} alt="user-image" />
+            <Styled.UserInfoItem data-testid="user-nickname">
               {user.nickname} 님
-            </UserInfoItem>
+            </Styled.UserInfoItem>
           </>
         ) : (
           <>
-            <UserInfoItem data-testid="sign-up" onClick={onSignUp}>
+            <Styled.UserInfoItem data-testid="sign-up" onClick={onSignUp}>
               회원가입
-            </UserInfoItem>
-            <UserInfoItem data-testid="login" onClick={onLogin}>
+            </Styled.UserInfoItem>
+            <Styled.UserInfoItem data-testid="login" onClick={onLogin}>
               로그인
-            </UserInfoItem>
+            </Styled.UserInfoItem>
           </>
         )}
-      </UserInfo>
-    </Container>
+      </Styled.UserInfo>
+    </Styled.Header>
   );
 }
-
-const Container = styled.header`
-  display: flex;
-  width: 100vw;
-  height: 64px;
-  background-color: #f3f3f3;
-  justify-content: center;
-  padding-left: 76px;
-  white-space: nowrap;
-`;
-
-const Navbar = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  font-size: 18px;
-`;
-
-const Logo = styled.a`
-  display: flex;
-  align-items: center;
-`;
-
-interface NavItemProps {
-  active: boolean;
-}
-
-const NavItem = styled.div<NavItemProps>`
-  display: flex;
-  align-items: center;
-  height: 14px;
-  padding: 0 18px;
-  border-right: 1px solid #cdcdcd;
-  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
-`;
-
-const UserInfo = styled.div`
-  display: flex;
-  margin-left: auto;
-  width: 12.5%;
-  min-width: 140px;
-  align-items: center;
-`;
-
-const UserInfoItem = styled.button`
-  margin-right: 20px;
-  font-size: 12px;
-`;
-
-const UserImage = styled.img`
-  width: 38px;
-  height: 38px;
-  margin-right: 10px;
-  border-radius: 50%;
-`;
