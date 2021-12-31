@@ -4,7 +4,6 @@ export const Header = styled.header`
   display: flex;
   width: 100vw;
   height: 64px;
-  background-color: #f3f3f3;
   justify-content: center;
   padding-left: 76px;
   white-space: nowrap;
@@ -44,6 +43,7 @@ export const UserInfo = styled.div`
 `;
 
 export const UserInfoItem = styled.button`
+  background: transparent;
   margin-right: 20px;
   font-size: 12px;
 `;
