@@ -51,7 +51,7 @@ export default function LoginModal(props: LoginModalProps): JSX.Element {
           width="100%"
           onChange={onChangePassword}
         />
-        <Button data-testid="submit-button" variant="primary" width="100%">
+        <Button data-testid="submit-button" variant="primary" width="100%" bold>
           로그인
         </Button>
       </Form>

@@ -59,7 +59,9 @@ export default function SignUpForm(): JSX.Element {
         </label>
       </Styled.CheckEmailReception>
 
-      <Button variant="primary">회원가입 완료</Button>
+      <Button variant="primary" bold>
+        회원가입 완료
+      </Button>
     </Styled.Form>
   );
 }
