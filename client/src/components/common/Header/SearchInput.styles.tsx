@@ -7,7 +7,7 @@ interface ContainerProps {
 }
 
 const activeCSS = css`
-  width: 550px;
+  width: 42.5vw;
   padding: 0 12px;
   border: 1px solid #cdcdcd;
   background-color: #ffffff;
@@ -16,7 +16,7 @@ const activeCSS = css`
   }
   input {
     visibility: visible;
-    width: 500px;
+    width: 37.5vw;
   }
 `;
 
