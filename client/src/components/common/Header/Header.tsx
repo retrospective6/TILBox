@@ -3,6 +3,7 @@ import * as Styled from './Header.styles';
 
 import Link from 'next/link';
 import SearchInput from '@/components/common/Header/SearchInput';
+import Button from '@/components/common/Button';
 import LogoIcon from '@/assets/icon/LogoIcon.svg';
 import LogoTitle from '@/assets/icon/LogoTitle.svg';
 
@@ -14,11 +15,12 @@ export interface HeaderProps {
   user?: User;
   onSignUp: () => void;
   onLogin: () => void;
+  onWrite: () => void;
   onSearch: (value: string) => void;
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { active, user, onSignUp, onLogin, onSearch } = props;
+  const { active, user, onSignUp, onLogin, onWrite, onSearch } = props;
 
   return (
     <Styled.Header>
@@ -49,9 +51,10 @@ export default function Header(props: HeaderProps): JSX.Element {
         {user ? (
           <>
             <Styled.UserImage src={user.image} alt="user-image" />
-            <Styled.UserInfoItem data-testid="user-nickname">
+            <Styled.UserNickname data-testid="user-nickname">
               {user.nickname} 님
-            </Styled.UserInfoItem>
+            </Styled.UserNickname>
+            <Button onClick={onWrite}>글쓰기</Button>
           </>
         ) : (
           <>

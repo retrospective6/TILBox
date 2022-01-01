@@ -5,7 +5,7 @@ export const Header = styled.header`
   width: 100%;
   height: 64px;
   justify-content: center;
-  padding-left: 76px;
+  padding: 0 48px 0 76px;
   white-space: nowrap;
 `;
 
@@ -37,20 +37,24 @@ export const NavItem = styled.div<NavItemProps>`
 export const UserInfo = styled.div`
   display: flex;
   margin-left: auto;
-  width: 12.5%;
-  min-width: 140px;
   align-items: center;
 `;
 
 export const UserInfoItem = styled.button`
-  background: transparent;
   margin-right: 20px;
+  background: transparent;
   font-size: 12px;
 `;
 
 export const UserImage = styled.img`
   width: 38px;
   height: 38px;
-  margin-right: 10px;
+  margin-right: 14px;
   border-radius: 50%;
+`;
+
+export const UserNickname = styled.span`
+  margin-right: 20px;
+  background: transparent;
+  font-size: 12px;
 `;
