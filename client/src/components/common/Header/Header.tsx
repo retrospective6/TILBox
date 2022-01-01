@@ -54,7 +54,9 @@ export default function Header(props: HeaderProps): JSX.Element {
             <Styled.UserNickname data-testid="user-nickname">
               {user.nickname} 님
             </Styled.UserNickname>
-            <Button onClick={onWrite}>글쓰기</Button>
+            <Button data-testid="write-button" onClick={onWrite}>
+              글쓰기
+            </Button>
           </>
         ) : (
           <>

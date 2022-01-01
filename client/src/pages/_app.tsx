@@ -27,6 +27,10 @@ function TILApp({ Component, pageProps }: AppProps): JSX.Element {
     // TODO: 로그인 시 로직
   };
 
+  const handleWrite = () => {
+    return;
+  };
+
   const handleSearch = () => {
     // TODO: 검색 시 로직
   };
@@ -40,6 +44,7 @@ function TILApp({ Component, pageProps }: AppProps): JSX.Element {
         active={router.pathname}
         onSignUp={handleSignUp}
         onLogin={handleOpenLoginModal}
+        onWrite={handleWrite}
         onSearch={handleSearch}
       />
       <Component {...pageProps} />
