@@ -38,19 +38,21 @@ export default function SearchInput(props: SearchInputProps): JSX.Element {
   };
 
   return (
-    <Styled.Container active={active} onClick={onClick}>
-      <Styled.Text>검색</Styled.Text>
-      <Styled.Input
-        data-testid="search-input"
-        type="text"
-        placeholder={placeholder}
-        ref={input}
-        onChange={handleClick}
-        onKeyDown={handleKeydown}
-      />
-      <Styled.Icon data-testid="search-icon" onClick={handleSubmit}>
-        <SearchIcon />
-      </Styled.Icon>
-    </Styled.Container>
+    <Styled.Wrapper>
+      <Styled.Container active={active} onClick={onClick}>
+        <Styled.Text>검색</Styled.Text>
+        <Styled.Input
+          data-testid="search-input"
+          type="text"
+          placeholder={placeholder}
+          ref={input}
+          onChange={handleClick}
+          onKeyDown={handleKeydown}
+        />
+        <Styled.Icon data-testid="search-icon" onClick={handleSubmit}>
+          <SearchIcon />
+        </Styled.Icon>
+      </Styled.Container>
+    </Styled.Wrapper>
   );
 }

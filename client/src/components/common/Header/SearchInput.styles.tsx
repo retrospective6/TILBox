@@ -2,6 +2,11 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import FONT from '@/styles/font';
 
+export const Wrapper = styled.div`
+  position: relative;
+  height: 100%;
+`;
+
 interface ContainerProps {
   active: boolean;
 }
@@ -21,6 +26,7 @@ const activeCSS = css`
 `;
 
 export const Container = styled.div<ContainerProps>`
+  position: absolute;
   display: flex;
   width: 60px;
   height: 30px;
