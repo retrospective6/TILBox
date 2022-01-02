@@ -1,6 +1,8 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import LoginModal, { LoginModalProps } from '@/components/common/LoginModal';
+import LoginModal, {
+  LoginModalProps,
+} from '@/components/common/Modal/LoginModal';
 
 const DEFAULT_ARGS: LoginModalProps = {
   onClose: jest.fn(),

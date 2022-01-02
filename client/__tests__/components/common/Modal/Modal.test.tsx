@@ -1,9 +1,8 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import Modal, { ModalProps } from '@/components/common/Modal';
+import Modal, { ModalProps } from '@/components/common/Modal/Modal';
 
 const DEFAULT_ARGS: ModalProps = {
-  title: 'title',
   children: <></>,
   onClose: jest.fn(),
 };
@@ -15,15 +14,6 @@ const renderModal = (props: Partial<ModalProps>): RenderResult => {
     </Modal>,
   );
 };
-
-describe('with title', () => {
-  const title = 'test';
-  test('render title', () => {
-    const { getByText } = renderModal({ title });
-
-    getByText(title);
-  });
-});
 
 describe('with onClose method', () => {
   test('run method on click wrapper', () => {
@@ -44,15 +34,5 @@ describe('with onClose method', () => {
     fireEvent.click(container);
 
     expect(onClose).not.toBeCalled();
-  });
-
-  test('run method on click close button', () => {
-    const onClose = jest.fn();
-
-    const { getByTestId } = renderModal({ onClose });
-    const closeButton = getByTestId('modal-close');
-    fireEvent.click(closeButton);
-
-    expect(onClose).toBeCalled();
   });
 });

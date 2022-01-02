@@ -1,8 +1,10 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import styled from '@emotion/styled';
-import Modal from '@/components/common/Modal';
+import * as Styled from './LoginModal.styles';
+
+import Modal from './Modal';
 import TextInput from '@/components/common/TextInput';
 import Button from '@/components/common/Button';
+import CloseIcon from '@/assets/icon/CloseIcon.svg';
 
 export interface LoginFormProps {
   email: string;
@@ -36,8 +38,12 @@ export default function LoginModal(props: LoginModalProps): JSX.Element {
   };
 
   return (
-    <Modal title="이메일 로그인" onClose={onClose}>
-      <Form data-testid="login-modal" onSubmit={onSubmitValue}>
+    <Modal onClose={onClose}>
+      <Styled.Header>
+        <Styled.Title>이메일 로그인</Styled.Title>
+        <CloseIcon onClick={onClose} data-testid="modal-close" />
+      </Styled.Header>
+      <Styled.Form data-testid="login-modal" onSubmit={onSubmitValue}>
         <TextInput
           data-testid="email-input"
           title="이메일"
@@ -54,16 +60,7 @@ export default function LoginModal(props: LoginModalProps): JSX.Element {
         <Button data-testid="submit-button" variant="primary" width="100%" bold>
           로그인
         </Button>
-      </Form>
+      </Styled.Form>
     </Modal>
   );
 }
-
-const Form = styled.form`
-  input {
-    margin-bottom: 8px;
-  }
-  button {
-    margin-top: 16px;
-  }
-`;
