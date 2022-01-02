@@ -16,7 +16,6 @@ export default function ImgSelector(props: ImgSelectorProps): JSX.Element {
   };
 
   const handleSelectImg = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
     const files = event.target.files as FileList;
     if (!files[0]) {
       return;
@@ -27,28 +26,23 @@ export default function ImgSelector(props: ImgSelectorProps): JSX.Element {
   };
 
   return (
-    <Container onClick={handleClick}>
-      <FileInput
+    <>
+      <Button type="button" onClick={handleClick}>
+        {children}
+      </Button>
+      <input
         data-testid="image-input"
         type="file"
         accept="image/*"
+        hidden
         ref={imgInput}
         onChange={handleSelectImg}
       />
-      {children}
-    </Container>
+    </>
   );
 }
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+const Button = styled.button`
+  width: min-content;
   background: transparent;
-`;
-
-const FileInput = styled.input`
-  display: none;
 `;

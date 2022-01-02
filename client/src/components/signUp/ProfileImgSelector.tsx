@@ -21,8 +21,8 @@ export default function ProfileImgSelector(
   };
 
   return (
-    <Container>
-      <ImgSelector onSubmit={handleSubmit}>
+    <ImgSelector onSubmit={handleSubmit}>
+      <Container>
         {selectedImg ? (
           <SelectedImg
             src={selectedImg}
@@ -33,12 +33,12 @@ export default function ProfileImgSelector(
         ) : (
           <PlusIcon />
         )}
-      </ImgSelector>
-    </Container>
+      </Container>
+    </ImgSelector>
   );
 }
 
-const Container = styled.button`
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
