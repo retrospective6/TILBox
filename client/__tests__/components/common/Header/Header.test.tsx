@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import Header, { HeaderProps } from '@/components/common/Header';
+import Header, { HeaderProps } from '@/components/common/Header/Header';
 import { NAV_ITEMS } from '@/utils/constants';
 import User from '@/types/User';
 
@@ -8,6 +8,7 @@ const DEFAULT_ARGS: HeaderProps = {
   active: '/',
   onSignUp: jest.fn(),
   onLogin: jest.fn(),
+  onWrite: jest.fn(),
   onSearch: jest.fn(),
 };
 
@@ -98,10 +99,20 @@ describe('user info section', () => {
       expect(nickname).toHaveTextContent(user.nickname);
     });
 
-    test('display user nickname', () => {
+    test('display user img', () => {
       const { getByRole } = renderHeader({ user });
       const img = getByRole('img');
       expect(img).toHaveAttribute('src', user.image);
+    });
+
+    describe('with onWrite method', () => {
+      const onWrite = jest.fn();
+      test('run method on click write button', () => {
+        const { getByTestId } = renderHeader({ user, onWrite });
+        const writeButton = getByTestId('write-button');
+        fireEvent.click(writeButton);
+        expect(onWrite).toBeCalled();
+      });
     });
   });
 });

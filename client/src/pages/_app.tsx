@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
 import Head from 'next/head';
-import Header from '@/components/common/Header';
+import Header from '@/components/common/Header/Header';
 import LoginModal from '@/components/common/LoginModal';
 
 function TILApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -27,6 +27,10 @@ function TILApp({ Component, pageProps }: AppProps): JSX.Element {
     // TODO: 로그인 시 로직
   };
 
+  const handleWrite = () => {
+    return;
+  };
+
   const handleSearch = () => {
     // TODO: 검색 시 로직
   };
@@ -40,6 +44,7 @@ function TILApp({ Component, pageProps }: AppProps): JSX.Element {
         active={router.pathname}
         onSignUp={handleSignUp}
         onLogin={handleOpenLoginModal}
+        onWrite={handleWrite}
         onSearch={handleSearch}
       />
       <Component {...pageProps} />

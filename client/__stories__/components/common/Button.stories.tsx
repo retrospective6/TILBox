@@ -41,6 +41,12 @@ Danger.args = {
   variant: 'danger',
 };
 
+export const Bold = Template.bind({});
+Bold.args = {
+  ...Default.args,
+  bold: true,
+};
+
 export const Medium = Template.bind({});
 Medium.args = {
   ...Default.args,

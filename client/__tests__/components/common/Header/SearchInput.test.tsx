@@ -1,5 +1,7 @@
 import React from 'react';
-import SearchInput, { SearchInputProps } from '@/components/common/SearchInput';
+import SearchInput, {
+  SearchInputProps,
+} from '@/components/common/Header/SearchInput';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 
 const DEFAULT_ARGS: SearchInputProps = {
