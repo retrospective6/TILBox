@@ -11,10 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 426px;
-  min-height: 232px;
   margin: auto;
-  padding: 40px 80px;
   background-color: #ffffff;
   border: 2px solid #0068d5;
   border-radius: 16px;
