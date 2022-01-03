@@ -5,10 +5,23 @@ export default interface Post {
   user: User;
   title: string;
   content: string;
-  thumbnail: string;
+  thumbnail: Thumbnail;
   description: string;
   likes: number;
   comments: number;
   createdAt: string;
   tags?: string[];
+  visibleLevel: VisibleLevel;
 }
+
+export type VisibleLevel = 'public' | 'private';
+
+export type Thumbnail = {
+  img?: string;
+  gradient?: ThumbnailColor;
+};
+
+export type ThumbnailColor = {
+  start: string;
+  end: string;
+};
