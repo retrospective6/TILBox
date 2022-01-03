@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef } from 'react';
 import { Editor, EditorProps } from '@toast-ui/react-editor';
 
 import dynamic from 'next/dynamic';
-import { ToastEditorProps } from '@/components/write/ToastEditor';
+import { ToastEditorProps } from '@/components/write/Editor/ToastEditor';
 const ToastEditor = dynamic<ToastEditorProps>(() => import('./ToastEditor'), {
   ssr: false,
 });

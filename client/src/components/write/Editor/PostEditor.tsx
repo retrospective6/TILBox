@@ -2,7 +2,7 @@ import React, { useRef, useState, ChangeEvent } from 'react';
 import * as Styled from './PostEditor.styles';
 
 import { Editor } from '@toast-ui/react-editor';
-import EditorWithForwardedRef from '@/components/write/EditorWithForwardedRef';
+import EditorWithForwardedRef from '@/components/write/Editor/EditorWithForwardedRef';
 
 export interface PostEditorProps {
   title?: string;

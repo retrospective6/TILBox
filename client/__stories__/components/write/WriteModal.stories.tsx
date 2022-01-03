@@ -1,5 +1,5 @@
 import React from 'react';
-import WriteModal from '@/components/write/WriteModal';
+import WriteModal from '@/components/write/Modal/WriteModal';
 import { ComponentStory } from '@storybook/react';
 
 export default {

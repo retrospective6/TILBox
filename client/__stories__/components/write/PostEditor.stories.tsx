@@ -1,5 +1,5 @@
 import React from 'react';
-import PostEditor from '@/components/write/PostEditor';
+import PostEditor from '@/components/write/Editor/PostEditor';
 import { ComponentStory } from '@storybook/react';
 
 export default {
