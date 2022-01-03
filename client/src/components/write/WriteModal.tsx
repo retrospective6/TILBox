@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import * as Styled from './WriteModal.styles';
 
 import Modal from '@/components/common/Modal/Modal';
@@ -23,6 +23,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
   const { onClose } = props;
   const [gradient, setGradient] = useState<ThumbnailGradient>();
   const [thumbnail, setThumbnail] = useState<string>();
+  const [summary, setSummary] = useState<string>('');
 
   const handleClickColorSelector = (gradient: ThumbnailGradient) => () => {
     setGradient(gradient);
@@ -32,6 +33,11 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
   const handleSelectThumbnail = (img: string) => {
     setThumbnail(img);
     setGradient(undefined);
+  };
+
+  const handleChangeSummary = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = event.target;
+    setSummary(value);
   };
 
   return (
@@ -70,6 +76,10 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
         <Styled.Column>
           <Styled.Cell>
             <Styled.Title>요약글</Styled.Title>
+            <Styled.Description>
+              썸네일에 보이는 요약글을 공백 포함 40자까지 작성할 수 있습니다.
+            </Styled.Description>
+            <Styled.TextArea value={summary} onChange={handleChangeSummary} />
           </Styled.Cell>
           <Styled.Cell>
             <Styled.Title>Tag</Styled.Title>

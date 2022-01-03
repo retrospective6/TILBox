@@ -23,10 +23,16 @@ export const Cell = styled.div`
   margin-bottom: 16px;
 `;
 
-export const Title = styled.span`
+export const Title = styled.div`
   margin-bottom: 10px;
   ${FONT.title1};
   color: #000000;
+`;
+
+export const Description = styled.div`
+  margin-bottom: 8px;
+  ${FONT.caption2};
+  color: #666666;
 `;
 
 export const ColorList = styled.div`
@@ -94,4 +100,15 @@ export const PlusIcon = styled.span`
   height: 24px;
   border-radius: 50%;
   background: #006bd4;
+`;
+
+export const TextArea = styled.textarea`
+  width: 100%;
+  height: 76px;
+  padding: 7px 8px;
+  border: none;
+  border-radius: 8px;
+  background: #f3f3f3;
+  ${FONT.body4};
+  resize: none;
 `;
