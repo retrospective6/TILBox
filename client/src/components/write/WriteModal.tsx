@@ -29,8 +29,8 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
       <Styled.Form>
         <Styled.Column>
           <Styled.Title>썸네일 미리보기</Styled.Title>
-          <ImgSelector onSubmit={handleSelectThumbnail}>
-            <Styled.ThumbnailSelector>
+          <Styled.ThumbnailSelector>
+            <ImgSelector onSubmit={handleSelectThumbnail}>
               {thumbnail && (
                 <Styled.ThumbnailImage
                   src={thumbnail}
@@ -44,8 +44,8 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
                 </Styled.PlusIcon>
                 사진 업로드
               </Styled.ThumbnailText>
-            </Styled.ThumbnailSelector>
-          </ImgSelector>
+            </ImgSelector>
+          </Styled.ThumbnailSelector>
         </Styled.Column>
         <Styled.Column>
           <Styled.Cell>

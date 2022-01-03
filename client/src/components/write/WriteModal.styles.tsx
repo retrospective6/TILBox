@@ -28,7 +28,7 @@ export const Title = styled.span`
 
 export const ThumbnailSelector = styled.div`
   position: relative;
-  width: 264px;
+  width: 100%;
   height: 170px;
   background: #000000;
 `;

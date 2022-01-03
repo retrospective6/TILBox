@@ -21,8 +21,8 @@ export default function ProfileImgSelector(
   };
 
   return (
-    <ImgSelector onSubmit={handleSubmit}>
-      <Container>
+    <Container>
+      <ImgSelector onSubmit={handleSubmit}>
         {selectedImg ? (
           <SelectedImg
             src={selectedImg}
@@ -33,8 +33,8 @@ export default function ProfileImgSelector(
         ) : (
           <PlusIcon />
         )}
-      </Container>
-    </ImgSelector>
+      </ImgSelector>
+    </Container>
   );
 }
 
