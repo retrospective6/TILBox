@@ -18,10 +18,10 @@ export type VisibleLevel = 'public' | 'private';
 
 export type Thumbnail = {
   img?: string;
-  gradient?: ThumbnailColor;
+  gradient?: ThumbnailGradient;
 };
 
-export type ThumbnailColor = {
+export type ThumbnailGradient = {
   start: string;
   end: string;
 };

@@ -1,3 +1,5 @@
+import { ThumbnailGradient } from '@/types/Post';
+
 export type NAV_LINKS = '/' | '/timeline' | '/mybox';
 
 export const NAV_ITEMS: {
@@ -23,3 +25,11 @@ export const NAV_ITEMS: {
 ];
 
 export const ADMIN_NICKNAME = '운영자';
+
+export const THUMBNAIL_GRADIENTS: ThumbnailGradient[] = [
+  { start: '#d55438', end: '#fea768' },
+  { start: '#1730b6', end: '#3f97d7' },
+  { start: '#3ead17', end: '#09abce' },
+  { start: '#5e0303', end: '#ad1223' },
+  { start: '#ffde6a', end: '#dc8401' },
+];

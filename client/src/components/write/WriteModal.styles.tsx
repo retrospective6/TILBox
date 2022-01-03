@@ -1,19 +1,22 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import FONT from '@/styles/font';
 
 import Image from 'next/image';
+import { ThumbnailGradient } from '@/types/Post';
 
 export const Form = styled.form`
   display: flex;
   width: 812px;
   height: 498px;
-  padding: 80px 100px;
+  padding: 80px 60px;
 `;
 
 export const Column = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 0 40px;
 `;
 
 export const Cell = styled.div`
@@ -26,11 +29,46 @@ export const Title = styled.span`
   color: #000000;
 `;
 
-export const ThumbnailSelector = styled.div`
+export const ColorList = styled.div`
+  display: flex;
+  margin-bottom: 16px;
+`;
+
+export const ColorListText = styled.span`
+  margin-right: auto;
+  ${FONT.body1};
+`;
+
+export const ColorListItem = styled.div<ThumbnailGradient>`
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  cursor: pointer;
+
+  ${({ start, end }) =>
+    css`
+      background: linear-gradient(111.34deg, ${start} 3.55%, ${end} 113.48%);
+    `};
+`;
+
+interface ThumbnailSelectorProps {
+  gradient?: ThumbnailGradient;
+}
+
+export const ThumbnailSelector = styled.div<ThumbnailSelectorProps>`
   position: relative;
   width: 100%;
   height: 170px;
-  background: #000000;
+  background: ${({ gradient }) =>
+    gradient
+      ? css`
+          linear-gradient(
+            111.34deg,
+            ${gradient.start} 3.55%,
+            ${gradient.end} 113.48%
+          );
+        `
+      : '#000000'};
 `;
 
 export const ThumbnailImage = styled(Image)`
