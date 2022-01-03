@@ -13,7 +13,7 @@ export const Form = styled.form`
 `;
 
 export const Column = styled.div`
-  flex: 1;
+  flex: 0 0 50%;
   display: flex;
   flex-direction: column;
   padding: 0 40px;

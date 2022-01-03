@@ -7,6 +7,7 @@ import PlusIcon from '@/assets/icon/PlusIcon.svg';
 
 import { THUMBNAIL_GRADIENTS } from '@/utils/constants';
 import { ThumbnailGradient } from '@/types/Post';
+import TagInput from '@/components/write/Modal/TagInput';
 
 export interface WriteFormProps {
   description: string;
@@ -24,6 +25,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
   const [gradient, setGradient] = useState<ThumbnailGradient>();
   const [thumbnail, setThumbnail] = useState<string>();
   const [summary, setSummary] = useState<string>('');
+  const [tags, setTags] = useState<string[]>([]);
 
   const handleClickColorSelector = (gradient: ThumbnailGradient) => () => {
     setGradient(gradient);
@@ -38,6 +40,10 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
   const handleChangeSummary = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
     setSummary(value);
+  };
+
+  const handleChangeTags = (newTags: string[]) => {
+    setTags(newTags);
   };
 
   return (
@@ -83,6 +89,8 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
           </Styled.Cell>
           <Styled.Cell>
             <Styled.Title>Tag</Styled.Title>
+            <Styled.Description>띄어쓰기를 통해 구분</Styled.Description>
+            <TagInput onChange={handleChangeTags} />
           </Styled.Cell>
           <Styled.Cell>
             <Styled.Title>공개설정</Styled.Title>
