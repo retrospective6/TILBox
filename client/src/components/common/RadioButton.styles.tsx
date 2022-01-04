@@ -3,7 +3,6 @@ import FONT from '@/styles/font';
 
 export const Container = styled.span`
   display: flex;
-  width: min-content;
   align-items: center;
   cursor: pointer;
 `;

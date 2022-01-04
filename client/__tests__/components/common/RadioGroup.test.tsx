@@ -1,10 +1,11 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 import RadioGroup, { RadioGroupProps } from '@/components/common/RadioGroup';
+import { VISIBLE_LEVELS } from '@/utils/constants';
 
 const DEFAULT_ARGS: RadioGroupProps = {
   name: 'test',
-  values: ['a', 'b', 'c'],
+  values: VISIBLE_LEVELS,
   onChange: jest.fn(),
 };
 
@@ -13,18 +14,18 @@ const renderRadioGroup = (props: Partial<RadioGroupProps>): RenderResult => {
 };
 
 test('values 모두 출력', () => {
-  const values = ['전체공개', '친구공개', '나만보기'];
+  const values = VISIBLE_LEVELS;
 
   const { getByText } = renderRadioGroup({ values });
-  values.forEach((value) => getByText(value));
+  values.forEach(({ label }) => getByText(label));
 });
 
 test('클릭 시 input checked', () => {
-  const values = ['전체공개', '친구공개', '나만보기'];
+  const values = VISIBLE_LEVELS;
   const { getByLabelText } = renderRadioGroup({ values });
 
-  const radio1 = getByLabelText(values[0]);
-  const radio2 = getByLabelText(values[1]);
+  const radio1 = getByLabelText(values[0].label);
+  const radio2 = getByLabelText(values[1].label);
   fireEvent.click(radio1);
 
   expect(radio1).toBeChecked();
@@ -35,7 +36,7 @@ test('클릭 시 input checked', () => {
 });
 
 describe('onChange 메소드', () => {
-  const values = ['전체공개', '친구공개', '나만보기'];
+  const values = VISIBLE_LEVELS;
   const onChange = jest.fn();
 
   beforeEach(() => {
@@ -45,16 +46,16 @@ describe('onChange 메소드', () => {
   test('클릭 시 실행', () => {
     const { getByLabelText } = renderRadioGroup({ values, onChange });
 
-    const radio = getByLabelText(values[0]);
+    const radio = getByLabelText(values[0].label);
     fireEvent.click(radio);
 
-    expect(onChange).toBeCalledWith(values[0]);
+    expect(onChange).toBeCalledWith(values[0].value);
   });
 
   test('같은 거 두번 클릭 시 한 번만 실행', () => {
     const { getByLabelText } = renderRadioGroup({ values, onChange });
 
-    const radio = getByLabelText(values[0]);
+    const radio = getByLabelText(values[0].label);
     fireEvent.click(radio);
     fireEvent.click(radio);
 

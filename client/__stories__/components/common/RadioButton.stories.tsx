@@ -17,12 +17,14 @@ const Template: ComponentStory<typeof RadioButton> = (args) => (
 export const Checked = Template.bind({});
 Checked.args = {
   name: 'test',
-  value: '전체설정',
+  value: 'public',
+  label: '전체설정',
   checked: true,
 };
 
 export const Unchecked = Template.bind({});
 Unchecked.args = {
   name: 'test',
-  value: '나만보기',
+  value: 'private',
+  label: '나만보기',
 };

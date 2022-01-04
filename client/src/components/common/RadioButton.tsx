@@ -8,11 +8,12 @@ export interface RadioButtonProps
   extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   value: string;
+  label: string;
   checked?: boolean;
 }
 
 export default function RadioButton(props: RadioButtonProps): JSX.Element {
-  const { checked, name, value } = props;
+  const { checked, name, value, label } = props;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {
@@ -32,7 +33,7 @@ export default function RadioButton(props: RadioButtonProps): JSX.Element {
           defaultChecked={checked}
           ref={inputRef}
         />
-        {value}
+        {label}
       </Styled.Label>
     </Styled.Container>
   );

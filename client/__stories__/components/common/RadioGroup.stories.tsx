@@ -1,6 +1,7 @@
 import React from 'react';
 import RadioGroup from '@/components/common/RadioGroup';
 import { ComponentStory } from '@storybook/react';
+import { VISIBLE_LEVELS } from '@/utils/constants';
 
 export default {
   component: RadioGroup,
@@ -17,6 +18,6 @@ const Template: ComponentStory<typeof RadioGroup> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   name: 'test',
-  values: ['a', 'b', 'c'],
-  checked: 'a',
+  values: VISIBLE_LEVELS,
+  checked: VISIBLE_LEVELS[0].value,
 };

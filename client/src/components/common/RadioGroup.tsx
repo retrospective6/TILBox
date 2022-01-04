@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
 
-import RadioButton from '@/components/common/RadioButton';
+import RadioButton, { RadioButtonProps } from '@/components/common/RadioButton';
 
 export interface RadioGroupProps {
   name: string;
-  values: string[];
+  values: Pick<RadioButtonProps, 'value' | 'label'>[];
   checked?: string;
   onChange: (value: string) => void;
 }
@@ -24,12 +24,13 @@ export default function RadioGroup(props: RadioGroupProps): JSX.Element {
 
   return (
     <>
-      {values.map((value) => (
+      {values.map(({ value, label }) => (
         <RadioButton
           key={value}
           type="radio"
           value={value}
           name={name}
+          label={label}
           checked={selected === value}
           onChange={handleChange}
         />
