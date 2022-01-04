@@ -5,9 +5,10 @@ import Modal from '@/components/common/Modal/Modal';
 import ImgSelector from '@/components/common/ImgSelector';
 import PlusIcon from '@/assets/icon/PlusIcon.svg';
 
-import { THUMBNAIL_GRADIENTS } from '@/utils/constants';
-import { ThumbnailGradient } from '@/types/Post';
+import { THUMBNAIL_GRADIENTS, VISIBLE_LEVELS } from '@/utils/constants';
+import { ThumbnailGradient, VisibleLevel } from '@/types/Post';
 import TagInput from '@/components/write/Modal/TagInput';
+import RadioGroup from '@/components/common/RadioGroup';
 
 export interface WriteFormProps {
   description: string;
@@ -26,6 +27,9 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
   const [thumbnail, setThumbnail] = useState<string>();
   const [summary, setSummary] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
+  const [visibleLevel, setVisibleLevel] = useState<string>(
+    VISIBLE_LEVELS[0].value,
+  );
 
   const handleClickColorSelector = (gradient: ThumbnailGradient) => () => {
     setGradient(gradient);
@@ -44,6 +48,10 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
 
   const handleChangeTags = (newTags: string[]) => {
     setTags(newTags);
+  };
+
+  const handleChangeVisible = (value: string) => {
+    setVisibleLevel(value);
   };
 
   return (
@@ -94,6 +102,14 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
           </Styled.Cell>
           <Styled.Cell>
             <Styled.Title>공개설정</Styled.Title>
+            <Styled.VisibleLevelSelector>
+              <RadioGroup
+                name="visible"
+                values={VISIBLE_LEVELS}
+                checked={VISIBLE_LEVELS[0].value}
+                onChange={handleChangeVisible}
+              />
+            </Styled.VisibleLevelSelector>
           </Styled.Cell>
         </Styled.Column>
       </Styled.Form>

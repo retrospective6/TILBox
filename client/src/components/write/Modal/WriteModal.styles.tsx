@@ -112,3 +112,8 @@ export const TextArea = styled.textarea`
   ${FONT.body4};
   resize: none;
 `;
+
+export const VisibleLevelSelector = styled.div`
+  display: flex;
+  gap: 55px;
+`;
