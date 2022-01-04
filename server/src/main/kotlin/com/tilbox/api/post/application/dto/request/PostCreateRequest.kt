@@ -25,8 +25,12 @@ data class PostCreateRequest(
     @ApiModelProperty("TIL 태그목록", example = "['자바', 'Stream']")
     val tags: List<String>,
 
-    @ApiModelProperty("TIL 썸네일 URL", required = true, example = "https://s3.amazonaws.com/s3/bucket/thumbnail.jpg")
-    val thumbnailUrl: String? = null,
+    @ApiModelProperty(
+        "TIL 썸네일 URL",
+        required = true,
+        example = """{"type": "image", "value": "https://s3.amazonaws/sample/bucket/file.jpg"}"""
+    )
+    val thumbnail: String,
 
     @ApiModelProperty("TIL 공개범위 설정", required = true, example = "PUBLIC")
     @field:NotBlank

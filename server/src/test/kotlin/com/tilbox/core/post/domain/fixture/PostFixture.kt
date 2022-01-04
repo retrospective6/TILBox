@@ -21,7 +21,7 @@ fun ofDefaultPost(
                 |  - DIP : 의존관계 역전""".trimMargin(),
     summary: String = "10/23일 TIL",
     tags: Tags = Tags.of(listOf("java", "stream")),
-    thumbnailUrl: String? = "https://s3.amazonaws/sample/bucket/file.jpg",
+    thumbnail: String = """{"type": "image", "value": "https://s3.amazonaws/sample/bucket/newThumbnail.jpg"}""",
     visibleLevel: PostVisibleLevel = PostVisibleLevel.PUBLIC,
     createdAt: LocalDateTime = LocalDateTime.of(2021, 12, 10, 10, 35),
     updatedAt: LocalDateTime = LocalDateTime.of(2021, 12, 10, 10, 35)
@@ -32,7 +32,7 @@ fun ofDefaultPost(
     content = content,
     summary = summary,
     tags = tags,
-    thumbnailUrl = thumbnailUrl,
+    thumbnail = thumbnail,
     visibleLevel = visibleLevel,
     createdAt = createdAt,
     updatedAt = updatedAt

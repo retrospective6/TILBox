@@ -29,7 +29,7 @@ class Post(
     private var tags: Tags,
 
     @Lob
-    private var thumbnailUrl: String?,
+    private var thumbnail: String,
 
     @Column(name = "visible_level", nullable = false, length = 10)
     @Enumerated(EnumType.STRING)
@@ -52,7 +52,7 @@ class Post(
         content: String,
         summary: String,
         tags: Tags,
-        thumbnailUrl: String?,
+        thumbnail: String,
         visibleLevel: PostVisibleLevel,
         updatedAt: LocalDateTime
     ) {
@@ -61,7 +61,7 @@ class Post(
         this.content = content
         this.summary = summary
         this.tags = tags
-        this.thumbnailUrl = thumbnailUrl
+        this.thumbnail = thumbnail
         this.visibleLevel = visibleLevel
         this.updatedAt = updatedAt
     }

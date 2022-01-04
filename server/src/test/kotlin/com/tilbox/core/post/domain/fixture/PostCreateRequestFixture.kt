@@ -9,7 +9,7 @@ fun ofDefaultCreateRequest(
     content: String = "content",
     summary: String = "content - summary",
     tags: List<String> = listOf("tag1", "tag2"),
-    thumbnailUrl: String? = null,
+    thumbnail: String = """{"type": "image", "value": "https://s3.amazonaws/sample/bucket/file.jpg"}""",
     visibleLevel: PostVisibleLevel = PostVisibleLevel.PRIVATE
 ) = PostCreateRequest(
     userId,
@@ -17,7 +17,7 @@ fun ofDefaultCreateRequest(
     content,
     summary,
     tags,
-    thumbnailUrl,
+    thumbnail,
     visibleLevel
 )
 
@@ -27,7 +27,7 @@ fun ofDefaultUpdateRequest(
     content: String = "new_content",
     summary: String = "new_content - summary",
     tags: List<String> = listOf("new_tag1", "new_tag2"),
-    thumbnailUrl: String? = "https://s3.amazonaws/sample/bucket/file.jpg",
+    thumbnail: String = """{"type": "image", "value": "https://s3.amazonaws/sample/bucket/file.jpg"}""",
     visibleLevel: PostVisibleLevel = PostVisibleLevel.PUBLIC
 ) = PostCreateRequest(
     userId,
@@ -35,6 +35,6 @@ fun ofDefaultUpdateRequest(
     content,
     summary,
     tags,
-    thumbnailUrl,
+    thumbnail,
     visibleLevel
 )

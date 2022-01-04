@@ -20,7 +20,7 @@ class PostService(
             content = request.content,
             summary = request.summary,
             tags = Tags.of(request.tags),
-            thumbnailUrl = request.thumbnailUrl,
+            thumbnail = request.thumbnail,
             visibleLevel = request.visibleLevel,
             createdAt = createDateTime,
             updatedAt = createDateTime
@@ -39,7 +39,7 @@ class PostService(
             content = request.content,
             summary = request.summary,
             tags = Tags.of(request.tags),
-            thumbnailUrl = request.thumbnailUrl,
+            thumbnail = request.thumbnail,
             visibleLevel = request.visibleLevel,
             updatedAt = updateDateTime
         )

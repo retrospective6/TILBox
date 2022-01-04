@@ -1,8 +1,8 @@
 package com.tilbox.api.post.application
 
-import com.tilbox.core.post.domain.fixture.defaultPost
-import com.tilbox.core.post.domain.fixture.ofCreate
-import com.tilbox.core.post.domain.fixture.ofUpdate
+import com.tilbox.core.post.domain.fixture.ofDefaultCreateRequest
+import com.tilbox.core.post.domain.fixture.ofDefaultPost
+import com.tilbox.core.post.domain.fixture.ofDefaultUpdateRequest
 import com.tilbox.core.post.domain.repository.PostRepository
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.longs.shouldBeGreaterThan
@@ -24,7 +24,7 @@ class PostServiceTest(
 ) {
     @Test
     fun `게시글 작성시 새로 생성된 게시글 ID를 반환한다`() {
-        val createRequest = ofCreate()
+        val createRequest = ofDefaultCreateRequest()
         val createDateTime = LocalDateTime.of(2021, 10, 23, 15, 30, 10)
 
         val actual = postService.savePost(createRequest, createDateTime)
@@ -34,9 +34,9 @@ class PostServiceTest(
 
     @Test
     fun `게시글 업데이트시 새로 생성된 게시글 ID를 반환한다`() {
-        val createdPost = postRepository.save(defaultPost())
+        val createdPost = postRepository.save(ofDefaultPost())
         val targetId = createdPost.id
-        val updateRequest = ofUpdate()
+        val updateRequest = ofDefaultUpdateRequest()
         val updateDateTime = LocalDateTime.of(2021, 12, 23, 15, 30, 10)
 
         val actual = postService.updatePost(targetId, updateRequest, updateDateTime)
@@ -47,7 +47,7 @@ class PostServiceTest(
     @Test
     fun `존재하지 않는 게시글은 업데이트 실패`() {
         val notExistPostId = 1L
-        val updateRequest = ofUpdate()
+        val updateRequest = ofDefaultUpdateRequest()
         val updateDateTime = LocalDateTime.of(2021, 12, 23, 15, 30, 10)
 
         val exception =
@@ -74,7 +74,7 @@ class PostServiceTest(
     @Test
     fun `본인이 작성하지 않은 게시물 삭제시도시 실패`() {
         val createUserId = 1L
-        val createdPostId = postRepository.save(defaultPost(userId = createUserId)).id
+        val createdPostId = postRepository.save(ofDefaultPost(userId = createUserId)).id
         val requestUserId = 2L
 
         val exception = shouldThrow<IllegalStateException> { postService.remove(createdPostId, requestUserId) }
