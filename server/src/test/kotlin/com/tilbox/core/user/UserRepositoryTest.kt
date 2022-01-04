@@ -1,10 +1,12 @@
-package com.tilbox.core.user.repository
+package com.tilbox.core.user
 
-import com.tilbox.core.user.domain.entity.User
-import com.tilbox.core.user.domain.repository.UserRepository
-import com.tilbox.core.user.domain.value.Password
-import com.tilbox.core.user.domain.value.Profile
-import com.tilbox.core.user.domain.value.UserStatus
+import com.tilbox.core.user.domain.Password
+import com.tilbox.core.user.domain.Profile
+import com.tilbox.core.user.domain.RegistrationType
+import com.tilbox.core.user.domain.User
+import com.tilbox.core.user.domain.UserRepository
+import com.tilbox.core.user.domain.UserRole
+import com.tilbox.core.user.domain.UserStatus
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -29,8 +31,11 @@ internal class UserRepositoryTest(private val userRepository: UserRepository) {
             ),
             Password("password"),
             UserStatus.UNAUTHENTICATED,
+            RegistrationType.EMAIL,
+            UserRole.USER,
             LocalDateTime.now(),
             LocalDateTime.now(),
+            null
         )
         userRepository.save(actual)
     }
@@ -39,13 +44,13 @@ internal class UserRepositoryTest(private val userRepository: UserRepository) {
     fun `로그인 ID가 일치하는 사용자를 조회한다`() {
         val user = userRepository.findByMyTilAddress("nullable")
 
-        user!!.myTilAddress shouldBe "nullable"
+        user.get().myTilAddress shouldBe "nullable"
     }
 
     @Test
     fun `이메일이 일치하는 사용자를 조회한다`() {
         val actual = userRepository.findByEmail("nullable@kakao.com")
 
-        actual!!.email shouldBe "nullable@kakao.com"
+        actual.get().email shouldBe "nullable@kakao.com"
     }
 }

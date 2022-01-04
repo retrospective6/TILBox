@@ -1,12 +1,12 @@
-package com.tilbox.api.user.application.dto.response
+package com.tilbox.api.user.application
 
-import com.tilbox.core.user.domain.entity.User
-import com.tilbox.core.user.domain.value.Profile
-import com.tilbox.core.user.domain.value.UserStatus
+import com.tilbox.core.user.domain.Profile
+import com.tilbox.core.user.domain.User
+import com.tilbox.core.user.domain.UserStatus
 import io.swagger.annotations.ApiModelProperty
 import java.time.LocalDateTime
 
-data class UserCreateResponse(
+data class UserUpdateResponse(
     @ApiModelProperty("TIL 주소", required = true, example = "tilbox")
     val myTilAddress: String,
 

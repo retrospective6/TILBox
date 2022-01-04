@@ -1,4 +1,4 @@
-package com.tilbox.api.user.application.dto.request
+package com.tilbox.api.user.application
 
 import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
@@ -27,7 +27,6 @@ data class UserCreateRequest(
         required = false,
         example = "https://s3.amazonaws.com/bucketname/foldername/imagename.jpg"
     )
-    @field:NotBlank
     val image: String? = null,
 
     @ApiModelProperty("비밀번호", required = true, example = "hello12##@@")

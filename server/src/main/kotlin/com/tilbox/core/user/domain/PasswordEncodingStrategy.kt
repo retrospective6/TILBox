@@ -1,4 +1,4 @@
-package com.tilbox.core.user.domain.value
+package com.tilbox.core.user.domain
 
 interface PasswordEncodingStrategy {
     fun encode(value: String): String

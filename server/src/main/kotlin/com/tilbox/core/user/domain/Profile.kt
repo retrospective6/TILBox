@@ -1,4 +1,4 @@
-package com.tilbox.core.user.domain.value
+package com.tilbox.core.user.domain
 
 import javax.persistence.Column
 import javax.persistence.Embeddable
