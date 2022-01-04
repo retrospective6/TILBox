@@ -22,7 +22,7 @@ data class PostCreateRequest(
     @ApiModelProperty("TIL Summary", required = true, example = "java8 스트림 API 목록을 정리해보았습니다.")
     val summary: String,
 
-    @ApiModelProperty("TIL 태그목록", required = false, example = "['자바', 'Stream']")
+    @ApiModelProperty("TIL 태그목록", example = "['자바', 'Stream']")
     val tags: List<String>,
 
     @ApiModelProperty("TIL 썸네일 URL", required = true, example = "https://s3.amazonaws.com/s3/bucket/thumbnail.jpg")
