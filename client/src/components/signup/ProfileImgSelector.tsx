@@ -15,9 +15,9 @@ export default function ProfileImgSelector(
   const { img, onSubmit } = props;
   const [selectedImg, setSelectedImg] = useState<string | undefined>(img);
 
-  const handleSubmit = (img: string) => {
-    setSelectedImg(img);
-    onSubmit(img);
+  const handleSubmit = (selected: string) => {
+    setSelectedImg(selected);
+    onSubmit(selected);
   };
 
   return (

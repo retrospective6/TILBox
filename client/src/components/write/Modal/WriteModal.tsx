@@ -40,13 +40,13 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
     });
   };
 
-  const handleClickColorSelector = (gradient: ThumbnailGradient) => () => {
-    setGradient(gradient);
+  const handleClickColorSelector = (selected: ThumbnailGradient) => () => {
+    setGradient(selected);
     setImg(undefined);
   };
 
-  const handleSelectThumbnail = (img: string) => {
-    setImg(img);
+  const handleSelectThumbnail = (selected: string) => {
+    setImg(selected);
     setGradient(undefined);
   };
 
@@ -70,11 +70,11 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
           <Styled.Title>썸네일 미리보기</Styled.Title>
           <Styled.ColorList>
             <Styled.ColorListText>썸네일 컬러</Styled.ColorListText>
-            {THUMBNAIL_GRADIENTS.map((gradient, i) => (
+            {THUMBNAIL_GRADIENTS.map((color, i) => (
               <Styled.ColorListItem
                 key={i}
-                {...gradient}
-                onClick={handleClickColorSelector(gradient)}
+                {...color}
+                onClick={handleClickColorSelector(color)}
               />
             ))}
           </Styled.ColorList>
