@@ -117,3 +117,10 @@ export const VisibleLevelSelector = styled.div`
   display: flex;
   gap: 55px;
 `;
+
+export const ButtonContainer = styled.div`
+  margin-top: auto;
+  margin-left: auto;
+  display: flex;
+  gap: 13px;
+`;

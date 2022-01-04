@@ -6,12 +6,14 @@ import ImgSelector from '@/components/common/ImgSelector';
 import PlusIcon from '@/assets/icon/PlusIcon.svg';
 
 import { THUMBNAIL_GRADIENTS, VISIBLE_LEVELS } from '@/utils/constants';
-import { ThumbnailGradient, VisibleLevel } from '@/types/Post';
+import { Thumbnail, ThumbnailGradient } from '@/types/Post';
 import TagInput from '@/components/write/Modal/TagInput';
 import RadioGroup from '@/components/common/RadioGroup';
+import Button from '@/components/common/Button';
 
 export interface WriteFormProps {
-  description: string;
+  thumbnail: Thumbnail;
+  summary: string;
   tags: string[];
   visibleLevel: string;
 }
@@ -22,22 +24,31 @@ export interface WriteModalProps {
 }
 
 export default function WriteModal(props: WriteModalProps): JSX.Element {
-  const { onClose } = props;
+  const { onClose, onSubmit } = props;
   const [gradient, setGradient] = useState<ThumbnailGradient>();
-  const [thumbnail, setThumbnail] = useState<string>();
+  const [img, setImg] = useState<string>();
   const [summary, setSummary] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
   const [visibleLevel, setVisibleLevel] = useState<string>(
     VISIBLE_LEVELS[0].value,
   );
 
+  const handleSubmit = () => {
+    onSubmit({
+      thumbnail: { img, gradient },
+      summary,
+      tags,
+      visibleLevel,
+    });
+  };
+
   const handleClickColorSelector = (gradient: ThumbnailGradient) => () => {
     setGradient(gradient);
-    setThumbnail(undefined);
+    setImg(undefined);
   };
 
   const handleSelectThumbnail = (img: string) => {
-    setThumbnail(img);
+    setImg(img);
     setGradient(undefined);
   };
 
@@ -71,9 +82,9 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
           </Styled.ColorList>
           <Styled.ThumbnailSelector gradient={gradient}>
             <ImgSelector onSubmit={handleSelectThumbnail}>
-              {thumbnail && (
+              {img && (
                 <Styled.ThumbnailImage
-                  src={thumbnail}
+                  src={img}
                   alt="thumbnail-img"
                   layout="fill"
                 />
@@ -86,6 +97,14 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
               </Styled.ThumbnailText>
             </ImgSelector>
           </Styled.ThumbnailSelector>
+          <Styled.ButtonContainer>
+            <Button variant="third" onClick={onClose}>
+              취소
+            </Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              등록
+            </Button>
+          </Styled.ButtonContainer>
         </Styled.Column>
         <Styled.Column>
           <Styled.Cell>
