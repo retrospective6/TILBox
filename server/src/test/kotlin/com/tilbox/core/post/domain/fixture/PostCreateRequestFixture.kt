@@ -3,7 +3,7 @@ package com.tilbox.core.post.domain.fixture
 import com.tilbox.api.post.application.dto.request.PostCreateRequest
 import com.tilbox.core.post.domain.value.PostVisibleLevel
 
-fun ofCreate(
+fun ofDefaultCreateRequest(
     userId: Long = 1L,
     title: String = "title",
     content: String = "content",
@@ -21,7 +21,7 @@ fun ofCreate(
     visibleLevel
 )
 
-fun ofUpdate(
+fun ofDefaultUpdateRequest(
     userId: Long = 1L,
     title: String = "new_title",
     content: String = "new_content",

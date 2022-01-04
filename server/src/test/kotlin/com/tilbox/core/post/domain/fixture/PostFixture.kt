@@ -5,7 +5,7 @@ import com.tilbox.core.post.domain.value.PostVisibleLevel
 import com.tilbox.core.post.domain.value.Tags
 import java.time.LocalDateTime
 
-fun defaultPost(
+fun ofDefaultPost(
     postId: Long = 1L,
     userId: Long = 1L,
     title: String = "12/10일 TIL",
