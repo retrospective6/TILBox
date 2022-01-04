@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 
 @WebMvcTest(controllers = [PostRestController::class])
-class PostRestControllerTest() : RestControllerTest() {
+class PostRestControllerTest : RestControllerTest() {
 
     @MockkBean
     private lateinit var postService: PostService
@@ -35,6 +35,18 @@ class PostRestControllerTest() : RestControllerTest() {
         put("/v1/posts/$postId", request)
             .andExpect {
                 status { isOk() }
+            }
+    }
+
+    @Test
+    fun `게시글 삭제 요청시, 게시글 삭제후 NoContent Status 반환`() {
+        val postId = 1L
+        val request = ofDefaultUpdateRequest()
+        every { postService.remove(any(), any()) } returns Unit
+
+        delete("/v1/posts/$postId", request)
+            .andExpect {
+                status { isNoContent() }
             }
     }
 }

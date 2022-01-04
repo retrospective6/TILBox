@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
 import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -51,5 +52,18 @@ class PostRestController(private val postService: PostService) {
     ): ResponseEntity<Long> {
         val updatedPostId = postService.updatePost(postId, request, userId, LocalDateTime.now())
         return ResponseEntity.ok(updatedPostId)
+    }
+
+    @ApiResponses(
+        ApiResponse(code = 204, message = "게시글 삭제 완료"),
+        ApiResponse(code = 400, message = "본인이 작성한 게시글이 아니어서 삭제 실패")
+    )
+    @DeleteMapping("/{postId}")
+    fun remove(
+        @PathVariable postId: Long,
+        @LoginUserId userId: Long
+    ): ResponseEntity<Void> {
+        postService.remove(postId, userId)
+        return ResponseEntity.noContent().build()
     }
 }
