@@ -13,9 +13,9 @@ import java.time.LocalDateTime
 class PostService(
     private val postRepository: PostRepository
 ) {
-    fun savePost(request: PostCreateRequest, createDateTime: LocalDateTime): Long {
+    fun savePost(request: PostCreateRequest, userId: Long, createDateTime: LocalDateTime): Long {
         val post = Post(
-            userId = request.userId,
+            userId = userId,
             title = request.title,
             content = request.content,
             summary = request.summary,
@@ -29,12 +29,12 @@ class PostService(
         return createdPost.id
     }
 
-    fun updatePost(postId: Long, request: PostCreateRequest, updateDateTime: LocalDateTime): Long {
+    fun updatePost(postId: Long, request: PostCreateRequest, userId: Long, updateDateTime: LocalDateTime): Long {
         val target = postRepository.findById(postId)
             .orElseThrow { IllegalArgumentException("해당하는 ID($postId)의 게시글이 존재하지 않습니다.") }
 
         target.update(
-            userId = request.userId,
+            userId = userId,
             title = request.title,
             content = request.content,
             summary = request.summary,

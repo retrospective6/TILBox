@@ -1,47 +1,40 @@
 package com.tilbox.api.post.ui
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.ninjasquad.springmockk.MockkBean
+import com.tilbox.api.post.application.PostService
 import com.tilbox.base.test.RestControllerTest
 import com.tilbox.core.post.domain.fixture.ofDefaultCreateRequest
-import com.tilbox.core.post.domain.fixture.ofDefaultPost
 import com.tilbox.core.post.domain.fixture.ofDefaultUpdateRequest
-import com.tilbox.core.post.domain.repository.PostRepository
+import io.mockk.every
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.MediaType
-import org.springframework.test.web.servlet.post
-import org.springframework.test.web.servlet.put
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 
+@WebMvcTest(controllers = [PostRestController::class])
 class PostRestControllerTest() : RestControllerTest() {
 
-    @field:Autowired
-    private lateinit var postRepository: PostRepository
+    @MockkBean
+    private lateinit var postService: PostService
 
     @Test
     fun `게시글 작성 요청이 오면 게시글 생성후, 생성된 게시글의 ID를 반환한다`() {
-        val request = ofDefaultCreateRequest(userId = 3L)
+        val request = ofDefaultCreateRequest()
+        every { postService.savePost(any(), any(), any()) } returns 1L
 
-        mockMvc.post("/v1/posts") {
-            content = jacksonObjectMapper().writeValueAsBytes(request)
-            accept = MediaType.APPLICATION_JSON
-            contentType = MediaType.APPLICATION_JSON
-        }.andExpect {
-            status { isCreated() }
-        }
+        post("/v1/posts", request)
+            .andExpect {
+                status { isCreated() }
+            }
     }
 
     @Test
     fun `게시글 수정 요청이 오면 게시글 수정후, 수정된 게시글의 ID를 반환한다`() {
-        val savedPost = postRepository.save(ofDefaultPost(userId = 3L))
-        val postId = savedPost.id
-        val request = ofDefaultUpdateRequest(userId = 3L)
+        val postId = 1L
+        val request = ofDefaultUpdateRequest()
+        every { postService.updatePost(any(), any(), any(), any()) } returns postId
 
-        mockMvc.put("/v1/posts/$postId") {
-            content = jacksonObjectMapper().writeValueAsBytes(request)
-            accept = MediaType.APPLICATION_JSON
-            contentType = MediaType.APPLICATION_JSON
-        }.andExpect {
-            status { isOk() }
-        }
+        put("/v1/posts/$postId", request)
+            .andExpect {
+                status { isOk() }
+            }
     }
 }

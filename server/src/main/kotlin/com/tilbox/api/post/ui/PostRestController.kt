@@ -2,6 +2,7 @@ package com.tilbox.api.post.ui
 
 import com.tilbox.api.post.application.PostService
 import com.tilbox.api.post.application.dto.request.PostCreateRequest
+import com.tilbox.api.security.LoginUserId
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.net.URI
 import java.time.LocalDateTime
+import javax.validation.Valid
 
 @Api(description = "TIL 게시글 API")
 @RestController
@@ -27,8 +29,11 @@ class PostRestController(private val postService: PostService) {
         ApiResponse(code = 400, message = "필수 값 누락으로 생성 실패")
     )
     @PostMapping
-    fun createPost(@RequestBody request: PostCreateRequest): ResponseEntity<Long> {
-        val createdPostId = postService.savePost(request, LocalDateTime.now())
+    fun createPost(
+        @Valid @RequestBody request: PostCreateRequest,
+        @LoginUserId userId: Long
+    ): ResponseEntity<Long> {
+        val createdPostId = postService.savePost(request, userId, LocalDateTime.now())
         return ResponseEntity
             .created(URI.create("/v1/posts/$createdPostId"))
             .body(createdPostId)
@@ -39,8 +44,12 @@ class PostRestController(private val postService: PostService) {
         ApiResponse(code = 400, message = "필수 값 누락으로 수정 실패")
     )
     @PutMapping("/{postId}")
-    fun updatePost(@PathVariable postId: Long, @RequestBody request: PostCreateRequest): ResponseEntity<Long> {
-        val updatedPostId = postService.updatePost(postId, request, LocalDateTime.now())
+    fun updatePost(
+        @PathVariable postId: Long,
+        @Valid @RequestBody request: PostCreateRequest,
+        @LoginUserId userId: Long
+    ): ResponseEntity<Long> {
+        val updatedPostId = postService.updatePost(postId, request, userId, LocalDateTime.now())
         return ResponseEntity.ok(updatedPostId)
     }
 }

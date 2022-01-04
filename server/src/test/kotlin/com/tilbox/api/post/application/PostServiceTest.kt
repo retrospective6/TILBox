@@ -27,7 +27,7 @@ class PostServiceTest(
         val createRequest = ofDefaultCreateRequest()
         val createDateTime = LocalDateTime.of(2021, 10, 23, 15, 30, 10)
 
-        val actual = postService.savePost(createRequest, createDateTime)
+        val actual = postService.savePost(createRequest, 1L, createDateTime)
 
         actual shouldBeGreaterThan 0
     }
@@ -39,7 +39,7 @@ class PostServiceTest(
         val updateRequest = ofDefaultUpdateRequest()
         val updateDateTime = LocalDateTime.of(2021, 12, 23, 15, 30, 10)
 
-        val actual = postService.updatePost(targetId, updateRequest, updateDateTime)
+        val actual = postService.updatePost(targetId, updateRequest, 1L, updateDateTime)
 
         actual shouldBe targetId
     }
@@ -55,6 +55,7 @@ class PostServiceTest(
                 postService.updatePost(
                     notExistPostId,
                     updateRequest,
+                    1L,
                     updateDateTime
                 )
             }
