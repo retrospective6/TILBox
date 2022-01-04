@@ -96,10 +96,10 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
             </ImgSelector>
           </Styled.ThumbnailSelector>
           <Styled.ButtonContainer>
-            <Button variant="third" onClick={onClose}>
+            <Button variant="third" bold onClick={onClose}>
               취소
             </Button>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="primary" bold onClick={handleSubmit}>
               등록
             </Button>
           </Styled.ButtonContainer>
