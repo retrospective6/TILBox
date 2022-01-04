@@ -3,6 +3,9 @@ package com.tilbox.core.post.domain.entity
 import com.tilbox.core.base.BaseRootEntity
 import com.tilbox.core.post.domain.value.PostVisibleLevel
 import com.tilbox.core.post.domain.value.Tags
+import com.vladmihalcea.hibernate.type.json.JsonType
+import org.hibernate.annotations.Type
+import org.hibernate.annotations.TypeDef
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Embedded
@@ -12,6 +15,7 @@ import javax.persistence.Enumerated
 import javax.persistence.Lob
 
 @Entity
+@TypeDef(name = "json", typeClass = JsonType::class)
 class Post(
     @Column(name = "user_id", nullable = false)
     private val userId: Long,
@@ -28,7 +32,8 @@ class Post(
     @Embedded
     private var tags: Tags,
 
-    @Lob
+    @Type(type = "json")
+    @Column(name = "thumbnail", nullable = false, columnDefinition = "json")
     private var thumbnail: String,
 
     @Column(name = "visible_level", nullable = false, length = 10)
