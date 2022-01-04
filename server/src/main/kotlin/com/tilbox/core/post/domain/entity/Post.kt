@@ -31,11 +31,11 @@ class Post(
     @Lob
     private var thumbnailUrl: String?,
 
-    @Column(name = "visibleLevel", nullable = false, length = 10)
+    @Column(name = "visible_level", nullable = false, length = 10)
     @Enumerated(EnumType.STRING)
     private var visibleLevel: PostVisibleLevel,
 
-    @Column(name = "likeCount", nullable = false)
+    @Column(name = "like_count", nullable = false)
     private var likeCount: Long = 0,
 
     @Column(name = "created_at", nullable = false)

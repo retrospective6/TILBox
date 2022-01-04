@@ -17,11 +17,11 @@ class Tags(
             JoinColumn(name = "post_id")
         ],
         uniqueConstraints = [
-            UniqueConstraint(name = "UK_post_id_tag_name", columnNames = ["post_id", "name"])
+            UniqueConstraint(name = "uk_post_id_tag_name", columnNames = ["post_id", "name"])
         ],
         indexes = [
-            Index(name = "IDX_post_id", columnList = "post_id"),
-            Index(name = "IDX_tag_name", columnList = "name")
+            Index(name = "idx_post_id", columnList = "post_id"),
+            Index(name = "idx_tag_name", columnList = "name")
         ]
     )
     private val items: MutableList<Tag> = mutableListOf()
