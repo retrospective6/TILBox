@@ -26,7 +26,7 @@ class EmailAuthenticationService(
         authenticationCode.authenticate(emailAuthenticationParam.code)
 
         val user = userRepository.findByEmail(authenticationCode.email)
-            ?: throw RuntimeException("사용자를 찾을 수 없습니다.")
+            ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다.")
         user.changeStatus(UserStatus.AUTHENTICATED)
         return UserCreateResponse(user)
     }
