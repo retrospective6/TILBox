@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as Styled from './index.styles';
+import * as Styled from '@/components/write/index.styles';
 
 import WriteHeader from '@/components/write/WriteHeader';
 import PostEditor from '@/components/write/Editor/PostEditor';
