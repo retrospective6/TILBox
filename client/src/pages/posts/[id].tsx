@@ -1,8 +1,11 @@
 import React from 'react';
-import Post from '@/types/Post';
 import { GetServerSidePropsResult } from 'next';
-import { POST } from '@mocks/MockData';
+
+import Layout from '@/components/common/Layout';
 import PostViewer from '@/components/post/PostViewer';
+
+import Post from '@/types/Post';
+import { POST } from '@mocks/MockData';
 
 export interface PostPageProps {
   post: Post;
@@ -10,7 +13,11 @@ export interface PostPageProps {
 
 export default function PostPage(props: PostPageProps): JSX.Element {
   const { post } = props;
-  return <PostViewer post={post} />;
+  return (
+    <Layout>
+      <PostViewer post={post} />
+    </Layout>
+  );
 }
 
 export async function getServerSideProps(): Promise<
