@@ -45,7 +45,7 @@ class User(
         return password.match(rawPassword, passwordMatchStrategy)
     }
 
-    fun changeStatus(status: UserStatus) {
-        this.status = status
+    fun authenticate() {
+        this.status = UserStatus.AUTHENTICATED
     }
 }
