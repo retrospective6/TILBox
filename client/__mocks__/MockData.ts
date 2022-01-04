@@ -51,7 +51,7 @@ export const POST: Post = {
   thumbnail: {
     gradient: { start: '#D45438', end: '#FEA768' },
   },
-  description:
+  summary:
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 0,
   comments: 0,
@@ -71,7 +71,7 @@ export const ADMIN_POST: Post = {
   thumbnail: {
     gradient: { start: '#000000', end: '#000000' },
   },
-  description:
+  summary:
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 1,
   comments: 10,

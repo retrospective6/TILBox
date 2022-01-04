@@ -6,21 +6,19 @@ import ImgSelector from '@/components/common/ImgSelector';
 import PlusIcon from '@/assets/icon/PlusIcon.svg';
 
 import { THUMBNAIL_GRADIENTS, VISIBLE_LEVELS } from '@/utils/constants';
-import { Thumbnail, ThumbnailGradient } from '@/types/Post';
+import Post, { ThumbnailGradient, VisibleLevel } from '@/types/Post';
 import TagInput from '@/components/write/Modal/TagInput';
 import RadioGroup from '@/components/common/RadioGroup';
 import Button from '@/components/common/Button';
 
-export interface WriteFormProps {
-  thumbnail: Thumbnail;
-  summary: string;
-  tags: string[];
-  visibleLevel: string;
-}
+export type WriteModalFormProps = Pick<
+  Post,
+  'thumbnail' | 'summary' | 'tags' | 'visibleLevel'
+>;
 
 export interface WriteModalProps {
   onClose: () => void;
-  onSubmit: (values: WriteFormProps) => void;
+  onSubmit: (values: WriteModalFormProps) => void;
 }
 
 export default function WriteModal(props: WriteModalProps): JSX.Element {
@@ -29,7 +27,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
   const [img, setImg] = useState<string>();
   const [summary, setSummary] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
-  const [visibleLevel, setVisibleLevel] = useState<string>(
+  const [visibleLevel, setVisibleLevel] = useState<VisibleLevel>(
     VISIBLE_LEVELS[0].value,
   );
 
@@ -62,7 +60,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
   };
 
   const handleChangeVisible = (value: string) => {
-    setVisibleLevel(value);
+    setVisibleLevel(value as VisibleLevel);
   };
 
   return (

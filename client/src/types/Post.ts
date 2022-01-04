@@ -6,7 +6,7 @@ export default interface Post {
   title: string;
   content: string;
   thumbnail: Thumbnail;
-  description: string;
+  summary: string;
   likes: number;
   comments: number;
   createdAt: string;
