@@ -3,7 +3,7 @@ package com.tilbox.api.user.ui
 import com.tilbox.api.authenticationcode.application.EmailAuthenticationService
 import com.tilbox.api.mail.application.MailService
 import com.tilbox.api.user.application.UserCreateService
-import com.tilbox.api.user.application.dto.request.EmailAuthenticationParam
+import com.tilbox.api.user.application.dto.request.EmailAuthenticationQuery
 import com.tilbox.api.user.application.dto.request.UserCreateRequest
 import com.tilbox.api.user.application.dto.response.UserCreateResponse
 import io.swagger.annotations.Api
@@ -53,9 +53,8 @@ class UserRestController(
         ApiResponse(code = 200, message = "인증 성공"),
     )
     @GetMapping
-    fun checkAuthenticationCode(
-        emailAuthenticationParam: EmailAuthenticationParam): ResponseEntity<UserCreateResponse> {
-        val response = emailAuthenticationService.authenticateEmail(emailAuthenticationParam)
+    fun checkAuthenticationCode(emailAuthenticationQuery: EmailAuthenticationQuery): ResponseEntity<UserCreateResponse> {
+        val response = emailAuthenticationService.authenticateEmail(emailAuthenticationQuery)
         return ResponseEntity
             .ok(response)
     }

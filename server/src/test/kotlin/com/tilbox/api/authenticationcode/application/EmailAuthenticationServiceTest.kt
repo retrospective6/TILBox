@@ -1,6 +1,6 @@
 package com.tilbox.api.authenticationcode.application
 
-import com.tilbox.api.user.application.dto.request.EmailAuthenticationParam
+import com.tilbox.api.user.application.dto.request.EmailAuthenticationQuery
 import com.tilbox.core.emailauthentication.entity.EmailAuthentication
 import com.tilbox.core.emailauthentication.repository.EmailAuthenticationRepository
 import com.tilbox.core.user.domain.entity.User
@@ -51,7 +51,7 @@ class EmailAuthenticationServiceTest(
         )
 
         val userResponse = emailAuthenticationService.authenticateEmail(
-            EmailAuthenticationParam(
+            EmailAuthenticationQuery(
                 email = emailAuthentication.email,
                 code = emailAuthentication.code
             )

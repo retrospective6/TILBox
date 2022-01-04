@@ -1,6 +1,6 @@
 package com.tilbox.api.authenticationcode.application
 
-import com.tilbox.api.user.application.dto.request.EmailAuthenticationParam
+import com.tilbox.api.user.application.dto.request.EmailAuthenticationQuery
 import com.tilbox.api.user.application.dto.response.UserCreateResponse
 import com.tilbox.core.emailauthentication.entity.EmailAuthentication
 import com.tilbox.core.emailauthentication.repository.EmailAuthenticationRepository
@@ -21,9 +21,9 @@ class EmailAuthenticationService(
         return emailAuthentication.code
     }
 
-    fun authenticateEmail(emailAuthenticationParam: EmailAuthenticationParam): UserCreateResponse {
-        val authenticationCode = emailAuthenticationRepository.getLastByEmail(emailAuthenticationParam.email)
-        authenticationCode.authenticate(emailAuthenticationParam.code)
+    fun authenticateEmail(emailAuthenticationQuery: EmailAuthenticationQuery): UserCreateResponse {
+        val authenticationCode = emailAuthenticationRepository.getLastByEmail(emailAuthenticationQuery.email)
+        authenticationCode.authenticate(emailAuthenticationQuery.code)
 
         val user = userRepository.findByEmail(authenticationCode.email)
             ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다.")
