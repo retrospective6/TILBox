@@ -23,6 +23,7 @@ object Versions {
     const val SWAGGER = "3.0.0"
     const val KOTLIN_LOGGING = "1.12.5"
     const val SPRING_MOCKK = "3.1.0"
+    const val HIBERNATE_TYPE = "2.12.1"
 }
 
 dependencies {
@@ -38,6 +39,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.springfox:springfox-boot-starter:${Versions.SWAGGER}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("com.vladmihalcea:hibernate-types-52:${Versions.HIBERNATE_TYPE}")
     implementation("org.flywaydb:flyway-core")
 
     implementation("org.springframework.boot:spring-boot-starter-security")

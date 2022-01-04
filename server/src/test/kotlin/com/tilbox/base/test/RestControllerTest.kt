@@ -14,6 +14,7 @@ import org.springframework.core.MethodParameter
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.ResultActionsDsl
+import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.post
 import org.springframework.test.web.servlet.put
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
@@ -72,6 +73,14 @@ abstract class RestControllerTest {
 
     protected fun put(path: String, request: Any): ResultActionsDsl {
         return mockMvc.put(path) {
+            content = objectMapper.writeValueAsBytes(request)
+            accept = MediaType.APPLICATION_JSON
+            contentType = MediaType.APPLICATION_JSON
+        }
+    }
+
+    protected fun delete(path: String, request: Any): ResultActionsDsl {
+        return mockMvc.delete(path) {
             content = objectMapper.writeValueAsBytes(request)
             accept = MediaType.APPLICATION_JSON
             contentType = MediaType.APPLICATION_JSON
