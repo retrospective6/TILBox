@@ -77,7 +77,7 @@ class PostServiceTest(
         val createdPostId = postRepository.save(defaultPost(userId = createUserId)).id
         val requestUserId = 2L
 
-        val exception = shouldThrow<IllegalArgumentException> { postService.remove(createdPostId, requestUserId) }
+        val exception = shouldThrow<IllegalStateException> { postService.remove(createdPostId, requestUserId) }
 
         exception.message shouldBe "본인이 작성한 게시글만 삭제할 수 있습니다."
     }

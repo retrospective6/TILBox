@@ -56,9 +56,7 @@ class Post(
         visibleLevel: PostVisibleLevel,
         updatedAt: LocalDateTime
     ) {
-        if (userId != this.userId) {
-            throw IllegalStateException("본인이 작성한 게시글만 수정할 수 있습니다.")
-        }
+        check(sameUser(userId)) { "본인이 작성한 게시글만 수정할 수 있습니다." }
         this.title = title
         this.content = content
         this.summary = summary
