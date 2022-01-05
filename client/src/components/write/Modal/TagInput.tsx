@@ -31,7 +31,7 @@ export default function TagInput(props: TagInputProps): JSX.Element {
     scrollToEnd();
   };
 
-  const handleKeyDownInput = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUpInput = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== ' ') {
       return;
     }
@@ -66,7 +66,7 @@ export default function TagInput(props: TagInputProps): JSX.Element {
         data-testid="tag-input"
         value={inputValue}
         onChange={handleChangeInput}
-        onKeyDown={handleKeyDownInput}
+        onKeyUp={handleKeyUpInput}
         ref={inputRef}
       />
     </Styled.Container>

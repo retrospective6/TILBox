@@ -18,7 +18,7 @@ test('태그 입력 후 space 시 태그 출력', () => {
   fireEvent.change(input, {
     target: { value: tag },
   });
-  fireEvent.keyDown(input, {
+  fireEvent.keyUp(input, {
     key: ' ',
   });
 
@@ -33,7 +33,7 @@ test('출력된 태그 옆 x 버튼 클릭 시 삭제', () => {
   fireEvent.change(input, {
     target: { value: tag },
   });
-  fireEvent.keyDown(input, {
+  fireEvent.keyUp(input, {
     key: ' ',
   });
 
@@ -61,7 +61,7 @@ describe('onChange 메소드', () => {
     fireEvent.change(input, {
       target: { value: tag },
     });
-    fireEvent.keyDown(input, {
+    fireEvent.keyUp(input, {
       key: ' ',
     });
 
@@ -77,7 +77,7 @@ describe('onChange 메소드', () => {
       fireEvent.change(input, {
         target: { value: tag },
       });
-      fireEvent.keyDown(input, {
+      fireEvent.keyUp(input, {
         key: ' ',
       });
     });
@@ -89,7 +89,7 @@ describe('onChange 메소드', () => {
     const { getByTestId } = renderTagInput({ onChange });
     const input = getByTestId('tag-input');
 
-    fireEvent.keyDown(input, {
+    fireEvent.keyUp(input, {
       key: ' ',
     });
 
@@ -104,14 +104,14 @@ describe('onChange 메소드', () => {
     fireEvent.change(input, {
       target: { value: tag },
     });
-    fireEvent.keyDown(input, {
+    fireEvent.keyUp(input, {
       key: ' ',
     });
 
     fireEvent.change(input, {
       target: { value: tag },
     });
-    fireEvent.keyDown(input, {
+    fireEvent.keyUp(input, {
       key: ' ',
     });
 

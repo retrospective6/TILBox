@@ -38,6 +38,7 @@ export const Tag = styled.div`
   margin-right: 4px;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 `;
 
 export const DeleteButton = styled.button`
