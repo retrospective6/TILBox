@@ -1,6 +1,8 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import PostEditor, { PostEditorProps } from '@/components/write/Editor/PostEditor';
+import PostEditor, {
+  PostEditorProps,
+} from '@/components/write/Editor/PostEditor';
 
 const DEFAULT_ARGS: PostEditorProps = {
   onChange: jest.fn(),
