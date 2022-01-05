@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import * as Styled from './WriteModal.styles';
 
 import Modal from '@/components/common/Modal/Modal';
@@ -31,7 +31,8 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
     VISIBLE_LEVELS[0].value,
   );
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     onSubmit({
       thumbnail: { img, gradient },
       summary,
@@ -65,7 +66,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
 
   return (
     <Modal onClose={onClose}>
-      <Styled.Form>
+      <Styled.Form onSubmit={handleSubmit}>
         <Styled.Column>
           <Styled.Title>썸네일 미리보기</Styled.Title>
           <Styled.ColorList>
@@ -99,7 +100,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
             <Button variant="third" bold onClick={onClose}>
               취소
             </Button>
-            <Button variant="primary" bold onClick={handleSubmit}>
+            <Button type="submit" variant="primary" bold>
               등록
             </Button>
           </Styled.ButtonContainer>
