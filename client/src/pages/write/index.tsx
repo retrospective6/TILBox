@@ -19,6 +19,7 @@ export default function PostPage(): JSX.Element {
       content,
       ...props,
     };
+    return post;
     // TODO: createPost api
   };
 
