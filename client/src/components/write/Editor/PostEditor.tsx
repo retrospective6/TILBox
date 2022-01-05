@@ -39,6 +39,7 @@ export default function PostEditor(props: PostEditorProps): JSX.Element {
     <>
       <Styled.Input
         data-testid="title-input"
+        placeholder="제목"
         value={title}
         onChange={handleChangeTitle}
         onBlur={handleBlur}
