@@ -2,7 +2,6 @@ import React, { useRef, useState, ChangeEvent } from 'react';
 import * as Styled from './PostEditor.styles';
 
 import { Editor } from '@toast-ui/react-editor';
-import EditorWithForwardedRef from '@/components/write/Editor/EditorWithForwardedRef';
 
 export interface PostEditorProps {
   title?: string;
@@ -36,7 +35,7 @@ export default function PostEditor(props: PostEditorProps): JSX.Element {
   };
 
   return (
-    <>
+    <Styled.Container>
       <Styled.Input
         data-testid="title-input"
         placeholder="제목"
@@ -44,8 +43,8 @@ export default function PostEditor(props: PostEditorProps): JSX.Element {
         onChange={handleChangeTitle}
         onBlur={handleBlur}
       />
-      <EditorWithForwardedRef
-        height="80vh"
+      <Styled.Editor
+        height="100%"
         initialValue={content}
         initialEditType="markdown"
         previewStyle="vertical"
@@ -53,6 +52,6 @@ export default function PostEditor(props: PostEditorProps): JSX.Element {
         onBlur={handleBlur}
         ref={editorRef}
       />
-    </>
+    </Styled.Container>
   );
 }

@@ -62,7 +62,7 @@ export default function PostPage(): JSX.Element {
   };
 
   return (
-    <>
+    <Styled.Container>
       <WriteHeader
         state={headerState}
         message={headerMessage}
@@ -74,6 +74,6 @@ export default function PostPage(): JSX.Element {
       {modal && (
         <WriteModal onClose={handleCloseModal} onSubmit={handleSubmitPost} />
       )}
-    </>
+    </Styled.Container>
   );
 }
