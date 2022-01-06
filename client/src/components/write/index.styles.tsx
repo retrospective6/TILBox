@@ -8,6 +8,5 @@ export const Container = styled.div`
 
 export const EditorWrapper = styled.div`
   flex: 1;
-  margin-top: 30px;
-  padding: 0 275px;
+  padding: 30px 275px;
 `;
