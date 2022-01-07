@@ -21,7 +21,7 @@ class DatabaseCleanUp constructor(private val entityManager: EntityManager) : In
                 it.javaType.kotlin.findAnnotation<Entity>() != null
             }
             .map {
-                CaseConvertUtils.camelToSnakeCase(it.name)
+                convertCamelToSnakeCase(it.name)
             }
     }
 
