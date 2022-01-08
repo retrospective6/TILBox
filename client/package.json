@@ -10,11 +10,13 @@
     "start": "next start",
     "build": "next build",
     "test:coverage": "yarn test --watchAll=false --coverage",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy-netlify": "next build && next export"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@netlify/plugin-nextjs": "^4.1.1",
     "@toast-ui/editor": "^2.5.4",
     "@toast-ui/react-editor": "^2.5.4",
     "next": "^11.1.2",

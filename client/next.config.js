@@ -2,6 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
+    loader: 'imgix',
     domains: ['avatars.githubusercontent.com', 'localhost'],
   },
   webpack(config) {
