@@ -1,7 +1,7 @@
 package com.tilbox.api.authenticationcode.application
 
+import com.tilbox.api.user.application.EmailAuthenticationQuery
 import com.tilbox.api.user.application.UserCreateResponse
-import com.tilbox.api.user.application.dto.request.EmailAuthenticationQuery
 import com.tilbox.core.emailauthentication.entity.EmailAuthentication
 import com.tilbox.core.emailauthentication.repository.EmailAuthenticationRepository
 import com.tilbox.core.emailauthentication.repository.getLastByEmail
