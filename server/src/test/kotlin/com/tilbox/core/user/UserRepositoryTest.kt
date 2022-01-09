@@ -11,12 +11,10 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
-import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import java.time.LocalDateTime
 
 @DataJpaTest
-@ActiveProfiles("test")
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 internal class UserRepositoryTest(private val userRepository: UserRepository) {
     @BeforeEach

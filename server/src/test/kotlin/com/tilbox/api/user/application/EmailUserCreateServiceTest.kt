@@ -6,10 +6,12 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.startWith
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import javax.transaction.Transactional
 
 @Transactional
+@ActiveProfiles("test")
 @SpringBootTest
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 class EmailUserCreateServiceTest(private val emailUserCreateService: EmailUserCreateService) {
