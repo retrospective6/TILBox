@@ -65,7 +65,7 @@ class UserRestControllerTest : RestControllerTest() {
     fun `회원가입을 요청하여 가입된 정보를 반환한다`() {
         every { emailUserCreateService.createUser(any()) } returns `회원가입 응답`
         every { emailAuthenticationService.createAuthenticationCode(any()) } returns `인증 코드 응답`
-        every { mailService.sendAuthenticationCodeMail(any(), any()) }
+        every { mailService.sendAuthenticationCodeMail(any(), any()) } returns Unit
 
         회원가입(`회원가입 요청`)
             .andExpect {
