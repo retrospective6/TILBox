@@ -1,4 +1,4 @@
-package com.tilbox.api.user.application.dto.request
+package com.tilbox.api.user.application
 
 data class EmailAuthenticationQuery(
     val email: String,

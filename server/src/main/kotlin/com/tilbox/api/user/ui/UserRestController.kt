@@ -3,7 +3,7 @@ package com.tilbox.api.user.ui
 import com.tilbox.api.authenticationcode.application.EmailAuthenticationService
 import com.tilbox.api.mail.application.MailService
 import com.tilbox.api.security.LoginUserId
-import com.tilbox.api.user.application.dto.request.EmailAuthenticationQuery
+import com.tilbox.api.user.application.EmailAuthenticationQuery
 import com.tilbox.api.user.application.EmailUserCreateService
 import com.tilbox.api.user.application.UserCreateRequest
 import com.tilbox.api.user.application.UserCreateResponse
