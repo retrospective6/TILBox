@@ -38,3 +38,6 @@ out/
 
 ### account ###
 src/main/resources/application-ACCOUNT.yml
+
+### Configurations ###
+/src/main/resources/application-aws-credential.yml

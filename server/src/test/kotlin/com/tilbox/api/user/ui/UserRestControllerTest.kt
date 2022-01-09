@@ -1,23 +1,83 @@
 package com.tilbox.api.user.ui
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.tilbox.api.user.application.dto.request.UserCreateRequest
+import com.ninjasquad.springmockk.MockkBean
+import com.tilbox.api.user.application.EmailUserCreateService
+import com.tilbox.api.user.application.UserCreateRequest
+import com.tilbox.api.user.application.UserCreateResponse
+import com.tilbox.api.user.application.UserUpdateRequest
+import com.tilbox.api.user.application.UserUpdateResponse
+import com.tilbox.api.user.application.UserUpdateService
+import com.tilbox.api.user.application.UserWithdrawalService
 import com.tilbox.base.test.RestControllerTest
+import com.tilbox.core.user.domain.Profile
+import com.tilbox.core.user.domain.UserStatus
+import io.mockk.every
 import org.junit.jupiter.api.Test
-import org.springframework.http.MediaType
-import org.springframework.test.web.servlet.post
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.test.web.servlet.ResultActionsDsl
+import java.time.LocalDateTime
 
-class UserRestControllerTest() : RestControllerTest() {
+@WebMvcTest(controllers = [UserRestController::class])
+class UserRestControllerTest : RestControllerTest() {
+    @MockkBean
+    private lateinit var emailUserCreateService: EmailUserCreateService
+
+    @MockkBean
+    private lateinit var userWithdrawalService: UserWithdrawalService
+
+    @MockkBean
+    private lateinit var userUpdateService: UserUpdateService
+
+    private val `회원가입 요청` = UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password2021##")
+
+    private val `회원가입 응답` = UserCreateResponse(
+        "nullable",
+        "nullable@kakao.com",
+        Profile("ks-kim", null, "", 0L),
+        UserStatus.UNAUTHENTICATED,
+        LocalDateTime.now(),
+        LocalDateTime.now()
+    )
+
+    private val `회원정보 수정 요청` =
+        UserUpdateRequest("hello", "https://amazonaws.s3-northeast-2.com/image.jpg", "description")
+
+    private val `회원정보 수정 응답` = UserUpdateResponse(
+        "nullable",
+        "nullable@kakao.com",
+        Profile("hello", "https://amazonaws.s3-northeast-2.com/image.jpg", "description", 0L),
+        UserStatus.AUTHENTICATED,
+        LocalDateTime.now(),
+        LocalDateTime.now()
+    )
+
     @Test
     fun `회원가입을 요청하여 가입된 정보를 반환한다`() {
-        val request = UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password")
+        every { emailUserCreateService.createUser(any()) } returns `회원가입 응답`
 
-        mockMvc.post("/v1/users") {
-            content = jacksonObjectMapper().writeValueAsBytes(request)
-            accept = MediaType.APPLICATION_JSON
-            contentType = MediaType.APPLICATION_JSON
-        }.andExpect {
-            status { isCreated() }
-        }
+        회원가입(`회원가입 요청`)
+            .andExpect {
+                status { isCreated() }
+                content { json(objectMapper.writeValueAsString(`회원가입 응답`)) }
+            }
+    }
+
+    @Test
+    fun `사용자 정보를 업데이트한다`() {
+        every { userUpdateService.updateUser(any(), any()) } returns `회원정보 수정 응답`
+
+        `회원정보 수정`(`회원정보 수정 요청`)
+            .andExpect {
+                status { isOk() }
+                content { json(objectMapper.writeValueAsString(`회원정보 수정 응답`)) }
+            }
+    }
+
+    private fun 회원가입(request: UserCreateRequest): ResultActionsDsl {
+        return post("/v1/signup", request)
+    }
+
+    private fun `회원정보 수정`(request: UserUpdateRequest): ResultActionsDsl {
+        return put("/v1/users", request)
     }
 }

@@ -1,6 +1,6 @@
 package com.tilbox.core.user.infra
 
-import com.tilbox.core.user.domain.value.PasswordMatchStrategy
+import com.tilbox.core.user.domain.PasswordMatchStrategy
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
