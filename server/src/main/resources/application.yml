@@ -4,7 +4,7 @@ spring:
         include:
             - aws
             - aws-credential
-        include: ACCOUNT
+            - ACCOUNT
     datasource:
         hikari:
             pool-name: tilbox-pool

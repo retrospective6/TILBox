@@ -76,4 +76,8 @@ class User(
     fun isAuthenticated(): Boolean {
         return status === UserStatus.AUTHENTICATED
     }
+
+    fun authenticate() {
+        this.status = UserStatus.AUTHENTICATED
+    }
 }

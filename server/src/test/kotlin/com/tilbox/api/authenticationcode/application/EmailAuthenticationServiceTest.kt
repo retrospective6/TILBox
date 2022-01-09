@@ -3,11 +3,13 @@ package com.tilbox.api.authenticationcode.application
 import com.tilbox.api.user.application.dto.request.EmailAuthenticationQuery
 import com.tilbox.core.emailauthentication.entity.EmailAuthentication
 import com.tilbox.core.emailauthentication.repository.EmailAuthenticationRepository
-import com.tilbox.core.user.domain.entity.User
-import com.tilbox.core.user.domain.repository.UserRepository
-import com.tilbox.core.user.domain.value.Password
-import com.tilbox.core.user.domain.value.Profile
-import com.tilbox.core.user.domain.value.UserStatus
+import com.tilbox.core.user.domain.Password
+import com.tilbox.core.user.domain.Profile
+import com.tilbox.core.user.domain.RegistrationType
+import com.tilbox.core.user.domain.User
+import com.tilbox.core.user.domain.UserRepository
+import com.tilbox.core.user.domain.UserRole
+import com.tilbox.core.user.domain.UserStatus
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -41,8 +43,11 @@ class EmailAuthenticationServiceTest(
                 profile = Profile(nickname = "jordy", image = null),
                 password = Password(value = "password12##"),
                 status = UserStatus.UNAUTHENTICATED,
+                RegistrationType.EMAIL,
+                UserRole.USER,
                 createdAt = LocalDateTime.now(),
-                updatedAt = LocalDateTime.now()
+                updatedAt = LocalDateTime.now(),
+                null
             )
         )
 

@@ -2,11 +2,8 @@ package com.tilbox.api.user.ui
 
 import com.tilbox.api.authenticationcode.application.EmailAuthenticationService
 import com.tilbox.api.mail.application.MailService
-import com.tilbox.api.user.application.UserCreateService
-import com.tilbox.api.user.application.dto.request.EmailAuthenticationQuery
-import com.tilbox.api.user.application.dto.request.UserCreateRequest
-import com.tilbox.api.user.application.dto.response.UserCreateResponse
 import com.tilbox.api.security.LoginUserId
+import com.tilbox.api.user.application.dto.request.EmailAuthenticationQuery
 import com.tilbox.api.user.application.EmailUserCreateService
 import com.tilbox.api.user.application.UserCreateRequest
 import com.tilbox.api.user.application.UserCreateResponse
@@ -33,15 +30,11 @@ import javax.validation.Valid
 
 @Api(description = "회원 API")
 @RestController
-@RequestMapping("/v1/users")
-class UserRestController(
-    private val userCreateService: UserCreateService,
-    private val emailAuthenticationService: EmailAuthenticationService,
-    private val mailService: MailService
-) {
 @RequestMapping("/v1")
 class UserRestController(
     private val emailUserCreateService: EmailUserCreateService,
+    private val emailAuthenticationService: EmailAuthenticationService,
+    private val mailService: MailService,
     private val userWithdrawalService: UserWithdrawalService,
     private val userUpdateService: UserUpdateService
 ) {
@@ -54,9 +47,6 @@ class UserRestController(
     @PostMapping("/signup")
     fun createUser(@Valid @RequestBody request: UserCreateRequest): ResponseEntity<UserCreateResponse> {
         val response = emailUserCreateService.createUser(request)
-    @PostMapping
-    fun createUser(@RequestBody request: UserCreateRequest): ResponseEntity<UserCreateResponse> {
-        val response = userCreateService.createUser(request)
         val code = emailAuthenticationService.createAuthenticationCode(response.email)
         mailService.sendAuthenticationCodeMail(response.email, code)
         return ResponseEntity
