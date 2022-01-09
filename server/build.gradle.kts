@@ -18,13 +18,13 @@ repositories {
 }
 
 object Versions {
-    const val KOTEST = "4.6.3"
+    const val KOTEST = "4.6.4"
     const val JJWT = "0.11.2"
     const val SWAGGER = "3.0.0"
     const val KOTLIN_LOGGING = "1.12.5"
-    const val SPRING_CLOUD_AWS = "Hoxton.RELEASE"
     const val SPRING_MOCKK = "3.1.0"
     const val HIBERNATE_TYPE = "2.12.1"
+    const val AWS_SDK = "2.17.107"
 }
 
 dependencies {
@@ -34,13 +34,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.cloud:spring-cloud-aws-autoconfigure")
     implementation("io.springfox:springfox-boot-starter:${Versions.SWAGGER}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("com.vladmihalcea:hibernate-types-52:${Versions.HIBERNATE_TYPE}")
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("software.amazon.awssdk:s3:${Versions.AWS_SDK}")
 
     implementation("io.github.microutils:kotlin-logging:${Versions.KOTLIN_LOGGING}")
     runtimeOnly("com.h2database:h2")
@@ -56,12 +56,6 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:${Versions.KOTEST}")
     testImplementation("com.ninja-squad:springmockk:${Versions.SPRING_MOCKK}")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-}
-
-dependencyManagement {
-    imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${Versions.SPRING_CLOUD_AWS}")
-    }
 }
 
 tasks.withType<KotlinCompile> {
