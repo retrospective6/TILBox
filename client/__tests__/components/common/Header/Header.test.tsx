@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 import Header, { HeaderProps } from '@/components/common/Header/Header';
-import { NAV_ITEMS } from '@/utils/constants';
+import { NAV_ITEMS } from '@/constants/routers';
 import User from '@/types/User';
 
 const DEFAULT_ARGS: HeaderProps = {
