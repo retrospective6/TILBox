@@ -13,14 +13,13 @@ import User from '@/types/User';
 export interface HeaderProps {
   active: string;
   user?: User;
-  onSignUp: () => void;
   onLogin: () => void;
   onWrite: () => void;
   onSearch: (value: string) => void;
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { active, user, onSignUp, onLogin, onWrite, onSearch } = props;
+  const { active, user, onLogin, onWrite, onSearch } = props;
 
   return (
     <Styled.Header>
@@ -60,9 +59,11 @@ export default function Header(props: HeaderProps): JSX.Element {
           </>
         ) : (
           <>
-            <Styled.UserInfoItem data-testid="sign-up" onClick={onSignUp}>
-              회원가입
-            </Styled.UserInfoItem>
+            <Link href="/signup" passHref>
+              <Styled.UserInfoItem data-testid="sign-up">
+                회원가입
+              </Styled.UserInfoItem>
+            </Link>
             <Styled.UserInfoItem data-testid="login" onClick={onLogin}>
               로그인
             </Styled.UserInfoItem>

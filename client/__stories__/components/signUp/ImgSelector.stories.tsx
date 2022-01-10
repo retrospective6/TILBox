@@ -4,7 +4,7 @@ import ImgSelector from '@/components/signUp/ImgSelector';
 
 export default {
   component: ImgSelector,
-  title: 'signUp/ImgSelector',
+  title: 'signup/ImgSelector',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },

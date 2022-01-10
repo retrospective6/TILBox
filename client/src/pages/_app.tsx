@@ -11,10 +11,6 @@ function TILApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
   const [loginModal, setLoginModal] = useState<boolean>(false);
 
-  const handleSignUp = () => {
-    // TODO: 회원가입 버튼 클릭 시 로직
-  };
-
   const handleOpenLoginModal = () => {
     setLoginModal(true);
   };
@@ -42,7 +38,6 @@ function TILApp({ Component, pageProps }: AppProps): JSX.Element {
       </Head>
       <Header
         active={router.pathname}
-        onSignUp={handleSignUp}
         onLogin={handleOpenLoginModal}
         onWrite={handleWrite}
         onSearch={handleSearch}
