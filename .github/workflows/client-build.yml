@@ -35,3 +35,5 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          ADMIN_USER_NICKNAME: ${{ secrets.ADMIN_USER_NICKNAME }}
