@@ -4,6 +4,5 @@
 *.pem
 
 .env
-.env.test
-.env.development
-.env.production
+.env.*
+!.env.sample
