@@ -11,11 +11,11 @@ export const Container = styled.label`
 export const Label = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 2px;
 `;
 
 export const Title = styled.span`
   margin-right: 8px;
+  margin-bottom: 2px;
   ${FONT.caption1};
   color: #000000;
 `;
@@ -25,6 +25,7 @@ interface MessageProps {
 }
 
 export const Message = styled.span<MessageProps>`
+  margin-bottom: 2px;
   ${FONT.caption4};
   color: ${({ state }) => (state === 'error' ? '#c90909' : '#666666')};
 `;
