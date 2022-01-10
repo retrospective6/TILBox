@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
 import * as Styled from './PostListItem.styles';
-import Post from '@/types/Post';
+
 import PostListThumbnail from '@/components/common/PostList/PostListThumbnail';
-import { ADMIN_NICKNAME } from '@/utils/constants';
 import TagList from '@/components/common/Tag/TagList';
+
+import Post from '@/types/Post';
+import ENV from '@/constants/env';
 
 export interface PostListItemProps {
   post: Post;
@@ -12,7 +14,7 @@ export interface PostListItemProps {
 export default function PostListItem(props: PostListItemProps): JSX.Element {
   const { post } = props;
   const isAdmin = useMemo<boolean>(
-    () => post.user.nickname === ADMIN_NICKNAME,
+    () => post.user.nickname === ENV.ADMIN_USER_NICKNAME,
     [post],
   );
 
