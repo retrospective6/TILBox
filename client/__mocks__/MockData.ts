@@ -1,4 +1,15 @@
-import Post from '@/types/Post';
+import Post, { Comment } from '@/types/Post';
+import User from '@/types/User';
+
+export const USER: User = {
+  nickname: 'KS-KIM',
+  image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+};
+
+export const ADMIN: User = {
+  nickname: '운영자',
+  image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+};
 
 export const POST_CONTENT = [
   '![image](https://uicdn.toast.com/toastui/img/tui-editor-bi.png)',
@@ -40,12 +51,24 @@ export const POST_CONTENT = [
   '>    3. [ ] Ember',
 ].join('\n');
 
+export const COMMENT: Comment = {
+  id: 0,
+  writer: USER,
+  content: '와!',
+};
+
+export const COMMENT2: Comment = {
+  id: 1,
+  writer: USER,
+  content:
+    '대단해ㅐㅐㅐㅐㅐㅐ앰ㄴㅇ라ㅐㄴㅁ아램ㄴ아램ㄴ아램ㄴ에내ㅔㅁ애ㅔㅈㄷ버ㅑㅐㅕ\n' +
+    'ㄷ고쇼햐ㅐㅓㅏㅜ휴ㅗ러ㅏㅇ호ㅜㅇㄹ하ㅣㅜㅇㄹ호ㅜㅇㄹ호ㅜㅇㄹ허ㅘㅜㅇ로ㅓㅇㄹ후ㅗㅓㅏㅇ루ㅗ' +
+    'ㅓㅏㅇㄹ호ㅓㅏㅝㅏㄴ워ㅏㄴㅇ훈어ㅏ룬어ㅏ훈아ㅣ훙ㄹ너훈ㅇㄹ허ㅜㅇ너ㅏ!',
+};
+
 export const POST: Post = {
   id: 0,
-  user: {
-    nickname: 'KS-KIM',
-    image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
-  },
+  user: USER,
   title: '여덟글자하이용',
   content: POST_CONTENT,
   thumbnail: {
@@ -54,7 +77,7 @@ export const POST: Post = {
   summary:
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 0,
-  comments: 0,
+  comments: [],
   createdAt: '21.12.15',
   tags: ['tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag'],
   visibleLevel: 'public',
@@ -62,10 +85,7 @@ export const POST: Post = {
 
 export const ADMIN_POST: Post = {
   id: 1,
-  user: {
-    nickname: '운영자',
-    image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
-  },
+  user: ADMIN,
   title: '뭔가 공지를 하는 글입니다.',
   content: POST_CONTENT,
   thumbnail: {
@@ -74,7 +94,7 @@ export const ADMIN_POST: Post = {
   summary:
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 1,
-  comments: 10,
+  comments: [COMMENT, COMMENT2],
   createdAt: '21.12.15',
   tags: ['tag', 'tag'],
   visibleLevel: 'public',

@@ -36,7 +36,7 @@ export default function PostListItem(props: PostListItemProps): JSX.Element {
         {post.tags && <TagList tags={post.tags} />}
         <Styled.SocialInfo>
           좋아요 {post.likes}개<Styled.Dot>·</Styled.Dot>
-          덧글 {post.comments}개
+          덧글 {post.comments.length}개
         </Styled.SocialInfo>
       </Styled.Contents>
     </Styled.PostListItem>
