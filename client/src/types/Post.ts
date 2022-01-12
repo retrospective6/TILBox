@@ -17,8 +17,9 @@ export default interface Post {
 export interface Comment {
   id: number;
   postId?: number;
-  writer: User;
+  user: User;
   content: string;
+  createdAt: string;
 }
 
 export type VisibleLevel = 'public' | 'private';

@@ -1,18 +1,20 @@
 import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import * as Styled from './CommentInput.styles';
 
-import User from '@/types/User';
 import Button from '@/components/common/Button';
+import { USER } from '@mocks/MockData';
 
 export interface CommentInputProps {
-  user: User;
   onSubmit: (value: string) => void;
 }
 
 export default function CommentInput(props: CommentInputProps): JSX.Element {
-  const { user, onSubmit } = props;
+  const { onSubmit } = props;
   const [inputValue, setInputValue] = useState<string>('');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  //TODO: api 연결 후 접속 유저 정보 가져오기
+  const user = USER;
 
   const handleClickLabel = () => {
     textAreaRef.current?.focus();

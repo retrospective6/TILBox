@@ -7,16 +7,19 @@ import Post from '@/types/Post';
 import TagList from '@/components/common/Tag/TagList';
 
 import dynamic from 'next/dynamic';
+import CommentList from '@/components/post/CommentList/CommentList';
 const ToastViewer = dynamic(() => import('./ToastViewer'), {
   ssr: false,
 });
 
 export interface PostViewerProps {
   post: Post;
+  onSubmitComment: (value: string, postId: number) => void;
+  onReportComment: (id: number) => void;
 }
 
 export default function PostViewer(props: PostViewerProps): JSX.Element {
-  const { post } = props;
+  const { post, onSubmitComment, onReportComment } = props;
   const { title, thumbnail, user, createdAt, content, tags } = post;
   const [imgSrc, setImgSrc] = useState<string>();
   const [gradient, setGradient] = useState<TitleProps>();
@@ -29,6 +32,10 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
 
     setGradient(thumbnail.gradient);
   }, [thumbnail]);
+
+  const handleSubmitComment = (value: string) => {
+    onSubmitComment(value, post.id);
+  };
 
   return (
     <>
@@ -55,6 +62,11 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
           <ToastViewer initialValue={content} />
         </Styled.Content>
         {tags && <TagList tags={tags} />}
+        <CommentList
+          comments={post.comments}
+          onSubmit={handleSubmitComment}
+          onReport={onReportComment}
+        />
       </Styled.Section>
     </>
   );
