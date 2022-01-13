@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import * as Styled from './CommentInput.styles';
 
 import Button from '@/components/common/Button';
@@ -20,8 +20,7 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
     textAreaRef.current?.focus();
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     onSubmit(inputValue);
   };
 
@@ -44,11 +43,12 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
       <Styled.Label onClick={handleClickLabel}>
         <Styled.TextArea
           placeholder="응원의 댓글은 1000자 이하로 남길 수 있습니다"
+          name="comment"
           value={inputValue}
           ref={textAreaRef}
           onChange={handleChangeTextArea}
         />
-        <Button type="submit" variant="primary" bold>
+        <Button variant="primary" bold onClick={handleSubmit}>
           등록
         </Button>
       </Styled.Label>
