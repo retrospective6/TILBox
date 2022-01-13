@@ -60,6 +60,24 @@ export const COMMENT: Comment = {
   createdAt: '2021.01.12',
 };
 
+export const NestedComment: Comment = {
+  id: 2,
+  user: USER,
+  content: '대대대대대대댓글',
+  createdAt: '2021.01.13',
+};
+export const NestedComment2: Comment = {
+  id: 2,
+  user: USER,
+  content:
+    '저도 잘이렇게 저렇게 댓글이 남겨지고 일단 좋아요는 없이 댓글 노출만하기 1000자 이하로 나와서 하단으로\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '증가하는 영역을 생각하고 잇고 대덧글을 이렇게!',
+  createdAt: '2021.01.13',
+};
+
 export const COMMENT2: Comment = {
   id: 1,
   user: USER,
@@ -77,7 +95,7 @@ export const COMMENT2: Comment = {
     '\n' +
     '\n' +
     '그리고 이렇게?',
-  comments: [COMMENT, COMMENT],
+  comments: [NestedComment, NestedComment2],
   createdAt: '2021.01.12',
 };
 
@@ -92,7 +110,7 @@ export const POST: Post = {
   summary:
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 0,
-  comments: [],
+  comments: [COMMENT, COMMENT2],
   createdAt: '21.12.15',
   tags: ['tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag'],
   visibleLevel: 'public',
