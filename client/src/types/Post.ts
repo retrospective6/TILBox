@@ -19,6 +19,7 @@ export interface Comment {
   postId?: number;
   user: User;
   content: string;
+  comments?: Comment[];
   createdAt: string;
 }
 

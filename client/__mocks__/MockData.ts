@@ -77,6 +77,7 @@ export const COMMENT2: Comment = {
     '\n' +
     '\n' +
     '그리고 이렇게?',
+  comments: [COMMENT, COMMENT],
   createdAt: '2021.01.12',
 };
 

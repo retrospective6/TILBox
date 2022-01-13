@@ -14,7 +14,7 @@ const ToastViewer = dynamic(() => import('./ToastViewer'), {
 
 export interface PostViewerProps {
   post: Post;
-  onSubmitComment: (value: string, postId: number) => void;
+  onSubmitComment: (value: string, postId: number, commentId?: number) => void;
   onReportComment: (id: number) => void;
 }
 
@@ -33,8 +33,8 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
     setGradient(thumbnail.gradient);
   }, [thumbnail]);
 
-  const handleSubmitComment = (value: string) => {
-    onSubmitComment(value, post.id);
+  const handleSubmitComment = (value: string, commentId?: number) => {
+    onSubmitComment(value, post.id, commentId);
   };
 
   return (
