@@ -8,8 +8,6 @@ import javax.validation.ConstraintValidatorContext
 val ALLOWED_CONTENT_TYPES = listOf("image/gif", "image/png", "image/jpg", "image/jpeg")
 
 class ImageFileValidator : ConstraintValidator<ImageFile?, MultipartFile> {
-    override fun initialize(constraintAnnotation: ImageFile?) {}
-
     override fun isValid(file: MultipartFile, context: ConstraintValidatorContext): Boolean {
         val contentType = getContentType(file)
         return isSupportedContentType(contentType)
