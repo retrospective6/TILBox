@@ -9,6 +9,6 @@ export default interface Post {
   description: string;
   likes: number;
   comments: number;
-  createdAt: string;
+  createdAt: Date;
   tags?: string[];
 }

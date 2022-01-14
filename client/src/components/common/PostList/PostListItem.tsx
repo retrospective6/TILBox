@@ -2,8 +2,10 @@ import React, { useMemo } from 'react';
 import * as Styled from './PostListItem.styles';
 import Post from '@/types/Post';
 import PostListThumbnail from '@/components/common/PostList/PostListThumbnail';
-import { ADMIN_NICKNAME } from '@/utils/constants';
 import TagList from '@/components/common/Tag/TagList';
+
+import dayjs from 'dayjs';
+import { ADMIN_NICKNAME, DATE_FORMAT } from '@/utils/constants';
 
 export interface PostListItemProps {
   post: Post;
@@ -29,7 +31,9 @@ export default function PostListItem(props: PostListItemProps): JSX.Element {
           height="18px"
         />
         <Styled.UserNickname>{post.user.nickname}</Styled.UserNickname>
-        <Styled.CreatedAt>{post.createdAt}</Styled.CreatedAt>
+        <Styled.CreatedAt>
+          {dayjs(post.createdAt).format(DATE_FORMAT)}
+        </Styled.CreatedAt>
       </Styled.UserInfo>
       <Styled.Contents>
         <Styled.Description>{post.description}</Styled.Description>

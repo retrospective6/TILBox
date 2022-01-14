@@ -59,6 +59,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:5.2.0"],
             ["babel-loader", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:8.2.3"],
             ["chromatic", "npm:6.0.5"],
+            ["dayjs", "npm:1.10.7"],
             ["eslint", "npm:7.32.0"],
             ["eslint-config-next", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:11.1.2"],
             ["eslint-config-prettier", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:8.3.0"],
@@ -10942,6 +10943,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["dayjs", [
+        ["npm:1.10.7", {
+          "packageLocation": "./.yarn/cache/dayjs-npm-1.10.7-34318a8e39-a0a4ca95ab.zip/node_modules/dayjs/",
+          "packageDependencies": [
+            ["dayjs", "npm:1.10.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["debug", [
         ["npm:2.6.9", {
           "packageLocation": "./.yarn/cache/debug-npm-2.6.9-7d4cb597dc-d2f51589ca.zip/node_modules/debug/",
@@ -21449,6 +21459,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:5.2.0"],
             ["babel-loader", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:8.2.3"],
             ["chromatic", "npm:6.0.5"],
+            ["dayjs", "npm:1.10.7"],
             ["eslint", "npm:7.32.0"],
             ["eslint-config-next", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:11.1.2"],
             ["eslint-config-prettier", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:8.3.0"],
