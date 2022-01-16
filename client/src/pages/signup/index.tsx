@@ -1,6 +1,6 @@
 import React from 'react';
-import ImgSelector from '@/components/signUp/ImgSelector';
-import SignUpForm from '@/components/signUp/form/SignUpForm';
+import ImgSelector from '@/components/signup/ImgSelector';
+import SignUpForm from '@/components/signup/form/SignUpForm';
 import styled from '@emotion/styled';
 
 export default function SingUp(): JSX.Element {
@@ -24,6 +24,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 36px;
 `;
 
 export const Title = styled.h1`

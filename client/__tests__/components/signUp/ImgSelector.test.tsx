@@ -2,7 +2,7 @@ import { MockImage } from '@mocks/MockComponent';
 
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import ImgSelector, { ImgSelectorProps } from '@/components/signUp/ImgSelector';
+import ImgSelector, { ImgSelectorProps } from '@/components/signup/ImgSelector';
 
 jest.mock('next/image', () => MockImage);
 
