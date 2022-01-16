@@ -16,4 +16,12 @@ class LikePost(
     val userId: Long,
 
     id: Long = 0L
-) : BaseRootEntity<LikePost>(id)
+) : BaseRootEntity<LikePost>(id) {
+    fun like() {
+        this.registerEvent(LikePostEvent(postId, userId))
+    }
+
+    fun unlike() {
+        this.registerEvent(UnlikePostEvent(postId, userId))
+    }
+}

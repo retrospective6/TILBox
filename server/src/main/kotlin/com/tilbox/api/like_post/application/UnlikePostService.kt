@@ -10,6 +10,7 @@ class UnlikePostService(private val likePostRepository: LikePostRepository) {
     fun unlike(postId: Long, userId: Long) {
         val likePost = likePostRepository.findByPostIdAndUserId(postId, userId)
             .orElseThrow { IllegalStateException("게시물에 좋아요가 존재하지 않습니다. postId=$postId, userId=$userId") }
+        likePost.unlike()
         likePostRepository.delete(likePost)
     }
 }
