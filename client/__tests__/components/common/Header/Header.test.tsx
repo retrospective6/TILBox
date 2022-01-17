@@ -81,6 +81,7 @@ describe('user info section', () => {
     const user: User = {
       nickname: 'testNickName',
       image: 'testImage',
+      role: 'ROLE_USER',
     };
 
     test('disappear signUp text', () => {

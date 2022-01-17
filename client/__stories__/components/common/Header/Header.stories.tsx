@@ -33,6 +33,7 @@ WithUser.args = {
   user: {
     nickname: 'test',
     image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+    role: 'ROLE_USER',
   },
 };
 
@@ -42,5 +43,6 @@ export const 닉네임_긴_경우 = Template.bind({});
   user: {
     nickname: '일이삼사오육칠팔구십일이삼사오육',
     image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+    role: 'ROLE_USER',
   },
 };
