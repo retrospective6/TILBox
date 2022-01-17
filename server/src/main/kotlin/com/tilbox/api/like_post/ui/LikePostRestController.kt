@@ -3,12 +3,14 @@ package com.tilbox.api.like_post.ui
 import com.tilbox.api.like_post.application.LikePostService
 import com.tilbox.api.like_post.application.UnlikePostService
 import com.tilbox.api.security.LoginUserId
+import io.swagger.annotations.Api
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+@Api(description = "TIL 게시글 좋아요 API")
 @RestController
 @RequestMapping("posts")
 class LikePostRestController(
