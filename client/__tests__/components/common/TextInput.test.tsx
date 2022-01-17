@@ -6,13 +6,6 @@ import { render } from '@testing-library/react';
 const DEFAULT_ARGS: TextInputProps = {
   title: 'My TIL 주소',
   placeholder: 'www.tilbox/til356list',
-  hint: '숫자, 영어를 조합해 나만의 TIL 주소를 만들 수 있습니다.',
-  rules: [
-    {
-      rule: (value: string) => value === '',
-      message: '필수적으로 입력해야 합니다.',
-    },
-  ],
 };
 
 const renderInput = (props: Partial<TextInputProps>): RenderResult => {
@@ -24,18 +17,6 @@ describe('props Test', () => {
     const title = '이메일';
     const { getByText } = renderInput({ title });
     getByText(title);
-  });
-
-  test('placeholder을 props로 넘기면 placeholder이 랜더된다.', () => {
-    const placeholder = 'kakao@kakao.com';
-    const { getByPlaceholderText } = renderInput({ placeholder });
-    getByPlaceholderText(placeholder);
-  });
-
-  test('hint을 props로 넘기면 hint이 랜더된다.', () => {
-    const hint = '2자 이상 8자 이하로 입력해주세요.';
-    const { getByText } = renderInput({ hint });
-    getByText(hint);
   });
 
   describe('width을 props로 넘기면 width으로 랜더된다.', () => {

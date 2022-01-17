@@ -38,3 +38,5 @@ export const VISIBLE_LEVELS: { value: VisibleLevel; label: string }[] = [
   { value: 'public', label: '전체공개' },
   { value: 'private', label: '나만보기' },
 ];
+
+export const DATE_FORMAT = 'YYYY.MM.DD';

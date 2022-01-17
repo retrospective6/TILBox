@@ -5,11 +5,13 @@ import { TitleProps } from '@/components/post/PostViewer.style';
 import Post from '@/types/Post';
 
 import TagList from '@/components/common/Tag/TagList';
-
 import dynamic from 'next/dynamic';
 const ToastViewer = dynamic(() => import('./ToastViewer'), {
   ssr: false,
 });
+
+import dayjs from 'dayjs';
+import { DATE_FORMAT } from '@/utils/constants';
 
 export interface PostViewerProps {
   post: Post;
@@ -49,7 +51,9 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
             />
             <Styled.UserNickname>{user.nickname}</Styled.UserNickname>
           </Styled.UserInfo>
-          <Styled.CreatedAt>{createdAt}</Styled.CreatedAt>
+          <Styled.CreatedAt>
+            {dayjs(createdAt).format(DATE_FORMAT)}
+          </Styled.CreatedAt>
         </Styled.Info>
         <Styled.Content>
           <ToastViewer initialValue={content} />
