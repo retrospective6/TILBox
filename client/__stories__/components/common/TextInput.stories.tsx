@@ -15,17 +15,20 @@ const Template: ComponentStory<typeof TextInput> = (args) => (
 );
 
 export const Default = Template.bind({});
-
 Default.args = {
   title: 'My TIL 주소',
   placeholder: 'www.tilbox/til356list',
-  hint: '숫자, 영어를 조합해 나만의 TIL 주소를 만들 수 있습니다.',
+  message: '숫자, 영어를 조합해 나만의 TIL 주소를 만들 수 있습니다.',
   width: '320px',
   height: '30px',
-  rules: [
-    {
-      rule: (value: string) => value === '',
-      message: '필수적으로 입력해야 합니다.',
-    },
-  ],
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  title: 'My TIL 주소',
+  placeholder: 'www.tilbox/til356list',
+  state: 'error',
+  message: '필수적으로 입력해야 합니다.',
+  width: '320px',
+  height: '30px',
 };

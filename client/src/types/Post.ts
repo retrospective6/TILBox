@@ -9,7 +9,7 @@ export default interface Post {
   summary: string;
   likes: number;
   comments: Comment[];
-  createdAt: string;
+  createdAt: Date;
   tags?: string[];
   visibleLevel: VisibleLevel;
 }

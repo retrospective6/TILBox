@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### account ###
+src/main/resources/application-ACCOUNT.yml
+
+### Configurations ###
+/src/main/resources/application-aws-credential.yml

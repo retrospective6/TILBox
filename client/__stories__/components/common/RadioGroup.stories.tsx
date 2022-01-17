@@ -1,7 +1,7 @@
 import React from 'react';
 import RadioGroup from '@/components/common/RadioGroup';
 import { ComponentStory } from '@storybook/react';
-import { VISIBLE_LEVELS } from '@/utils/constants';
+import { VISIBLE_LEVELS } from '@/constants';
 
 export default {
   component: RadioGroup,

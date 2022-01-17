@@ -1,15 +1,15 @@
 import React from 'react';
 import { ComponentStory } from '@storybook/react';
-import SignUpPage from '@/pages/signUp/signUpPage';
+import SignupPage from '@/pages/signup';
 
 export default {
-  component: SignUpPage,
-  title: 'page/SignUpPage',
+  component: SignupPage,
+  title: 'page/SignupPage',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
 };
 
-const Template: ComponentStory<typeof SignUpPage> = () => <SignUpPage />;
+const Template: ComponentStory<typeof SignupPage> = () => <SignupPage />;
 
 export const Default = Template;

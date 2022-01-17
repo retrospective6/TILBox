@@ -4,11 +4,13 @@ import User from '@/types/User';
 export const USER: User = {
   nickname: 'KS-KIM',
   image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+  role: 'ROLE_USER',
 };
 
 export const ADMIN: User = {
   nickname: '운영자',
   image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+  role: 'ROLE_ADMIN',
 };
 
 export const POST_CONTENT = [
@@ -111,7 +113,7 @@ export const POST: Post = {
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 0,
   comments: [COMMENT, COMMENT2],
-  createdAt: '21.12.15',
+  createdAt: new Date('2021.12.15'),
   tags: ['tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag'],
   visibleLevel: 'public',
 };
@@ -128,7 +130,7 @@ export const ADMIN_POST: Post = {
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 1,
   comments: [COMMENT, COMMENT2],
-  createdAt: '21.12.15',
+  createdAt: new Date('2021.12.15'),
   tags: ['tag', 'tag'],
   visibleLevel: 'public',
 };
