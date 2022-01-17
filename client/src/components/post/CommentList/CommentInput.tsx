@@ -21,7 +21,8 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
   };
 
   const handleSubmit = () => {
-    onSubmit(inputValue);
+    onSubmit(inputValue.replace(/\n{10,}/g, '\n\n\n\n\n\n\n\n\n'));
+    setInputValue('');
   };
 
   const handleChangeTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {

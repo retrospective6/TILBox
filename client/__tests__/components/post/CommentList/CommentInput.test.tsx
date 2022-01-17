@@ -35,4 +35,22 @@ describe('onSubmit', () => {
 
     expect(onSubmit).toBeCalledWith(value);
   });
+
+  test('줄바꿈이 9번을 넘게 연속적으로 나올 경우 9번으로 제한', () => {
+    const { getByTestId } = renderCommentInput({ onSubmit });
+
+    const value = 'test\n\n\n\n\n\n\n\n\n\n\nend';
+
+    const textarea = getByTestId('comment-textarea');
+    const submitButton = getByTestId('comment-submit-button');
+
+    fireEvent.change(textarea, {
+      target: { value },
+    });
+    fireEvent.click(submitButton);
+
+    const expected = 'test\n\n\n\n\n\n\n\n\nend';
+
+    expect(onSubmit).toBeCalledWith(expected);
+  });
 });
