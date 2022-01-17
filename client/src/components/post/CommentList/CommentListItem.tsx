@@ -20,8 +20,8 @@ export default function CommentListItem(
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isWriting, setIsWriting] = useState<boolean>(false);
 
-  const handleReport = () => {
-    onReportComment(comment.id);
+  const handleReport = (id: number) => () => {
+    onReportComment(id);
   };
 
   const handleSubmit = (value: string) => {
@@ -52,7 +52,11 @@ export default function CommentListItem(
           <Styled.CreatedAt>
             {dayjs(comment.createdAt).format(DATE_FORMAT)}
           </Styled.CreatedAt>
-          <Styled.Report type="button" onClick={handleReport}>
+          <Styled.Report
+            data-testid="comment-report"
+            type="button"
+            onClick={handleReport(comment.id)}
+          >
             신고
           </Styled.Report>
         </Styled.CommentInfo>
@@ -86,7 +90,11 @@ export default function CommentListItem(
                   <Styled.CreatedAt>
                     {dayjs(nestedComment.createdAt).format(DATE_FORMAT)}
                   </Styled.CreatedAt>
-                  <Styled.Report type="button" onClick={handleReport}>
+                  <Styled.Report
+                    data-testid="nested-comment-report"
+                    type="button"
+                    onClick={handleReport(nestedComment.id)}
+                  >
                     신고
                   </Styled.Report>
                 </Styled.CommentInfo>
