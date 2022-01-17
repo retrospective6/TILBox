@@ -5,7 +5,6 @@ import PostListThumbnail from '@/components/common/PostList/PostListThumbnail';
 import TagList from '@/components/common/Tag/TagList';
 
 import Post from '@/types/Post';
-import ENV from '@/constants/env';
 import { DATE_FORMAT } from '@/constants';
 import dayjs from 'dayjs';
 
@@ -16,8 +15,8 @@ export interface PostListItemProps {
 export default function PostListItem(props: PostListItemProps): JSX.Element {
   const { post } = props;
   const isAdmin = useMemo<boolean>(
-    () => post.user.nickname === ENV.ADMIN_USER_NICKNAME,
-    [post],
+    () => post.user.role === 'ROLE_ADMIN',
+    [post.user],
   );
 
   return (

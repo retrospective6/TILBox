@@ -6,8 +6,6 @@ const loadEnvironment = (key: string): string => {
   return value;
 };
 
-const ENV = {
-  ADMIN_USER_NICKNAME: loadEnvironment('ADMIN_USER_NICKNAME'),
-};
+const ENV = {};
 
 export default ENV;

@@ -45,6 +45,7 @@ export const POST: Post = {
   user: {
     nickname: 'KS-KIM',
     image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+    role: 'ROLE_USER',
   },
   title: '여덟글자하이용',
   content: POST_CONTENT,
@@ -65,6 +66,7 @@ export const ADMIN_POST: Post = {
   user: {
     nickname: '운영자',
     image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+    role: 'ROLE_ADMIN',
   },
   title: '뭔가 공지를 하는 글입니다.',
   content: POST_CONTENT,

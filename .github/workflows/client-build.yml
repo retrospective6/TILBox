@@ -33,12 +33,5 @@ jobs:
       - name: Check test coverage
         run: yarn test:coverage
 
-
-      - name: Generate Environment Variables File for Production
-        run: |
-          echo "ADMIN_USER_NICKNAME=$ADMIN_USER_NICKNAME" >> .env.production
-        env:
-          ADMIN_USER_NICKNAME: ${{ secrets.ADMIN_USER_NICKNAME }}
-
       - name: Build
         run: yarn build
