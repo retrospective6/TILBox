@@ -8,24 +8,24 @@ import { Comment } from '@/types/Post';
 
 export interface CommentListProps {
   comments: Comment[];
-  onSubmit: (value: string, commentId?: number) => void;
-  onReport: (id: number) => void;
+  onSubmitComment: (value: string, commentId?: number) => void;
+  onReportComment: (id: number) => void;
 }
 
 export default function CommentList(props: CommentListProps): JSX.Element {
-  const { comments, onSubmit, onReport } = props;
+  const { comments, onSubmitComment, onReportComment } = props;
 
   return (
     <Styled.Container>
       <Styled.CommentsCount>댓글 {comments.length}</Styled.CommentsCount>
-      <CommentInput onSubmit={onSubmit} />
+      <CommentInput onSubmit={onSubmitComment} />
       <Styled.CommentList>
         {comments.map((comment) => (
           <CommentListItem
             key={comment.id}
             comment={comment}
-            onReport={onReport}
-            onSubmit={onSubmit}
+            onSubmitNestedComment={onSubmitComment}
+            onReportComment={onReportComment}
           />
         ))}
       </Styled.CommentList>

@@ -68,8 +68,8 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
         {tags && <TagList tags={tags} />}
         <CommentList
           comments={post.comments}
-          onSubmit={handleSubmitComment}
-          onReport={onReportComment}
+          onSubmitComment={handleSubmitComment}
+          onReportComment={onReportComment}
         />
       </Styled.Section>
     </>

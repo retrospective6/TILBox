@@ -9,23 +9,23 @@ import dayjs from 'dayjs';
 
 export interface CommentListItemProps {
   comment: Comment;
-  onSubmit: (value: string, commentId: number) => void;
-  onReport: (id: number) => void;
+  onSubmitNestedComment: (value: string, commentId: number) => void;
+  onReportComment: (id: number) => void;
 }
 
 export default function CommentListItem(
   props: CommentListItemProps,
 ): JSX.Element {
-  const { comment, onSubmit, onReport } = props;
+  const { comment, onSubmitNestedComment, onReportComment } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isWriting, setIsWriting] = useState<boolean>(false);
 
   const handleReport = () => {
-    onReport(comment.id);
+    onReportComment(comment.id);
   };
 
   const handleSubmit = (value: string) => {
-    onSubmit(value, comment.id);
+    onSubmitNestedComment(value, comment.id);
   };
 
   const handleClickOpen = () => {
