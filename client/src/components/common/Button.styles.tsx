@@ -17,11 +17,12 @@ interface ContainerProps {
 }
 
 export const Container = styled.button<ContainerProps>`
+  padding: 8px 16px;
+  height: min-content;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
   border-radius: 24px;
 
   ${({ variant }) => variantCSS[variant]};

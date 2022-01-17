@@ -24,16 +24,12 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
   const [gradient, setGradient] = useState<TitleProps>();
 
   useEffect(() => {
-    if (thumbnail.startsWith('http')) {
-      setImgSrc(thumbnail);
+    if (thumbnail.img) {
+      setImgSrc(thumbnail.img);
       return;
     }
 
-    const gradients = thumbnail.split(' ');
-    setGradient({
-      start: gradients[0],
-      end: gradients[1],
-    });
+    setGradient(thumbnail.gradient);
   }, [thumbnail]);
 
   return (

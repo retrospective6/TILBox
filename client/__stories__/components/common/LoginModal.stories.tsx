@@ -1,10 +1,10 @@
 import React from 'react';
-import LoginModal from '@/components/common/LoginModal';
+import LoginModal from '@/components/common/Modal/LoginModal';
 import { ComponentStory } from '@storybook/react';
 
 export default {
   component: LoginModal,
-  title: 'common/LoginModal',
+  title: 'common/Modal/LoginModal',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
