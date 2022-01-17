@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import SignUpForm from '@/components/signup/form/SignUpForm';
 import ProfileImgSelector from '@/components/signup/ProfileImgSelector';
 
-export default function SignUpPage(): JSX.Element {
+export default function SignupPage(): JSX.Element {
   const onImgSubmit = () => {
     return 0;
   };

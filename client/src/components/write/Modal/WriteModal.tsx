@@ -3,13 +3,13 @@ import * as Styled from './WriteModal.styles';
 
 import Modal from '@/components/common/Modal/Modal';
 import ImgSelector from '@/components/common/ImgSelector';
-import PlusIcon from '@/assets/icon/PlusIcon.svg';
-
-import { THUMBNAIL_GRADIENTS, VISIBLE_LEVELS } from '@/utils/constants';
-import Post, { ThumbnailGradient, VisibleLevel } from '@/types/Post';
 import TagInput from '@/components/write/Modal/TagInput';
 import RadioGroup from '@/components/common/RadioGroup';
 import Button from '@/components/common/Button';
+import PlusIcon from '@/assets/icon/PlusIcon.svg';
+
+import { THUMBNAIL_GRADIENTS, VISIBLE_LEVELS } from '@/constants';
+import Post, { ThumbnailGradient, VisibleLevel } from '@/types/Post';
 
 export type WriteModalFormProps = Pick<
   Post,

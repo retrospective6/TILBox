@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import * as Styled from './PostListItem.styles';
-import Post from '@/types/Post';
+
 import PostListThumbnail from '@/components/common/PostList/PostListThumbnail';
-import { ADMIN_NICKNAME } from '@/utils/constants';
 import TagList from '@/components/common/Tag/TagList';
 
 import Post from '@/types/Post';
 import ENV from '@/constants/env';
-import { DATE_FORMAT } from '@/utils/constants';
+import { DATE_FORMAT } from '@/constants';
+import dayjs from 'dayjs';
 
 export interface PostListItemProps {
   post: Post;

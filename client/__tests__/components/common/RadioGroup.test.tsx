@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 import RadioGroup, { RadioGroupProps } from '@/components/common/RadioGroup';
-import { VISIBLE_LEVELS } from '@/utils/constants';
+import { VISIBLE_LEVELS } from '@/constants';
 
 const DEFAULT_ARGS: RadioGroupProps = {
   name: 'test',

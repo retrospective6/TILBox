@@ -11,7 +11,7 @@ const ToastViewer = dynamic(() => import('./ToastViewer'), {
 });
 
 import dayjs from 'dayjs';
-import { DATE_FORMAT } from '@/utils/constants';
+import { DATE_FORMAT } from '@/constants';
 
 export interface PostViewerProps {
   post: Post;
