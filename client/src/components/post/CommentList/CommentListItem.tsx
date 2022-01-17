@@ -62,7 +62,7 @@ export default function CommentListItem(
         </Styled.CommentInfo>
         <Styled.Content>{comment.content}</Styled.Content>
         <Styled.NestedCommentInfo>
-          <span onClick={handleClickOpen}>
+          <span data-testid="nested-comment-open" onClick={handleClickOpen}>
             <Styled.Triangle rotate={isOpen} />
             답글({comment.comments?.length || 0}개)
           </span>
@@ -91,7 +91,7 @@ export default function CommentListItem(
                     {dayjs(nestedComment.createdAt).format(DATE_FORMAT)}
                   </Styled.CreatedAt>
                   <Styled.Report
-                    data-testid="nested-comment-report"
+                    data-testid={`nested-comment-report-${nestedComment.id}`}
                     type="button"
                     onClick={handleReport(nestedComment.id)}
                   >
