@@ -45,12 +45,15 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
           placeholder="응원의 댓글은 1000자 이하로 남길 수 있습니다"
           name="comment"
           value={inputValue}
+          maxRows={9}
           ref={textAreaRef}
           onChange={handleChangeTextArea}
         />
-        <Button variant="primary" bold onClick={handleSubmit}>
-          등록
-        </Button>
+        <Styled.ButtonWrapper>
+          <Button variant="primary" bold onClick={handleSubmit}>
+            등록
+          </Button>
+        </Styled.ButtonWrapper>
       </Styled.Label>
     </Styled.Container>
   );

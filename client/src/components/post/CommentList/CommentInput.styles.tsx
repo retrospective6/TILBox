@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import FONT from '@/styles/font';
 
 import Image from 'next/image';
+import TextareaAutosize from 'react-textarea-autosize';
 
 export const Container = styled.form`
   display: flex;
@@ -9,6 +10,8 @@ export const Container = styled.form`
 `;
 
 export const Profile = styled.div`
+  margin-top: 2px;
+  margin-bottom: auto;
   width: 80px;
   display: flex;
   flex-direction: column;
@@ -20,7 +23,7 @@ export const ProfileImg = styled(Image)`
 `;
 
 export const Nickname = styled.span`
-  margin-top: 4px;
+  margin-top: 6px;
   ${FONT.caption1};
 `;
 
@@ -38,16 +41,36 @@ export const Label = styled.label`
   }
 `;
 
-export const TextArea = styled.textarea`
+export const TextArea = styled(TextareaAutosize)`
+  min-height: 40px;
   flex: 1;
   border: none;
   background: transparent;
   resize: none;
   ${FONT.body4};
+
   &:focus {
     outline: none;
   }
   &::placeholder {
     color: #cdcdcd;
   }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    height: 17%;
+    background-color: #bbbbbb;
+    border-radius: 10px;
+    &:hover {
+      background-color: #888888;
+    }
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #dddddd;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  margin: 5px 6px auto 14px;
 `;
