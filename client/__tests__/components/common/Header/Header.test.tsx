@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 import Header, { HeaderProps } from '@/components/common/Header/Header';
-import { NAV_ITEMS } from '@/utils/constants';
+import { NAV_ITEMS } from '@/constants/routers';
 import User from '@/types/User';
 
 const DEFAULT_ARGS: HeaderProps = {
@@ -81,6 +81,7 @@ describe('user info section', () => {
     const user: User = {
       nickname: 'testNickName',
       image: 'testImage',
+      role: 'ROLE_USER',
     };
 
     test('disappear signUp text', () => {

@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 import * as Styled from './PostListItem.styles';
-import Post from '@/types/Post';
+
 import PostListThumbnail from '@/components/common/PostList/PostListThumbnail';
 import TagList from '@/components/common/Tag/TagList';
 
+import Post from '@/types/Post';
+import { DATE_FORMAT } from '@/constants';
 import dayjs from 'dayjs';
-import { ADMIN_NICKNAME, DATE_FORMAT } from '@/utils/constants';
 
 export interface PostListItemProps {
   post: Post;
@@ -14,8 +15,8 @@ export interface PostListItemProps {
 export default function PostListItem(props: PostListItemProps): JSX.Element {
   const { post } = props;
   const isAdmin = useMemo<boolean>(
-    () => post.user.nickname === ADMIN_NICKNAME,
-    [post],
+    () => post.user.role === 'ROLE_ADMIN',
+    [post.user],
   );
 
   return (
