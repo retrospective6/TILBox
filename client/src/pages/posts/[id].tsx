@@ -13,9 +13,26 @@ export interface PostPageProps {
 
 export default function PostPage(props: PostPageProps): JSX.Element {
   const { post } = props;
+
+  const handleSubmitComment = (
+    value: string,
+    postId: number,
+    commentId?: number,
+  ) => {
+    return [value, postId, commentId];
+  };
+
+  const handleReportComment = (id: number) => {
+    return id;
+  };
+
   return (
     <Layout>
-      <PostViewer post={post} />
+      <PostViewer
+        post={post}
+        onSubmitComment={handleSubmitComment}
+        onReportComment={handleReportComment}
+      />
     </Layout>
   );
 }
