@@ -59,14 +59,14 @@ export const COMMENT: Comment = {
   content:
     '이렇게 저렇게 댓글이 남겨지고 일단 좋아요는 없이 댓글 노출만하기 1000자 이하로 나와서 하단으로 증가하는 영역을' +
     '생각하고 잇기 때문에 이렇게 주절거리는게 많아지는 예시...',
-  createdAt: '2021.01.12',
+  createdAt: new Date('2021.01.12'),
 };
 
 export const NestedComment: Comment = {
   id: 2,
   user: USER,
   content: '대대대대대대댓글',
-  createdAt: '2021.01.13',
+  createdAt: new Date('2021.01.13'),
 };
 export const NestedComment2: Comment = {
   id: 2,
@@ -77,7 +77,7 @@ export const NestedComment2: Comment = {
     '\n' +
     '\n' +
     '증가하는 영역을 생각하고 잇고 대덧글을 이렇게!',
-  createdAt: '2021.01.13',
+  createdAt: new Date('2021.01.13'),
 };
 
 export const COMMENT2: Comment = {
@@ -98,7 +98,7 @@ export const COMMENT2: Comment = {
     '\n' +
     '그리고 이렇게?',
   comments: [NestedComment, NestedComment2],
-  createdAt: '2021.01.12',
+  createdAt: new Date('2021.01.12'),
 };
 
 export const POST: Post = {

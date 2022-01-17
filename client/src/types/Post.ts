@@ -20,7 +20,7 @@ export interface Comment {
   user: User;
   content: string;
   comments?: Comment[];
-  createdAt: string;
+  createdAt: Date;
 }
 
 export type VisibleLevel = 'public' | 'private';

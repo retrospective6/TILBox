@@ -4,6 +4,8 @@ import * as Styled from './CommentListItem.styles';
 import CommentInput from '@/components/post/CommentList/CommentInput';
 
 import { Comment } from '@/types/Post';
+import { DATE_FORMAT } from '@/constants';
+import dayjs from 'dayjs';
 
 export interface CommentListItemProps {
   comment: Comment;
@@ -47,7 +49,9 @@ export default function CommentListItem(
       <Styled.Comment>
         <Styled.CommentInfo>
           <Styled.Nickname>{comment.user.nickname}</Styled.Nickname>
-          <Styled.CreatedAt>{comment.createdAt}</Styled.CreatedAt>
+          <Styled.CreatedAt>
+            {dayjs(comment.createdAt).format(DATE_FORMAT)}
+          </Styled.CreatedAt>
           <Styled.Report type="button" onClick={handleReport}>
             신고
           </Styled.Report>
@@ -79,7 +83,9 @@ export default function CommentListItem(
                   <Styled.Nickname>
                     {nestedComment.user.nickname}
                   </Styled.Nickname>
-                  <Styled.CreatedAt>{nestedComment.createdAt}</Styled.CreatedAt>
+                  <Styled.CreatedAt>
+                    {dayjs(nestedComment.createdAt).format(DATE_FORMAT)}
+                  </Styled.CreatedAt>
                   <Styled.Report type="button" onClick={handleReport}>
                     신고
                   </Styled.Report>
