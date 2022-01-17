@@ -42,6 +42,7 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
       </Styled.Profile>
       <Styled.Label onClick={handleClickLabel}>
         <Styled.TextArea
+          data-testid="comment-textarea"
           placeholder="응원의 댓글은 1000자 이하로 남길 수 있습니다"
           name="comment"
           value={inputValue}
@@ -50,7 +51,12 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
           onChange={handleChangeTextArea}
         />
         <Styled.ButtonWrapper>
-          <Button variant="primary" bold onClick={handleSubmit}>
+          <Button
+            data-testid="comment-submit-button"
+            variant="primary"
+            bold
+            onClick={handleSubmit}
+          >
             등록
           </Button>
         </Styled.ButtonWrapper>
