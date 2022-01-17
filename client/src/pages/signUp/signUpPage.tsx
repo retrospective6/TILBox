@@ -1,7 +1,8 @@
 import React from 'react';
-import ImgSelector from '@/components/signUp/ImgSelector';
-import SignUpForm from '@/components/signUp/form/SignUpForm';
 import styled from '@emotion/styled';
+
+import SignUpForm from '@/components/signup/form/SignUpForm';
+import ProfileImgSelector from '@/components/signup/ProfileImgSelector';
 
 export default function SignUpPage(): JSX.Element {
   const onImgSubmit = () => {
@@ -12,7 +13,7 @@ export default function SignUpPage(): JSX.Element {
     <Container>
       <Title>회원가입</Title>
       <ProfileWrapper>
-        <ImgSelector onSubmit={onImgSubmit} />
+        <ProfileImgSelector onSubmit={onImgSubmit} />
         <p>프로필 사진은 수정 가능합니다.</p>
       </ProfileWrapper>
       <SignUpForm />

@@ -1,10 +1,10 @@
 import React from 'react';
-import Modal from '@/components/common/Modal';
+import Modal from '@/components/common/Modal/Modal';
 import { ComponentStory } from '@storybook/react';
 
 export default {
   component: Modal,
-  title: 'common/Modal',
+  title: 'common/Modal/Modal',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
@@ -16,6 +16,5 @@ const Template: ComponentStory<typeof Modal> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  title: '모달창',
   children: <div>here will be come content!</div>,
 };

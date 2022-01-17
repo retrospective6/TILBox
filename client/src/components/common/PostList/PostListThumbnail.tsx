@@ -13,17 +13,12 @@ export default function PostListThumbnail(
   const [gradient, setGradient] = useState<ThumbnailProps>();
 
   useEffect(() => {
-    // TODO: 서버의 thumbnail 제공 방식에 따른 로직 변경 필요
-    if (thumbnail.startsWith('http')) {
-      setImgSrc(thumbnail);
+    if (thumbnail.img) {
+      setImgSrc(thumbnail.img);
       return;
     }
 
-    const gradients = thumbnail.split(' ');
-    setGradient({
-      start: gradients[0],
-      end: gradients[1],
-    });
+    setGradient(thumbnail.gradient);
   }, [thumbnail]);
 
   return (
