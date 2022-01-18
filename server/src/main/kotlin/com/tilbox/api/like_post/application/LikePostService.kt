@@ -21,7 +21,6 @@ class LikePostService(
             )
         ) { "이미 좋아요를 클릭한 게시물입니다. postId=$postId, userId=$userId" }
 
-        val savedLikePost = likePostRepository.save(LikePost(postId, userId))
-        savedLikePost.like()
+        likePostRepository.save(LikePost(postId, userId).like())
     }
 }

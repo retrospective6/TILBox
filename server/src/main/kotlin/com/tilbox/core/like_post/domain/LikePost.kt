@@ -17,11 +17,13 @@ class LikePost(
 
     id: Long = 0L
 ) : BaseRootEntity<LikePost>(id) {
-    fun like() {
+    fun like(): LikePost {
         this.registerEvent(LikePostEvent(postId, userId))
+        return this
     }
 
-    fun unlike() {
+    fun unlike(): LikePost {
         this.registerEvent(UnlikePostEvent(postId, userId))
+        return this
     }
 }

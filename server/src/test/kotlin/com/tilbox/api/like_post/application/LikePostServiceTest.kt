@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import org.springframework.transaction.annotation.Transactional
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 @Transactional
 @ActiveProfiles("test")
@@ -35,6 +37,8 @@ class LikePostServiceTest(
     @Test
     fun `게시물 좋아요를 생성한다`() {
         `좋아요를 생성한다`(게시물.id, 사용자_ID)
+
+        CountDownLatch(1).await(2000, TimeUnit.MILLISECONDS)
 
         val actual = likePostRepository.findByPostIdAndUserId(게시물.id, 사용자_ID)
         actual shouldBePresent { it.id shouldNotBe null }
