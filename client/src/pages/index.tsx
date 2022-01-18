@@ -1,8 +1,7 @@
 import React from 'react';
-import type { NextPage } from 'next';
 
-const Home: NextPage = () => {
-  return <div>TILBox</div>;
-};
+import Layout from '@/components/common/Layout';
 
-export default Home;
+export default function MainPage(): JSX.Element {
+  return <Layout>Main Page</Layout>;
+}

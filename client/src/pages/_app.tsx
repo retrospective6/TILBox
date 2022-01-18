@@ -1,8 +1,22 @@
 import React from 'react';
-import '@/styles/reset.css';
+import '@/styles/global.css';
 import type { AppProps } from 'next/app';
+import styled from '@emotion/styled';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+export default function TILApp({
+  Component,
+  pageProps,
+}: AppProps): JSX.Element {
+  return (
+    <Container>
+      <Component {...pageProps} />
+    </Container>
+  );
 }
-export default MyApp;
+
+const Container = styled.div`
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100%;
+`;

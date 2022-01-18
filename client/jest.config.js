@@ -1,17 +1,18 @@
 module.exports = {
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testMatch: ['<rootDir>/__tests__/**/*.test.(js|jsx|ts|tsx)'],
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
-  moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'json'],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   testEnvironment: 'jsdom',
-  transform: {
-    '^.+\\.(ts|tsx)?$': 'ts-jest',
-  },
   moduleNameMapper: {
+    '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
+    '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': `<rootDir>/__mocks__/fileMock.js`,
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@mocks/(.*)$': '<rootDir>/__mocks__/$1',
     '^@tests/(.*)$': '<rootDir>/__tests__/$1',
-    '\\.(css|scss|sass|less)$': '<rootDir>/__mocks__/styleMock.ts',
+  },
+  transform: {
+    '^.+\\.(ts|tsx)?$': 'ts-jest',
   },
   globals: {
     'ts-jest': {
