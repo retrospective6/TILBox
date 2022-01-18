@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { http } from '@/api/http';
 
 interface SignupRequest {
   myTilAddress: string;
@@ -8,11 +8,6 @@ interface SignupRequest {
   passwordCheck: string;
   emailCheck: boolean;
 }
-
-const http = axios.create({
-  baseURL: 'http://localhost:8080/v1/',
-  timeout: 1000,
-});
 
 export const signup = (param: SignupRequest) => {
   return http.post('/signup', param);

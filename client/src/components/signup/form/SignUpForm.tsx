@@ -22,6 +22,7 @@ export default function SignUpForm(): JSX.Element {
     passwordCheck: '',
     emailCheck: false,
   });
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm((prevValues) => ({
       ...prevValues,
@@ -31,6 +32,7 @@ export default function SignUpForm(): JSX.Element {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+
     await signup(form);
   };
 
@@ -46,6 +48,7 @@ export default function SignUpForm(): JSX.Element {
         value={form.myTilAddress}
         onChange={handleChange}
         name="myTilAddress"
+        required
       />
       <Input
         data-testid="nickname-input"
@@ -57,6 +60,7 @@ export default function SignUpForm(): JSX.Element {
         value={form.nickname}
         onChange={handleChange}
         name="nickname"
+        required
       />
       <Input
         data-testid="email-input"
@@ -69,6 +73,7 @@ export default function SignUpForm(): JSX.Element {
         value={form.email}
         onChange={handleChange}
         name="email"
+        required
       />
       <Input
         data-testid="password-input"
@@ -80,6 +85,7 @@ export default function SignUpForm(): JSX.Element {
         value={form.password}
         onChange={handleChange}
         name="password"
+        required
       />
       <Input
         data-testid="password-check-input"
@@ -92,6 +98,7 @@ export default function SignUpForm(): JSX.Element {
         value={form.passwordCheck}
         onChange={handleChange}
         name="passwordCheck"
+        required
       />
       <Styled.CheckEmailReception>
         <label>
@@ -108,7 +115,7 @@ export default function SignUpForm(): JSX.Element {
         </label>
       </Styled.CheckEmailReception>
 
-      <Button variant="primary" bold>
+      <Button variant="primary" type="submit" bold>
         회원가입 완료
       </Button>
     </Styled.Form>
