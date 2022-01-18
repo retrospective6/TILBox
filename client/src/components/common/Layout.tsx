@@ -2,7 +2,12 @@ import React, { ReactNode, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Header from '@/components/common/Header/Header';
-import LoginModal from '@/components/common/Modal/LoginModal';
+import LoginModal, {
+  LoginFormProps,
+} from '@/components/common/Modal/LoginModal';
+
+import { login } from '@/apis/user';
+import cookie from '@/utils/cookie';
 
 export interface LayoutProps {
   children: ReactNode;
@@ -25,8 +30,16 @@ export default function Layout(props: LayoutProps): JSX.Element {
     setLoginModal(false);
   };
 
-  const handleLogin = () => {
-    // TODO: 로그인 시 로직
+  const handleLogin = async (values: LoginFormProps) => {
+    try {
+      const { data } = await login(values);
+      if (data.token) {
+        cookie.setAuth(data.token);
+        window.location.href = '/';
+      }
+    } catch (error) {
+      return;
+    }
   };
 
   const handleSearch = () => {
