@@ -53,6 +53,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
     "jest": "^27.2.4",
+    "msw": "^0.36.5",
     "prettier": "^2.4.1",
     "process": "^0.11.10",
     "storybook-addon-next-router": "^3.1.0",
@@ -67,5 +68,8 @@
     "webpack-dev-middleware": "^4.1.0",
     "webpack-virtual-modules": "^0.4.2"
   },
-  "packageManager": "yarn@3.1.0"
+  "packageManager": "yarn@3.1.0",
+  "msw": {
+    "workerDirectory": "public"
+  }
 }
