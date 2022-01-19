@@ -1,5 +1,6 @@
 package com.tilbox.api.like_post.application
 
+import com.tilbox.base.test.DatabaseCleanUp
 import com.tilbox.core.like_post.domain.LikePostRepository
 import com.tilbox.core.post.domain.entity.Post
 import com.tilbox.core.post.domain.fixture.ofDefaultPost
@@ -8,8 +9,10 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.optional.shouldBePresent
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldStartWith
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
@@ -26,12 +29,20 @@ class LikePostServiceTest(
     private val postRepository: PostRepository,
     private val likePostRepository: LikePostRepository
 ) {
+    @field:Autowired
+    private lateinit var databaseCleanUp: DatabaseCleanUp
+
     private lateinit var 게시물: Post
     private val 사용자_ID = 1L
 
     @BeforeEach
     fun setUp() {
         게시물 = `게시물을 저장한다`()
+    }
+
+    @AfterEach
+    fun tearDown() {
+        databaseCleanUp.truncate()
     }
 
     @Test
