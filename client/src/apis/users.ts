@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { tilAxios } from '@/apis/utils';
 
 export interface LoginRequest {
@@ -6,12 +5,6 @@ export interface LoginRequest {
   password: string;
 }
 
-export interface LoginResponse {
-  token: string | undefined;
-}
-
-export function login(
-  param: LoginRequest,
-): Promise<AxiosResponse<LoginResponse>> {
-  return tilAxios.post('/login', param);
+export function login(param: LoginRequest): Promise<string | undefined> {
+  return tilAxios.post('/login', param).then((res) => res.data);
 }
