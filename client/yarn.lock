@@ -3084,6 +3084,56 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addons@npm:^6.0.0":
+  version: 6.4.13
+  resolution: "@storybook/addons@npm:6.4.13"
+  dependencies:
+    "@storybook/api": 6.4.13
+    "@storybook/channels": 6.4.13
+    "@storybook/client-logger": 6.4.13
+    "@storybook/core-events": 6.4.13
+    "@storybook/csf": 0.0.2--canary.87bc651.0
+    "@storybook/router": 6.4.13
+    "@storybook/theming": 6.4.13
+    "@types/webpack-env": ^1.16.0
+    core-js: ^3.8.2
+    global: ^4.4.0
+    regenerator-runtime: ^0.13.7
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  checksum: 0df8b5b9c88e67edf1ec2d29a462d6acced43157a380bc90f399ab3df776a9310765340aa8bac755eeb2f592922b175f101a3b4540fdd9edeb67c7ba50eee4b2
+  languageName: node
+  linkType: hard
+
+"@storybook/api@npm:6.4.13":
+  version: 6.4.13
+  resolution: "@storybook/api@npm:6.4.13"
+  dependencies:
+    "@storybook/channels": 6.4.13
+    "@storybook/client-logger": 6.4.13
+    "@storybook/core-events": 6.4.13
+    "@storybook/csf": 0.0.2--canary.87bc651.0
+    "@storybook/router": 6.4.13
+    "@storybook/semver": ^7.3.2
+    "@storybook/theming": 6.4.13
+    core-js: ^3.8.2
+    fast-deep-equal: ^3.1.3
+    global: ^4.4.0
+    lodash: ^4.17.21
+    memoizerific: ^1.11.3
+    regenerator-runtime: ^0.13.7
+    store2: ^2.12.0
+    telejson: ^5.3.2
+    ts-dedent: ^2.0.0
+    util-deprecate: ^1.0.2
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  checksum: 8ba66efe619b4301a1b452f4f7cd58aaf648d99b7777838294b6ea623ce91043ebc2e1c63ed1ee78dfcca04edc1dec460402dda889773c157bcd2a79e5b0b1cc
+  languageName: node
+  linkType: hard
+
 "@storybook/api@npm:6.4.9":
   version: 6.4.9
   resolution: "@storybook/api@npm:6.4.9"
@@ -3295,6 +3345,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/channels@npm:6.4.13":
+  version: 6.4.13
+  resolution: "@storybook/channels@npm:6.4.13"
+  dependencies:
+    core-js: ^3.8.2
+    ts-dedent: ^2.0.0
+    util-deprecate: ^1.0.2
+  checksum: 712bf9d72db1760ebdcfc6f6c8a91b12b529fdee2bd8ef6c60a8177602b3a5c3022563f7a26e3c5541bac14dabc627930d7704ecef57ed3b71f0c82c83c34f2d
+  languageName: node
+  linkType: hard
+
 "@storybook/channels@npm:6.4.9":
   version: 6.4.9
   resolution: "@storybook/channels@npm:6.4.9"
@@ -3334,6 +3395,16 @@ __metadata:
     react: ^16.8.0 || ^17.0.0
     react-dom: ^16.8.0 || ^17.0.0
   checksum: df5463d900803df8f046ca9da87161ab6925a46c3f9392abc38171911e721d54fcf37ba51c3bd387a4a2f40e73366264b35cde8755b59deb2bf522927609eb0a
+  languageName: node
+  linkType: hard
+
+"@storybook/client-logger@npm:6.4.13":
+  version: 6.4.13
+  resolution: "@storybook/client-logger@npm:6.4.13"
+  dependencies:
+    core-js: ^3.8.2
+    global: ^4.4.0
+  checksum: 2e0303ad45d705977300e3f207c2eeb0b1ecc3a47f7e9eef1f158c68d4d9f887e752120d78c285db9813907b9550952c41ad8d0a73380a0d0819d1222c79e4e8
   languageName: node
   linkType: hard
 
@@ -3477,6 +3548,15 @@ __metadata:
     typescript:
       optional: true
   checksum: 381665b0caffe5a945433005ce5f98c84476f0c2a5859f890c6549ca9cdd71cbfe0bdc3500c31a4570b1628dfd803979eba89b4711f306a74fe9a952d59a16b3
+  languageName: node
+  linkType: hard
+
+"@storybook/core-events@npm:6.4.13":
+  version: 6.4.13
+  resolution: "@storybook/core-events@npm:6.4.13"
+  dependencies:
+    core-js: ^3.8.2
+  checksum: 157d88545f8dd6ec741f6a771f56ea12df749184123d39cbeaf1e879ae1da4bf87e14fd6c8b75577636a8f8fb49b6fa9461b375616e1dc17fba402453336bb2b
   languageName: node
   linkType: hard
 
@@ -3814,6 +3894,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/router@npm:6.4.13":
+  version: 6.4.13
+  resolution: "@storybook/router@npm:6.4.13"
+  dependencies:
+    "@storybook/client-logger": 6.4.13
+    core-js: ^3.8.2
+    fast-deep-equal: ^3.1.3
+    global: ^4.4.0
+    history: 5.0.0
+    lodash: ^4.17.21
+    memoizerific: ^1.11.3
+    qs: ^6.10.0
+    react-router: ^6.0.0
+    react-router-dom: ^6.0.0
+    ts-dedent: ^2.0.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  checksum: 43247662c63c2f550d7797f2ebd6205d2e6ae42beb1a38584960bd64fad9cdeea2ae2792388989ffb306611b9469126d19b591e7bf47ce82fee694fdab7fc305
+  languageName: node
+  linkType: hard
+
 "@storybook/router@npm:6.4.9":
   version: 6.4.9
   resolution: "@storybook/router@npm:6.4.9"
@@ -3892,6 +3994,29 @@ __metadata:
     react: ^16.8.0 || ^17.0.0
     react-dom: ^16.8.0 || ^17.0.0
   checksum: 9df9efaf12fa93d67c86867687ac37251d663c38e5b93dd429c059bbd9f4a8d50b4cb915a2d783e742289f90fc3545235e1469438c4c61b51ee7e3264854f887
+  languageName: node
+  linkType: hard
+
+"@storybook/theming@npm:6.4.13":
+  version: 6.4.13
+  resolution: "@storybook/theming@npm:6.4.13"
+  dependencies:
+    "@emotion/core": ^10.1.1
+    "@emotion/is-prop-valid": ^0.8.6
+    "@emotion/styled": ^10.0.27
+    "@storybook/client-logger": 6.4.13
+    core-js: ^3.8.2
+    deep-object-diff: ^1.1.0
+    emotion-theming: ^10.0.27
+    global: ^4.4.0
+    memoizerific: ^1.11.3
+    polished: ^4.0.5
+    resolve-from: ^5.0.0
+    ts-dedent: ^2.0.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  checksum: a0632a008dd428d0ca3ba032362c126415ed3ae01fe7e75b03a281117e7fb3c4cc61a45cf039fdc308ad158ce2aa398a299ad08bb63878dedae89861283d03aa
   languageName: node
   linkType: hard
 
@@ -12734,6 +12859,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"msw-storybook-addon@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "msw-storybook-addon@npm:1.6.0"
+  dependencies:
+    "@storybook/addons": ^6.0.0
+    is-node-process: ^1.0.1
+  peerDependencies:
+    msw: ^0.35.0 || ^0.36.0
+  checksum: c2d81d4f66b7097f3d17624d9616da306f32f9eb7b74bc6cefb58798bf4a3458fe56c23de153911951698c2a3d1bb9163d316ce772595336cf8d161da0fe3689
+  languageName: node
+  linkType: hard
+
 "msw@npm:^0.36.5":
   version: 0.36.5
   resolution: "msw@npm:0.36.5"
@@ -16825,6 +16962,7 @@ __metadata:
     eslint-plugin-react: ^7.26.1
     jest: ^27.2.4
     msw: ^0.36.5
+    msw-storybook-addon: ^1.6.0
     next: ^11.1.2
     prettier: ^2.4.1
     process: ^0.11.10

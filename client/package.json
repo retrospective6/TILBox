@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "test": "jest --watchAll",
-    "story": "start-storybook -p 6006",
+    "story": "start-storybook -p 6006 -s public",
     "lint": "next lint",
     "start": "next start",
     "build": "next build",
@@ -54,6 +54,7 @@
     "eslint-plugin-react": "^7.26.1",
     "jest": "^27.2.4",
     "msw": "^0.36.5",
+    "msw-storybook-addon": "^1.6.0",
     "prettier": "^2.4.1",
     "process": "^0.11.10",
     "storybook-addon-next-router": "^3.1.0",
