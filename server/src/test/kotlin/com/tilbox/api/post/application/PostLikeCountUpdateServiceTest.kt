@@ -54,8 +54,8 @@ class PostLikeCountUpdateServiceTest(
     @Test
     fun `좋아요 취소 이벤트가 발생하면 좋아요 수가 1 감소한다`() {
         likePostService.like(게시물.id, 1L)
-        unlikePostService.unlike(게시물.id, 1L)
 
+        unlikePostService.unlike(게시물.id, 1L)
         countDownLatch.await(2_000L, TimeUnit.MILLISECONDS)
 
         val actual = postRepository.findById(게시물.id).get()
