@@ -2,32 +2,44 @@ package com.tilbox.api.post.application
 
 import com.tilbox.api.like_post.application.LikePostService
 import com.tilbox.api.like_post.application.UnlikePostService
+import com.tilbox.base.test.DatabaseCleanUp
 import com.tilbox.core.post.domain.entity.Post
 import com.tilbox.core.post.domain.fixture.ofDefaultPost
 import com.tilbox.core.post.domain.repository.PostRepository
 import io.kotest.matchers.longs.shouldBeExactly
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.annotation.DirtiesContext
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
+@ActiveProfiles("test")
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 class PostLikeCountUpdateServiceTest(
     private val likePostService: LikePostService,
     private val unlikePostService: UnlikePostService,
     private val postRepository: PostRepository
 ) {
+    @field:Autowired
+    private lateinit var databaseCleanUp: DatabaseCleanUp
+
     private val countDownLatch = CountDownLatch(1)
+
     private lateinit var 게시물: Post
 
     @BeforeEach
     fun setUp() {
         게시물 = postRepository.save(ofDefaultPost())
+    }
+
+    @AfterEach
+    fun tearDown() {
+        databaseCleanUp.truncate()
     }
 
     @Test

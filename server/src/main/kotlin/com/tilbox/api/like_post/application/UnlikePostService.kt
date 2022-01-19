@@ -5,8 +5,8 @@ import com.tilbox.core.post.domain.repository.PostRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-@Service
 @Transactional
+@Service
 class UnlikePostService(
     private val postRepository: PostRepository,
     private val likePostRepository: LikePostRepository
