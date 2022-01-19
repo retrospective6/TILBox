@@ -6,7 +6,7 @@ import LoginModal, {
   LoginFormProps,
 } from '@/components/common/Modal/LoginModal';
 
-import { login } from '@/apis/user';
+import apis from '@/apis';
 import cookie from '@/utils/cookie';
 
 export interface LayoutProps {
@@ -32,7 +32,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
 
   const handleLogin = async (values: LoginFormProps) => {
     try {
-      const { data } = await login(values);
+      const { data } = await apis.users.login(values);
       if (data.token) {
         cookie.setAuth(data.token);
         window.location.href = '/';

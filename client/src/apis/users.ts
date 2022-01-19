@@ -1,5 +1,5 @@
-import tilAxios from '@/apis';
 import { AxiosResponse } from 'axios';
+import { tilAxios } from '@/apis/utils';
 
 export interface LoginRequest {
   email: string;

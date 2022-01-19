@@ -1,7 +1,7 @@
-import axios, { AxiosInstance } from 'axios';
+import * as users from './users';
 
-const tilAxios: AxiosInstance = axios.create({
-  baseURL: process.env.API_HOST,
-});
+const apis = {
+  users,
+};
 
-export default tilAxios;
+export default apis;
