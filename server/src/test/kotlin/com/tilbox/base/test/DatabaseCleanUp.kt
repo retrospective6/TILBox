@@ -28,7 +28,8 @@ class DatabaseCleanUp constructor(private val entityManager: EntityManager) :
                 convertCamelToSnakeCase(it.name)
             }
         embeddedTableNames =
-            (entityManager.metamodel as MetamodelImpl).collectionPersisters().values.map { (it as BasicCollectionPersister).tableName }
+            (entityManager.metamodel as MetamodelImpl)
+                .collectionPersisters().values.map { (it as BasicCollectionPersister).tableName }
     }
 
     @Transactional
