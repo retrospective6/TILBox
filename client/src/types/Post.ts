@@ -8,10 +8,19 @@ export default interface Post {
   thumbnail: Thumbnail;
   summary: string;
   likes: number;
-  comments: number;
+  comments: Comment[];
   createdAt: Date;
   tags?: string[];
   visibleLevel: VisibleLevel;
+}
+
+export interface Comment {
+  id: number;
+  postId?: number;
+  user: User;
+  content: string;
+  comments?: Comment[];
+  createdAt: Date;
 }
 
 export type VisibleLevel = 'public' | 'private';
