@@ -1,5 +1,6 @@
 package com.tilbox.api.subscribe.ui
 
+import com.tilbox.api.security.LoginUserId
 import com.tilbox.api.subscribe.application.SubscribeService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
@@ -12,18 +13,16 @@ import org.springframework.web.bind.annotation.RestController
 class SubscribeController (private val subscribeService: SubscribeService) {
 
     @PostMapping("/subscribe/{followerId}/")
-    fun subscribe(@PathVariable followerId: Long) : ResponseEntity<Void> {
-        // User 정보 필요
-        subscribeService.subscribe(1L, followerId)
+    fun subscribe(@PathVariable followerId: Long, @LoginUserId userId: Long) : ResponseEntity<Void> {
+        subscribeService.subscribe(userId, followerId)
         return ResponseEntity
             .ok()
             .build()
     }
 
     @PostMapping("/unsubscribe/{followerId}/")
-    fun unsubscribe(@PathVariable followerId: Long) : ResponseEntity<Void> {
-        // User 정보 필요
-        subscribeService.unsubscribe(1L, followerId)
+    fun unsubscribe(@PathVariable followerId: Long, @LoginUserId userId: Long) : ResponseEntity<Void> {
+        subscribeService.unsubscribe(userId, followerId)
         return ResponseEntity
             .ok()
             .build()
