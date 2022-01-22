@@ -20,8 +20,8 @@ export default function ToastEditor(props: ToastEditorProps): JSX.Element {
       (async () => {
         const imageFile = new FormData();
         imageFile.append('imageFile', blob);
-        const imageUrl = await apis.images.upload(imageFile);
-        callback(imageUrl, 'alt text');
+        const { url } = await apis.images.upload(imageFile);
+        callback(url, 'alt text');
       })();
 
       return false;
