@@ -1,12 +1,14 @@
 import React from 'react';
 import ProfileImgSelector from '@/components/signup/ProfileImgSelector';
 import { ComponentStory } from '@storybook/react';
+import { mockApis } from '@mocks/apis';
 
 export default {
   component: ProfileImgSelector,
   title: 'signup/ProfileImgSelector',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
+    msw: mockApis,
   },
 };
 

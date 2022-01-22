@@ -3,6 +3,9 @@ import { MockImage } from '@mocks/MockComponent';
 import React from 'react';
 import ImgSelector, { ImgSelectorProps } from '@/components/common/ImgSelector';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
+import waitForExpect from 'wait-for-expect';
+
+import { IMG_SRC } from '@mocks/MockData';
 
 jest.mock('next/image', () => MockImage);
 
@@ -19,26 +22,16 @@ describe('on change file input', () => {
 
   const onSubmit = jest.fn();
 
-  const mockedFileConverter = jest.fn((value) => value.toString());
-  URL.createObjectURL = mockedFileConverter;
-
-  test('run file converter', () => {
+  test('run onSubmit method with converted file', async () => {
     const { getByTestId } = renderImgSelector({ onSubmit });
     const input = getByTestId('image-input');
 
     fireEvent.change(input, {
       target: { files: [file] },
     });
-    expect(mockedFileConverter).toBeCalledWith(file);
-  });
 
-  test('run onSubmit method with converted file', () => {
-    const { getByTestId } = renderImgSelector({ onSubmit });
-    const input = getByTestId('image-input');
-
-    fireEvent.change(input, {
-      target: { files: [file] },
+    await waitForExpect(() => {
+      expect(onSubmit).toBeCalledWith(IMG_SRC);
     });
-    expect(onSubmit).toBeCalledWith(file.toString());
   });
 });

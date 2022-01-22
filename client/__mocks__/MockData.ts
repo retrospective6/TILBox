@@ -13,6 +13,9 @@ export const ADMIN: User = {
   role: 'ROLE_ADMIN',
 };
 
+export const IMG_SRC =
+  'https://avatars.githubusercontent.com/u/20358042?s=48&v=4';
+
 export const POST_CONTENT = [
   '![image](https://uicdn.toast.com/toastui/img/tui-editor-bi.png)',
   '',
