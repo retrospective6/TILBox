@@ -32,10 +32,10 @@ export default function Layout(props: LayoutProps): JSX.Element {
 
   const handleLogin = async (values: LoginFormProps) => {
     try {
-      const token = await apis.users.login(values);
+      const { token } = await apis.users.login(values);
       if (token) {
         cookie.setAuth(token);
-        window.location.href = '/';
+        await router.push('/');
       }
     } catch (error) {
       return;

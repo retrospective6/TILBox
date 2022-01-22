@@ -5,6 +5,10 @@ export interface LoginRequest {
   password: string;
 }
 
-export function login(param: LoginRequest): Promise<string | undefined> {
+export interface LoginResponse {
+  token: string;
+}
+
+export function login(param: LoginRequest): Promise<LoginResponse> {
   return tilAxios.post('/login', param).then((res) => res.data);
 }
