@@ -7,10 +7,6 @@ import { mockApis } from '@mocks/apis';
 export default {
   component: WritePage,
   title: 'page/WritePage',
-  parameters: {
-    actions: { argTypesRegex: '^on.*' },
-    msw: mockApis,
-  },
 };
 
 const Template: ComponentStory<typeof WritePage> = () => (
