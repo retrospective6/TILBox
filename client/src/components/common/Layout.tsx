@@ -35,7 +35,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
       const { token } = await apis.users.login(values);
       if (token) {
         cookie.setAuth(token);
-        await router.push('/');
+        await router.reload();
       }
     } catch (error) {
       return;
