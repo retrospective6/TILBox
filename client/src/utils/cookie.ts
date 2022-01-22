@@ -26,7 +26,7 @@ const cookie = {
     cookie.set('accessToken', value);
   },
 
-  getAuth() {
+  getAuth(): string | undefined {
     return cookie.get('accessToken');
   },
 };
