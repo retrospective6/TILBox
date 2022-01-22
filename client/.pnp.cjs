@@ -38,6 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.16.0"],
             ["@emotion/react", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:11.5.0"],
             ["@emotion/styled", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:11.3.0"],
+            ["@next/env", "npm:12.0.8"],
             ["@storybook/addon-actions", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:6.4.9"],
             ["@storybook/addon-essentials", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:6.4.9"],
             ["@storybook/addon-links", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:6.4.9"],
@@ -4276,6 +4277,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@next-env-npm-11.1.2-181388b660-df7a95e840.zip/node_modules/@next/env/",
           "packageDependencies": [
             ["@next/env", "npm:11.1.2"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:12.0.8", {
+          "packageLocation": "./.yarn/cache/@next-env-npm-12.0.8-85908edb1f-2ef94e2a24.zip/node_modules/@next/env/",
+          "packageDependencies": [
+            ["@next/env", "npm:12.0.8"]
           ],
           "linkType": "HARD",
         }]
@@ -22360,6 +22368,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.16.0"],
             ["@emotion/react", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:11.5.0"],
             ["@emotion/styled", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:11.3.0"],
+            ["@next/env", "npm:12.0.8"],
             ["@storybook/addon-actions", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:6.4.9"],
             ["@storybook/addon-essentials", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:6.4.9"],
             ["@storybook/addon-links", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:6.4.9"],
