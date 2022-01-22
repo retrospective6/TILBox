@@ -6,4 +6,4 @@ export const mockApis = Object.values({
   users,
   images,
   posts,
-}).flatMap((apis: object) => Object.values(apis));
+}).flatMap((apis: Record<string, unknown>) => Object.values(apis));
