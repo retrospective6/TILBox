@@ -2,17 +2,15 @@ package com.tilbox.common.exception
 
 import mu.KotlinLogging
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RestControllerAdvice
 import java.io.IOException
 import javax.validation.ConstraintViolationException
 
 private val log = KotlinLogging.logger {}
 
-@ControllerAdvice
-@RestController
+@RestControllerAdvice
 class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = [ConstraintViolationException::class, IllegalArgumentException::class])
