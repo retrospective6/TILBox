@@ -1,4 +1,5 @@
 import { http } from '@/api/http';
+import { AxiosResponse } from 'axios';
 
 interface SignupRequest {
   myTilAddress: string;
@@ -9,6 +10,22 @@ interface SignupRequest {
   emailCheck: boolean;
 }
 
-export const signup = (param: SignupRequest) => {
+interface SignupResponse {
+  myTilAddress: string;
+  email: string;
+  profile: {
+    nickname: string;
+    image: string;
+  };
+  registrationType: string;
+  userRole: string;
+  createdAt: Date;
+  updateAt: Date;
+  deleteAt: Date | null;
+}
+
+export const signup = (
+  param: SignupRequest,
+): Promise<AxiosResponse<SignupResponse>> => {
   return http.post('/signup', param);
 };
