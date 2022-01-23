@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '@/styles/global.css';
 import type { AppProps } from 'next/app';
 import styled from '@emotion/styled';
@@ -10,10 +10,7 @@ export default function TILApp({
   return (
     <Container>
       <Component {...pageProps} />
-      {loginModal && (
-        <LoginModal onClose={handleCloseLoginModal} onSubmit={handleLogin} />
-      )}
-    </>
+    </Container>
   );
 }
 
