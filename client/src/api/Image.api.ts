@@ -1,5 +1,10 @@
 import { http } from '@/api/http';
+import { AxiosResponse } from 'axios';
 
-export const upload = (file: File) => {
+interface ImageResponse {
+  url: string;
+}
+
+export const upload = (file: File): Promise<AxiosResponse<ImageResponse>> => {
   return http.post('images/upload', file);
 };
