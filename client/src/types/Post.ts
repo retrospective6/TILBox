@@ -26,11 +26,13 @@ export interface Comment {
 export type VisibleLevel = 'public' | 'private';
 
 export type Thumbnail = {
-  img?: string;
-  gradient?: ThumbnailGradient;
+  type: ThumbnailType;
+  value: string | ThumbnailGradation;
 };
 
-export type ThumbnailGradient = {
+export type ThumbnailType = 'image' | 'gradation';
+
+export type ThumbnailGradation = {
   start: string;
   end: string;
 };

@@ -8,8 +8,12 @@ import RadioGroup from '@/components/common/RadioGroup';
 import Button from '@/components/common/Button';
 import PlusIcon from '@/assets/icon/PlusIcon.svg';
 
-import { THUMBNAIL_GRADIENTS, VISIBLE_LEVELS } from '@/constants';
-import Post, { ThumbnailGradient, VisibleLevel } from '@/types/Post';
+import { THUMBNAIL_GRADATIONS, VISIBLE_LEVELS } from '@/constants';
+import Post, {
+  Thumbnail,
+  ThumbnailGradation,
+  VisibleLevel,
+} from '@/types/Post';
 import apis from '@/apis';
 
 export type WriteModalFormProps = Pick<
@@ -24,8 +28,10 @@ export interface WriteModalProps {
 
 export default function WriteModal(props: WriteModalProps): JSX.Element {
   const { onClose, onSubmit } = props;
-  const [gradient, setGradient] = useState<ThumbnailGradient>();
-  const [img, setImg] = useState<string>();
+  const [thumbnail, setThumbnail] = useState<Thumbnail>({
+    type: 'gradation',
+    value: { start: '#000000', end: '#000000' },
+  });
   const [summary, setSummary] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
   const [visibleLevel, setVisibleLevel] = useState<VisibleLevel>(
@@ -34,28 +40,32 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (img) {
+    if (thumbnail?.type === 'image') {
       const imageFile = new FormData();
-      imageFile.append('imageFile', img);
+      imageFile.append('imageFile', thumbnail.value as string);
       const { url } = await apis.images.upload(imageFile);
-      setImg(url);
+      setThumbnail({ type: 'image', value: url });
     }
     onSubmit({
-      thumbnail: { img, gradient },
+      thumbnail,
       summary,
       tags,
       visibleLevel,
     });
   };
 
-  const handleClickColorSelector = (selected: ThumbnailGradient) => () => {
-    setGradient(selected);
-    setImg(undefined);
+  const handleClickColorSelector = (selected: ThumbnailGradation) => () => {
+    setThumbnail({
+      type: 'gradation',
+      value: selected,
+    });
   };
 
   const handleSelectThumbnail = (selected: string) => {
-    setImg(selected);
-    setGradient(undefined);
+    setThumbnail({
+      type: 'image',
+      value: selected,
+    });
   };
 
   const handleChangeSummary = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -79,7 +89,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
             <Styled.Title>썸네일 미리보기</Styled.Title>
             <Styled.ColorList>
               <Styled.ColorListText>썸네일 컬러</Styled.ColorListText>
-              {THUMBNAIL_GRADIENTS.map((color, i) => (
+              {THUMBNAIL_GRADATIONS.map((color, i) => (
                 <Styled.ColorListItem
                   key={i}
                   {...color}
@@ -87,11 +97,17 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
                 />
               ))}
             </Styled.ColorList>
-            <Styled.ThumbnailSelector gradient={gradient}>
+            <Styled.ThumbnailSelector
+              gradation={
+                thumbnail.type === 'gradation'
+                  ? (thumbnail.value as ThumbnailGradation)
+                  : undefined
+              }
+            >
               <ImgSelector onSubmit={handleSelectThumbnail}>
-                {img && (
+                {thumbnail.type === 'image' && (
                   <Styled.ThumbnailImage
-                    src={img}
+                    src={thumbnail.value as string}
                     alt="thumbnail-img"
                     layout="fill"
                   />

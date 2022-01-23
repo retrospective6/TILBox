@@ -12,7 +12,8 @@ jest.mock('next/image', () => MockImage);
 const DEFAULT_ARGS: PostListThumbnailProps = {
   title: '제목',
   thumbnail: {
-    img: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+    type: 'image',
+    value: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
   },
 };
 
@@ -23,21 +24,23 @@ const renderThumbnail = (
 };
 
 describe('with src thumbnail', () => {
-  const thumbnail = {
-    img: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+  const thumbnail: Thumbnail = {
+    type: 'image',
+    value: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
   };
 
   test('render img', () => {
     const { getByRole } = renderThumbnail({ thumbnail });
     const thumbnailImg = getByRole('img');
 
-    expect(thumbnailImg).toHaveAttribute('src', thumbnail.img);
+    expect(thumbnailImg).toHaveAttribute('src', thumbnail.value);
   });
 });
 
 describe('without thumbnail img', () => {
   const thumbnail: Thumbnail = {
-    gradient: { start: '#000000', end: '#000000' },
+    type: 'gradation',
+    value: { start: '#000000', end: '#000000' },
   };
 
   test('do not render img tag', () => {

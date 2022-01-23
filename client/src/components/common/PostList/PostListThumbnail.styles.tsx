@@ -1,14 +1,11 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import Image from 'next/image';
 import FONT from '@/styles/font';
 
-export interface ThumbnailProps {
-  start?: string;
-  end?: string;
-}
+import Image from 'next/image';
+import { ThumbnailGradation } from '@/types/Post';
 
-export const Thumbnail = styled.div<ThumbnailProps>`
+export const Thumbnail = styled.div<Partial<ThumbnailGradation>>`
   position: relative;
   width: 100%;
   height: 100%;

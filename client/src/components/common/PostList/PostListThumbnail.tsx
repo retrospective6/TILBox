@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as Styled from './PostListThumbnail.styles';
-import { ThumbnailProps } from './PostListThumbnail.styles';
-import Post from '@/types/Post';
+import Post, { ThumbnailGradation } from '@/types/Post';
 
 export type PostListThumbnailProps = Pick<Post, 'title' | 'thumbnail'>;
 
@@ -10,15 +9,15 @@ export default function PostListThumbnail(
 ): JSX.Element {
   const { title, thumbnail } = props;
   const [imgSrc, setImgSrc] = useState<string>();
-  const [gradient, setGradient] = useState<ThumbnailProps>();
+  const [gradient, setGradient] = useState<ThumbnailGradation>();
 
   useEffect(() => {
-    if (thumbnail.img) {
-      setImgSrc(thumbnail.img);
+    if (thumbnail.type === 'image') {
+      setImgSrc(thumbnail.value as string);
       return;
     }
 
-    setGradient(thumbnail.gradient);
+    setGradient(thumbnail.value as ThumbnailGradation);
   }, [thumbnail]);
 
   return (

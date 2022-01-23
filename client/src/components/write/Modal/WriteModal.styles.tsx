@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import FONT from '@/styles/font';
 
 import Image from 'next/image';
-import { ThumbnailGradient } from '@/types/Post';
+import { ThumbnailGradation } from '@/types/Post';
 
 export const Form = styled.form`
   display: flex;
@@ -45,7 +45,7 @@ export const ColorListText = styled.span`
   ${FONT.body1};
 `;
 
-export const ColorListItem = styled.div<ThumbnailGradient>`
+export const ColorListItem = styled.div<ThumbnailGradation>`
   width: 20px;
   height: 20px;
   margin-left: 8px;
@@ -58,20 +58,20 @@ export const ColorListItem = styled.div<ThumbnailGradient>`
 `;
 
 interface ThumbnailSelectorProps {
-  gradient?: ThumbnailGradient;
+  gradation?: ThumbnailGradation;
 }
 
 export const ThumbnailSelector = styled.div<ThumbnailSelectorProps>`
   position: relative;
   width: 100%;
   height: 170px;
-  background: ${({ gradient }) =>
-    gradient
+  background: ${({ gradation }) =>
+    gradation
       ? css`
           linear-gradient(
             111.34deg,
-            ${gradient.start} 3.55%,
-            ${gradient.end} 113.48%
+            ${gradation.start} 3.55%,
+            ${gradation.end} 113.48%
           );
         `
       : '#000000'};

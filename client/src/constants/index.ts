@@ -1,6 +1,6 @@
-import { ThumbnailGradient, VisibleLevel } from '@/types/Post';
+import { ThumbnailGradation, VisibleLevel } from '@/types/Post';
 
-export const THUMBNAIL_GRADIENTS: ThumbnailGradient[] = [
+export const THUMBNAIL_GRADATIONS: ThumbnailGradation[] = [
   { start: '#d55438', end: '#fea768' },
   { start: '#1730b6', end: '#3f97d7' },
   { start: '#3ead17', end: '#09abce' },

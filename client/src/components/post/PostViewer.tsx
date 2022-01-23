@@ -24,7 +24,7 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
   const { post, onSubmitComment, onReportComment } = props;
   const { title, thumbnail, user, createdAt, content, tags } = post;
   const [imgSrc, setImgSrc] = useState<string>();
-  const [gradient, setGradient] = useState<TitleProps>();
+  const [gradation, setgradation] = useState<TitleProps>();
 
   useEffect(() => {
     if (thumbnail.img) {
@@ -32,7 +32,7 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
       return;
     }
 
-    setGradient(thumbnail.gradient);
+    setgradation(thumbnail.gradation);
   }, [thumbnail]);
 
   const handleSubmitComment = (value: string, commentId?: number) => {
@@ -41,7 +41,7 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
 
   return (
     <>
-      <Styled.Title start={gradient?.start} end={gradient?.end}>
+      <Styled.Title start={gradation?.start} end={gradation?.end}>
         {imgSrc && (
           <Styled.ThumbnailImg src={imgSrc} alt={title} layout="fill" />
         )}
