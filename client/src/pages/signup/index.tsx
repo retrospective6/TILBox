@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import SignUpForm from '@/components/signup/form/SignUpForm';
 import ProfileImgSelector from '@/components/signup/ProfileImgSelector';
+import Layout from '@/components/common/Layout';
 
 export default function SignupPage(): JSX.Element {
   const onImgSubmit = () => {
@@ -10,14 +11,16 @@ export default function SignupPage(): JSX.Element {
   };
 
   return (
-    <Container>
-      <Title>회원가입</Title>
-      <ProfileWrapper>
-        <ProfileImgSelector onSubmit={onImgSubmit} />
-        <p>프로필 사진은 수정 가능합니다.</p>
-      </ProfileWrapper>
-      <SignUpForm />
-    </Container>
+    <Layout>
+      <Container>
+        <Title>회원가입</Title>
+        <ProfileWrapper>
+          <ProfileImgSelector onSubmit={onImgSubmit} />
+          <p>프로필 사진은 수정 가능합니다.</p>
+        </ProfileWrapper>
+        <SignUpForm />
+      </Container>
+    </Layout>
   );
 }
 
