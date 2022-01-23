@@ -20,6 +20,7 @@ export default function Button(props: ButtonProps): JSX.Element {
 
   return (
     <Styled.Container
+      type="button"
       variant={variant}
       size={size}
       bold={bold}

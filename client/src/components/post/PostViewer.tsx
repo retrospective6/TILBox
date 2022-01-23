@@ -5,34 +5,39 @@ import { TitleProps } from '@/components/post/PostViewer.style';
 import Post from '@/types/Post';
 
 import TagList from '@/components/common/Tag/TagList';
-
 import dynamic from 'next/dynamic';
+import CommentList from '@/components/post/CommentList/CommentList';
 const ToastViewer = dynamic(() => import('./ToastViewer'), {
   ssr: false,
 });
 
+import dayjs from 'dayjs';
+import { DATE_FORMAT } from '@/constants';
+
 export interface PostViewerProps {
   post: Post;
+  onSubmitComment: (value: string, postId: number, commentId?: number) => void;
+  onReportComment: (id: number) => void;
 }
 
 export default function PostViewer(props: PostViewerProps): JSX.Element {
-  const { post } = props;
+  const { post, onSubmitComment, onReportComment } = props;
   const { title, thumbnail, user, createdAt, content, tags } = post;
   const [imgSrc, setImgSrc] = useState<string>();
   const [gradient, setGradient] = useState<TitleProps>();
 
   useEffect(() => {
-    if (thumbnail.startsWith('http')) {
-      setImgSrc(thumbnail);
+    if (thumbnail.img) {
+      setImgSrc(thumbnail.img);
       return;
     }
 
-    const gradients = thumbnail.split(' ');
-    setGradient({
-      start: gradients[0],
-      end: gradients[1],
-    });
+    setGradient(thumbnail.gradient);
   }, [thumbnail]);
+
+  const handleSubmitComment = (value: string, commentId?: number) => {
+    onSubmitComment(value, post.id, commentId);
+  };
 
   return (
     <>
@@ -53,12 +58,19 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
             />
             <Styled.UserNickname>{user.nickname}</Styled.UserNickname>
           </Styled.UserInfo>
-          <Styled.CreatedAt>{createdAt}</Styled.CreatedAt>
+          <Styled.CreatedAt>
+            {dayjs(createdAt).format(DATE_FORMAT)}
+          </Styled.CreatedAt>
         </Styled.Info>
         <Styled.Content>
           <ToastViewer initialValue={content} />
         </Styled.Content>
         {tags && <TagList tags={tags} />}
+        <CommentList
+          comments={post.comments}
+          onSubmitComment={handleSubmitComment}
+          onReportComment={onReportComment}
+        />
       </Styled.Section>
     </>
   );

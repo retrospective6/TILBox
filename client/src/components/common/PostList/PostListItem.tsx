@@ -1,9 +1,12 @@
 import React, { useMemo } from 'react';
 import * as Styled from './PostListItem.styles';
-import Post from '@/types/Post';
+
 import PostListThumbnail from '@/components/common/PostList/PostListThumbnail';
-import { ADMIN_NICKNAME } from '@/utils/constants';
 import TagList from '@/components/common/Tag/TagList';
+
+import Post from '@/types/Post';
+import { DATE_FORMAT } from '@/constants';
+import dayjs from 'dayjs';
 
 export interface PostListItemProps {
   post: Post;
@@ -12,8 +15,8 @@ export interface PostListItemProps {
 export default function PostListItem(props: PostListItemProps): JSX.Element {
   const { post } = props;
   const isAdmin = useMemo<boolean>(
-    () => post.user.nickname === ADMIN_NICKNAME,
-    [post],
+    () => post.user.role === 'ROLE_ADMIN',
+    [post.user],
   );
 
   return (
@@ -29,14 +32,16 @@ export default function PostListItem(props: PostListItemProps): JSX.Element {
           height="18px"
         />
         <Styled.UserNickname>{post.user.nickname}</Styled.UserNickname>
-        <Styled.CreatedAt>{post.createdAt}</Styled.CreatedAt>
+        <Styled.CreatedAt>
+          {dayjs(post.createdAt).format(DATE_FORMAT)}
+        </Styled.CreatedAt>
       </Styled.UserInfo>
       <Styled.Contents>
-        <Styled.Description>{post.description}</Styled.Description>
+        <Styled.Description>{post.summary}</Styled.Description>
         {post.tags && <TagList tags={post.tags} />}
         <Styled.SocialInfo>
           좋아요 {post.likes}개<Styled.Dot>·</Styled.Dot>
-          덧글 {post.comments}개
+          덧글 {post.comments.length}개
         </Styled.SocialInfo>
       </Styled.Contents>
     </Styled.PostListItem>

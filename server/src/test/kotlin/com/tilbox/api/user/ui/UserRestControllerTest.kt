@@ -1,6 +1,8 @@
 package com.tilbox.api.user.ui
 
 import com.ninjasquad.springmockk.MockkBean
+import com.tilbox.api.authenticationcode.application.EmailAuthenticationService
+import com.tilbox.api.mail.application.MailService
 import com.tilbox.api.user.application.EmailUserCreateService
 import com.tilbox.api.user.application.UserCreateRequest
 import com.tilbox.api.user.application.UserCreateResponse
@@ -23,6 +25,12 @@ class UserRestControllerTest : RestControllerTest() {
     private lateinit var emailUserCreateService: EmailUserCreateService
 
     @MockkBean
+    private lateinit var emailAuthenticationService: EmailAuthenticationService
+
+    @MockkBean
+    private lateinit var mailService: MailService
+
+    @MockkBean
     private lateinit var userWithdrawalService: UserWithdrawalService
 
     @MockkBean
@@ -39,6 +47,8 @@ class UserRestControllerTest : RestControllerTest() {
         LocalDateTime.now()
     )
 
+    private val `인증 코드 응답` = ""
+
     private val `회원정보 수정 요청` =
         UserUpdateRequest("hello", "https://amazonaws.s3-northeast-2.com/image.jpg", "description")
 
@@ -54,6 +64,8 @@ class UserRestControllerTest : RestControllerTest() {
     @Test
     fun `회원가입을 요청하여 가입된 정보를 반환한다`() {
         every { emailUserCreateService.createUser(any()) } returns `회원가입 응답`
+        every { emailAuthenticationService.createAuthenticationCode(any()) } returns `인증 코드 응답`
+        every { mailService.sendAuthenticationCodeMail(any(), any()) } returns Unit
 
         회원가입(`회원가입 요청`)
             .andExpect {

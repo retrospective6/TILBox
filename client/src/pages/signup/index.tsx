@@ -1,9 +1,10 @@
 import React from 'react';
-import ImgSelector from '@/components/signup/ImgSelector';
-import SignUpForm from '@/components/signup/form/SignUpForm';
 import styled from '@emotion/styled';
 
-export default function SingUp(): JSX.Element {
+import SignUpForm from '@/components/signup/form/SignUpForm';
+import ProfileImgSelector from '@/components/signup/ProfileImgSelector';
+
+export default function SignupPage(): JSX.Element {
   const onImgSubmit = () => {
     return 0;
   };
@@ -12,7 +13,7 @@ export default function SingUp(): JSX.Element {
     <Container>
       <Title>회원가입</Title>
       <ProfileWrapper>
-        <ImgSelector onSubmit={onImgSubmit} />
+        <ProfileImgSelector onSubmit={onImgSubmit} />
         <p>프로필 사진은 수정 가능합니다.</p>
       </ProfileWrapper>
       <SignUpForm />

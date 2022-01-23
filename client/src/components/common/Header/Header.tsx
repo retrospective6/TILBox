@@ -7,7 +7,7 @@ import Button from '@/components/common/Button';
 import LogoIcon from '@/assets/icon/LogoIcon.svg';
 import LogoTitle from '@/assets/icon/LogoTitle.svg';
 
-import { NAV_ITEMS } from '@/utils/constants';
+import { NAV_ITEMS } from '@/constants/routers';
 import User from '@/types/User';
 
 export interface HeaderProps {

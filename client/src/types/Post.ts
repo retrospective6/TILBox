@@ -5,10 +5,32 @@ export default interface Post {
   user: User;
   title: string;
   content: string;
-  thumbnail: string;
-  description: string;
+  thumbnail: Thumbnail;
+  summary: string;
   likes: number;
-  comments: number;
-  createdAt: string;
+  comments: Comment[];
+  createdAt: Date;
   tags?: string[];
+  visibleLevel: VisibleLevel;
 }
+
+export interface Comment {
+  id: number;
+  postId?: number;
+  user: User;
+  content: string;
+  comments?: Comment[];
+  createdAt: Date;
+}
+
+export type VisibleLevel = 'public' | 'private';
+
+export type Thumbnail = {
+  img?: string;
+  gradient?: ThumbnailGradient;
+};
+
+export type ThumbnailGradient = {
+  start: string;
+  end: string;
+};
