@@ -10,6 +10,7 @@ import PlusIcon from '@/assets/icon/PlusIcon.svg';
 
 import { THUMBNAIL_GRADIENTS, VISIBLE_LEVELS } from '@/constants';
 import Post, { ThumbnailGradient, VisibleLevel } from '@/types/Post';
+import apis from '@/apis';
 
 export type WriteModalFormProps = Pick<
   Post,
@@ -31,8 +32,14 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
     VISIBLE_LEVELS[0].value,
   );
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (img) {
+      const imageFile = new FormData();
+      imageFile.append('imageFile', img);
+      const { url } = await apis.images.upload(imageFile);
+      setImg(url);
+    }
     onSubmit({
       thumbnail: { img, gradient },
       summary,

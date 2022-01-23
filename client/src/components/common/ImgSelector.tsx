@@ -1,6 +1,5 @@
 import React, { ChangeEvent, ReactNode, useRef } from 'react';
 import styled from '@emotion/styled';
-import apis from '@/apis';
 
 export interface ImgSelectorProps {
   children?: ReactNode;
@@ -16,16 +15,14 @@ export default function ImgSelector(props: ImgSelectorProps): JSX.Element {
     imgInput.current?.click();
   };
 
-  const handleSelectImg = async (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSelectImg = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files as FileList;
     if (!files[0]) {
       return;
     }
 
-    const imageFile = new FormData();
-    imageFile.append('imageFile', files[0]);
-    const { url } = await apis.images.upload(imageFile);
-    onSubmit(url);
+    const imgURL = URL.createObjectURL(files[0]);
+    onSubmit(imgURL);
   };
 
   return (

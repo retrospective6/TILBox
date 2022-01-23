@@ -5,7 +5,6 @@ import ProfileImgSelector, {
   ProfileImgSelectorProps,
 } from '@/components/signup/ProfileImgSelector';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import { IMG_SRC } from '@mocks/MockData';
 
 jest.mock('next/image', () => MockImage);
 
@@ -40,6 +39,7 @@ describe('on change file input', () => {
   const file = new File(['test'], 'test.png', { type: 'image/png' });
 
   const onSubmit = jest.fn();
+  URL.createObjectURL = jest.fn((value) => value.toString());
 
   test('change img src', async () => {
     const { getByTestId, findByAltText } = renderProfileImgSelector({
@@ -52,6 +52,6 @@ describe('on change file input', () => {
     });
 
     const img = await findByAltText('profile-img');
-    expect(img).toHaveAttribute('src', IMG_SRC);
+    expect(img).toHaveAttribute('src', file.toString());
   });
 });
