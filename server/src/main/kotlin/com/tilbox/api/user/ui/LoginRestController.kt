@@ -29,8 +29,8 @@ class LoginRestController(private val loginService: LoginService) {
         val response = loginService.login(request)
 
         return ResponseEntity.ok()
-            .header(HttpHeaders.AUTHORIZATION, response.token)
-            .build()
+            .header(HttpHeaders.AUTHORIZATION, response.accessToken)
+            .body(response)
     }
 
     @Operation(summary = "로그아웃", description = "로그아웃을 진행한다.")
