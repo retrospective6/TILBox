@@ -6,7 +6,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 export const Container = styled.form`
   display: flex;
-  align-items: center;
 `;
 
 export const Profile = styled.div`
@@ -22,9 +21,18 @@ export const ProfileImg = styled(Image)`
   border-radius: 50%;
 `;
 
+export const DefaultProfileImg = styled.div`
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #c4c4c4;
+`;
+
 export const Nickname = styled.span`
   margin-top: 6px;
   ${FONT.caption1};
+  text-align: center;
+  word-break: keep-all;
 `;
 
 export const Label = styled.label`
@@ -42,7 +50,7 @@ export const Label = styled.label`
 `;
 
 export const TextArea = styled(TextareaAutosize)`
-  min-height: 40px;
+  min-height: 100%;
   flex: 1;
   border: none;
   background: transparent;

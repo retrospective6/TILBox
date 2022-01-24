@@ -82,6 +82,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["storybook-addon-next-router", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:3.1.0"],
             ["stylelint", "npm:14.1.0"],
             ["stylelint-config-standard", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:24.0.0"],
+            ["swr", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:1.1.2"],
             ["ts-jest", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:27.0.7"],
             ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=ddd1e8"],
             ["wait-for-expect", "npm:3.0.2"],
@@ -22084,6 +22085,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["swr", [
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/swr-npm-1.1.2-8ec1c9a7ac-84bf222c66.zip/node_modules/swr/",
+          "packageDependencies": [
+            ["swr", "npm:1.1.2"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:1.1.2", {
+          "packageLocation": "./.yarn/__virtual__/swr-virtual-f7645afe63/0/cache/swr-npm-1.1.2-8ec1c9a7ac-84bf222c66.zip/node_modules/swr/",
+          "packageDependencies": [
+            ["swr", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:1.1.2"],
+            ["@types/react", "npm:17.0.33"],
+            ["react", "npm:17.0.2"]
+          ],
+          "packagePeers": [
+            "@types/react",
+            "react"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["symbol-tree", [
         ["npm:3.2.4", {
           "packageLocation": "./.yarn/cache/symbol-tree-npm-3.2.4-fe70cdb75b-6e8fc7e148.zip/node_modules/symbol-tree/",
@@ -22414,6 +22437,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["storybook-addon-next-router", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:3.1.0"],
             ["stylelint", "npm:14.1.0"],
             ["stylelint-config-standard", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:24.0.0"],
+            ["swr", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:1.1.2"],
             ["ts-jest", "virtual:ae15530bbbc46884441dae3a3b557d88a86d41844b08a4831ae3d2468314271227fc9a06f07d0d4f595dbacd3ed95f394743808ceffba188dcf45c82ebb415d1#npm:27.0.7"],
             ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=ddd1e8"],
             ["wait-for-expect", "npm:3.0.2"],

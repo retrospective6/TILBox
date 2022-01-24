@@ -2,7 +2,8 @@ import React, { ChangeEvent, useRef, useState } from 'react';
 import * as Styled from './CommentInput.styles';
 
 import Button from '@/components/common/Button';
-import { PROFILE } from '@mocks/data/users';
+
+import useProfile from '@/hooks/useProfile';
 
 export interface CommentInputProps {
   onSubmit: (value: string) => void;
@@ -13,8 +14,7 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
   const [inputValue, setInputValue] = useState<string>('');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  //TODO: api 연결 후 접속 유저 정보 가져오기
-  const profile = PROFILE;
+  const { profile } = useProfile();
 
   const handleClickLabel = () => {
     textAreaRef.current?.focus();
@@ -33,13 +33,19 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
   return (
     <Styled.Container onSubmit={handleSubmit}>
       <Styled.Profile>
-        <Styled.ProfileImg
-          src={profile.image}
-          alt={profile.nickname}
-          width="34px"
-          height="34px"
-        />
-        <Styled.Nickname>{profile.nickname}</Styled.Nickname>
+        {profile ? (
+          <Styled.ProfileImg
+            src={profile.image}
+            alt={profile.nickname}
+            width="34px"
+            height="34px"
+          />
+        ) : (
+          <Styled.DefaultProfileImg />
+        )}
+        <Styled.Nickname>
+          {profile?.nickname || '로그인이 필요합니다.'}
+        </Styled.Nickname>
       </Styled.Profile>
       <Styled.Label onClick={handleClickLabel}>
         <Styled.TextArea
