@@ -50,12 +50,12 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
         <Styled.Info>
           <Styled.UserInfo>
             <Styled.UserImage
-              src={user.image}
-              alt={user.nickname}
+              src={user.profile.image}
+              alt={user.profile.nickname}
               width="18px"
               height="18px"
             />
-            <Styled.UserNickname>{user.nickname}</Styled.UserNickname>
+            <Styled.UserNickname>{user.profile.nickname}</Styled.UserNickname>
           </Styled.UserInfo>
           <Styled.CreatedAt>
             {dayjs(createdAt).format(DATE_FORMAT)}
