@@ -40,15 +40,15 @@ export default function CommentListItem(
     <Styled.Container key={comment.id}>
       <Styled.ProfileImgWrapper>
         <Styled.ProfileImg
-          src={comment.user.image}
-          alt={comment.user.nickname}
+          src={comment.user.profile.image}
+          alt={comment.user.profile.nickname}
           width="34px"
           height="34px"
         />
       </Styled.ProfileImgWrapper>
       <Styled.Comment>
         <Styled.CommentInfo>
-          <Styled.Nickname>{comment.user.nickname}</Styled.Nickname>
+          <Styled.Nickname>{comment.user.profile.nickname}</Styled.Nickname>
           <Styled.CreatedAt>
             {dayjs(comment.createdAt).format(DATE_FORMAT)}
           </Styled.CreatedAt>
@@ -76,8 +76,8 @@ export default function CommentListItem(
             <Styled.NestedComment key={nestedComment.id}>
               <Styled.ProfileImgWrapper>
                 <Styled.ProfileImg
-                  src={nestedComment.user.image}
-                  alt={nestedComment.user.nickname}
+                  src={nestedComment.user.profile.image}
+                  alt={nestedComment.user.profile.nickname}
                   width="34px"
                   height="34px"
                 />
@@ -85,7 +85,7 @@ export default function CommentListItem(
               <Styled.Comment>
                 <Styled.CommentInfo>
                   <Styled.Nickname>
-                    {nestedComment.user.nickname}
+                    {nestedComment.user.profile.nickname}
                   </Styled.Nickname>
                   <Styled.CreatedAt>
                     {dayjs(nestedComment.createdAt).format(DATE_FORMAT)}

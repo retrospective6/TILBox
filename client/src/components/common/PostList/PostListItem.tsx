@@ -14,6 +14,7 @@ export interface PostListItemProps {
 
 export default function PostListItem(props: PostListItemProps): JSX.Element {
   const { post } = props;
+  const { user, createdAt, summary, tags, likes, comments } = post;
   const isAdmin = useMemo<boolean>(
     () => post.user.role === 'ROLE_ADMIN',
     [post.user],
@@ -26,22 +27,22 @@ export default function PostListItem(props: PostListItemProps): JSX.Element {
       </Styled.Thumbnail>
       <Styled.UserInfo admin={isAdmin}>
         <Styled.UserImage
-          src={post.user.image}
-          alt={post.user.nickname}
+          src={user.profile.image}
+          alt={user.profile.nickname}
           width="18px"
           height="18px"
         />
-        <Styled.UserNickname>{post.user.nickname}</Styled.UserNickname>
+        <Styled.UserNickname>{user.profile.nickname}</Styled.UserNickname>
         <Styled.CreatedAt>
-          {dayjs(post.createdAt).format(DATE_FORMAT)}
+          {dayjs(createdAt).format(DATE_FORMAT)}
         </Styled.CreatedAt>
       </Styled.UserInfo>
       <Styled.Contents>
-        <Styled.Description>{post.summary}</Styled.Description>
-        {post.tags && <TagList tags={post.tags} />}
+        <Styled.Description>{summary}</Styled.Description>
+        {tags && <TagList tags={tags} />}
         <Styled.SocialInfo>
-          좋아요 {post.likes}개<Styled.Dot>·</Styled.Dot>
-          덧글 {post.comments.length}개
+          좋아요 {likes}개<Styled.Dot>·</Styled.Dot>
+          덧글 {comments.length}개
         </Styled.SocialInfo>
       </Styled.Contents>
     </Styled.PostListItem>

@@ -8,11 +8,11 @@ import LogoIcon from '@/assets/icon/LogoIcon.svg';
 import LogoTitle from '@/assets/icon/LogoTitle.svg';
 
 import { NAV_ITEMS } from '@/constants/routers';
-import User from '@/types/User';
+import { Profile } from '@/types/User';
 
 export interface HeaderProps {
   active: string;
-  user?: User;
+  profile?: Profile;
   onSignUp: () => void;
   onLogin: () => void;
   onWrite: () => void;
@@ -20,7 +20,7 @@ export interface HeaderProps {
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { active, user, onSignUp, onLogin, onWrite, onSearch } = props;
+  const { active, profile, onSignUp, onLogin, onWrite, onSearch } = props;
 
   return (
     <Styled.Header>
@@ -48,11 +48,11 @@ export default function Header(props: HeaderProps): JSX.Element {
         />
       </Styled.Navbar>
       <Styled.UserInfo>
-        {user ? (
+        {profile ? (
           <>
-            <Styled.UserImage src={user.image} alt="user-image" />
+            <Styled.UserImage src={profile.image} alt="user-image" />
             <Styled.UserNickname data-testid="user-nickname">
-              {user.nickname} 님
+              {profile.nickname} 님
             </Styled.UserNickname>
             <Button data-testid="write-button" onClick={onWrite}>
               글쓰기

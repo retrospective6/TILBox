@@ -2,7 +2,7 @@ import React, { ChangeEvent, useRef, useState } from 'react';
 import * as Styled from './CommentInput.styles';
 
 import Button from '@/components/common/Button';
-import { USER } from '@mocks/data/users';
+import { PROFILE } from '@mocks/data/users';
 
 export interface CommentInputProps {
   onSubmit: (value: string) => void;
@@ -14,7 +14,7 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   //TODO: api 연결 후 접속 유저 정보 가져오기
-  const user = USER;
+  const profile = PROFILE;
 
   const handleClickLabel = () => {
     textAreaRef.current?.focus();
@@ -34,12 +34,12 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
     <Styled.Container onSubmit={handleSubmit}>
       <Styled.Profile>
         <Styled.ProfileImg
-          src={user.image}
-          alt={user.nickname}
+          src={profile.image}
+          alt={profile.nickname}
           width="34px"
           height="34px"
         />
-        <Styled.Nickname>{user.nickname}</Styled.Nickname>
+        <Styled.Nickname>{profile.nickname}</Styled.Nickname>
       </Styled.Profile>
       <Styled.Label onClick={handleClickLabel}>
         <Styled.TextArea
