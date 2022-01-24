@@ -32,9 +32,9 @@ export default function Layout(props: LayoutProps): JSX.Element {
 
   const handleLogin = async (values: LoginFormProps) => {
     try {
-      const { token } = await apis.users.login(values);
-      if (token) {
-        cookie.setAuth(token);
+      const { accessToken } = await apis.users.login(values);
+      if (accessToken) {
+        cookie.setAuth(accessToken);
         await router.reload();
       }
     } catch (error) {
