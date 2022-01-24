@@ -5,12 +5,11 @@ import { ComponentStory } from '@storybook/react';
 export default {
   component: Layout,
   title: 'common/Layout',
-  parameters: {
-    actions: { argTypesRegex: '^on.*' },
-  },
 };
 
-const Template: ComponentStory<typeof Layout> = (args) => <Layout {...args} />;
+const Template: ComponentStory<typeof Layout> = (args) => (
+  <Layout>{args.children}</Layout>
+);
 
 export const Default = Template.bind({});
 Default.args = {
