@@ -5,9 +5,6 @@ import { ComponentStory } from '@storybook/react';
 export default {
   component: ProfileImgSelector,
   title: 'signup/ProfileImgSelector',
-  parameters: {
-    actions: { argTypesRegex: '^on.*' },
-  },
 };
 
 const Template: ComponentStory<typeof ProfileImgSelector> = (args) => (

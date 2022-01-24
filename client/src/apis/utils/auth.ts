@@ -2,6 +2,6 @@ import cookie from '@/utils/cookie';
 
 export const getAuthHeader = (): { headers: { Authorization: string } } => ({
   headers: {
-    Authorization: `Bearer ${cookie.get('accessToken')}`,
+    Authorization: `Bearer ${cookie.getAuth()}`,
   },
 });

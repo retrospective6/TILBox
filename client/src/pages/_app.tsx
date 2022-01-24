@@ -4,10 +4,17 @@ import type { AppProps } from 'next/app';
 import styled from '@emotion/styled';
 
 if (process.env.NODE_ENV === 'development') {
-  (async () => {
-    const { worker } = await import('@mocks/apis/browser');
-    worker.start();
-  })();
+  if (typeof window === 'undefined') {
+    (async () => {
+      const { server } = await import('@mocks/apis/server');
+      server.listen();
+    })();
+  } else {
+    (async () => {
+      const { worker } = await import('@mocks/apis/browser');
+      worker.start();
+    })();
+  }
 }
 
 export default function TILApp({

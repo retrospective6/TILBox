@@ -13,6 +13,9 @@ export const ADMIN: User = {
   role: 'ROLE_ADMIN',
 };
 
+export const IMG_SRC =
+  'https://avatars.githubusercontent.com/u/20358042?s=48&v=4';
+
 export const POST_CONTENT = [
   '![image](https://uicdn.toast.com/toastui/img/tui-editor-bi.png)',
   '',
@@ -107,7 +110,8 @@ export const POST: Post = {
   title: '여덟글자하이용',
   content: POST_CONTENT,
   thumbnail: {
-    gradient: { start: '#D45438', end: '#FEA768' },
+    type: 'gradation',
+    value: { start: '#D45438', end: '#FEA768' },
   },
   summary:
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
@@ -124,7 +128,8 @@ export const ADMIN_POST: Post = {
   title: '뭔가 공지를 하는 글입니다.',
   content: POST_CONTENT,
   thumbnail: {
-    gradient: { start: '#000000', end: '#000000' },
+    type: 'gradation',
+    value: { start: '#000000', end: '#000000' },
   },
   summary:
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',

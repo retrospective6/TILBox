@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as Styled from '@/components/post/PostViewer.style';
-import { TitleProps } from '@/components/post/PostViewer.style';
 
-import Post from '@/types/Post';
+import Post, { ThumbnailGradation } from '@/types/Post';
 
 import TagList from '@/components/common/Tag/TagList';
 import dynamic from 'next/dynamic';
@@ -24,15 +23,15 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
   const { post, onSubmitComment, onReportComment } = props;
   const { title, thumbnail, user, createdAt, content, tags } = post;
   const [imgSrc, setImgSrc] = useState<string>();
-  const [gradient, setGradient] = useState<TitleProps>();
+  const [gradation, setGradation] = useState<ThumbnailGradation>();
 
   useEffect(() => {
-    if (thumbnail.img) {
-      setImgSrc(thumbnail.img);
+    if (thumbnail.type === 'image') {
+      setImgSrc(thumbnail.value as string);
       return;
     }
 
-    setGradient(thumbnail.gradient);
+    setGradation(thumbnail.value as ThumbnailGradation);
   }, [thumbnail]);
 
   const handleSubmitComment = (value: string, commentId?: number) => {
@@ -41,7 +40,7 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
 
   return (
     <>
-      <Styled.Title start={gradient?.start} end={gradient?.end}>
+      <Styled.Title start={gradation?.start} end={gradation?.end}>
         {imgSrc && (
           <Styled.ThumbnailImg src={imgSrc} alt={title} layout="fill" />
         )}
