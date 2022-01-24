@@ -6,6 +6,7 @@ import PostListThumbnail, {
   PostListThumbnailProps,
 } from '@/components/common/PostList/PostListThumbnail';
 import { Thumbnail } from '@/types/Post';
+import { IMG_SRC } from '@mocks/data';
 
 jest.mock('next/image', () => MockImage);
 
@@ -13,7 +14,7 @@ const DEFAULT_ARGS: PostListThumbnailProps = {
   title: '제목',
   thumbnail: {
     type: 'image',
-    value: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+    value: IMG_SRC,
   },
 };
 
@@ -26,7 +27,7 @@ const renderThumbnail = (
 describe('with src thumbnail', () => {
   const thumbnail: Thumbnail = {
     type: 'image',
-    value: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
+    value: IMG_SRC,
   };
 
   test('render img', () => {

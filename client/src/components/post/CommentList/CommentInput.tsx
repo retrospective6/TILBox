@@ -2,7 +2,7 @@ import React, { ChangeEvent, useRef, useState } from 'react';
 import * as Styled from './CommentInput.styles';
 
 import Button from '@/components/common/Button';
-import { USER } from '@mocks/MockData';
+import { USER } from '@mocks/data/users';
 
 export interface CommentInputProps {
   onSubmit: (value: string) => void;
