@@ -1,7 +1,7 @@
 import React from 'react';
 import PostViewer from '@/components/post/PostViewer';
 import { ComponentStory } from '@storybook/react';
-import { POST } from '@mocks/MockData';
+import { POST } from '@mocks/data/posts';
 
 export default {
   component: PostViewer,

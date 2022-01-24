@@ -1,7 +1,7 @@
 import React from 'react';
 import CommentList from '@/components/post/CommentList/CommentList';
 import { ComponentStory } from '@storybook/react';
-import { COMMENT, COMMENT2 } from '@mocks/MockData';
+import { COMMENT, COMMENT2 } from '@mocks/data/posts';
 
 export default {
   component: CommentList,

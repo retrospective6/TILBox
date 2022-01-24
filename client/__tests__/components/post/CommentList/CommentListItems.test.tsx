@@ -4,8 +4,9 @@ import CommentListItem, {
   CommentListItemProps,
 } from '@/components/post/CommentList/CommentListItem';
 
-import { COMMENT, USER } from '@mocks/MockData';
 import { Comment } from '@/types/Post';
+import { COMMENT } from '@mocks/data/comments';
+import { USER } from '@mocks/data/users';
 
 const DEFAULT_ARGS: CommentListItemProps = {
   comment: COMMENT,
