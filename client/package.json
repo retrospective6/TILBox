@@ -10,7 +10,7 @@
     "start": "next start",
     "build": "next build",
     "test:coverage": "yarn test --watchAll=false --coverage",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",
