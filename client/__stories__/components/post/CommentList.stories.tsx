@@ -1,28 +1,21 @@
 import React from 'react';
-import CommentInput from '@/components/post/CommentList/CommentInput';
+import CommentList from '@/components/post/CommentList/CommentList';
 import { ComponentStory } from '@storybook/react';
-import { rest } from 'msw';
-import { mockApiURL } from '@mocks/apis/utils';
+import { COMMENT, COMMENT2 } from '@mocks/data/comments';
 
 export default {
-  component: CommentInput,
-  title: 'post/CommentInput',
+  component: CommentList,
+  title: 'post/CommentList',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
 };
 
-const Template: ComponentStory<typeof CommentInput> = (args) => (
-  <CommentInput {...args} />
+const Template: ComponentStory<typeof CommentList> = (args) => (
+  <CommentList {...args} />
 );
 
 export const Default = Template.bind({});
-
-export const WithoutUser = Template.bind({});
-WithoutUser.parameters = {
-  msw: [
-    rest.get(mockApiURL('/users/profile'), (req, res, ctx) =>
-      res(ctx.status(403)),
-    ),
-  ],
+Default.args = {
+  comments: [COMMENT, COMMENT2],
 };
