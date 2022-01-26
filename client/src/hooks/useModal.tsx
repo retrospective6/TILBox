@@ -22,7 +22,7 @@ export interface ModalContext {
 }
 const Context = createContext({} as ModalContext);
 
-const useModal = () => useContext<ModalContext>(Context);
+const useModal = (): ModalContext => useContext<ModalContext>(Context);
 
 export interface ModalProviderProps {
   children: ReactNode | ReactNode[];
@@ -39,15 +39,15 @@ export function ModalProvider(props: ModalProviderProps): JSX.Element {
     login: setLoginModal,
   };
 
-  const openModal = (key: ModalKeys) => {
+  const openModal = (key: ModalKeys): void => {
     modalHandlers[key](true);
   };
 
-  const closeModal = (key: ModalKeys) => {
+  const closeModal = (key: ModalKeys): void => {
     modalHandlers[key](false);
   };
 
-  const handleLogin = async (values: LoginFormProps) => {
+  const handleLogin = async (values: LoginFormProps): Promise<void> => {
     try {
       const { accessToken } = await apis.users.login(values);
       if (accessToken) {
