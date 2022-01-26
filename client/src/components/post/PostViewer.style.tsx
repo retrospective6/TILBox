@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import FONT from '@/styles/font';
-import { ThumbnailGradation } from '@/types/Post';
+import { Gradation } from '@/types';
 
-export const Title = styled.h1<Partial<ThumbnailGradation>>`
+export const Title = styled.h1<Partial<Gradation>>`
   display: flex;
   position: relative;
   width: 100%;

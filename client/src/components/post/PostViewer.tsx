@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as Styled from '@/components/post/PostViewer.style';
 
-import Post, { ThumbnailGradation } from '@/types/Post';
-
 import TagList from '@/components/common/Tag/TagList';
 import dynamic from 'next/dynamic';
 import CommentList from '@/components/post/CommentList/CommentList';
@@ -12,6 +10,8 @@ const ToastViewer = dynamic(() => import('./ToastViewer'), {
 
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from '@/constants';
+import Post from '@/types/Post';
+import { Gradation } from '@/types';
 
 export interface PostViewerProps {
   post: Post;
@@ -23,7 +23,7 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
   const { post, onSubmitComment, onReportComment } = props;
   const { title, thumbnail, user, createdAt, content, tags } = post;
   const [imgSrc, setImgSrc] = useState<string>();
-  const [gradation, setGradation] = useState<ThumbnailGradation>();
+  const [gradation, setGradation] = useState<Gradation>();
 
   useEffect(() => {
     if (thumbnail.type === 'image') {
@@ -31,7 +31,7 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
       return;
     }
 
-    setGradation(thumbnail.value as ThumbnailGradation);
+    setGradation(thumbnail.value as Gradation);
   }, [thumbnail]);
 
   const handleSubmitComment = (value: string, commentId?: number) => {

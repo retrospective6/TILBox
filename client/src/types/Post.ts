@@ -1,4 +1,5 @@
 import User from '@/types/User';
+import { Gradation } from '@/types';
 
 export default interface Post {
   id: number;
@@ -27,12 +28,7 @@ export type VisibleLevel = 'public' | 'private';
 
 export type Thumbnail = {
   type: ThumbnailType;
-  value: string | ThumbnailGradation;
+  value: string | Gradation;
 };
 
 export type ThumbnailType = 'image' | 'gradation';
-
-export type ThumbnailGradation = {
-  start: string;
-  end: string;
-};
