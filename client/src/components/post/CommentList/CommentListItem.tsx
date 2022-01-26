@@ -63,7 +63,7 @@ export default function CommentListItem(
         <Styled.Content>{comment.content}</Styled.Content>
         <Styled.NestedCommentInfo>
           <span data-testid="nested-comment-open" onClick={handleClickOpen}>
-            <Styled.Triangle rotate={isOpen} />
+            <Styled.Triangle rotate={isOpen ? 1 : 0} />
             답글({comment.comments?.length || 0}개)
           </span>
           ·<span onClick={handleClickWrite}>답글 작성</span>
