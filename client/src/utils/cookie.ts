@@ -21,14 +21,6 @@ const cookie = {
   remove(key: string): void {
     this.set(key, '', -1);
   },
-
-  setAuth(value: string): void {
-    cookie.set('accessToken', value);
-  },
-
-  getAuth(): string | undefined {
-    return cookie.get('accessToken');
-  },
 };
 
 export default cookie;

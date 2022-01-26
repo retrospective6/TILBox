@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import cookie from '@/utils/cookie';
+import auth from '@/utils/auth';
 
 export const http: AxiosInstance = axios.create({
   baseURL: process.env.API_HOST,
@@ -7,7 +7,7 @@ export const http: AxiosInstance = axios.create({
 
 export const getAuthHeader = (): { headers: { Authorization: string } } => ({
   headers: {
-    Authorization: `Bearer ${cookie.getAuth()}`,
+    Authorization: `Bearer ${auth.get()}`,
   },
 });
 

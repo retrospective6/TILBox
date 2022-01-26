@@ -7,8 +7,8 @@ import LoginModal, {
 } from '@/components/common/Modal/LoginModal';
 
 import apis from '@/apis';
-import cookie from '@/utils/cookie';
 import useProfile from '@/hooks/useProfile';
+import auth from '@/utils/auth';
 
 export interface LayoutProps {
   children: ReactNode;
@@ -37,7 +37,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
     try {
       const { accessToken } = await apis.users.login(values);
       if (accessToken) {
-        cookie.setAuth(accessToken);
+        auth.set(accessToken);
         await router.reload();
       }
     } catch (error) {
