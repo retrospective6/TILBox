@@ -7,7 +7,9 @@ export default function useProfile(): {
   loggedOut: boolean;
   profile?: Profile;
 } {
-  const { data, error } = useSWR<Profile>('/users/profile', fetcher);
+  const { data, error } = useSWR<Profile>('/users/profile', fetcher, {
+    errorRetryCount: 0,
+  });
 
   const loading = !data && !error;
   const loggedOut = error && error.status === 403;
