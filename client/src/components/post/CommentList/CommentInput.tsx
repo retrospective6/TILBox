@@ -1,11 +1,10 @@
-import React, { ChangeEvent, useMemo, useRef, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import * as Styled from './CommentInput.styles';
 
 import Button from '@/components/common/Button';
 
 import useProfile from '@/hooks/useProfile';
-import { getRandomGradation } from '@/utils';
-import { Gradation } from '@/types';
+import CommentInputLogout from '@/components/post/CommentList/CommentInputLogout';
 
 export interface CommentInputProps {
   onSubmit: (value: string) => void;
@@ -15,7 +14,6 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
   const { onSubmit } = props;
   const [inputValue, setInputValue] = useState<string>('');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const gradation = useMemo<Gradation>(() => getRandomGradation(), []);
 
   const { profile } = useProfile();
 
@@ -33,35 +31,24 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
     setInputValue(value);
   };
 
-  return (
+  return profile ? (
     <Styled.Container onSubmit={handleSubmit}>
       <Styled.Profile>
-        {profile ? (
-          <>
-            <Styled.ProfileImg
-              src={profile.image}
-              alt={profile.nickname}
-              width="34px"
-              height="34px"
-            />
-            <Styled.Nickname>{profile.nickname}</Styled.Nickname>
-          </>
-        ) : (
-          <Styled.DefaultImg gradation={gradation} />
-        )}
+        <Styled.ProfileImg
+          src={profile.image}
+          alt={profile.nickname}
+          width="34px"
+          height="34px"
+        />
+        <Styled.Nickname>{profile.nickname}</Styled.Nickname>
       </Styled.Profile>
       <Styled.Label onClick={handleClickLabel}>
         <Styled.TextArea
           data-testid="comment-textarea"
-          placeholder={
-            profile
-              ? '응원의 댓글은 1000자 이하로 남길 수 있습니다'
-              : '덧글을 남기려면 로그인이 필요합니다'
-          }
+          placeholder="응원의 댓글은 1000자 이하로 남길 수 있습니다"
           name="comment"
           value={inputValue}
           maxRows={9}
-          disabled={!profile}
           ref={textAreaRef}
           onChange={handleChangeTextArea}
         />
@@ -70,12 +57,14 @@ export default function CommentInput(props: CommentInputProps): JSX.Element {
             data-testid="comment-submit-button"
             variant="primary"
             bold
-            onClick={profile ? handleSubmit : undefined}
+            onClick={handleSubmit}
           >
-            {profile ? '등록' : '로그인'}
+            등록
           </Button>
         </Styled.ButtonWrapper>
       </Styled.Label>
     </Styled.Container>
+  ) : (
+    <CommentInputLogout />
   );
 }

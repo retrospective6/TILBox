@@ -3,8 +3,6 @@ import FONT from '@/styles/font';
 
 import Image from 'next/image';
 import TextareaAutosize from 'react-textarea-autosize';
-import { css } from '@emotion/react';
-import { Gradation } from '@/types';
 
 export const Container = styled.form`
   display: flex;
@@ -23,23 +21,6 @@ export const Profile = styled.div`
 
 export const ProfileImg = styled(Image)`
   border-radius: 50%;
-`;
-
-export interface DefaultImgProps {
-  gradation: Gradation;
-}
-
-export const DefaultImg = styled.div<DefaultImgProps>`
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: ${({ gradation }) =>
-    css`
-      linear-gradient(
-        111.34deg,
-        ${gradation.start} 3.55%,
-        ${gradation.end} 113.48%
-      );`};
 `;
 
 export const Nickname = styled.span`
@@ -94,5 +75,5 @@ export const TextArea = styled(TextareaAutosize)`
 `;
 
 export const ButtonWrapper = styled.div`
-  margin: 5px 0 auto 14px;
+  margin: 5px 14px auto auto;
 `;

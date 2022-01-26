@@ -1,5 +1,6 @@
 import React from 'react';
-import { fireEvent, render, RenderResult } from '@testing-library/react';
+import { fireEvent, RenderResult } from '@testing-library/react';
+import renderWithProvider from '@tests/testUtils/render';
 import CommentListItem, {
   CommentListItemProps,
 } from '@/components/post/CommentList/CommentListItem';
@@ -17,7 +18,7 @@ const DEFAULT_ARGS: CommentListItemProps = {
 const renderCommentListItem = (
   props: Partial<CommentListItemProps>,
 ): RenderResult => {
-  return render(<CommentListItem {...DEFAULT_ARGS} {...props} />);
+  return renderWithProvider(<CommentListItem {...DEFAULT_ARGS} {...props} />);
 };
 
 describe('onReportComment', () => {
@@ -45,16 +46,16 @@ describe('onSubmitNestedComment', () => {
     onSubmitNestedComment.mockClear();
   });
 
-  test('등록버튼 클릭 시 comment id와 함께 실행', () => {
-    const { getByTestId } = renderCommentListItem({
+  test('등록버튼 클릭 시 comment id와 함께 실행', async () => {
+    const { findByTestId } = renderCommentListItem({
       comment: COMMENT,
       onSubmitNestedComment,
     });
 
     const value = 'test';
 
-    const textarea = getByTestId('comment-textarea');
-    const submitButton = getByTestId('comment-submit-button');
+    const textarea = await findByTestId('comment-textarea');
+    const submitButton = await findByTestId('comment-submit-button');
 
     fireEvent.change(textarea, {
       target: { value },
