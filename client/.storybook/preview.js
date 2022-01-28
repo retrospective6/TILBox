@@ -5,10 +5,12 @@ import { RouterContext } from 'next/dist/shared/lib/router-context';
 import * as NextImage from 'next/image';
 import { SWRConfig } from 'swr';
 import { ModalProvider } from '../src/hooks/useModal';
+import { cookieDecorator } from '../__mocks__/cookie';
 
 initialize();
 export const decorators = [
   mswDecorator,
+  cookieDecorator,
   (Story) => (
     <ModalProvider>
       <SWRConfig
