@@ -17,7 +17,7 @@ module.exports = {
     config.resolve.extensions.push('.ts', '.tsx');
 
     config.resolve.alias['@/utils/cookie'] = require.resolve(
-      '../__mocks__/cookie.js',
+      '../__mocks__/cookie.ts',
     );
     config.resolve.alias['@'] = path.resolve(__dirname, '../src/');
     config.resolve.alias['@mocks'] = path.resolve(__dirname, '../__mocks__/');

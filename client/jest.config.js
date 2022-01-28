@@ -5,7 +5,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   testEnvironment: 'jsdom',
   moduleNameMapper: {
-    '@/utils/cookie': '<rootDir>/__mocks__/cookie.js',
+    '@/utils/cookie': '<rootDir>/__mocks__/cookie.ts',
     '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
     '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': `<rootDir>/__mocks__/fileMock.js`,
     '^@/(.*)$': '<rootDir>/src/$1',
