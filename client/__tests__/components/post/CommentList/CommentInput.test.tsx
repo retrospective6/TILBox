@@ -7,6 +7,7 @@ import CommentInput, {
 import { server } from '@mocks/apis/server';
 import { rest } from 'msw';
 import { mockApiURL } from '@mocks/apis/utils';
+import cookie from '@/utils/cookie';
 
 const DEFAULT_ARGS: CommentInputProps = {
   onSubmit: jest.fn(),
@@ -22,6 +23,7 @@ describe('onSubmit', () => {
   const onSubmit = jest.fn();
   beforeEach(() => {
     onSubmit.mockClear();
+    cookie.set('accessToken', 'test');
   });
 
   test('등록버튼 클릭 시 실행', async () => {

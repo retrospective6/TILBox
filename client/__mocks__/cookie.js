@@ -1,15 +1,12 @@
-let cookies;
+let cookies = {};
 
 const cookie = {
   set(key, value) {
-    if (!cookies) {
-      return;
-    }
     cookies[key] = value;
   },
 
   get(key) {
-    return cookies && cookies[key];
+    return cookies[key];
   },
 
   remove(key) {
@@ -20,7 +17,7 @@ const cookie = {
 export default cookie;
 
 export function cookieDecorator(story, { parameters }) {
-  cookies = null;
+  cookies = {};
   if (parameters && parameters.cookie) {
     cookies = parameters.cookie;
   }

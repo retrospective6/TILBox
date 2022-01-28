@@ -8,6 +8,7 @@ import CommentListItem, {
 import { Comment } from '@/types/Post';
 import { COMMENT } from '@mocks/data/comments';
 import { USER } from '@mocks/data/users';
+import cookie from '@/utils/cookie';
 
 const DEFAULT_ARGS: CommentListItemProps = {
   comment: COMMENT,
@@ -44,6 +45,7 @@ describe('onSubmitNestedComment', () => {
   const onSubmitNestedComment = jest.fn();
   beforeEach(() => {
     onSubmitNestedComment.mockClear();
+    cookie.set('accessToken', 'test');
   });
 
   test('등록버튼 클릭 시 comment id와 함께 실행', async () => {
