@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, RenderResult } from '@testing-library/react';
-import renderWithProvider from '@tests/testUtils/render';
+import renderWithProvider from '@tests/testUtils/renderWithProvider';
 import CommentListItem, {
   CommentListItemProps,
 } from '@/components/post/CommentList/CommentListItem';
