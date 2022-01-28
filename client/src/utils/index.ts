@@ -8,3 +8,7 @@ export function range(size: number, start?: number): number[] {
 export function getRandomGradation(): Gradation {
   return GRADATIONS[Math.floor(Math.random() * GRADATIONS.length)];
 }
+
+export function isServer(): boolean {
+  return typeof window !== 'object';
+}

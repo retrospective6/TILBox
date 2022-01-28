@@ -1,5 +1,10 @@
+import { isServer } from '@/utils/index';
+
 const cookie = {
   set(key: string, value: string, expires?: number): void {
+    if (isServer()) {
+      return;
+    }
     let cookieString = `${key}=${value}`;
     if (expires !== undefined) {
       const expiresDate = new Date();
@@ -12,6 +17,9 @@ const cookie = {
   },
 
   get(key: string): string | undefined {
+    if (isServer()) {
+      return;
+    }
     return document.cookie
       .split('; ')
       .find((row) => row.startsWith(key))
