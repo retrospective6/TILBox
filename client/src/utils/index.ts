@@ -12,3 +12,18 @@ export function getRandomGradation(): Gradation {
 export function isServer(): boolean {
   return typeof window !== 'object';
 }
+
+export function limitInputNumber(
+  value: string,
+  min: number,
+  max: number,
+): string {
+  let result: string = value.replace(/[^0-9.]/g, '');
+  if (!result || parseInt(result) < min) {
+    result = min.toString();
+  }
+  if (parseInt(result) > max) {
+    result = max.toString();
+  }
+  return result;
+}
