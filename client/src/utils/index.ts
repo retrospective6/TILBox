@@ -27,3 +27,10 @@ export function limitInputNumber(
   }
   return result;
 }
+
+export async function copyToClipboard(value: string): Promise<void> {
+  if (!navigator.clipboard) {
+    return;
+  }
+  return await navigator.clipboard.writeText(value);
+}

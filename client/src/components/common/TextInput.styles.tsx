@@ -53,7 +53,7 @@ const stateCSS: { [keys in State]: SerializedStyles } = {
 
 export const Input = styled.input<StyledInputProps>`
   width: ${(props) => props.width || '268px'};
-  height: ${(props) => props.height || '28px'};
+  height: ${(props) => props.height || '34px'};
   padding: 7px 8px;
   border: 1px solid;
   border-radius: 8px;
