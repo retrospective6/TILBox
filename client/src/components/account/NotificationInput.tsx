@@ -1,46 +1,48 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, InputHTMLAttributes, useState } from 'react';
 import * as Styled from './NotificationInput.styles';
-import CheckBox from '@/components/common/CheckBox';
-import { limitInputNumber } from '@/utils';
 
-export interface NotificationInputProps {
-  value?: string;
-  checked?: boolean;
-  onChange: (value: string) => void;
+import CheckBox from '@/components/common/CheckBox';
+
+import { limitInputNumber } from '@/utils';
+import { Notification } from '@/types/User';
+
+export interface NotificationInputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
+  value?: Notification;
+  onChange: (value?: Notification) => void;
 }
 
 export default function NotificationInput(
   props: NotificationInputProps,
 ): JSX.Element {
-  const { value = '00:00', checked, onChange } = props;
-  const [check, setCheck] = useState<boolean>(checked || false);
-  const [hour, setHour] = useState<string>(value.split(':')[0]);
-  const [minute, setMinute] = useState<string>(value.split(':')[1]);
+  const { value, defaultChecked, checked, onChange } = props;
+  const [check, setCheck] = useState<boolean>(
+    checked || defaultChecked || false,
+  );
+  const [hour, setHour] = useState<number>(value?.hour || 0);
+  const [minute, setMinute] = useState<number>(value?.minute || 0);
 
   const handleClick = () => {
-    setCheck(!check);
+    const newValue = !check;
+    setCheck(newValue);
+    onChange(newValue ? { hour, minute } : undefined);
   };
 
   const handleChangeHour = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputValue = limitInputNumber(event.target.value, 0, 23);
-    setHour(inputValue);
-    onChange(inputValue + ':' + minute);
+    const value = limitInputNumber(event.target.value, 0, 23);
+    setHour(value);
   };
 
   const handleChangeMinute = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputValue = limitInputNumber(event.target.value, 0, 59);
-    setMinute(inputValue);
-    onChange(hour + ':' + inputValue);
+    const value = limitInputNumber(event.target.value, 0, 59);
+    setMinute(value);
   };
 
   const handleBlurInput = () => {
-    if (hour.length < 2) {
-      setHour('0' + hour);
-    }
-    if (minute.length < 2) {
-      setMinute('0' + minute);
-    }
-    onChange(hour + ':' + minute);
+    onChange({
+      hour: hour,
+      minute: minute,
+    });
   };
 
   return (
@@ -58,7 +60,7 @@ export default function NotificationInput(
         <Styled.TimeInputContainer>
           <Styled.TimeInput
             name="hour"
-            value={hour}
+            value={hour.toString().padStart(2, '0')}
             disabled={!check}
             onChange={handleChangeHour}
             onBlur={handleBlurInput}
@@ -66,7 +68,7 @@ export default function NotificationInput(
           :
           <Styled.TimeInput
             name="minute"
-            value={minute}
+            value={minute.toString().padStart(2, '0')}
             disabled={!check}
             onChange={handleChangeMinute}
             onBlur={handleBlurInput}

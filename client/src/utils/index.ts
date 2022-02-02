@@ -17,13 +17,13 @@ export function limitInputNumber(
   value: string,
   min: number,
   max: number,
-): string {
-  let result: string = value.replace(/[^0-9.]/g, '');
-  if (!result || parseInt(result) < min) {
-    result = min.toString();
+): number {
+  const result: number = parseInt(value.replace(/[^0-9.]/g, ''));
+  if (!result || result < min) {
+    return min;
   }
-  if (parseInt(result) > max) {
-    result = max.toString();
+  if (result > max) {
+    return max;
   }
   return result;
 }

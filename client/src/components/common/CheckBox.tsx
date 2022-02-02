@@ -27,7 +27,13 @@ export default function CheckBox(props: CheckBoxProps): JSX.Element {
     <Styled.Container onClick={handleClick}>
       <CheckBoxIcon fill={check ? '#0068D4' : '#666666'} />
       <Styled.Label>
-        <Styled.CheckBox {...props} type="checkbox" ref={inputRef} />
+        <Styled.CheckBox
+          {...props}
+          checked={undefined}
+          defaultChecked={check}
+          type="checkbox"
+          ref={inputRef}
+        />
         {label}
       </Styled.Label>
     </Styled.Container>
