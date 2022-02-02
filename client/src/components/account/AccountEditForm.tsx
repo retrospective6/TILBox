@@ -6,6 +6,7 @@ import TextInput from '@/components/common/TextInput';
 import NotificationInput from '@/components/account/NotificationInput';
 import Button from '@/components/common/Button';
 import RadioChecked from '@/assets/icon/RadioChecked.svg';
+import EditIcon from '@/assets/icon/EditIcon.svg';
 
 import User, { Notification } from '@/types/User';
 import { copyToClipboard } from '@/utils';
@@ -102,6 +103,7 @@ export default function AccountEditForm(
           title="닉네임"
           message="2자 이상 8자 이하로 입력해주세요"
           value={profile.nickname}
+          icon={<EditIcon />}
           onBlur={handleChange}
         />
         <TextInput
@@ -109,6 +111,7 @@ export default function AccountEditForm(
           type="password"
           title="비밀번호"
           message="숫자, 영문, 특수문자를 포함해 8자 이상 입력해주세요"
+          icon={<EditIcon />}
           onBlur={handleChange}
         />
         <NotificationInput
