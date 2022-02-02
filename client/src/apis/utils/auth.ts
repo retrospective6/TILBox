@@ -1,7 +1,7 @@
-import cookie from '@/utils/cookie';
+import auth from '@/utils/auth';
 
 export const getAuthHeader = (): { headers: { Authorization: string } } => ({
   headers: {
-    Authorization: `Bearer ${cookie.getAuth()}`,
+    Authorization: `Bearer ${auth.get()}`,
   },
 });

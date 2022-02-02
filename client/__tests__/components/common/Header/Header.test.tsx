@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 import Header, { HeaderProps } from '@/components/common/Header/Header';
 import { NAV_ITEMS } from '@/constants/routers';
-import User from '@/types/User';
+import { Profile } from '@/types/User';
 
 const DEFAULT_ARGS: HeaderProps = {
   active: '/',
@@ -78,38 +78,37 @@ describe('user info section', () => {
   });
 
   describe('with user', () => {
-    const user: User = {
+    const profile: Profile = {
       nickname: 'testNickName',
       image: 'testImage',
-      role: 'ROLE_USER',
     };
 
     test('disappear signUp text', () => {
-      const { getByTestId } = renderHeader({ user });
+      const { getByTestId } = renderHeader({ profile });
       expect(() => getByTestId('sign-up')).toThrowError();
     });
 
     test('disappear login text', () => {
-      const { getByTestId } = renderHeader({ user });
+      const { getByTestId } = renderHeader({ profile });
       expect(() => getByTestId('login')).toThrowError();
     });
 
     test('display user nickname', () => {
-      const { getByTestId } = renderHeader({ user });
+      const { getByTestId } = renderHeader({ profile });
       const nickname = getByTestId('user-nickname');
-      expect(nickname).toHaveTextContent(user.nickname);
+      expect(nickname).toHaveTextContent(profile.nickname);
     });
 
     test('display user img', () => {
-      const { getByRole } = renderHeader({ user });
+      const { getByRole } = renderHeader({ profile });
       const img = getByRole('img');
-      expect(img).toHaveAttribute('src', user.image);
+      expect(img).toHaveAttribute('src', profile.image);
     });
 
     describe('with onWrite method', () => {
       const onWrite = jest.fn();
       test('run method on click write button', () => {
-        const { getByTestId } = renderHeader({ user, onWrite });
+        const { getByTestId } = renderHeader({ profile, onWrite });
         const writeButton = getByTestId('write-button');
         fireEvent.click(writeButton);
         expect(onWrite).toBeCalled();

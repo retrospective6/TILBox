@@ -1,13 +1,10 @@
-import React, { ReactNode, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { ReactNode } from 'react';
 
 import Header from '@/components/common/Header/Header';
-import LoginModal, {
-  LoginFormProps,
-} from '@/components/common/Modal/LoginModal';
 
-import apis from '@/apis';
-import cookie from '@/utils/cookie';
+import useProfile from '@/hooks/useProfile';
+import { useRouter } from 'next/router';
+import useModal from '@/hooks/useModal';
 
 export interface LayoutProps {
   children: ReactNode;
@@ -16,30 +13,15 @@ export interface LayoutProps {
 export default function Layout(props: LayoutProps): JSX.Element {
   const { children } = props;
   const router = useRouter();
-  const [loginModal, setLoginModal] = useState<boolean>(false);
+  const { profile } = useProfile();
+  const { openModal } = useModal();
 
   const handleSignUp = () => {
     // TODO: 회원가입 버튼 클릭 시 로직
   };
 
   const handleOpenLoginModal = () => {
-    setLoginModal(true);
-  };
-
-  const handleCloseLoginModal = () => {
-    setLoginModal(false);
-  };
-
-  const handleLogin = async (values: LoginFormProps) => {
-    try {
-      const { accessToken } = await apis.users.login(values);
-      if (accessToken) {
-        cookie.setAuth(accessToken);
-        await router.reload();
-      }
-    } catch (error) {
-      return;
-    }
+    openModal('login');
   };
 
   const handleSearch = () => {
@@ -58,11 +40,9 @@ export default function Layout(props: LayoutProps): JSX.Element {
         onLogin={handleOpenLoginModal}
         onSearch={handleSearch}
         onWrite={handleWrite}
+        profile={profile}
       />
       {children}
-      {loginModal && (
-        <LoginModal onClose={handleCloseLoginModal} onSubmit={handleLogin} />
-      )}
     </>
   );
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import '@/styles/global.css';
 import type { AppProps } from 'next/app';
 import styled from '@emotion/styled';
+import { ModalProvider } from '@/hooks/useModal';
 
 if (process.env.NODE_ENV === 'development') {
   if (typeof window === 'undefined') {
@@ -22,9 +23,11 @@ export default function TILApp({
   pageProps,
 }: AppProps): JSX.Element {
   return (
-    <Container>
-      <Component {...pageProps} />
-    </Container>
+    <ModalProvider>
+      <Container>
+        <Component {...pageProps} />
+      </Container>
+    </ModalProvider>
   );
 }
 

@@ -1,21 +1,24 @@
 import React from 'react';
-import CommentList from '@/components/post/CommentList/CommentList';
+import CommentInput from '@/components/post/CommentList/CommentInput';
 import { ComponentStory } from '@storybook/react';
-import { COMMENT, COMMENT2 } from '@mocks/data/comments';
 
 export default {
-  component: CommentList,
-  title: 'post/CommentList',
+  component: CommentInput,
+  title: 'post/CommentInput',
   parameters: {
     actions: { argTypesRegex: '^on.*' },
   },
 };
 
-const Template: ComponentStory<typeof CommentList> = (args) => (
-  <CommentList {...args} />
+const Template: ComponentStory<typeof CommentInput> = (args) => (
+  <CommentInput {...args} />
 );
 
 export const Default = Template.bind({});
-Default.args = {
-  comments: [COMMENT, COMMENT2],
+Default.parameters = {
+  cookie: {
+    accessToken: 'test',
+  },
 };
+
+export const WithoutUser = Template.bind({});
