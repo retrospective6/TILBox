@@ -7,20 +7,28 @@ import { limitInputNumber } from '@/utils';
 import { Notification } from '@/types/User';
 
 export interface NotificationInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'onChange' | 'value' | 'defaultValue'
+  > {
   value?: Notification;
+  defaultValue?: Notification;
   onChange: (value?: Notification) => void;
 }
 
 export default function NotificationInput(
   props: NotificationInputProps,
 ): JSX.Element {
-  const { value, defaultChecked, checked, onChange } = props;
+  const { value, defaultValue, defaultChecked, checked, onChange } = props;
   const [check, setCheck] = useState<boolean>(
     checked || defaultChecked || false,
   );
-  const [hour, setHour] = useState<number>(value?.hour || 0);
-  const [minute, setMinute] = useState<number>(value?.minute || 0);
+  const [hour, setHour] = useState<number>(
+    value?.hour || defaultValue?.hour || 0,
+  );
+  const [minute, setMinute] = useState<number>(
+    value?.minute || defaultValue?.minute || 0,
+  );
 
   const handleClick = () => {
     const newValue = !check;
