@@ -51,14 +51,31 @@ const stateCSS: { [keys in State]: SerializedStyles } = {
   `,
 };
 
-export const Input = styled.input<StyledInputProps>`
+export const InputWrapper = styled.div<StyledInputProps>`
   width: ${(props) => props.width || '268px'};
   height: ${(props) => props.height || '34px'};
   padding: 7px 8px;
-  border: 1px solid;
   border-radius: 8px;
   background: #f3f3f3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:focus-within {
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+
+  ${({ state = 'default' }) => stateCSS[state]};
+`;
+
+export const Input = styled.input<StyledInputProps>`
+  width: 100%;
+  background: transparent;
   ${FONT.body4};
+  border: none;
+  &:focus {
+    outline: none;
+  }
 
   ${({ state = 'default' }) => stateCSS[state]};
 `;
