@@ -22,9 +22,20 @@ export default function AccountPage(): JSX.Element {
     router.reload();
   };
 
+  const handleSignOut = async () => {
+    await apis.users.deleteUser();
+    await router.push('/');
+  };
+
   return (
     <Layout>
-      {user && <AccountEditForm user={user} onSubmit={handleSubmit} />}
+      {user && (
+        <AccountEditForm
+          user={user}
+          onSubmit={handleSubmit}
+          onSignOut={handleSignOut}
+        />
+      )}
     </Layout>
   );
 }

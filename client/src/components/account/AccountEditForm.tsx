@@ -21,12 +21,13 @@ export interface AccountEditFormData {
 export interface AccountEditFormProps {
   user: User;
   onSubmit: (data: AccountEditFormData) => void;
+  onSignOut: () => void;
 }
 
 export default function AccountEditForm(
   props: AccountEditFormProps,
 ): JSX.Element {
-  const { user, onSubmit } = props;
+  const { user, onSubmit, onSignOut } = props;
   const { myTilAddress, email, profile, notification } = user;
   const [formData, setFromData] = useState<AccountEditFormData>({
     image: profile.image,
@@ -125,7 +126,9 @@ export default function AccountEditForm(
             <Styled.OptionDescription>
               계정과 함께 작성한 TIL이 삭제됩니다.
             </Styled.OptionDescription>
-            <Styled.SignOutButton>회원탈퇴</Styled.SignOutButton>
+            <Styled.SignOutButton type="button" onClick={onSignOut}>
+              회원탈퇴
+            </Styled.SignOutButton>
           </div>
         </Styled.OptionContainer>
         <Styled.SubmitButtonWrapper>

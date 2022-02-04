@@ -19,3 +19,8 @@ export const mockedUpdateUser = rest.put(
   mockApiURL('/users'),
   (req, res, ctx) => res(ctx.json(req.body)),
 );
+
+export const mockedSignOut = rest.delete(
+  mockApiURL('/users'),
+  (req, res, ctx) => res(ctx.status(200)),
+);

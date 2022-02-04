@@ -31,3 +31,7 @@ export function getProfile(): Promise<Profile> {
 export function updateUser(data: UpdateUserRequest): Promise<User> {
   return tilAxios.put('/users', data, getAuthHeader()).then((res) => res.data);
 }
+
+export function deleteUser(): Promise<void> {
+  return tilAxios.delete('/users', getAuthHeader());
+}
