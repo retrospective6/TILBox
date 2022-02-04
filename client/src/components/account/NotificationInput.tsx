@@ -37,13 +37,13 @@ export default function NotificationInput(
   };
 
   const handleChangeHour = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = limitInputNumber(event.target.value, 0, 23);
-    setHour(value);
+    const inputValue = limitInputNumber(event.target.value, 0, 23);
+    setHour(inputValue);
   };
 
   const handleChangeMinute = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = limitInputNumber(event.target.value, 0, 59);
-    setMinute(value);
+    const inputValue = limitInputNumber(event.target.value, 0, 59);
+    setMinute(inputValue);
   };
 
   const handleBlurInput = () => {

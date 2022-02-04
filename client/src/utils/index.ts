@@ -32,5 +32,5 @@ export async function copyToClipboard(value: string): Promise<void> {
   if (!navigator.clipboard) {
     return;
   }
-  return await navigator.clipboard.writeText(value);
+  return navigator.clipboard.writeText(value);
 }
