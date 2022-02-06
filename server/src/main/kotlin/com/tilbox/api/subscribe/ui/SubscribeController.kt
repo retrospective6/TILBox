@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/v1/subscription")
 class SubscribeController (private val subscribeService: SubscribeService) {
 
-    @PostMapping("/subscribe/{followerId}/")
+    @PostMapping("/subscribe/{followerId}")
     fun subscribe(@PathVariable followerId: Long, @LoginUserId userId: Long) : ResponseEntity<Void> {
         subscribeService.subscribe(userId, followerId)
         return ResponseEntity
-            .ok()
+            .noContent()
             .build()
     }
 
-    @PostMapping("/unsubscribe/{followerId}/")
+    @PostMapping("/unsubscribe/{followerId}")
     fun unsubscribe(@PathVariable followerId: Long, @LoginUserId userId: Long) : ResponseEntity<Void> {
         subscribeService.unsubscribe(userId, followerId)
         return ResponseEntity
-            .ok()
+            .noContent()
             .build()
     }
 
