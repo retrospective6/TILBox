@@ -8,7 +8,7 @@ import javax.persistence.UniqueConstraint
 
 @Table(uniqueConstraints = [UniqueConstraint(columnNames = ["user_id", "follower_id"])])
 @Entity
-class Subscribe (
+class Subscribe(
     @Column(name = "user_id", nullable = false)
     val userId: Long,
 
