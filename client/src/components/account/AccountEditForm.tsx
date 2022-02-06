@@ -10,6 +10,9 @@ import EditIcon from '@/assets/icon/EditIcon.svg';
 
 import User, { Notification } from '@/types/User';
 import { copyToClipboard } from '@/utils';
+import useTextInput from '@/hooks/useTextInput';
+import rules from '@/utils/rules';
+import { State } from '@/types';
 
 export interface AccountEditFormData {
   image: string;
@@ -35,10 +38,36 @@ export default function AccountEditForm(
     password: '',
     notification,
   });
+  const [nicknameMessage, nicknameState, setNicknameInput] = useTextInput(
+    '2자 이상 8자 이하로 입력해주세요',
+  );
+  const [passwordMessage, passwordState, setPasswordInput] = useTextInput(
+    '숫자, 영문, 특수문자를 포함해 8자 이상 입력해주세요',
+  );
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit(formData);
+  };
+
+  const handleChangeNickname = (event: ChangeEvent<HTMLInputElement>) => {
+    handleChange(event);
+    const { value } = event.target;
+    const state: State = rules.nickname(value) ? 'default' : 'error';
+    setNicknameInput({
+      message: '2자 이상 8자 이하로 입력해주세요',
+      state,
+    });
+  };
+
+  const handleChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    handleChange(event);
+    const { value } = event.target;
+    const state: State = rules.password(value) ? 'default' : 'error';
+    setPasswordInput({
+      message: '숫자, 영문, 특수문자를 포함해 8자 이상 입력해주세요',
+      state,
+    });
   };
 
   const handleSelectImg = (image: string) => {
@@ -102,18 +131,20 @@ export default function AccountEditForm(
         <TextInput
           name="nickname"
           title="닉네임"
-          message="2자 이상 8자 이하로 입력해주세요"
-          value={profile.nickname}
+          message={nicknameMessage}
+          state={nicknameState}
+          value={formData.nickname}
           icon={<EditIcon />}
-          onBlur={handleChange}
+          onChange={handleChangeNickname}
         />
         <TextInput
           name="password"
           type="password"
           title="비밀번호"
-          message="숫자, 영문, 특수문자를 포함해 8자 이상 입력해주세요"
+          message={passwordMessage}
+          state={passwordState}
           icon={<EditIcon />}
-          onBlur={handleChange}
+          onChange={handleChangePassword}
         />
         <NotificationInput
           value={notification}
