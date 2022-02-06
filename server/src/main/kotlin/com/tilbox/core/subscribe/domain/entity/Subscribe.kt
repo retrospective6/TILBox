@@ -3,7 +3,10 @@ package com.tilbox.core.subscribe.domain.entity
 import com.tilbox.core.base.BaseRootEntity
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.Table
+import javax.persistence.UniqueConstraint
 
+@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["user_id", "follower_id"])])
 @Entity
 class Subscribe (
     @Column(name = "user_id", nullable = false)
