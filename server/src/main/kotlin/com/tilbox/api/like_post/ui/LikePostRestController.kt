@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @Api(description = "TIL 게시글 좋아요 API")
 @RestController
-@RequestMapping("posts")
+@RequestMapping("/v1/posts")
 class LikePostRestController(
     private val likePostService: LikePostService,
     private val unlikePostService: UnlikePostService
