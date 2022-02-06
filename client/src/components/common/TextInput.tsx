@@ -18,8 +18,7 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function TextInput(props: TextInputProps): JSX.Element {
-  const { title, state, message, value, width, height, icon, onKeyPress } =
-    props;
+  const { title, state, message, width, height, icon, onKeyPress } = props;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClickInputWrapper = () => {
@@ -44,16 +43,11 @@ export default function TextInput(props: TextInputProps): JSX.Element {
       <Styled.InputWrapper
         width={width}
         height={height}
+        state={state}
         data-testid="text-input"
         onClick={handleClickInputWrapper}
       >
-        <Styled.Input
-          {...props}
-          value={undefined}
-          defaultValue={value}
-          onKeyPress={handleKeyPress}
-          ref={inputRef}
-        />
+        <Styled.Input {...props} onKeyPress={handleKeyPress} ref={inputRef} />
         {icon}
       </Styled.InputWrapper>
     </Styled.Container>
