@@ -26,8 +26,8 @@ class SubscribeServiceTest(
     private val subscribeRepository: SubscribeRepository,
     private val userRepository: UserRepository
 ) {
-    private lateinit  var user: User
-    private lateinit  var follower: User
+    private lateinit var user: User
+    private lateinit var follower: User
 
     @BeforeEach
     fun setUp() {
