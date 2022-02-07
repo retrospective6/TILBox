@@ -36,7 +36,7 @@ class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = [Exception::class])
     fun handleInternalException(exception: Exception): ApiErrorResponse {
-        log.error { exception.stackTrace }
+        log.error { exception.stackTraceToString() }
         return ApiErrorResponse(message = "알 수 없는 에러가 발생했습니다.")
     }
 }
