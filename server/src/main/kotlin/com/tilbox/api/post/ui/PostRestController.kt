@@ -3,12 +3,15 @@ package com.tilbox.api.post.ui
 import com.tilbox.api.post.application.PostService
 import com.tilbox.api.post.application.dto.request.PostCreateRequest
 import com.tilbox.api.security.LoginUserId
+import com.tilbox.core.post.query.PostQueryDao
+import com.tilbox.core.post.query.UserPostQueryRequest
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiResponse
 import io.swagger.annotations.ApiResponses
 import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -19,10 +22,12 @@ import java.net.URI
 import java.time.LocalDateTime
 import javax.validation.Valid
 
+const val DEFAULT_PAGE_SIZE = 20L
+
 @Api(description = "TIL 게시글 API")
 @RestController
 @RequestMapping("/v1/posts")
-class PostRestController(private val postService: PostService) {
+class PostRestController(private val postService: PostService, private val postQueryDao: PostQueryDao) {
 
     @Operation(summary = "새 게시글 저장", description = "새로운 게시글을 생성한다.")
     @ApiResponses(
@@ -66,4 +71,8 @@ class PostRestController(private val postService: PostService) {
         postService.remove(postId, userId)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/my")
+    fun readMyPosts(@LoginUserId userId: Long, size: Long?, lastPostId: Long, keyword: String?) =
+        postQueryDao.readUserPosts(UserPostQueryRequest(lastPostId, size ?: DEFAULT_PAGE_SIZE, userId, keyword, null))
 }

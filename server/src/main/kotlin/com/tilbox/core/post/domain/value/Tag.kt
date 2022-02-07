@@ -6,5 +6,5 @@ import javax.persistence.Embeddable
 @Embeddable
 class Tag(
     @Column(nullable = false, length = 10)
-    private val name: String
+    val name: String
 )

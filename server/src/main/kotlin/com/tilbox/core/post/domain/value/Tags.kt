@@ -24,7 +24,7 @@ class Tags(
             Index(name = "idx_tag_name", columnList = "name")
         ]
     )
-    private val items: MutableList<Tag> = mutableListOf()
+    val items: MutableList<Tag> = mutableListOf()
 ) {
     companion object {
         fun of(items: List<String>): Tags {

@@ -18,36 +18,36 @@ import javax.persistence.Lob
 @TypeDef(name = "json", typeClass = JsonType::class)
 class Post(
     @Column(name = "user_id", nullable = false)
-    private val userId: Long,
+    val userId: Long,
 
     @Column(name = "title", nullable = false, length = 40)
-    private var title: String,
+    var title: String,
 
     @Lob
-    private var content: String,
+    var content: String,
 
     @Column(name = "summary", nullable = false, length = 150)
-    private var summary: String,
+    var summary: String,
 
     @Embedded
-    private var tags: Tags,
+    var tags: Tags,
 
     @Type(type = "json")
     @Column(name = "thumbnail", nullable = false, columnDefinition = "json")
-    private var thumbnail: String,
+    var thumbnail: String,
 
     @Column(name = "visible_level", nullable = false, length = 10)
     @Enumerated(EnumType.STRING)
-    private var visibleLevel: PostVisibleLevel,
+    var visibleLevel: PostVisibleLevel,
 
     @Column(name = "like_count", nullable = false)
-    private var likeCount: Long = 0,
+    var likeCount: Long = 0,
 
     @Column(name = "created_at", nullable = false)
-    private val createdAt: LocalDateTime,
+    val createdAt: LocalDateTime,
 
     @Column(name = "modified_at", nullable = false)
-    private var updatedAt: LocalDateTime,
+    var updatedAt: LocalDateTime,
 
     id: Long = 0L
 ) : BaseRootEntity<Post>(id) {
