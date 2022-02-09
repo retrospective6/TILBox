@@ -3,8 +3,8 @@ import Layout from '@/components/common/Layout';
 import AccountEditForm, {
   AccountEditFormData,
 } from '@/components/account/AccountEditForm';
-import useUser from '@/hooks/useUser';
 import { useRouter } from 'next/router';
+import useUser from '@/hooks/queries/user/useUser';
 import apis from '@/apis';
 
 export default function AccountPage(): JSX.Element {
