@@ -14,8 +14,8 @@ export const decorators = [
   mswDecorator,
   cookieDecorator,
   (Story) => (
-    <ModalProvider>
-      <QueryClientProvider client={new QueryClient()}>
+    <QueryClientProvider client={new QueryClient()}>
+      <ModalProvider>
         <SWRConfig
           value={{
             dedupingInterval: 0,
@@ -25,8 +25,8 @@ export const decorators = [
         >
           <Story />
         </SWRConfig>
-      </QueryClientProvider>
-    </ModalProvider>
+      </ModalProvider>
+    </QueryClientProvider>
   ),
 ];
 

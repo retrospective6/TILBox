@@ -6,12 +6,12 @@ import React, {
   useContext,
   useState,
 } from 'react';
-import { useRouter } from 'next/router';
+
 import LoginModal, {
   LoginFormProps,
 } from '@/components/common/Modal/LoginModal';
 
-import apis from '@/apis';
+import useLogin from '@/hooks/queries/user/useLogin';
 import auth from '@/utils/auth';
 
 type ModalKeys = 'login';
@@ -29,7 +29,12 @@ export interface ModalProviderProps {
 }
 
 export function ModalProvider(props: ModalProviderProps): JSX.Element {
-  const router = useRouter();
+  const { login } = useLogin({
+    onSuccess: ({ accessToken }) => {
+      auth.set(accessToken);
+      closeModal('login');
+    },
+  });
 
   const [loginModal, setLoginModal] = useState<boolean>(false);
 
@@ -48,15 +53,7 @@ export function ModalProvider(props: ModalProviderProps): JSX.Element {
   };
 
   const handleLogin = async (values: LoginFormProps): Promise<void> => {
-    try {
-      const { accessToken } = await apis.users.login(values);
-      if (accessToken) {
-        auth.set(accessToken);
-        await router.reload();
-      }
-    } catch (error) {
-      return;
-    }
+    await login(values);
   };
 
   return (
