@@ -7,12 +7,7 @@ import React, {
   useState,
 } from 'react';
 
-import LoginModal, {
-  LoginFormProps,
-} from '@/components/common/Modal/LoginModal';
-
-import useLogin from '@/hooks/queries/user/useLogin';
-import auth from '@/utils/auth';
+import LoginModal from '@/components/common/Modal/LoginModal';
 
 type ModalKeys = 'login';
 
@@ -29,13 +24,6 @@ export interface ModalProviderProps {
 }
 
 export function ModalProvider(props: ModalProviderProps): JSX.Element {
-  const { login } = useLogin({
-    onSuccess: ({ accessToken }) => {
-      auth.set(accessToken);
-      closeModal('login');
-    },
-  });
-
   const [loginModal, setLoginModal] = useState<boolean>(false);
 
   const modalHandlers: {
@@ -52,19 +40,10 @@ export function ModalProvider(props: ModalProviderProps): JSX.Element {
     modalHandlers[key](false);
   };
 
-  const handleLogin = async (values: LoginFormProps): Promise<void> => {
-    await login(values);
-  };
-
   return (
     <Context.Provider value={{ openModal, closeModal }}>
       {props.children}
-      {loginModal && (
-        <LoginModal
-          onClose={() => closeModal('login')}
-          onSubmit={handleLogin}
-        />
-      )}
+      {loginModal && <LoginModal onClose={() => closeModal('login')} />}
     </Context.Provider>
   );
 }
