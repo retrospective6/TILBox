@@ -7,6 +7,7 @@ import {
 import client from '@/utils/api';
 import { AxiosError } from 'axios';
 import User from '@/types/User';
+import auth from '@/utils/auth';
 
 export interface LoginRequest {
   email: User['email'];
@@ -34,7 +35,15 @@ export default function useLogin(
 ): UseLoginResult {
   const mutation = useMutation<LoginResponse, AxiosError, LoginRequest>(
     (data: LoginRequest) => login(data),
-    options,
+    {
+      ...options,
+      onSuccess: (data, variables, context) => {
+        auth.set(data.accessToken);
+        if (options?.onSuccess) {
+          options?.onSuccess(data, variables, context);
+        }
+      },
+    },
   );
 
   return {

@@ -7,7 +7,6 @@ import Button from '@/components/common/Button';
 import CloseIcon from '@/assets/icon/CloseIcon.svg';
 
 import useLogin from '@/hooks/queries/user/useLogin';
-import auth from '@/utils/auth';
 
 export interface LoginModalProps {
   onClose: () => void;
@@ -19,10 +18,7 @@ export default function LoginModal(props: LoginModalProps): JSX.Element {
   const [password, setPassword] = useState<string>('');
 
   const { login } = useLogin({
-    onSuccess: ({ accessToken }) => {
-      auth.set(accessToken);
-      onClose();
-    },
+    onSuccess: onClose,
   });
 
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
