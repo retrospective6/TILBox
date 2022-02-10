@@ -4,7 +4,6 @@ import { mockApis } from '../__mocks__/apis';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import * as NextImage from 'next/image';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { SWRConfig } from 'swr';
 import { ModalProvider } from '../src/hooks/useModal';
 import { cookieDecorator } from '../__mocks__/cookie';
 
@@ -16,15 +15,7 @@ export const decorators = [
   (Story) => (
     <QueryClientProvider client={new QueryClient()}>
       <ModalProvider>
-        <SWRConfig
-          value={{
-            dedupingInterval: 0,
-            errorRetryCount: 0,
-            provider: () => new Map(),
-          }}
-        >
-          <Story />
-        </SWRConfig>
+        <Story />
       </ModalProvider>
     </QueryClientProvider>
   ),

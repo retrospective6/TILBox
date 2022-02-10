@@ -16803,15 +16803,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swr@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "swr@npm:1.1.2"
-  peerDependencies:
-    react: ^16.11.0 || ^17.0.0 || ^18.0.0
-  checksum: 84bf222c667bf4f94bf9bcaf51f11443d69eb6feb82649c06ef8e576c51f52269872dbda4b926f267fd79cfeaf7bd84c6a62d519db25fe2af1fb811e75163e94
-  languageName: node
-  linkType: hard
-
 "symbol-tree@npm:^3.2.4":
   version: 3.2.4
   resolution: "symbol-tree@npm:3.2.4"
@@ -17095,7 +17086,6 @@ __metadata:
     storybook-addon-next-router: ^3.1.0
     stylelint: ^14.1.0
     stylelint-config-standard: ^24.0.0
-    swr: ^1.1.2
     ts-jest: ^27.0.5
     typescript: ^4.4.4
     wait-for-expect: ^3.0.2
