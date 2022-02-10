@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import Header from '@/components/common/Header/Header';
 
-import useProfile from '@/hooks/useProfile';
+import useProfile from '@/hooks/queries/user/useProfile';
 import { useRouter } from 'next/router';
 import useModal from '@/hooks/useModal';
 
