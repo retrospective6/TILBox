@@ -10,7 +10,7 @@ export type UseUserResult = UseQueryResult<User, AxiosError> & {
 };
 
 export async function getUser(): Promise<User> {
-  return client.get<User>('users').then((res) => res.data);
+  return client.get<User>('/users').then((res) => res.data);
 }
 
 export default function useUser(
