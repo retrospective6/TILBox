@@ -5,16 +5,10 @@ import {
   UseMutationResult,
   useQueryClient,
 } from 'react-query';
-import client from '@/utils/api';
 import { AxiosError } from 'axios';
 import User from '@/types/User';
-
-export interface UpdateUserRequest {
-  image: User['profile']['image'];
-  nickname: User['profile']['nickname'];
-  password: string;
-  notification?: User['notification'];
-}
+import apis from '@/apis';
+import { UpdateUserRequest } from '@/apis/users';
 
 type UseUpdateUserResult = UseMutationResult<
   User,
@@ -24,16 +18,12 @@ type UseUpdateUserResult = UseMutationResult<
   updateUser: UseMutateAsyncFunction<User, AxiosError, UpdateUserRequest>;
 };
 
-export async function updateUser(data: UpdateUserRequest): Promise<User> {
-  return client.put('/users', data).then((res) => res.data);
-}
-
 export default function useUpdateUser(
   options?: UseMutationOptions<User, AxiosError, UpdateUserRequest>,
 ): UseUpdateUserResult {
   const queryClient = useQueryClient();
   const mutation = useMutation<User, AxiosError, UpdateUserRequest>(
-    (data: UpdateUserRequest) => updateUser(data),
+    (data: UpdateUserRequest) => apis.users.update(data),
     {
       ...options,
       onSuccess(data, variables, context) {
