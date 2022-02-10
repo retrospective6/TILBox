@@ -2,8 +2,6 @@ import React from 'react';
 import { ComponentStory } from '@storybook/react';
 import AccountPage from '@/pages/account';
 import { PageContainer } from '../utils/Components';
-import { rest } from 'msw';
-import { mockApiURL } from '@mocks/apis/utils';
 
 export default {
   component: AccountPage,
