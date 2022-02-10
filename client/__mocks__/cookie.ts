@@ -14,6 +14,10 @@ const cookie = {
   remove(key: string): void {
     this.set(key, '');
   },
+
+  clear(): void {
+    Object.keys(cookies).forEach((key) => cookie.remove(key));
+  },
 };
 
 export default cookie;
