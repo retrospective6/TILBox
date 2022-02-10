@@ -3,6 +3,7 @@ import {
   useMutation,
   UseMutationOptions,
   UseMutationResult,
+  useQueryClient,
 } from 'react-query';
 import client from '@/utils/api';
 import { AxiosError } from 'axios';
@@ -27,12 +28,21 @@ export async function updateUser(data: UpdateUserRequest): Promise<User> {
   return client.put('/users', data).then((res) => res.data);
 }
 
-export default function useUserUpdate(
+export default function useUpdateUser(
   options?: UseMutationOptions<User, AxiosError, UpdateUserRequest>,
 ): UseUpdateUserResult {
+  const queryClient = useQueryClient();
   const mutation = useMutation<User, AxiosError, UpdateUserRequest>(
     (data: UpdateUserRequest) => updateUser(data),
-    options,
+    {
+      ...options,
+      onSuccess(data, variables, context) {
+        queryClient.setQueryData('users', data);
+        if (options?.onSuccess) {
+          options?.onSuccess(data, variables, context);
+        }
+      },
+    },
   );
 
   return {

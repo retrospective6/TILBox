@@ -5,17 +5,17 @@ import AccountEditForm, {
 } from '@/components/account/AccountEditForm';
 import { useRouter } from 'next/router';
 import useUser from '@/hooks/queries/user/useUser';
-import useUserUpdate from '@/hooks/queries/user/useUpdateUser';
+import useUpdateUser from '@/hooks/queries/user/useUpdateUser';
 import useDeleteUser from '@/hooks/queries/user/useDeleteUser';
 
 export default function AccountPage(): JSX.Element {
   const router = useRouter();
   const { user, loggedOut } = useUser();
-  const { updateUser } = useUserUpdate({
-    onSuccess: () => router.reload(),
-  });
+  const { updateUser } = useUpdateUser();
   const { deleteUser } = useDeleteUser({
-    onSuccess: () => router.push('/'),
+    onSuccess() {
+      router.push('/');
+    },
   });
 
   useEffect(() => {

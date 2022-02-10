@@ -37,7 +37,7 @@ export default function useLogin(
     (data: LoginRequest) => login(data),
     {
       ...options,
-      onSuccess: (data, variables, context) => {
+      onSuccess(data, variables, context) {
         auth.set(data.accessToken);
         if (options?.onSuccess) {
           options?.onSuccess(data, variables, context);
