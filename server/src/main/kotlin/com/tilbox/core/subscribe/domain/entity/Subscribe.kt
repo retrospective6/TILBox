@@ -6,14 +6,14 @@ import javax.persistence.Entity
 import javax.persistence.Table
 import javax.persistence.UniqueConstraint
 
-@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["user_id", "follower_id"])])
+@Table(uniqueConstraints = [UniqueConstraint(columnNames = ["user_id", "following_id"])])
 @Entity
 class Subscribe(
     @Column(name = "user_id", nullable = false)
     val userId: Long,
 
-    @Column(name = "follower_id", nullable = false)
-    val followerId: Long,
+    @Column(name = "following_id", nullable = false)
+    val followingId: Long,
 
     id: Long = 0L
 ) : BaseRootEntity<Subscribe>(id)
