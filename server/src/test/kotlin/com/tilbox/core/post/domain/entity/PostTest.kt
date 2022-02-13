@@ -4,7 +4,6 @@ import com.tilbox.core.post.domain.fixture.ofDefaultPost
 import com.tilbox.core.post.domain.value.PostVisibleLevel
 import com.tilbox.core.post.domain.value.Tags
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -61,7 +60,7 @@ class PostTest {
             createdAt = LocalDateTime.of(2021, 12, 10, 10, 35),
             updatedAt = LocalDateTime.of(2021, 12, 12, 16, 21)
         )
-        post shouldBeEqualToComparingFields expected
+        post shouldBe expected
     }
 
     @ParameterizedTest
