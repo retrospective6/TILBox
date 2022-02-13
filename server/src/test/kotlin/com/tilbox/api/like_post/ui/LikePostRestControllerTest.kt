@@ -22,7 +22,7 @@ class LikePostRestControllerTest : RestControllerTest() {
         justRun { likePostService.like(any(), any()) }
 
         // when
-        val actual = post("/posts/1/like")
+        val actual = post("/v1/posts/1/like")
 
         // then
         actual.andExpect {
@@ -36,7 +36,7 @@ class LikePostRestControllerTest : RestControllerTest() {
         justRun { unlikePostService.unlike(any(), any()) }
 
         // when
-        val actual = post("/posts/1/unlike")
+        val actual = post("/v1/posts/1/unlike")
 
         // then
         actual.andExpect {
