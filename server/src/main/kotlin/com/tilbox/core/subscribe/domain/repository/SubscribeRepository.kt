@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import java.util.Optional
 
 interface SubscribeRepository : JpaRepository<Subscribe, Long> {
-    fun existsByUserIdAndFollowerId(userId: Long, followerId: Long): Boolean
+    fun existsByUserIdAndFollowingId(userId: Long, followingId: Long): Boolean
 
-    fun findByUserIdAndFollowerId(userId: Long, followerId: Long): Optional<Subscribe>
+    fun findByUserIdAndFollowingId(userId: Long, followingId: Long): Optional<Subscribe>
 }

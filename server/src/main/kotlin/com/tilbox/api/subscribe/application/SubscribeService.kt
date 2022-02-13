@@ -15,7 +15,7 @@ class SubscribeService(
     fun subscribe(userId: Long, followingId: Long) {
         check(userRepository.existsById(followingId)) { "팔로잉 사용자가 존재하지 않습니다. followingId=$followingId" }
         check(
-            !subscribeRepository.existsByUserIdAndFollowerId(
+            !subscribeRepository.existsByUserIdAndFollowingId(
                 userId,
                 followingId
             )
@@ -25,7 +25,7 @@ class SubscribeService(
 
     fun unsubscribe(userId: Long, followingId: Long) {
         check(userRepository.existsById(followingId)) { "팔로잉 사용자가 존재하지 않습니다. followingId=$followingId" }
-        val subscribe = subscribeRepository.findByUserIdAndFollowerId(userId, followingId)
+        val subscribe = subscribeRepository.findByUserIdAndFollowingId(userId, followingId)
             .orElseThrow {
                 IllegalStateException("구독중이 아닙니다. userId=$userId, followingId=$followingId")
             }
