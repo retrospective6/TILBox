@@ -1,5 +1,6 @@
 package com.tilbox.api.post.application
 
+import com.tilbox.base.test.DatabaseCleanUp
 import com.tilbox.core.post.domain.fixture.ofDefaultCreateRequest
 import com.tilbox.core.post.domain.fixture.ofDefaultPost
 import com.tilbox.core.post.domain.fixture.ofDefaultUpdateRequest
@@ -7,7 +8,9 @@ import com.tilbox.core.post.domain.repository.PostRepository
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.longs.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
@@ -22,6 +25,14 @@ class PostServiceTest(
     private val postService: PostService,
     private val postRepository: PostRepository
 ) {
+    @field:Autowired
+    private lateinit var databaseCleanUp: DatabaseCleanUp
+
+    @AfterEach
+    fun tearDown() {
+        databaseCleanUp.truncate()
+    }
+
     @Test
     fun `게시글 작성시 새로 생성된 게시글 ID를 반환한다`() {
         val createRequest = ofDefaultCreateRequest()
