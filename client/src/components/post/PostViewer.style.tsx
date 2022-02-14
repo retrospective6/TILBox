@@ -2,13 +2,9 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import FONT from '@/styles/font';
+import { Gradation } from '@/types';
 
-export interface TitleProps {
-  start?: string;
-  end?: string;
-}
-
-export const Title = styled.h1<TitleProps>`
+export const Title = styled.h1<Partial<Gradation>>`
   display: flex;
   position: relative;
   width: 100%;

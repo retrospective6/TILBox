@@ -5,9 +5,6 @@ import { ComponentStory } from '@storybook/react';
 export default {
   component: ImgSelector,
   title: 'common/ImgSelector',
-  parameters: {
-    actions: { argTypesRegex: '^on.*' },
-  },
 };
 
 const Template: ComponentStory<typeof ImgSelector> = (args) => (

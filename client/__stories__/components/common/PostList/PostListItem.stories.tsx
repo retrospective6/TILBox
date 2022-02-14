@@ -1,7 +1,7 @@
 import React from 'react';
 import PostListItem from '@/components/common/PostList/PostListItem';
 import { ComponentStory } from '@storybook/react';
-import { ADMIN_POST, POST } from '@mocks/MockData';
+import { ADMIN_POST, POST } from '@mocks/data/posts';
 
 export default {
   component: PostListItem,

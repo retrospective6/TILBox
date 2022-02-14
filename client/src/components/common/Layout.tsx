@@ -1,8 +1,10 @@
-import React, { ReactNode, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { ReactNode } from 'react';
 
 import Header from '@/components/common/Header/Header';
-import LoginModal from '@/components/common/Modal/LoginModal';
+
+import useProfile from '@/hooks/queries/user/useProfile';
+import { useRouter } from 'next/router';
+import useModal from '@/hooks/useModal';
 
 export interface LayoutProps {
   children: ReactNode;
@@ -11,18 +13,11 @@ export interface LayoutProps {
 export default function Layout(props: LayoutProps): JSX.Element {
   const { children } = props;
   const router = useRouter();
-  const [loginModal, setLoginModal] = useState<boolean>(false);
+  const { profile } = useProfile();
+  const { openModal } = useModal();
 
   const handleOpenLoginModal = () => {
-    setLoginModal(true);
-  };
-
-  const handleCloseLoginModal = () => {
-    setLoginModal(false);
-  };
-
-  const handleLogin = () => {
-    // TODO: 로그인 시 로직
+    openModal('login');
   };
 
   const handleSearch = () => {
@@ -40,11 +35,9 @@ export default function Layout(props: LayoutProps): JSX.Element {
         onLogin={handleOpenLoginModal}
         onSearch={handleSearch}
         onWrite={handleWrite}
+        profile={profile}
       />
       {children}
-      {loginModal && (
-        <LoginModal onClose={handleCloseLoginModal} onSubmit={handleLogin} />
-      )}
     </>
   );
 }

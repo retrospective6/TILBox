@@ -4,9 +4,14 @@ plugins {
     id("org.springframework.boot") version "2.5.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
-    kotlin("jvm") version "1.5.31"
-    kotlin("plugin.spring") version "1.5.31"
-    kotlin("plugin.jpa") version "1.5.31"
+
+    val kotlinVersion = "1.5.31"
+
+    kotlin("jvm") version kotlinVersion
+    kotlin("kapt") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion
+    kotlin("plugin.jpa") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion
 }
 
 group = "com"
@@ -44,6 +49,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("software.amazon.awssdk:s3:${Versions.AWS_SDK}")
 
+    implementation("com.querydsl:querydsl-jpa")
+    kapt(group = "com.querydsl", name = "querydsl-apt", classifier = "jpa")
+
     implementation("io.github.microutils:kotlin-logging:${Versions.KOTLIN_LOGGING}")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
@@ -69,4 +77,8 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+kotlin.sourceSets.main {
+    setBuildDir("$buildDir")
 }

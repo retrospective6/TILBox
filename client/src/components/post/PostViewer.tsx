@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as Styled from '@/components/post/PostViewer.style';
-import { TitleProps } from '@/components/post/PostViewer.style';
-
-import Post from '@/types/Post';
 
 import TagList from '@/components/common/Tag/TagList';
 import dynamic from 'next/dynamic';
@@ -13,6 +10,8 @@ const ToastViewer = dynamic(() => import('./ToastViewer'), {
 
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from '@/constants';
+import Post from '@/types/Post';
+import { Gradation } from '@/types';
 
 export interface PostViewerProps {
   post: Post;
@@ -24,15 +23,15 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
   const { post, onSubmitComment, onReportComment } = props;
   const { title, thumbnail, user, createdAt, content, tags } = post;
   const [imgSrc, setImgSrc] = useState<string>();
-  const [gradient, setGradient] = useState<TitleProps>();
+  const [gradation, setGradation] = useState<Gradation>();
 
   useEffect(() => {
-    if (thumbnail.img) {
-      setImgSrc(thumbnail.img);
+    if (thumbnail.type === 'image') {
+      setImgSrc(thumbnail.value as string);
       return;
     }
 
-    setGradient(thumbnail.gradient);
+    setGradation(thumbnail.value as Gradation);
   }, [thumbnail]);
 
   const handleSubmitComment = (value: string, commentId?: number) => {
@@ -41,7 +40,7 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
 
   return (
     <>
-      <Styled.Title start={gradient?.start} end={gradient?.end}>
+      <Styled.Title start={gradation?.start} end={gradation?.end}>
         {imgSrc && (
           <Styled.ThumbnailImg src={imgSrc} alt={title} layout="fill" />
         )}
@@ -51,12 +50,12 @@ export default function PostViewer(props: PostViewerProps): JSX.Element {
         <Styled.Info>
           <Styled.UserInfo>
             <Styled.UserImage
-              src={user.image}
-              alt={user.nickname}
+              src={user.profile.image}
+              alt={user.profile.nickname}
               width="18px"
               height="18px"
             />
-            <Styled.UserNickname>{user.nickname}</Styled.UserNickname>
+            <Styled.UserNickname>{user.profile.nickname}</Styled.UserNickname>
           </Styled.UserInfo>
           <Styled.CreatedAt>
             {dayjs(createdAt).format(DATE_FORMAT)}

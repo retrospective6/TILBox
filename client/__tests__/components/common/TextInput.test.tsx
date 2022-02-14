@@ -21,16 +21,16 @@ describe('props Test', () => {
 
   describe('width을 props로 넘기면 width으로 랜더된다.', () => {
     test.each(['100%', '100px', '100vw'])(`has width style [%s]`, (width) => {
-      const { getByPlaceholderText } = renderInput({ width });
-      const input = getByPlaceholderText(DEFAULT_ARGS.placeholder);
+      const { getByTestId } = renderInput({ width });
+      const input = getByTestId('text-input');
       expect(input).toHaveStyle({ width });
     });
   });
 
   describe('height을 props로 넘기면 height으로 랜더된다.', () => {
     test.each(['100%', '100px', '100vw'])(`has height style [%s]`, (height) => {
-      const { getByPlaceholderText } = renderInput({ height });
-      const input = getByPlaceholderText(DEFAULT_ARGS.placeholder);
+      const { getByTestId } = renderInput({ height });
+      const input = getByTestId('text-input');
       expect(input).toHaveStyle({ height });
     });
   });

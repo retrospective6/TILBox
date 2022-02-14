@@ -6,29 +6,33 @@ import PostEditor from '@/components/write/Editor/PostEditor';
 import WriteModal, {
   WriteModalFormProps,
 } from '@/components/write/Modal/WriteModal';
+
 import { MAX_TITLE_LENGTH } from '@/constants/validations';
 import {
   TITLE_EMPTY_ERROR_MESSAGE,
   TITLE_LENGTH_ERROR_MESSAGE,
 } from '@/constants/messages';
 import { State } from '@/types';
+import apis from '@/apis';
+import { CreatePostRequest } from '@/apis/posts';
+import { useRouter } from 'next/router';
 
 export default function PostPage(): JSX.Element {
-  // TODO: login에 따른 라우팅 및 헤더 메시지 출력
+  const router = useRouter();
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [modal, setModal] = useState<boolean>(false);
   const [headerMessage, setHeaderMessage] = useState<string>('');
   const [headerState, setHeaderState] = useState<State>('default');
 
-  const handleSubmitPost = (props: WriteModalFormProps) => {
-    const post = {
+  const handleSubmitPost = async (props: WriteModalFormProps) => {
+    const post: CreatePostRequest = {
       title,
       content,
       ...props,
     };
-    return post;
-    // TODO: createPost api
+    const id = await apis.posts.write(post);
+    await router.push('/posts/' + id);
   };
 
   const handleChangeEditor = (newTitle: string, newContent: string) => {
