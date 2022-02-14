@@ -3,6 +3,7 @@ import '@/styles/global.css';
 import type { AppProps } from 'next/app';
 import styled from '@emotion/styled';
 import { ModalProvider } from '@/hooks/useModal';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 if (process.env.NODE_ENV === 'development') {
   if (typeof window === 'undefined') {
@@ -22,12 +23,16 @@ export default function TILApp({
   Component,
   pageProps,
 }: AppProps): JSX.Element {
+  const queryClient = new QueryClient();
+
   return (
-    <ModalProvider>
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-    </ModalProvider>
+    <QueryClientProvider client={queryClient}>
+      <ModalProvider>
+        <Container>
+          <Component {...pageProps} />
+        </Container>
+      </ModalProvider>
+    </QueryClientProvider>
   );
 }
 

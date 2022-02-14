@@ -1,9 +1,8 @@
-import { tilAxios } from '@/apis/utils';
-import User, { Notification, Profile } from '@/types/User';
-import { getAuthHeader } from '@/apis/utils/auth';
+import client from '@/apis/utils/client';
+import User, { Profile } from '@/types/User';
 
 export interface LoginRequest {
-  email: string;
+  email: User['email'];
   password: string;
 }
 
@@ -11,27 +10,29 @@ export interface LoginResponse {
   accessToken: string;
 }
 
+export async function login(data: LoginRequest): Promise<LoginResponse> {
+  return client.post('/login', data).then((res) => res.data);
+}
+
+export async function signOut(): Promise<void> {
+  return client.delete('/users').then((res) => res.data);
+}
+
 export interface UpdateUserRequest {
-  image: string;
-  nickname: string;
+  image: User['profile']['image'];
+  nickname: User['profile']['nickname'];
   password: string;
-  notification?: Notification;
+  notification?: User['notification'];
 }
 
-export function login(param: LoginRequest): Promise<LoginResponse> {
-  return tilAxios.post('/login', param).then((res) => res.data);
+export async function update(data: UpdateUserRequest): Promise<User> {
+  return client.put('/users', data).then((res) => res.data);
 }
 
-export function getProfile(): Promise<Profile> {
-  return tilAxios
-    .get('/users/profile', getAuthHeader())
-    .then((res) => res.data);
+export async function getProfile(): Promise<Profile> {
+  return client.get<Profile>('/users/profile').then((res) => res.data);
 }
 
-export function updateUser(data: UpdateUserRequest): Promise<User> {
-  return tilAxios.put('/users', data, getAuthHeader()).then((res) => res.data);
-}
-
-export function deleteUser(): Promise<void> {
-  return tilAxios.delete('/users', getAuthHeader());
+export async function get(): Promise<User> {
+  return client.get<User>('/users').then((res) => res.data);
 }

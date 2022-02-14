@@ -20,3 +20,5 @@ Default.parameters = {
     accessToken: 'test',
   },
 };
+
+export const WithoutUser = Template.bind({});

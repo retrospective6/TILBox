@@ -3,26 +3,21 @@ import { initialize, mswDecorator } from 'msw-storybook-addon';
 import { mockApis } from '../__mocks__/apis';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import * as NextImage from 'next/image';
-import { SWRConfig } from 'swr';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ModalProvider } from '../src/hooks/useModal';
 import { cookieDecorator } from '../__mocks__/cookie';
 
 initialize();
+
 export const decorators = [
   mswDecorator,
   cookieDecorator,
   (Story) => (
-    <ModalProvider>
-      <SWRConfig
-        value={{
-          dedupingInterval: 0,
-          errorRetryCount: 0,
-          provider: () => new Map(),
-        }}
-      >
+    <QueryClientProvider client={new QueryClient()}>
+      <ModalProvider>
         <Story />
-      </SWRConfig>
-    </ModalProvider>
+      </ModalProvider>
+    </QueryClientProvider>
   ),
 ];
 

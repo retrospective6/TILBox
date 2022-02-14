@@ -3,13 +3,20 @@ import Layout from '@/components/common/Layout';
 import AccountEditForm, {
   AccountEditFormData,
 } from '@/components/account/AccountEditForm';
-import useUser from '@/hooks/useUser';
 import { useRouter } from 'next/router';
-import apis from '@/apis';
+import useUser from '@/hooks/queries/user/useUser';
+import useUpdateUser from '@/hooks/queries/user/useUpdateUser';
+import useDeleteUser from '@/hooks/queries/user/useDeleteUser';
 
 export default function AccountPage(): JSX.Element {
-  const { user, loggedOut } = useUser();
   const router = useRouter();
+  const { user, loggedOut } = useUser();
+  const { updateUser } = useUpdateUser();
+  const { deleteUser } = useDeleteUser({
+    onSuccess() {
+      router.push('/');
+    },
+  });
 
   useEffect(() => {
     if (loggedOut) {
@@ -18,13 +25,11 @@ export default function AccountPage(): JSX.Element {
   }, [user, loggedOut, router]);
 
   const handleSubmit = async (data: AccountEditFormData) => {
-    await apis.users.updateUser(data);
-    router.reload();
+    await updateUser(data);
   };
 
   const handleSignOut = async () => {
-    await apis.users.deleteUser();
-    await router.push('/');
+    await deleteUser();
   };
 
   return (

@@ -6,20 +6,20 @@ import TextInput from '@/components/common/TextInput';
 import Button from '@/components/common/Button';
 import CloseIcon from '@/assets/icon/CloseIcon.svg';
 
-export interface LoginFormProps {
-  email: string;
-  password: string;
-}
+import useLogin from '@/hooks/queries/user/useLogin';
 
 export interface LoginModalProps {
   onClose: () => void;
-  onSubmit: (values: LoginFormProps) => void;
 }
 
 export default function LoginModal(props: LoginModalProps): JSX.Element {
-  const { onClose, onSubmit } = props;
+  const { onClose } = props;
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+
+  const { login } = useLogin({
+    onSuccess: onClose,
+  });
 
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -29,12 +29,12 @@ export default function LoginModal(props: LoginModalProps): JSX.Element {
     setPassword(event.target.value);
   };
 
-  const onSubmitValue = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmitValue = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!email || !password) {
       return;
     }
-    onSubmit({ email, password });
+    await login({ email, password });
   };
 
   return (

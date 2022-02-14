@@ -3,7 +3,7 @@ import * as Styled from './CommentInput.styles';
 
 import Button from '@/components/common/Button';
 
-import useProfile from '@/hooks/useProfile';
+import useProfile from '@/hooks/queries/user/useProfile';
 import CommentInputLogout from '@/components/post/CommentList/CommentInputLogout';
 
 export interface CommentInputProps {

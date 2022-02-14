@@ -1,11 +1,11 @@
-import * as users from './users';
 import * as images from './images';
 import * as posts from './posts';
+import * as users from './users';
 
 const apis = {
-  users,
   images,
   posts,
+  users,
 };
 
 export default apis;
