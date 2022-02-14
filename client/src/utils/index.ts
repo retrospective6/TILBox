@@ -12,3 +12,25 @@ export function getRandomGradation(): Gradation {
 export function isServer(): boolean {
   return typeof window !== 'object';
 }
+
+export function limitInputNumber(
+  value: string,
+  min: number,
+  max: number,
+): number {
+  const result: number = parseInt(value.replace(/[^0-9.]/g, ''));
+  if (!result || result < min) {
+    return min;
+  }
+  if (result > max) {
+    return max;
+  }
+  return result;
+}
+
+export async function copyToClipboard(value: string): Promise<void> {
+  if (!navigator.clipboard) {
+    return;
+  }
+  return navigator.clipboard.writeText(value);
+}
