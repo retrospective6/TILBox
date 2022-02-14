@@ -1,30 +1,32 @@
 import React, { ChangeEvent, FormEventHandler, useState } from 'react';
-import Input from '@/components/common/TextInput';
 import * as Styled from './Form.styles';
-import Button from '@/components/common/Button';
-import { signup } from '@/api/user.api';
 
-interface Form {
+import Input from '@/components/common/TextInput';
+import Button from '@/components/common/Button';
+import apis from '@/apis';
+import NotificationInput from '@/components/common/NotificationInput';
+import { Notification } from '@/types/User';
+
+interface FormData {
   myTilAddress: string;
   nickname: string;
   email: string;
   password: string;
   passwordCheck: string;
-  emailCheck: boolean;
+  notification?: Notification;
 }
 
 export default function SignUpForm(): JSX.Element {
-  const [form, setForm] = useState<Form>({
+  const [formData, setFormData] = useState<FormData>({
     myTilAddress: '',
     nickname: '',
     email: '',
     password: '',
     passwordCheck: '',
-    emailCheck: false,
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setForm((prevValues) => ({
+    setFormData((prevValues) => ({
       ...prevValues,
       [e.target.name]: e.target.value,
     }));
@@ -32,8 +34,14 @@ export default function SignUpForm(): JSX.Element {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+    await apis.users.signup(formData);
+  };
 
-    await signup(form);
+  const handleChangeNotification = (value?: Notification) => {
+    setFormData({
+      ...formData,
+      notification: value,
+    });
   };
 
   return (
@@ -45,7 +53,7 @@ export default function SignUpForm(): JSX.Element {
         height="34px"
         message="숫자, 영어를 조합해 나만의 TIL 주소를 만들 수 있습니다"
         placeholder="www.tilbox/til356list"
-        value={form.myTilAddress}
+        value={formData.myTilAddress}
         onChange={handleChange}
         name="myTilAddress"
         required
@@ -57,7 +65,7 @@ export default function SignUpForm(): JSX.Element {
         message="2자 이상 8자 이하로 입력해주세요"
         height="34px"
         placeholder="당근한개"
-        value={form.nickname}
+        value={formData.nickname}
         onChange={handleChange}
         name="nickname"
         required
@@ -70,7 +78,7 @@ export default function SignUpForm(): JSX.Element {
         height="34px"
         placeholder="test@gogle.com"
         type="email"
-        value={form.email}
+        value={formData.email}
         onChange={handleChange}
         name="email"
         required
@@ -82,7 +90,7 @@ export default function SignUpForm(): JSX.Element {
         message="숫자, 영문, 특문(!, @, #, $, %, ^, &, *) 모두 포함 8자 이상 입력해주세요"
         placeholder="til365master!"
         type="password"
-        value={form.password}
+        value={formData.password}
         onChange={handleChange}
         name="password"
         required
@@ -95,24 +103,13 @@ export default function SignUpForm(): JSX.Element {
         message="비밀번호를 다시 입력해주세요"
         placeholder="til365master!"
         type="password"
-        value={form.passwordCheck}
+        value={formData.passwordCheck}
         onChange={handleChange}
         name="passwordCheck"
         required
       />
       <Styled.CheckEmailReception>
-        <label>
-          <div>
-            <span className="title">이메일 수신</span>
-            <span className="description">
-              정해진 시간에 맞춰 TIL 미작성시 알림 메일이 발신됩니다
-            </span>
-          </div>
-        </label>
-        <label className="checkbox-wrap">
-          <input name="emailCheck" type="checkbox" />
-          <span className="checkbox-desc">이메일 수신 동의</span>
-        </label>
+        <NotificationInput onChange={handleChangeNotification} />
       </Styled.CheckEmailReception>
 
       <Button variant="primary" type="submit" bold>

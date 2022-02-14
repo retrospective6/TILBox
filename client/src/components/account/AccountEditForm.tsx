@@ -3,7 +3,7 @@ import * as Styled from './AccountEditForm.styles';
 
 import ProfileImgSelector from '@/components/signup/ProfileImgSelector';
 import TextInput from '@/components/common/TextInput';
-import NotificationInput from '@/components/account/NotificationInput';
+import NotificationInput from '@/components/common/NotificationInput';
 import Button from '@/components/common/Button';
 import RadioChecked from '@/assets/icon/RadioChecked.svg';
 import EditIcon from '@/assets/icon/EditIcon.svg';
