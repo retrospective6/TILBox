@@ -6,7 +6,6 @@ import { Profile } from '@/types/User';
 
 const DEFAULT_ARGS: HeaderProps = {
   active: '/',
-  onSignUp: jest.fn(),
   onLogin: jest.fn(),
   onWrite: jest.fn(),
   onSearch: jest.fn(),
@@ -57,16 +56,6 @@ describe('navbar', () => {
 });
 
 describe('user info section', () => {
-  describe('with onSignUp method', () => {
-    const onSignUp = jest.fn();
-    test('run method on click sign up text', () => {
-      const { getByTestId } = renderHeader({ onSignUp });
-      const signUp = getByTestId('sign-up');
-      fireEvent.click(signUp);
-      expect(onSignUp).toBeCalled();
-    });
-  });
-
   describe('with onLogin method', () => {
     const onLogin = jest.fn();
     test('run method on click sign in text', () => {

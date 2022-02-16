@@ -4,6 +4,7 @@ import FONT from '@/styles/font';
 import Copy from '@/assets/icon/CopyIcon.svg';
 
 export const Form = styled.form`
+  padding: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;

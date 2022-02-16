@@ -16,10 +16,6 @@ export default function Layout(props: LayoutProps): JSX.Element {
   const { profile } = useProfile();
   const { openModal } = useModal();
 
-  const handleSignUp = () => {
-    // TODO: 회원가입 버튼 클릭 시 로직
-  };
-
   const handleOpenLoginModal = () => {
     openModal('login');
   };
@@ -36,7 +32,6 @@ export default function Layout(props: LayoutProps): JSX.Element {
     <>
       <Header
         active={router.pathname}
-        onSignUp={handleSignUp}
         onLogin={handleOpenLoginModal}
         onSearch={handleSearch}
         onWrite={handleWrite}

@@ -1,6 +1,19 @@
 import client from '@/apis/utils/client';
 import User, { Profile } from '@/types/User';
 
+interface SignupRequest {
+  image: string;
+  myTilAddress: string;
+  nickname: string;
+  email: string;
+  password: string;
+  notification?: User['notification'];
+}
+
+export async function signup(data: SignupRequest): Promise<void> {
+  return client.post('/signup', data).then((res) => res.data);
+}
+
 export interface LoginRequest {
   email: User['email'];
   password: string;
