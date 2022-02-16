@@ -45,7 +45,7 @@ export default function SignUpForm(): JSX.Element {
   });
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>({});
 
-  const validateInputs = () => {
+  const validateInputs = (): ErrorMessage => {
     const { myTilAddress, nickname, email, password, passwordCheck } = formData;
     const errors: ErrorMessage = {};
 
@@ -84,12 +84,13 @@ export default function SignUpForm(): JSX.Element {
       errors.passwordCheck = MESSAGE.PASSWORD_CHECK.ERROR;
     }
     setErrorMessage(errors);
+    return errors;
   };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    validateInputs();
-    const isNotValid = Object.values(errorMessage).some((error) => !!error);
+    const errors = validateInputs();
+    const isNotValid = Object.values(errors).some((error) => !!error);
     if (isNotValid) {
       return;
     }

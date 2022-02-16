@@ -44,7 +44,7 @@ export default function AccountEditForm(
   });
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>({});
 
-  const validateInputs = () => {
+  const validateInputs = (): ErrorMessage => {
     const { nickname, password } = formData;
     const errors: ErrorMessage = {};
 
@@ -63,12 +63,13 @@ export default function AccountEditForm(
     }
 
     setErrorMessage(errors);
+    return errors;
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    validateInputs();
-    const isNotValid = Object.values(errorMessage).some((error) => !!error);
+    const errors = validateInputs();
+    const isNotValid = Object.values(errors).some((error) => !!error);
     if (isNotValid) {
       return;
     }
