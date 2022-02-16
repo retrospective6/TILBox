@@ -41,7 +41,7 @@ describe('myTilAddress', () => {
     ['ASDSF1234', true],
     ['!@#$@%', false],
   ])('%s be %s', (value: string, expected: boolean) => {
-    const result = rules.password(value);
+    const result = rules.address(value);
     expect(result).toEqual(expected);
   });
 });
@@ -53,7 +53,7 @@ describe('email', () => {
     ['test@', false],
     ['test@test', false],
   ])('%s be %s', (value: string, expected: boolean) => {
-    const result = rules.password(value);
+    const result = rules.email(value);
     expect(result).toEqual(expected);
   });
 });
