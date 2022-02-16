@@ -10,9 +10,8 @@ import EditIcon from '@/assets/icon/EditIcon.svg';
 
 import User, { Notification } from '@/types/User';
 import { copyToClipboard } from '@/utils';
-import useTextInput from '@/hooks/useTextInput';
 import rules from '@/utils/rules';
-import { State } from '@/types';
+import MESSAGE from '@/constants/messages';
 
 export interface AccountEditFormData {
   image: string;
@@ -27,6 +26,11 @@ export interface AccountEditFormProps {
   onSignOut: () => void;
 }
 
+interface ErrorMessage {
+  nickname?: string;
+  password?: string;
+}
+
 export default function AccountEditForm(
   props: AccountEditFormProps,
 ): JSX.Element {
@@ -38,36 +42,37 @@ export default function AccountEditForm(
     password: '',
     notification,
   });
-  const [nicknameMessage, nicknameState, setNicknameInput] = useTextInput(
-    '2자 이상 8자 이하로 입력해주세요',
-  );
-  const [passwordMessage, passwordState, setPasswordInput] = useTextInput(
-    '숫자, 영문, 특수문자를 포함해 8자 이상 입력해주세요',
-  );
+  const [errorMessage, setErrorMessage] = useState<ErrorMessage>({});
+
+  const validateInputs = () => {
+    const { nickname, password } = formData;
+    const errors: ErrorMessage = {};
+
+    if (!nickname) {
+      errors.nickname = MESSAGE.NICKNAME.DEFAULT;
+    }
+    if (!rules.nickname(nickname)) {
+      errors.nickname = MESSAGE.WRONG_FORMAT;
+    }
+
+    if (!password) {
+      errors.password = MESSAGE.PASSWORD.DEFAULT;
+    }
+    if (!rules.password(password)) {
+      errors.password = MESSAGE.WRONG_FORMAT;
+    }
+
+    setErrorMessage(errors);
+  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    validateInputs();
+    const isNotValid = Object.values(errorMessage).some((error) => !!error);
+    if (isNotValid) {
+      return;
+    }
     onSubmit(formData);
-  };
-
-  const handleChangeNickname = (event: ChangeEvent<HTMLInputElement>) => {
-    handleChange(event);
-    const { value } = event.target;
-    const state: State = rules.nickname(value) ? 'default' : 'error';
-    setNicknameInput({
-      message: '2자 이상 8자 이하로 입력해주세요',
-      state,
-    });
-  };
-
-  const handleChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-    handleChange(event);
-    const { value } = event.target;
-    const state: State = rules.password(value) ? 'default' : 'error';
-    setPasswordInput({
-      message: '숫자, 영문, 특수문자를 포함해 8자 이상 입력해주세요',
-      state,
-    });
   };
 
   const handleSelectImg = (image: string) => {
@@ -131,20 +136,20 @@ export default function AccountEditForm(
         <TextInput
           name="nickname"
           title="닉네임"
-          message={nicknameMessage}
-          state={nicknameState}
+          message={errorMessage.nickname || MESSAGE.NICKNAME.DEFAULT}
+          state={errorMessage.nickname ? 'error' : 'default'}
           value={formData.nickname}
           icon={<EditIcon />}
-          onChange={handleChangeNickname}
+          onChange={handleChange}
         />
         <TextInput
           name="password"
           type="password"
           title="비밀번호"
-          message={passwordMessage}
-          state={passwordState}
+          message={errorMessage.password || MESSAGE.PASSWORD.DEFAULT}
+          state={errorMessage.password ? 'error' : 'default'}
           icon={<EditIcon />}
-          onChange={handleChangePassword}
+          onChange={handleChange}
         />
         <NotificationInput
           value={notification}
