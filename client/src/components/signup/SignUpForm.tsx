@@ -1,13 +1,20 @@
-import React, { ChangeEvent, FormEventHandler, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FocusEvent,
+  FormEventHandler,
+  useState,
+} from 'react';
 import * as Styled from './SignUpForm.styles';
 
+import ProfileImgSelector from '@/components/signup/ProfileImgSelector';
 import TextInput from '@/components/common/TextInput';
-import Button from '@/components/common/Button';
 import NotificationInput from '@/components/common/NotificationInput';
+import Button from '@/components/common/Button';
 
 import apis from '@/apis';
 import { Notification } from '@/types/User';
-import ProfileImgSelector from '@/components/signup/ProfileImgSelector';
+import MESSAGE from '@/constants/messages';
+import rules from '@/utils/rules';
 
 interface FormData {
   image: string;
@@ -19,6 +26,14 @@ interface FormData {
   notification?: Notification;
 }
 
+interface ErrorMessage {
+  myTilAddress?: string;
+  nickname?: string;
+  email?: string;
+  password?: string;
+  passwordCheck?: string;
+}
+
 export default function SignUpForm(): JSX.Element {
   const [formData, setFormData] = useState<FormData>({
     image: '',
@@ -28,9 +43,56 @@ export default function SignUpForm(): JSX.Element {
     password: '',
     passwordCheck: '',
   });
+  const [errorMessage, setErrorMessage] = useState<ErrorMessage>({});
+
+  const validateInputs = () => {
+    const { myTilAddress, nickname, email, password, passwordCheck } = formData;
+    const errors: ErrorMessage = {};
+
+    if (!myTilAddress) {
+      errors.myTilAddress = MESSAGE.TIL_ADDRESS.DEFAULT;
+    }
+    if (!rules.address(myTilAddress)) {
+      errors.myTilAddress = MESSAGE.WRONG_FORMAT;
+    }
+
+    if (!nickname) {
+      errors.nickname = MESSAGE.NICKNAME.DEFAULT;
+    }
+    if (!rules.nickname(nickname)) {
+      errors.nickname = MESSAGE.WRONG_FORMAT;
+    }
+
+    if (!email) {
+      errors.email = MESSAGE.EMAIL.DEFAULT;
+    }
+    if (!rules.email(email)) {
+      errors.email = MESSAGE.WRONG_FORMAT;
+    }
+
+    if (!password) {
+      errors.password = MESSAGE.PASSWORD.DEFAULT;
+    }
+    if (!rules.password(password)) {
+      errors.password = MESSAGE.WRONG_FORMAT;
+    }
+
+    if (!passwordCheck) {
+      errors.passwordCheck = MESSAGE.PASSWORD_CHECK.DEFAULT;
+    }
+    if (passwordCheck !== password) {
+      errors.passwordCheck = MESSAGE.PASSWORD_CHECK.ERROR;
+    }
+    setErrorMessage(errors);
+  };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+    validateInputs();
+    const isNotValid = Object.values(errorMessage).some((error) => !!error);
+    if (isNotValid) {
+      return;
+    }
     await apis.users.signup(formData);
   };
 
@@ -48,6 +110,13 @@ export default function SignUpForm(): JSX.Element {
     }));
   };
 
+  const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
+    setErrorMessage({
+      ...errorMessage,
+      [event.target.name]: '',
+    });
+  };
+
   const handleChangeNotification = (value?: Notification) => {
     setFormData({
       ...formData,
@@ -56,7 +125,7 @@ export default function SignUpForm(): JSX.Element {
   };
 
   return (
-    <Styled.Form onSubmit={handleSubmit}>
+    <Styled.Form noValidate onSubmit={handleSubmit}>
       <Styled.Title>회원 가입</Styled.Title>
       <ProfileImgSelector onSubmit={handleSelectImg} />
       <Styled.ImgSelectorText>
@@ -65,55 +134,65 @@ export default function SignUpForm(): JSX.Element {
       <Styled.InputContainer>
         <TextInput
           data-testid="url-input"
+          name="myTilAddress"
           title="My TIL 주소"
-          message="숫자, 영어로 나만의 TIL 주소를 만들 수 있습니다"
           placeholder="www.tilbox/til356list"
           value={formData.myTilAddress}
+          message={errorMessage.myTilAddress || MESSAGE.TIL_ADDRESS.DEFAULT}
+          state={errorMessage.myTilAddress ? 'error' : 'default'}
           onChange={handleChange}
-          name="myTilAddress"
+          onFocus={handleFocus}
           required
         />
         <TextInput
           data-testid="nickname-input"
+          name="nickname"
           title="닉네임"
-          message="2자 이상 8자 이하로 입력해주세요"
           placeholder="당근한개"
           value={formData.nickname}
+          message={errorMessage.nickname || MESSAGE.NICKNAME.DEFAULT}
+          state={errorMessage.nickname ? 'error' : 'default'}
           onChange={handleChange}
-          name="nickname"
+          onFocus={handleFocus}
           required
         />
         <TextInput
           data-testid="email-input"
-          title="이메일"
-          message="로그인과 알림 메일을 받을 이메일입니다"
-          placeholder="test@gogle.com"
           type="email"
+          name="email"
+          title="이메일"
+          placeholder="test@gogle.com"
+          message={errorMessage.email || MESSAGE.EMAIL.DEFAULT}
+          state={errorMessage.email ? 'error' : 'default'}
           value={formData.email}
           onChange={handleChange}
-          name="email"
+          onFocus={handleFocus}
           required
         />
         <TextInput
           data-testid="password-input"
-          title="비밀번호"
-          message="숫자, 영문, 특수문자를 포함해 8자 이상 입력해주세요"
-          placeholder="til365master!"
           type="password"
+          name="password"
+          title="비밀번호"
+          placeholder="til365master!"
+          message={errorMessage.password || MESSAGE.PASSWORD.DEFAULT}
+          state={errorMessage.password ? 'error' : 'default'}
           value={formData.password}
           onChange={handleChange}
-          name="password"
+          onFocus={handleFocus}
           required
         />
         <TextInput
           data-testid="password-check-input"
-          title="비밀번호 확인"
-          message="비밀번호를 다시 입력해주세요"
-          placeholder="til365master!"
           type="password"
-          value={formData.passwordCheck}
-          onChange={handleChange}
           name="passwordCheck"
+          title="비밀번호 확인"
+          placeholder="til365master!"
+          value={formData.passwordCheck}
+          message={errorMessage.passwordCheck || MESSAGE.PASSWORD_CHECK.DEFAULT}
+          state={errorMessage.passwordCheck ? 'error' : 'default'}
+          onChange={handleChange}
+          onFocus={handleFocus}
           required
         />
         <NotificationInput onChange={handleChangeNotification} />
