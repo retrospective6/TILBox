@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import FONT from '@/styles/font';
 
 export const Form = styled.form`
+  padding: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
