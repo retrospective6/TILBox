@@ -94,7 +94,8 @@ export default function SignUpForm(): JSX.Element {
     if (isNotValid) {
       return;
     }
-    await apis.users.signup(formData);
+    const { url } = await apis.images.upload(formData.image);
+    await apis.users.signup({ ...formData, image: url });
   };
 
   const handleSelectImg = (image: string) => {
