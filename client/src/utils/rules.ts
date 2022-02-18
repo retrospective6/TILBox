@@ -3,7 +3,7 @@ const TIL_ADDRESS_REGEX = /^[\w]*$/;
 const EMAIL_REGEX = /^[\w+-.]+@([\w-]+\.[a-zA-Z\d]+)+$/;
 
 const PASSWORD_REGEX =
-  /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*#?&])[\w$@$!%*#?&]{8,}$/;
+  /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*])[\w~!@#$%^&*]{8,}$/;
 
 const rules = {
   address: (value: string): boolean => TIL_ADDRESS_REGEX.test(value),
