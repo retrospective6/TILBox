@@ -49,9 +49,15 @@ describe('myTilAddress', () => {
 describe('email', () => {
   test.each([
     ['test@test.com', true],
+    ['test@mme.dongguk.edu', true],
+    ['test.dev@mme.dongguk.edu', true],
+    ['test.dev@un-kown.com', true],
+    ['test.dev@un_kown.com', true],
     ['test', false],
     ['test@', false],
     ['test@test', false],
+    ['test@test.', false],
+    ['test@ef.gh.', false],
   ])('%s be %s', (value: string, expected: boolean) => {
     const result = rules.email(value);
     expect(result).toEqual(expected);

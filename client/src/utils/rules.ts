@@ -1,10 +1,9 @@
-const TIL_ADDRESS_REGEX = /^[a-zA-Z0-9]*$/;
+const TIL_ADDRESS_REGEX = /^[\w]*$/;
 
-const EMAIL_REGEX =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const EMAIL_REGEX = /^[\w+-.]+@([\w-]+\.[a-zA-Z\d]+)+$/;
 
 const PASSWORD_REGEX =
-  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+  /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*#?&])[\w$@$!%*#?&]{8,}$/;
 
 const rules = {
   address: (value: string): boolean => TIL_ADDRESS_REGEX.test(value),
