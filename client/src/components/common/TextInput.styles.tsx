@@ -42,11 +42,21 @@ const wrapperStateCSS: { [keys in State]: SerializedStyles } = {
     &:focus-within {
       outline: 5px auto -webkit-focus-ring-color;
     }
+    input {
+      &::placeholder {
+        color: #cdcdcd;
+      }
+    }
   `,
   error: css`
     border-color: #c90909;
     &:focus-within {
       outline: 5px auto #c90909;
+    }
+    input {
+      &::placeholder {
+        color: #c90909;
+      }
     }
   `,
 };
@@ -65,20 +75,7 @@ export const InputWrapper = styled.div<StyledInputProps>`
   ${({ state = 'default' }) => wrapperStateCSS[state]};
 `;
 
-const inputStateCSS: { [keys in State]: SerializedStyles } = {
-  default: css`
-    &::placeholder {
-      color: #cdcdcd;
-    }
-  `,
-  error: css`
-    &::placeholder {
-      color: #c90909;
-    }
-  `,
-};
-
-export const Input = styled.input<StyledInputProps>`
+export const Input = styled.input`
   width: 100%;
   background: transparent;
   ${FONT.body4};
@@ -86,6 +83,4 @@ export const Input = styled.input<StyledInputProps>`
   &:focus {
     outline: none;
   }
-
-  ${({ state = 'default' }) => inputStateCSS[state]};
 `;
