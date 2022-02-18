@@ -1,9 +1,4 @@
-import React, {
-  ChangeEvent,
-  FocusEvent,
-  FormEventHandler,
-  useState,
-} from 'react';
+import React, { ChangeEvent, FormEventHandler, useState } from 'react';
 import * as Styled from './SignUpForm.styles';
 
 import ProfileImgSelector from '@/components/signup/ProfileImgSelector';
@@ -14,7 +9,7 @@ import Button from '@/components/common/Button';
 import apis from '@/apis';
 import { Notification } from '@/types/User';
 import MESSAGE from '@/constants/messages';
-import rules from '@/utils/rules';
+import validators from '@/utils/validators';
 
 interface FormData {
   image: string;
@@ -45,52 +40,9 @@ export default function SignUpForm(): JSX.Element {
   });
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>({});
 
-  const validateInputs = (): ErrorMessage => {
-    const { myTilAddress, nickname, email, password, passwordCheck } = formData;
-    const errors: ErrorMessage = {};
-
-    if (!myTilAddress) {
-      errors.myTilAddress = MESSAGE.TIL_ADDRESS.DEFAULT;
-    }
-    if (!rules.address(myTilAddress)) {
-      errors.myTilAddress = MESSAGE.WRONG_FORMAT;
-    }
-
-    if (!nickname) {
-      errors.nickname = MESSAGE.NICKNAME.DEFAULT;
-    }
-    if (!rules.nickname(nickname)) {
-      errors.nickname = MESSAGE.WRONG_FORMAT;
-    }
-
-    if (!email) {
-      errors.email = MESSAGE.EMAIL.DEFAULT;
-    }
-    if (!rules.email(email)) {
-      errors.email = MESSAGE.WRONG_FORMAT;
-    }
-
-    if (!password) {
-      errors.password = MESSAGE.PASSWORD.DEFAULT;
-    }
-    if (!rules.password(password)) {
-      errors.password = MESSAGE.WRONG_FORMAT;
-    }
-
-    if (!passwordCheck) {
-      errors.passwordCheck = MESSAGE.PASSWORD_CHECK.DEFAULT;
-    }
-    if (passwordCheck !== password) {
-      errors.passwordCheck = MESSAGE.PASSWORD_CHECK.ERROR;
-    }
-    setErrorMessage(errors);
-    return errors;
-  };
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    const errors = validateInputs();
-    const isNotValid = Object.values(errors).some((error) => !!error);
+    const isNotValid = Object.values(errorMessage).some((error) => !!error);
     if (isNotValid) {
       return;
     }
@@ -105,18 +57,17 @@ export default function SignUpForm(): JSX.Element {
     });
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevValues) => ({
-      ...prevValues,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
     setErrorMessage({
       ...errorMessage,
-      [event.target.name]: '',
+      [name]: validators[name](value, formData.password),
     });
+
+    setFormData((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
   };
 
   const handleChangeNotification = (value?: Notification) => {
@@ -143,7 +94,6 @@ export default function SignUpForm(): JSX.Element {
           message={errorMessage.myTilAddress || MESSAGE.TIL_ADDRESS.DEFAULT}
           state={errorMessage.myTilAddress ? 'error' : 'default'}
           onChange={handleChange}
-          onFocus={handleFocus}
           required
         />
         <TextInput
@@ -155,7 +105,6 @@ export default function SignUpForm(): JSX.Element {
           message={errorMessage.nickname || MESSAGE.NICKNAME.DEFAULT}
           state={errorMessage.nickname ? 'error' : 'default'}
           onChange={handleChange}
-          onFocus={handleFocus}
           required
         />
         <TextInput
@@ -168,7 +117,6 @@ export default function SignUpForm(): JSX.Element {
           state={errorMessage.email ? 'error' : 'default'}
           value={formData.email}
           onChange={handleChange}
-          onFocus={handleFocus}
           required
         />
         <TextInput
@@ -181,7 +129,6 @@ export default function SignUpForm(): JSX.Element {
           state={errorMessage.password ? 'error' : 'default'}
           value={formData.password}
           onChange={handleChange}
-          onFocus={handleFocus}
           required
         />
         <TextInput
@@ -194,7 +141,6 @@ export default function SignUpForm(): JSX.Element {
           message={errorMessage.passwordCheck || MESSAGE.PASSWORD_CHECK.DEFAULT}
           state={errorMessage.passwordCheck ? 'error' : 'default'}
           onChange={handleChange}
-          onFocus={handleFocus}
           required
         />
         <NotificationInput onChange={handleChangeNotification} />

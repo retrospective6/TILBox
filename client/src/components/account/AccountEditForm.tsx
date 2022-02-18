@@ -10,8 +10,8 @@ import EditIcon from '@/assets/icon/EditIcon.svg';
 
 import User, { Notification } from '@/types/User';
 import { copyToClipboard } from '@/utils';
-import rules from '@/utils/rules';
 import MESSAGE from '@/constants/messages';
+import validators from '@/utils/validators';
 
 export interface AccountEditFormData {
   image: string;
@@ -44,32 +44,9 @@ export default function AccountEditForm(
   });
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>({});
 
-  const validateInputs = (): ErrorMessage => {
-    const { nickname, password } = formData;
-    const errors: ErrorMessage = {};
-
-    if (!nickname) {
-      errors.nickname = MESSAGE.NICKNAME.DEFAULT;
-    }
-    if (!rules.nickname(nickname)) {
-      errors.nickname = MESSAGE.WRONG_FORMAT;
-    }
-
-    if (!password) {
-      errors.password = MESSAGE.PASSWORD.DEFAULT;
-    }
-    if (!rules.password(password)) {
-      errors.password = MESSAGE.WRONG_FORMAT;
-    }
-
-    setErrorMessage(errors);
-    return errors;
-  };
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const errors = validateInputs();
-    const isNotValid = Object.values(errors).some((error) => !!error);
+    const isNotValid = Object.values(errorMessage).some((error) => !!error);
     if (isNotValid) {
       return;
     }
@@ -85,6 +62,11 @@ export default function AccountEditForm(
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    setErrorMessage({
+      ...errorMessage,
+      [name]: validators[name](value, formData.password),
+    });
+
     setFromData({
       ...formData,
       [name]: value,
