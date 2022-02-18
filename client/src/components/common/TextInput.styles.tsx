@@ -36,7 +36,7 @@ interface StyledInputProps {
   height?: string;
 }
 
-const stateCSS: { [keys in State]: SerializedStyles } = {
+const wrapperStateCSS: { [keys in State]: SerializedStyles } = {
   default: css`
     border-color: transparent;
     &:focus-within {
@@ -62,8 +62,21 @@ export const InputWrapper = styled.div<StyledInputProps>`
   justify-content: space-between;
   align-items: center;
 
-  ${({ state = 'default' }) => stateCSS[state]};
+  ${({ state = 'default' }) => wrapperStateCSS[state]};
 `;
+
+const inputStateCSS: { [keys in State]: SerializedStyles } = {
+  default: css`
+    &::placeholder {
+      color: #cdcdcd;
+    }
+  `,
+  error: css`
+    &::placeholder {
+      color: #c90909;
+    }
+  `,
+};
 
 export const Input = styled.input<StyledInputProps>`
   width: 100%;
@@ -73,4 +86,6 @@ export const Input = styled.input<StyledInputProps>`
   &:focus {
     outline: none;
   }
+
+  ${({ state = 'default' }) => inputStateCSS[state]};
 `;
