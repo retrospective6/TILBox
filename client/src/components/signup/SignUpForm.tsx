@@ -8,7 +8,7 @@ import Button from '@/components/common/Button';
 
 import apis from '@/apis';
 import { Notification } from '@/types/User';
-import MESSAGE from '@/constants/messages';
+import MESSAGES from '@/constants/messages';
 import validators from '@/utils/validators';
 
 interface FormData {
@@ -115,7 +115,7 @@ export default function SignUpForm(): JSX.Element {
           title="My TIL 주소"
           placeholder="www.tilbox/til356list"
           value={formData.myTilAddress}
-          message={errorMessage.myTilAddress || MESSAGE.TIL_ADDRESS.DEFAULT}
+          message={errorMessage.myTilAddress || MESSAGES.TIL_ADDRESS.DEFAULT}
           state={errorMessage.myTilAddress ? 'error' : 'default'}
           onChange={handleChange}
           required
@@ -126,7 +126,7 @@ export default function SignUpForm(): JSX.Element {
           title="닉네임"
           placeholder="당근한개"
           value={formData.nickname}
-          message={errorMessage.nickname || MESSAGE.NICKNAME.DEFAULT}
+          message={errorMessage.nickname || MESSAGES.NICKNAME.DEFAULT}
           state={errorMessage.nickname ? 'error' : 'default'}
           onChange={handleChange}
           required
@@ -137,7 +137,7 @@ export default function SignUpForm(): JSX.Element {
           name="email"
           title="이메일"
           placeholder="test@gogle.com"
-          message={errorMessage.email || MESSAGE.EMAIL.DEFAULT}
+          message={errorMessage.email || MESSAGES.EMAIL.DEFAULT}
           state={errorMessage.email ? 'error' : 'default'}
           value={formData.email}
           onChange={handleChange}
@@ -149,7 +149,7 @@ export default function SignUpForm(): JSX.Element {
           name="password"
           title="비밀번호"
           placeholder="til365master!"
-          message={errorMessage.password || MESSAGE.PASSWORD.DEFAULT}
+          message={errorMessage.password || MESSAGES.PASSWORD.DEFAULT}
           state={errorMessage.password ? 'error' : 'default'}
           value={formData.password}
           onChange={handleChange}
@@ -162,7 +162,9 @@ export default function SignUpForm(): JSX.Element {
           title="비밀번호 확인"
           placeholder="til365master!"
           value={formData.passwordCheck}
-          message={errorMessage.passwordCheck || MESSAGE.PASSWORD_CHECK.DEFAULT}
+          message={
+            errorMessage.passwordCheck || MESSAGES.PASSWORD_CHECK.DEFAULT
+          }
           state={errorMessage.passwordCheck ? 'error' : 'default'}
           onChange={handleChange}
           required

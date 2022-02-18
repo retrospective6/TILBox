@@ -8,7 +8,7 @@ import WriteModal, {
 } from '@/components/write/Modal/WriteModal';
 
 import { MAX_TITLE_LENGTH } from '@/constants/validations';
-import MESSAGE from '@/constants/messages';
+import MESSAGES from '@/constants/messages';
 import apis from '@/apis';
 import { CreatePostRequest } from '@/apis/posts';
 import { useRouter } from 'next/router';
@@ -39,7 +39,7 @@ export default function PostPage(): JSX.Element {
     setContent(newContent);
 
     if (newTitle.length > MAX_TITLE_LENGTH) {
-      setHeaderMessage(MESSAGE.TITLE.ERROR_LENGTH);
+      setHeaderMessage(MESSAGES.TITLE.ERROR_LENGTH);
       return;
     }
     setHeaderMessage(null);
@@ -48,7 +48,7 @@ export default function PostPage(): JSX.Element {
 
   const handleOpenModal = () => {
     if (!title) {
-      setHeaderMessage(MESSAGE.TITLE.ERROR_EMPTY);
+      setHeaderMessage(MESSAGES.TITLE.ERROR_EMPTY);
       return;
     }
     setHeaderMessage(null);

@@ -1,4 +1,4 @@
-const MESSAGE = {
+const MESSAGES = {
   WRONG_FORMAT: '올바른 형식이 아닙니다.',
   TITLE: {
     ERROR_EMPTY: '제목을 입력해주세요',
@@ -23,4 +23,4 @@ const MESSAGE = {
   },
 };
 
-export default MESSAGE;
+export default MESSAGES;

@@ -10,7 +10,7 @@ import EditIcon from '@/assets/icon/EditIcon.svg';
 
 import User, { Notification } from '@/types/User';
 import { copyToClipboard } from '@/utils';
-import MESSAGE from '@/constants/messages';
+import MESSAGES from '@/constants/messages';
 import validators from '@/utils/validators';
 
 export interface AccountEditFormData {
@@ -134,7 +134,7 @@ export default function AccountEditForm(
         <TextInput
           name="nickname"
           title="닉네임"
-          message={errorMessage.nickname || MESSAGE.NICKNAME.DEFAULT}
+          message={errorMessage.nickname || MESSAGES.NICKNAME.DEFAULT}
           state={errorMessage.nickname ? 'error' : 'default'}
           value={formData.nickname}
           icon={<EditIcon />}
@@ -144,7 +144,7 @@ export default function AccountEditForm(
           name="password"
           type="password"
           title="비밀번호"
-          message={errorMessage.password || MESSAGE.PASSWORD.DEFAULT}
+          message={errorMessage.password || MESSAGES.PASSWORD.DEFAULT}
           state={errorMessage.password ? 'error' : 'default'}
           icon={<EditIcon />}
           onChange={handleChange}
