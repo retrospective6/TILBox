@@ -44,8 +44,23 @@ export default function AccountEditForm(
   });
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>({});
 
+  const validateAll = () => {
+    const targets = (({ nickname, password }) => ({
+      nickname,
+      password,
+    }))(formData);
+
+    Object.entries(targets).forEach(([key, value]) =>
+      setErrorMessage((prevValues) => ({
+        ...prevValues,
+        [key]: validators[key](value),
+      })),
+    );
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    validateAll();
     const isNotValid = Object.values(errorMessage).some((error) => !!error);
     if (isNotValid) {
       return;
@@ -62,15 +77,15 @@ export default function AccountEditForm(
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setErrorMessage({
-      ...errorMessage,
-      [name]: validators[name](value, formData.password),
-    });
+    setErrorMessage((prevValues) => ({
+      ...prevValues,
+      [name]: validators[name](value),
+    }));
 
-    setFromData({
-      ...formData,
+    setFromData((prevValues) => ({
+      ...prevValues,
       [name]: value,
-    });
+    }));
   };
 
   const handleChangeNotification = (value?: Notification) => {

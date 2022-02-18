@@ -40,8 +40,32 @@ export default function SignUpForm(): JSX.Element {
   });
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>({});
 
+  const validateAll = () => {
+    const targets = (({
+      myTilAddress,
+      nickname,
+      email,
+      password,
+      passwordCheck,
+    }) => ({
+      myTilAddress,
+      nickname,
+      email,
+      password,
+      passwordCheck,
+    }))(formData);
+
+    Object.entries(targets).forEach(([key, value]) =>
+      setErrorMessage((prevValues) => ({
+        ...prevValues,
+        [key]: validators[key](value, formData.password),
+      })),
+    );
+  };
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+    validateAll();
     const isNotValid = Object.values(errorMessage).some((error) => !!error);
     if (isNotValid) {
       return;
@@ -59,10 +83,10 @@ export default function SignUpForm(): JSX.Element {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setErrorMessage({
-      ...errorMessage,
+    setErrorMessage((prevValues) => ({
+      ...prevValues,
       [name]: validators[name](value, formData.password),
-    });
+    }));
 
     setFormData((prevValues) => ({
       ...prevValues,
