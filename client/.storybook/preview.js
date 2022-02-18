@@ -9,6 +9,8 @@ import { cookieDecorator } from '../__mocks__/cookie';
 
 initialize();
 
+Math.random = () => 0;
+
 export const decorators = [
   mswDecorator,
   cookieDecorator,
