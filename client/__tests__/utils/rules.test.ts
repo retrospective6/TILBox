@@ -31,3 +31,35 @@ describe('password', () => {
     expect(result).toEqual(expected);
   });
 });
+
+describe('myTilAddress', () => {
+  test.each([
+    ['asdf', true],
+    ['1234', true],
+    ['asdf1234', true],
+    ['ASDF', true],
+    ['ASDSF1234', true],
+    ['!@#$@%', false],
+  ])('%s be %s', (value: string, expected: boolean) => {
+    const result = rules.address(value);
+    expect(result).toEqual(expected);
+  });
+});
+
+describe('email', () => {
+  test.each([
+    ['abc@test.com', true],
+    ['efg@mme.dongguk.edu', true],
+    ['kim.dev@mme.dongguk.edu', true],
+    ['ksk.dev@un-kown.com', true],
+    ['marco.dev@s_y.com', true],
+    ['letsgo', false],
+    ['allen@', false],
+    ['tiger@test', false],
+    ['ellen@test.', false],
+    ['woooooooo@hyun.kim.', false],
+  ])('%s be %s', (value: string, expected: boolean) => {
+    const result = rules.email(value);
+    expect(result).toEqual(expected);
+  });
+});

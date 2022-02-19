@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
+
 import Layout from '@/components/common/Layout';
 import AccountEditForm, {
   AccountEditFormData,
 } from '@/components/account/AccountEditForm';
+
 import { useRouter } from 'next/router';
 import useUser from '@/hooks/queries/user/useUser';
 import useUpdateUser from '@/hooks/queries/user/useUpdateUser';
 import useDeleteUser from '@/hooks/queries/user/useDeleteUser';
+import apis from '@/apis';
 
 export default function AccountPage(): JSX.Element {
   const router = useRouter();
@@ -25,6 +28,10 @@ export default function AccountPage(): JSX.Element {
   }, [user, loggedOut, router]);
 
   const handleSubmit = async (data: AccountEditFormData) => {
+    if (data.image !== user?.profile.image) {
+      const { url } = await apis.images.upload(data.image);
+      data.image = url;
+    }
     await updateUser(data);
   };
 

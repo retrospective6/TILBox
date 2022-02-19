@@ -16,11 +16,9 @@ export default function ToastEditor(props: ToastEditorProps): JSX.Element {
       return;
     }
     editor.removeHook('addImageBlobHook');
-    editor.addHook('addImageBlobHook', (blob, callback) => {
+    editor.addHook('addImageBlobHook', (image, callback) => {
       (async () => {
-        const imageFile = new FormData();
-        imageFile.append('imageFile', blob);
-        const { url } = await apis.images.upload(imageFile);
+        const { url } = await apis.images.upload(image as string);
         callback(url, 'alt text');
       })();
 

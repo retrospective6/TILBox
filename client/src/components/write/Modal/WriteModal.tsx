@@ -38,9 +38,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (thumbnail?.type === 'image') {
-      const imageFile = new FormData();
-      imageFile.append('imageFile', thumbnail.value as string);
-      const { url } = await apis.images.upload(imageFile);
+      const { url } = await apis.images.upload(thumbnail.value as string);
       setThumbnail({ type: 'image', value: url });
     }
     onSubmit({
