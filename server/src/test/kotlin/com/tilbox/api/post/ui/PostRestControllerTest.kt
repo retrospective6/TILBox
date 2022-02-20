@@ -5,6 +5,7 @@ import com.tilbox.api.post.application.PostService
 import com.tilbox.base.test.RestControllerTest
 import com.tilbox.core.post.domain.fixture.ofDefaultCreateRequest
 import com.tilbox.core.post.domain.fixture.ofDefaultUpdateRequest
+import com.tilbox.core.post.query.PostQueryDao
 import io.mockk.every
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -14,6 +15,9 @@ class PostRestControllerTest : RestControllerTest() {
 
     @MockkBean
     private lateinit var postService: PostService
+
+    @MockkBean
+    private lateinit var postQueryDao: PostQueryDao
 
     @Test
     fun `게시글 작성 요청이 오면 게시글 생성후, 생성된 게시글의 ID를 반환한다`() {
