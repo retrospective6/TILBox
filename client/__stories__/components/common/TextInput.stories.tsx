@@ -2,6 +2,8 @@ import React from 'react';
 import TextInput from '@/components/common/TextInput';
 import { ComponentStory } from '@storybook/react';
 
+import Icon from '@/assets/icon/SearchIcon.svg';
+
 export default {
   component: TextInput,
   title: 'common/TextInput',
@@ -25,10 +27,13 @@ Default.args = {
 
 export const Error = Template.bind({});
 Error.args = {
-  title: 'My TIL 주소',
-  placeholder: 'www.tilbox/til356list',
+  ...Default.args,
   state: 'error',
   message: '필수적으로 입력해야 합니다.',
-  width: '320px',
-  height: '30px',
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  ...Default.args,
+  icon: <Icon />,
 };

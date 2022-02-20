@@ -36,29 +36,51 @@ interface StyledInputProps {
   height?: string;
 }
 
-const stateCSS: { [keys in State]: SerializedStyles } = {
+const wrapperStateCSS: { [keys in State]: SerializedStyles } = {
   default: css`
-    border-color: #f3f3f3;
-    &::placeholder {
-      color: #cdcdcd;
+    border-color: transparent;
+    &:focus-within {
+      outline: 5px auto -webkit-focus-ring-color;
+    }
+    input {
+      &::placeholder {
+        color: #cdcdcd;
+      }
     }
   `,
   error: css`
     border-color: #c90909;
-    &::placeholder {
-      color: #c90909;
+    &:focus-within {
+      outline: 5px auto #c90909;
+    }
+    input {
+      &::placeholder {
+        color: #c90909;
+      }
     }
   `,
 };
 
-export const Input = styled.input<StyledInputProps>`
+export const InputWrapper = styled.div<StyledInputProps>`
   width: ${(props) => props.width || '268px'};
-  height: ${(props) => props.height || '28px'};
+  height: ${(props) => props.height || '34px'};
   padding: 7px 8px;
   border: 1px solid;
   border-radius: 8px;
   background: #f3f3f3;
-  ${FONT.body4};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  ${({ state = 'default' }) => stateCSS[state]};
+  ${({ state = 'default' }) => wrapperStateCSS[state]};
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  background: transparent;
+  ${FONT.body4};
+  border: none;
+  &:focus {
+    outline: none;
+  }
 `;

@@ -1,4 +1,5 @@
 import User from '@/types/User';
+import { Gradation } from '@/types';
 
 export default interface Post {
   id: number;
@@ -8,20 +9,26 @@ export default interface Post {
   thumbnail: Thumbnail;
   summary: string;
   likes: number;
-  comments: number;
+  comments: Comment[];
   createdAt: Date;
   tags?: string[];
   visibleLevel: VisibleLevel;
 }
 
+export interface Comment {
+  id: number;
+  postId?: number;
+  user: User;
+  content: string;
+  comments?: Comment[];
+  createdAt: Date;
+}
+
 export type VisibleLevel = 'public' | 'private';
 
 export type Thumbnail = {
-  img?: string;
-  gradient?: ThumbnailGradient;
+  type: ThumbnailType;
+  value: string | Gradation;
 };
 
-export type ThumbnailGradient = {
-  start: string;
-  end: string;
-};
+export type ThumbnailType = 'image' | 'gradation';

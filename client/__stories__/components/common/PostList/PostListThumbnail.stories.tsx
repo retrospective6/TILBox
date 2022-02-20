@@ -26,7 +26,8 @@ export const Default = Template.bind({});
 Default.args = {
   title: '여덟글자하이용',
   thumbnail: {
-    gradient: { start: '#D45438', end: '#FEA768' },
+    type: 'gradation',
+    value: { start: '#D45438', end: '#FEA768' },
   },
 };
 
@@ -34,7 +35,8 @@ export const MediumText = Template.bind({});
 MediumText.args = {
   title: '여덞글자초과열두글자이하',
   thumbnail: {
-    gradient: { start: '#D45438', end: '#FEA768' },
+    type: 'gradation',
+    value: { start: '#D45438', end: '#FEA768' },
   },
 };
 
@@ -42,7 +44,8 @@ export const LongerText = Template.bind({});
 LongerText.args = {
   title: '열두글자를 초과하면 두줄이 되면서 뒤에는 줄임말이 들어가요.',
   thumbnail: {
-    gradient: { start: '#D45438', end: '#FEA768' },
+    type: 'gradation',
+    value: { start: '#D45438', end: '#FEA768' },
   },
 };
 
@@ -50,6 +53,8 @@ export const Image = Template.bind({});
 Image.args = {
   title: '고양이는 귀엽다',
   thumbnail: {
-    img: 'https://user-images.githubusercontent.com/45786387/146191310-689f2ed9-e6b8-4e1d-9193-4c5bd0804c50.png',
+    type: 'image',
+    value:
+      'https://user-images.githubusercontent.com/45786387/146191310-689f2ed9-e6b8-4e1d-9193-4c5bd0804c50.png',
   },
 };

@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -17,6 +16,9 @@ module.exports = {
   webpackFinal: async (config) => {
     config.resolve.extensions.push('.ts', '.tsx');
 
+    config.resolve.alias['@/utils/cookie'] = require.resolve(
+      '../__mocks__/cookie.ts',
+    );
     config.resolve.alias['@'] = path.resolve(__dirname, '../src/');
     config.resolve.alias['@mocks'] = path.resolve(__dirname, '../__mocks__/');
 

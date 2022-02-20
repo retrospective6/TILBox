@@ -6,9 +6,6 @@ import { PageContainer } from '../utils/Components';
 export default {
   component: WritePage,
   title: 'page/WritePage',
-  parameters: {
-    actions: { argTypesRegex: '^on.*' },
-  },
 };
 
 const Template: ComponentStory<typeof WritePage> = () => (

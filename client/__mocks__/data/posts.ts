@@ -1,4 +1,6 @@
 import Post from '@/types/Post';
+import { ADMIN, USER } from '@mocks/data/users';
+import { COMMENT, COMMENT2 } from '@mocks/data/comments';
 
 export const POST_CONTENT = [
   '![image](https://uicdn.toast.com/toastui/img/tui-editor-bi.png)',
@@ -42,20 +44,17 @@ export const POST_CONTENT = [
 
 export const POST: Post = {
   id: 0,
-  user: {
-    nickname: 'KS-KIM',
-    image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
-    role: 'ROLE_USER',
-  },
+  user: USER,
   title: '여덟글자하이용',
   content: POST_CONTENT,
   thumbnail: {
-    gradient: { start: '#D45438', end: '#FEA768' },
+    type: 'gradation',
+    value: { start: '#D45438', end: '#FEA768' },
   },
   summary:
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 0,
-  comments: 0,
+  comments: [COMMENT, COMMENT2],
   createdAt: new Date('2021.12.15'),
   tags: ['tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag', 'tag'],
   visibleLevel: 'public',
@@ -63,20 +62,17 @@ export const POST: Post = {
 
 export const ADMIN_POST: Post = {
   id: 1,
-  user: {
-    nickname: '운영자',
-    image: 'https://avatars.githubusercontent.com/u/20358042?s=48&v=4',
-    role: 'ROLE_ADMIN',
-  },
+  user: ADMIN,
   title: '뭔가 공지를 하는 글입니다.',
   content: POST_CONTENT,
   thumbnail: {
-    gradient: { start: '#000000', end: '#000000' },
+    type: 'gradation',
+    value: { start: '#000000', end: '#000000' },
   },
   summary:
     '요약글 미입력시 본문 앞 내용을 불러와서 여기에 3줄까지 표시됩니다. 이후는 ‘...’ 말 줄임표를 통해 나타납니다.(요약글 동일)',
   likes: 1,
-  comments: 10,
+  comments: [COMMENT, COMMENT2],
   createdAt: new Date('2021.12.15'),
   tags: ['tag', 'tag'],
   visibleLevel: 'public',
@@ -93,5 +89,4 @@ export const POSTS: Post[] = [
   { ...POST, id: 8 },
   { ...POST, id: 9 },
   { ...POST, id: 10 },
-  ADMIN_POST,
 ];

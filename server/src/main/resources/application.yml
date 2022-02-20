@@ -14,9 +14,10 @@ spring:
             idle-timeout: 600000
             max-lifetime: 1800000
             transaction-isolation: TRANSACTION_READ_COMMITTED
-        url: jdbc:h2:mem:tilbox;DB_CLOSE_ON_EXIT=FALSE
+        url: jdbc:h2:mem:tilbox
         username: tilbox
         password: retrospective6
+        driver-class-name: org.h2.Driver
     jpa:
         generate-ddl: true
         open-in-view: false
@@ -49,9 +50,3 @@ springfox:
         swagger-ui:
             base-url: /documentation
 
-logging:
-    level:
-        com:
-            amazonaws:
-                util:
-                    EC2MetadataUtils: error

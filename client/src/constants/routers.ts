@@ -1,8 +1,8 @@
-export type NAV_LINKS = '/' | '/timeline' | '/mybox';
+export type NavLinks = '/' | '/timeline' | '/mybox';
 
 export const NAV_ITEMS: {
   testId: string;
-  href: NAV_LINKS;
+  href: NavLinks;
   title: string;
 }[] = [
   {

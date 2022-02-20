@@ -1,7 +1,7 @@
 import React from 'react';
 import MyPostList from '@/components/mybox/MyPostList';
 import { ComponentStory } from '@storybook/react';
-import { POSTS } from '@mocks/MockData';
+import { POSTS } from '@mocks/data/posts';
 
 export default {
   component: MyPostList,

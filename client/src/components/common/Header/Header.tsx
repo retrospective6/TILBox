@@ -8,19 +8,18 @@ import LogoIcon from '@/assets/icon/LogoIcon.svg';
 import LogoTitle from '@/assets/icon/LogoTitle.svg';
 
 import { NAV_ITEMS } from '@/constants/routers';
-import User from '@/types/User';
+import { Profile } from '@/types/User';
 
 export interface HeaderProps {
   active: string;
-  user?: User;
-  onSignUp: () => void;
+  profile?: Profile;
   onLogin: () => void;
   onWrite: () => void;
   onSearch: (value: string) => void;
 }
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { active, user, onSignUp, onLogin, onWrite, onSearch } = props;
+  const { active, profile, onLogin, onWrite, onSearch } = props;
 
   return (
     <Styled.Header>
@@ -48,11 +47,11 @@ export default function Header(props: HeaderProps): JSX.Element {
         />
       </Styled.Navbar>
       <Styled.UserInfo>
-        {user ? (
+        {profile ? (
           <>
-            <Styled.UserImage src={user.image} alt="user-image" />
+            <Styled.UserImage src={profile.image} alt="user-image" />
             <Styled.UserNickname data-testid="user-nickname">
-              {user.nickname} 님
+              {profile.nickname} 님
             </Styled.UserNickname>
             <Button data-testid="write-button" onClick={onWrite}>
               글쓰기
@@ -60,9 +59,11 @@ export default function Header(props: HeaderProps): JSX.Element {
           </>
         ) : (
           <>
-            <Styled.UserInfoItem data-testid="sign-up" onClick={onSignUp}>
-              회원가입
-            </Styled.UserInfoItem>
+            <Link href="/signup" passHref>
+              <Styled.UserInfoItem data-testid="sign-up">
+                회원가입
+              </Styled.UserInfoItem>
+            </Link>
             <Styled.UserInfoItem data-testid="login" onClick={onLogin}>
               로그인
             </Styled.UserInfoItem>

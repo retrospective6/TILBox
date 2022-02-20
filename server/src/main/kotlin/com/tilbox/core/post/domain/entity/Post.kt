@@ -41,7 +41,7 @@ class Post(
     private var visibleLevel: PostVisibleLevel,
 
     @Column(name = "like_count", nullable = false)
-    private var likeCount: Long = 0,
+    var likeCount: Long = 0,
 
     @Column(name = "created_at", nullable = false)
     private val createdAt: LocalDateTime,
