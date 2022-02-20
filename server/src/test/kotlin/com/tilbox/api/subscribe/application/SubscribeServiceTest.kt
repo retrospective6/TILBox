@@ -1,5 +1,6 @@
 package com.tilbox.api.subscribe.application
 
+import com.tilbox.base.test.DatabaseCleanUp
 import com.tilbox.core.subscribe.domain.repository.SubscribeRepository
 import com.tilbox.core.user.domain.Password
 import com.tilbox.core.user.domain.Profile
@@ -9,8 +10,10 @@ import com.tilbox.core.user.domain.UserRepository
 import com.tilbox.core.user.domain.UserRole
 import com.tilbox.core.user.domain.UserStatus
 import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
@@ -26,47 +29,21 @@ class SubscribeServiceTest(
     private val subscribeRepository: SubscribeRepository,
     private val userRepository: UserRepository
 ) {
+    @field:Autowired
+    private lateinit var databaseCleanUp: DatabaseCleanUp
+
     private lateinit var user: User
     private lateinit var follower: User
 
     @BeforeEach
     fun setUp() {
-        user = userRepository.save(
-            User(
-                "nullable",
-                "nullable@kakao.com",
-                Profile(
-                    "KS-KIM",
-                    null,
-                    "I love kotlin. I hate javascript. javascript is not a language."
-                ),
-                Password("password"),
-                UserStatus.AUTHENTICATED,
-                RegistrationType.EMAIL,
-                UserRole.USER,
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                null
-            )
-        )
-        follower = userRepository.save(
-            User(
-                "not_nullable",
-                "nullable@kakao.com",
-                Profile(
-                    "Tigger",
-                    null,
-                    "I love kotlin. I hate php. php is not a language."
-                ),
-                Password("password"),
-                UserStatus.AUTHENTICATED,
-                RegistrationType.EMAIL,
-                UserRole.USER,
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                null
-            )
-        )
+        user = 사용자를_생성한다("nullable")
+        follower = 사용자를_생성한다("not_nullable")
+    }
+
+    @AfterEach
+    fun tearDown() {
+        databaseCleanUp.truncate()
     }
 
     @Test
@@ -85,5 +62,26 @@ class SubscribeServiceTest(
 
         val actual = subscribeRepository.findAll()
         actual.size shouldBe 0
+    }
+
+    fun `사용자를_생성한다`(myTilAddress: String): User {
+        return userRepository.save(
+            User(
+                myTilAddress,
+                "nullable@kakao.com",
+                Profile(
+                    "KS-KIM",
+                    null,
+                    "I love kotlin. I hate javascript. javascript is not a language."
+                ),
+                Password("password"),
+                UserStatus.AUTHENTICATED,
+                RegistrationType.EMAIL,
+                UserRole.USER,
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                null
+            )
+        )
     }
 }
