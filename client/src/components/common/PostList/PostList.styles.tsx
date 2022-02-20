@@ -24,9 +24,9 @@ const typeCSS: { [keys in ViewType]: SerializedStyles } = {
 export const Container = styled.div<ContainerProps>`
   display: grid;
   width: 100%;
-  max-width: 1104px;
   grid-template-columns: repeat(auto-fill, 264px);
   column-gap: 16px;
+  justify-content: center;
 
   ${({ type }) => typeCSS[type]}
 `;

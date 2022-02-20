@@ -13,3 +13,12 @@ export function write(param: CreatePostRequest): Promise<number> {
 export function get(id: number): Promise<Post> {
   return client.get(`/posts/${id}`).then((res) => res.data);
 }
+
+export interface GetPostListRequest {
+  lastPostId?: number;
+  size?: number;
+}
+
+export function getList(params: GetPostListRequest): Promise<Post[]> {
+  return client.get(`/posts`, { params }).then((res) => res.data);
+}
