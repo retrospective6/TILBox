@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import springfox.documentation.annotations.ApiIgnore
 import java.net.URI
 import java.time.LocalDateTime
 import javax.validation.Valid
@@ -26,7 +28,7 @@ const val DEFAULT_PAGE_SIZE = 20L
 
 @Api(description = "TIL 게시글 API")
 @RestController
-@RequestMapping("/v1/posts")
+@RequestMapping("/v1")
 class PostRestController(private val postService: PostService, private val postQueryDao: PostQueryDao) {
 
     @Operation(summary = "새 게시글 저장", description = "새로운 게시글을 생성한다.")
@@ -34,7 +36,7 @@ class PostRestController(private val postService: PostService, private val postQ
         ApiResponse(code = 201, message = "게시글 생성 완료"),
         ApiResponse(code = 400, message = "필수 값 누락으로 생성 실패")
     )
-    @PostMapping
+    @PostMapping("/posts")
     fun createPost(
         @Valid @RequestBody request: PostCreateRequest,
         @LoginUserId userId: Long
@@ -49,7 +51,7 @@ class PostRestController(private val postService: PostService, private val postQ
         ApiResponse(code = 200, message = "게시글 수정 완료"),
         ApiResponse(code = 400, message = "필수 값 누락으로 수정 실패")
     )
-    @PutMapping("/{postId}")
+    @PutMapping("/posts/{postId}")
     fun updatePost(
         @PathVariable postId: Long,
         @Valid @RequestBody request: PostCreateRequest,
@@ -63,7 +65,7 @@ class PostRestController(private val postService: PostService, private val postQ
         ApiResponse(code = 204, message = "게시글 삭제 완료"),
         ApiResponse(code = 400, message = "본인이 작성한 게시글이 아니어서 삭제 실패")
     )
-    @DeleteMapping("/{postId}")
+    @DeleteMapping("/posts/{postId}")
     fun remove(
         @PathVariable postId: Long,
         @LoginUserId userId: Long
@@ -72,7 +74,15 @@ class PostRestController(private val postService: PostService, private val postQ
         return ResponseEntity.noContent().build()
     }
 
-    @GetMapping("/my")
-    fun readMyPosts(@LoginUserId userId: Long, size: Long?, lastPostId: Long, keyword: String?) =
-        postQueryDao.readUserPosts(UserPostQueryRequest(lastPostId, size ?: DEFAULT_PAGE_SIZE, userId, keyword, null))
+    @Operation(summary = "내 게시물 조회", description = "내가 작성한 게시물을 조회한다.")
+    @ApiResponses(
+        ApiResponse(code = 204, message = "내 게시글 조회 성공"),
+    )
+    @GetMapping("/me/posts")
+    fun readMyPosts(
+        @ApiIgnore @LoginUserId userId: Long,
+        @RequestParam(required = false) size: Long?,
+        @RequestParam(required = false) lastPostId: Long?,
+        @RequestParam(required = false) keyword: String?
+    ) = postQueryDao.readUserPosts(UserPostQueryRequest(lastPostId, size ?: DEFAULT_PAGE_SIZE, userId, keyword, null))
 }
