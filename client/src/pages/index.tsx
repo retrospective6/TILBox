@@ -6,13 +6,15 @@ import PostList from '@/components/common/PostList/PostList';
 
 import { dehydrate, QueryClient } from 'react-query';
 import apis from '@/apis';
+import usePosts from '@/hooks/queries/post/usePosts';
 
 export default function MainPage(): JSX.Element {
+  const { posts, triggerElement } = usePosts();
+
   return (
     <Layout>
-      <Container>
-        <PostList type="zigzag" />
-      </Container>
+      <Container>{posts && <PostList type="zigzag" posts={posts} />}</Container>
+      {triggerElement}
     </Layout>
   );
 }
