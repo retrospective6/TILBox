@@ -1,5 +1,4 @@
 import {
-  InfiniteData,
   useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
@@ -9,14 +8,14 @@ import Post from '@/types/Post';
 import apis from '@/apis';
 
 export type UseUserResult = UseInfiniteQueryResult<Post[], AxiosError> & {
-  postPage?: InfiniteData<Post[]>;
+  posts?: Post[];
 };
 
 export default function usePosts(
   options?: UseInfiniteQueryOptions<Post[], AxiosError>,
 ): UseUserResult {
   const result = useInfiniteQuery<Post[], AxiosError>(
-    'posts',
+    '/posts',
     ({ pageParam = 0 }) => apis.posts.getList({ lastPostId: pageParam }),
     {
       getNextPageParam(prevData: Post[]): number {
@@ -28,7 +27,7 @@ export default function usePosts(
   );
 
   return {
-    postPage: result.data,
+    posts: result.data?.pages.flat(),
     ...result,
   };
 }

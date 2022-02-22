@@ -13,7 +13,7 @@ export interface PostListProps {
 
 export default function PostList(props: PostListProps): JSX.Element {
   const { type = 'default' } = props;
-  const { postPage, fetchNextPage } = usePosts();
+  const { posts, fetchNextPage } = usePosts();
   const { ref, inView } = useInView();
 
   useEffect(() => {
@@ -23,13 +23,11 @@ export default function PostList(props: PostListProps): JSX.Element {
   return (
     <>
       <Styled.Container type={type}>
-        {postPage?.pages.map((posts) =>
-          posts.map((post) => (
-            <div key={post.id} className="post-list-item">
-              <PostListItem post={post} />
-            </div>
-          )),
-        )}
+        {posts?.map((post) => (
+          <div key={post.id} className="post-list-item">
+            <PostListItem post={post} />
+          </div>
+        ))}
       </Styled.Container>
 
       <div ref={ref} />
