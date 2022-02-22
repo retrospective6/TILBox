@@ -1,20 +1,19 @@
-import {
-  useInfiniteQuery,
-  UseInfiniteQueryOptions,
-  UseInfiniteQueryResult,
-} from 'react-query';
+import { UseInfiniteQueryOptions } from 'react-query';
 import { AxiosError } from 'axios';
 import Post from '@/types/Post';
 import apis from '@/apis';
+import useInfiniteScrollQeury, {
+  UseInfiniteScrollQueryResult,
+} from '@/hooks/useInfiniteScrollQeury';
 
-export type UseUserResult = UseInfiniteQueryResult<Post[], AxiosError> & {
+export type UseUserResult = UseInfiniteScrollQueryResult<Post[], AxiosError> & {
   posts?: Post[];
 };
 
 export default function usePosts(
   options?: UseInfiniteQueryOptions<Post[], AxiosError>,
 ): UseUserResult {
-  const result = useInfiniteQuery<Post[], AxiosError>(
+  const result = useInfiniteScrollQeury<Post[], AxiosError>(
     '/posts',
     ({ pageParam = 0 }) => apis.posts.getList({ lastPostId: pageParam }),
     {
