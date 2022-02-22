@@ -7,6 +7,7 @@ import useUser from '@/hooks/queries/user/useUser';
 import MyPostList from '@/components/mybox/MyPostList';
 import useMyPosts from '@/hooks/queries/post/useMyPosts';
 import { classifyPosts } from '@/utils';
+import styled from '@emotion/styled';
 
 export default function MyBoxPage(): JSX.Element {
   const router = useRouter();
@@ -21,11 +22,22 @@ export default function MyBoxPage(): JSX.Element {
 
   return (
     <Layout>
-      {posts &&
-        classifyPosts(posts).map(({ year, month, posts }, index) => (
-          <MyPostList key={index} posts={posts} month={month} year={year} />
-        ))}
+      <Container>
+        {posts &&
+          classifyPosts(posts).map(({ year, month, posts }, index) => (
+            <MyPostList key={index} posts={posts} month={month} year={year} />
+          ))}
+      </Container>
       {triggerElement}
     </Layout>
   );
 }
+
+const Container = styled.div`
+  margin-top: 50px;
+  padding: 0 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 110px;
+`;
