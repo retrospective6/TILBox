@@ -13,3 +13,8 @@ export const mockGetPost = rest.get(mockApiURL('/posts/:id'), (req, res, ctx) =>
 export const mockGetPosts = rest.get(mockApiURL('/posts'), (req, res, ctx) =>
   res(ctx.json(POSTS)),
 );
+
+export const mockGetMyPosts = rest.get(
+  mockApiURL('/me/posts'),
+  (req, res, ctx) => res(ctx.json(POSTS)),
+);

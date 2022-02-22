@@ -80,9 +80,9 @@ export const ADMIN_POST: Post = {
 
 export const POSTS: Post[] = [
   POST,
-  { ...POST, id: 2 },
-  { ...POST, id: 3 },
-  { ...POST, id: 4 },
+  { ...POST, id: 2, createdAt: new Date('2021.11.15') },
+  { ...POST, id: 3, createdAt: new Date('2021.11.16') },
+  { ...POST, id: 4, createdAt: new Date('2021.9.15') },
   { ...POST, id: 5 },
   { ...POST, id: 6 },
   { ...POST, id: 7 },

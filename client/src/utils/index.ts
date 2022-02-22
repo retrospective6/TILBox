@@ -1,5 +1,6 @@
 import { Gradation } from '@/types';
 import { GRADATIONS } from '@/constants';
+import Post from '@/types/Post';
 
 export function range(size: number, start?: number): number[] {
   return [...Array(size).keys()].map((i) => i + (start || 0));
@@ -33,4 +34,40 @@ export async function copyToClipboard(value: string): Promise<void> {
     return;
   }
   return navigator.clipboard.writeText(value);
+}
+
+export function classifyPosts(posts: Post[]): {
+  year: number;
+  month: number;
+  posts: Post[];
+}[] {
+  const result: {
+    [year in number]: {
+      [month in number]: Post[];
+    };
+  } = {};
+
+  posts.forEach((post) => {
+    const year = post.createdAt.getFullYear();
+    const month = post.createdAt.getMonth() + 1;
+    if (!result[year]) {
+      result[year] = {};
+    }
+    if (!result[year][month]) {
+      result[year][month] = [];
+    }
+    result[year][month] = [...result[year][month], post];
+  });
+
+  return Object.entries(result)
+    .map(([year, monthlyPosts]) =>
+      Object.entries(monthlyPosts).map(([month, posts]) => ({
+        year: parseInt(year),
+        month: parseInt(month),
+        posts,
+      })),
+    )
+    .flat()
+    .sort((a, b) => b.month - a.month)
+    .sort((a, b) => b.year - a.year);
 }
