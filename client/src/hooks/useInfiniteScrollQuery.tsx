@@ -12,7 +12,7 @@ export type UseInfiniteScrollQueryResult<TData, TError> =
     triggerElement: JSX.Element;
   };
 
-export default function useInfiniteScrollQeury<TData, TError>(
+export default function useInfiniteScrollQuery<TData, TError>(
   key: string,
   queryFn: QueryFunction<TData>,
   options?: UseInfiniteQueryOptions<TData, TError>,
