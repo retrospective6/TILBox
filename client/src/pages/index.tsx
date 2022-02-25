@@ -1,12 +1,17 @@
 import React from 'react';
+import { GetServerSidePropsResult } from 'next';
 import styled from '@emotion/styled';
 
 import Layout from '@/components/common/Layout';
-import PostList from '@/components/common/PostList/PostList';
 
-import { dehydrate, QueryClient } from 'react-query';
+import PostList from '@/components/common/PostList/PostList';
+import { dehydrate, DehydratedState, QueryClient } from 'react-query';
 import apis from '@/apis';
 import usePosts from '@/hooks/queries/post/usePosts';
+
+export interface MainPageProps {
+  dehydratedState: DehydratedState;
+}
 
 export default function MainPage(): JSX.Element {
   const { posts, triggerElement } = usePosts();
@@ -19,7 +24,9 @@ export default function MainPage(): JSX.Element {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(): Promise<
+  GetServerSidePropsResult<MainPageProps>
+> {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery('posts', () =>
     apis.posts.getList({}),
