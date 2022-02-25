@@ -19,6 +19,9 @@ module.exports = {
     config.resolve.alias['@/utils/cookie'] = require.resolve(
       '../__mocks__/cookie.ts',
     );
+    config.resolve.alias['@/utils/days'] = require.resolve(
+      '../__mocks__/days.ts',
+    );
     config.resolve.alias['@'] = path.resolve(__dirname, '../src/');
     config.resolve.alias['@mocks'] = path.resolve(__dirname, '../__mocks__/');
 
