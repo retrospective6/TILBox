@@ -64,10 +64,14 @@ export function classifyPosts(data: Post[]): {
       Object.entries(monthlyPosts).map(([month, posts]) => ({
         year: parseInt(year),
         month: parseInt(month),
-        posts,
+        posts: sortPosts(posts),
       })),
     )
     .flat()
     .sort((a, b) => b.month - a.month)
     .sort((a, b) => b.year - a.year);
+}
+
+function sortPosts(posts: Post[]): Post[] {
+  return posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 }
