@@ -24,8 +24,8 @@ export default function MyBoxPage(): JSX.Element {
     <Layout>
       <Container>
         {posts &&
-          classifyPosts(posts).map(({ year, month, posts }, index) => (
-            <MyPostList key={index} posts={posts} month={month} year={year} />
+          classifyPosts(posts).map(({ year, month, posts: data }, index) => (
+            <MyPostList key={index} posts={data} month={month} year={year} />
           ))}
       </Container>
       {triggerElement}

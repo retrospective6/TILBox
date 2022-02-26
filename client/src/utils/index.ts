@@ -36,7 +36,7 @@ export async function copyToClipboard(value: string): Promise<void> {
   return navigator.clipboard.writeText(value);
 }
 
-export function classifyPosts(posts: Post[]): {
+export function classifyPosts(data: Post[]): {
   year: number;
   month: number;
   posts: Post[];
@@ -47,7 +47,7 @@ export function classifyPosts(posts: Post[]): {
     };
   } = {};
 
-  posts.forEach((post) => {
+  data.forEach((post) => {
     const year = post.createdAt.getFullYear();
     const month = post.createdAt.getMonth() + 1;
     if (!result[year]) {
