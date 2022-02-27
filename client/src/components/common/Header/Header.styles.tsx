@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Header = styled.header`
   display: flex;
-  width: 100%;
+  width: 100vw;
   height: 64px;
   justify-content: center;
   padding: 0 48px 0 76px;
@@ -44,6 +44,7 @@ export const UserInfoItem = styled.button`
   margin-right: 20px;
   background: transparent;
   font-size: 12px;
+  cursor: pointer;
 `;
 
 export const UserImage = styled.img`
@@ -51,10 +52,12 @@ export const UserImage = styled.img`
   height: 38px;
   margin-right: 14px;
   border-radius: 50%;
+  cursor: pointer;
 `;
 
 export const UserNickname = styled.span`
   margin-right: 20px;
   background: transparent;
   font-size: 12px;
+  cursor: pointer;
 `;
