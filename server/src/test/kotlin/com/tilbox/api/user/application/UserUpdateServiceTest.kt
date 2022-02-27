@@ -42,7 +42,8 @@ class UserUpdateServiceTest(
                     "https://s3.image.url/",
                     "desc",
                     "12:00"
-                ), user.id
+                ),
+                user.id
             )
 
         // then
@@ -64,8 +65,9 @@ class UserUpdateServiceTest(
                     "hello",
                     "https://s3.image.url/",
                     "desc",
-                    "12:00",
-                ), user.id
+                    "12:00"
+                ),
+                user.id
             )
         }
 
