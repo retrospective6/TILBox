@@ -75,3 +75,19 @@ export function classifyPosts(data: Post[]): {
 function sortPosts(posts: Post[]): Post[] {
   return posts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 }
+
+export function splitEmailNotificationTime(
+  value: string,
+): [hour: number, minute: number] {
+  const [hour, minute] = value.split(':');
+  return [parseInt(hour), parseInt(minute)];
+}
+
+export function convertToEmailNotificationTime(
+  hour: number,
+  minute: number,
+): string {
+  return `${hour.toString().padStart(2, '0')}:${minute
+    .toString()
+    .padStart(2, '0')}`;
+}

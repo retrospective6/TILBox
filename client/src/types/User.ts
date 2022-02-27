@@ -3,7 +3,7 @@ export default interface User {
   myTilAddress: string;
   profile: Profile;
   role: UserRole;
-  notification?: Notification;
+  emailNotificationTime?: string;
 }
 
 export interface Profile {
@@ -14,8 +14,3 @@ export interface Profile {
 }
 
 export type UserRole = 'ROLE_USER' | 'ROLE_ADMIN';
-
-export interface Notification {
-  hour: number;
-  minute: number;
-}

@@ -1,4 +1,9 @@
-import { classifyPosts, range } from '@/utils';
+import {
+  classifyPosts,
+  convertToEmailNotificationTime,
+  range,
+  splitEmailNotificationTime,
+} from '@/utils';
 import Post from '@/types/Post';
 import { POST } from '@mocks/data/posts';
 
@@ -73,5 +78,27 @@ describe('classifyPosts', () => {
       'createdAt',
       new Date('2022.02.28'),
     );
+  });
+});
+
+describe('splitEmailNotificationTime', () => {
+  test.each([
+    ['10:00', [10, 0]],
+    ['22:20', [22, 20]],
+    ['23:33', [23, 33]],
+    ['01:01', [1, 1]],
+  ])('%s를 %s 형태로 분리', (input, expected) => {
+    expect(splitEmailNotificationTime(input)).toEqual(expected);
+  });
+});
+
+describe('convertToEmailNotificationTime', () => {
+  test.each([
+    [[10, 0], '10:00'],
+    [[22, 20], '22:20'],
+    [[23, 33], '23:33'],
+    [[1, 1], '01:01'],
+  ])('%s를 %s로 병합', ([hour, minute], expected) => {
+    expect(convertToEmailNotificationTime(hour, minute)).toEqual(expected);
   });
 });
