@@ -29,7 +29,12 @@ export default function SlideMenu(props: SlideMenuProps): JSX.Element {
     <Portal type="slide-menu-root">
       <Styled.Wrapper onClick={onClose}>
         <Styled.Container>
-          <Styled.ProfileImage src={profile.image} alt={profile.nickname} />
+          <Styled.ProfileImage
+            src={profile.image}
+            alt={profile.nickname}
+            width="82px"
+            height="82px"
+          />
           <Styled.Nickname>{profile.nickname}</Styled.Nickname>
           <LinkButton href="/write" variant="primary" width="100%">
             TIL 작성

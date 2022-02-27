@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Header = styled.header`
   display: flex;
-  width: 100%;
+  width: 100vw;
   height: 64px;
   justify-content: center;
   padding: 0 48px 0 76px;
