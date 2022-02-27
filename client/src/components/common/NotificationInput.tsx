@@ -47,6 +47,10 @@ export default function NotificationInput(
     );
   };
 
+  const handleClickInput = () => {
+    setCheck(true);
+  };
+
   const handleChangeHour = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = limitInputNumber(event.target.value, 0, 23);
     setHour(inputValue);
@@ -73,7 +77,7 @@ export default function NotificationInput(
           checked={check}
           onClick={handleClick}
         />
-        <Styled.TimeInputContainer>
+        <Styled.TimeInputContainer onClick={handleClickInput}>
           <Styled.TimeInput
             name="hour"
             value={hour.toString().padStart(2, '0')}
