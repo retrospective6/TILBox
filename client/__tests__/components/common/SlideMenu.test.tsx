@@ -25,6 +25,7 @@ jest.mock('next/router', () => ({
 }));
 
 const DEFAULT_ARGS: SlideMenuProps = {
+  onClose: jest.fn(),
   profile: PROFILE,
 };
 
@@ -70,5 +71,17 @@ describe('로그아웃', () => {
     fireEvent.click(logout);
 
     expect(mockedReload).toBeCalled();
+  });
+});
+
+describe('with onClose method', () => {
+  test('run method on click wrapper', () => {
+    const onClose = jest.fn();
+
+    const { getByTestId } = renderSlideMenu({ onClose });
+    const wrapper = getByTestId('menu-wrapper');
+    fireEvent.click(wrapper);
+
+    expect(onClose).toBeCalled();
   });
 });

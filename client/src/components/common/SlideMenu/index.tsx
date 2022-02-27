@@ -27,7 +27,7 @@ export default function SlideMenu(props: SlideMenuProps): JSX.Element {
 
   return (
     <Portal type="slide-menu-root">
-      <Styled.Wrapper onClick={onClose}>
+      <Styled.Wrapper data-testid="menu-wrapper" onClick={onClose}>
         <Styled.Container>
           <Styled.ProfileImage
             src={profile.image}
