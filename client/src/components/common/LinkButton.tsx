@@ -6,7 +6,7 @@ import Button, { ButtonProps } from '@/components/common/Button';
 
 export type LinkButtonProps = LinkProps & ButtonProps;
 
-export default function LinkButton(props: LinkButtonProps) {
+export default function LinkButton(props: LinkButtonProps): JSX.Element {
   const { width, children } = props;
   return (
     <Link {...props} passHref>
