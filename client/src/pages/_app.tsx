@@ -1,7 +1,8 @@
-import React from 'react';
-import '@/styles/global.css';
+import React, { useRef } from 'react';
 import type { AppProps } from 'next/app';
+import '@/styles/global.css';
 import styled from '@emotion/styled';
+
 import { ModalProvider } from '@/hooks/useModal';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -23,10 +24,13 @@ export default function TILApp({
   Component,
   pageProps,
 }: AppProps): JSX.Element {
-  const queryClient = new QueryClient();
+  const queryClientRef = useRef<QueryClient>();
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClientRef.current}>
       <ModalProvider>
         <Container>
           <Component {...pageProps} />

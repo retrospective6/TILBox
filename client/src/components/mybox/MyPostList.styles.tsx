@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import FONT from '@/styles/font';
 
 export const Container = styled.div`
-  max-width: 1104px;
+  width: 100%;
 `;
 
 export const Header = styled.header`
@@ -21,7 +21,7 @@ export const PostList = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fill, 264px);
-  column-gap: 16px;
+  justify-content: space-between;
   row-gap: 38px;
 `;
 

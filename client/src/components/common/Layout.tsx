@@ -5,6 +5,7 @@ import Header from '@/components/common/Header/Header';
 import useProfile from '@/hooks/queries/user/useProfile';
 import { useRouter } from 'next/router';
 import useModal from '@/hooks/useModal';
+import styled from '@emotion/styled';
 
 export interface LayoutProps {
   children: ReactNode;
@@ -29,7 +30,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
   };
 
   return (
-    <>
+    <Container>
       <Header
         active={router.pathname}
         onLogin={handleOpenLoginModal}
@@ -38,6 +39,11 @@ export default function Layout(props: LayoutProps): JSX.Element {
         profile={profile}
       />
       {children}
-    </>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  // TODO: 반응형 적용 후 제거
+  min-width: 1280px;
+`;
