@@ -44,6 +44,7 @@ export const ProfileImage = styled(Image)`
 export const Nickname = styled.span`
   margin: 16px;
   ${FONT.title3};
+  text-align: center;
 `;
 
 export const Boundary = styled.div`
