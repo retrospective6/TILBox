@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as Styled from './Modal.styles';
 
 import { Portal } from 'next/dist/client/portal';
+import useNoScroll from '@/hooks/useNoScroll';
 
 export interface ModalProps {
   children: React.ReactNode;
@@ -10,15 +11,7 @@ export interface ModalProps {
 
 export default function Modal(props: ModalProps): JSX.Element {
   const { children, onClose } = props;
-
-  useEffect(() => {
-    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = `position: ""; top: "";`;
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    };
-  }, []);
+  useNoScroll();
 
   return (
     <Portal type="modal-root">

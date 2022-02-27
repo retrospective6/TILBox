@@ -8,6 +8,7 @@ import LinkButton from '@/components/common/LinkButton';
 import { Profile } from '@/types/User';
 import auth from '@/utils/auth';
 import { useRouter } from 'next/router';
+import useNoScroll from '@/hooks/useNoScroll';
 
 export interface SlideMenuProps {
   profile: Profile;
@@ -16,6 +17,7 @@ export interface SlideMenuProps {
 export default function SlideMenu(props: SlideMenuProps): JSX.Element {
   const { profile } = props;
   const router = useRouter();
+  useNoScroll();
 
   const handleLogout = () => {
     auth.logout();
@@ -26,14 +28,7 @@ export default function SlideMenu(props: SlideMenuProps): JSX.Element {
     <Portal type="slide-menu-root">
       <Styled.Wrapper>
         <Styled.Container>
-          <div>
-            <Styled.ProfileImage
-              src={profile.image}
-              alt={profile.nickname}
-              width="82px"
-              height="82px"
-            />
-          </div>
+          <Styled.ProfileImage src={profile.image} alt={profile.nickname} />
           <Styled.Nickname>{profile.nickname}</Styled.Nickname>
           <LinkButton href="/write" variant="primary" width="100%">
             TIL 작성
