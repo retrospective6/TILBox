@@ -8,12 +8,9 @@ import RadioGroup from '@/components/common/RadioGroup';
 import Button from '@/components/common/Button';
 import PlusIcon from '@/assets/icon/PlusIcon.svg';
 
-import { THUMBNAIL_GRADATIONS, VISIBLE_LEVELS } from '@/constants';
-import Post, {
-  Thumbnail,
-  ThumbnailGradation,
-  VisibleLevel,
-} from '@/types/Post';
+import { GRADATIONS, VISIBLE_LEVELS } from '@/constants';
+import Post, { Thumbnail, VisibleLevel } from '@/types/Post';
+import { Gradation } from '@/types';
 import apis from '@/apis';
 
 export type WriteModalFormProps = Pick<
@@ -41,9 +38,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (thumbnail?.type === 'image') {
-      const imageFile = new FormData();
-      imageFile.append('imageFile', thumbnail.value as string);
-      const { url } = await apis.images.upload(imageFile);
+      const { url } = await apis.images.upload(thumbnail.value as string);
       setThumbnail({ type: 'image', value: url });
     }
     onSubmit({
@@ -54,7 +49,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
     });
   };
 
-  const handleClickColorSelector = (selected: ThumbnailGradation) => () => {
+  const handleClickColorSelector = (selected: Gradation) => () => {
     setThumbnail({
       type: 'gradation',
       value: selected,
@@ -89,7 +84,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
             <Styled.Title>썸네일 미리보기</Styled.Title>
             <Styled.ColorList>
               <Styled.ColorListText>썸네일 컬러</Styled.ColorListText>
-              {THUMBNAIL_GRADATIONS.map((color, i) => (
+              {GRADATIONS.map((color, i) => (
                 <Styled.ColorListItem
                   key={i}
                   {...color}
@@ -100,7 +95,7 @@ export default function WriteModal(props: WriteModalProps): JSX.Element {
             <Styled.ThumbnailSelector
               gradation={
                 thumbnail.type === 'gradation'
-                  ? (thumbnail.value as ThumbnailGradation)
+                  ? (thumbnail.value as Gradation)
                   : undefined
               }
             >

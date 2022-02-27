@@ -3,9 +3,9 @@ import { css } from '@emotion/react';
 import FONT from '@/styles/font';
 
 import Image from 'next/image';
-import { ThumbnailGradation } from '@/types/Post';
+import { Gradation } from '@/types';
 
-export const Thumbnail = styled.div<Partial<ThumbnailGradation>>`
+export const Thumbnail = styled.div<Partial<Gradation>>`
   position: relative;
   width: 100%;
   height: 100%;

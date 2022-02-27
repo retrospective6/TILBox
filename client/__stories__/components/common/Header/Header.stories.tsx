@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '@/components/common/Header/Header';
 import { ComponentStory } from '@storybook/react';
-import { USER, USER_LONG_NICKNAME } from '@mocks/data/users';
+import { PROFILE, PROFILE_LONG_NICKNAME } from '@mocks/data/users';
 
 export default {
   component: Header,
@@ -31,11 +31,11 @@ MyBOX.args = {
 export const WithUser = Template.bind({});
 WithUser.args = {
   ...Main.args,
-  user: USER,
+  profile: PROFILE,
 };
 
 export const 닉네임_긴_경우 = Template.bind({});
 닉네임_긴_경우.args = {
   ...Main.args,
-  user: USER_LONG_NICKNAME,
+  profile: PROFILE_LONG_NICKNAME,
 };

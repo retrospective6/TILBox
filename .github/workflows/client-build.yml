@@ -24,24 +24,23 @@ jobs:
       - name: Check Node v
         run: node -v
 
-      - name: yarn install
-        run: yarn install
-
-      - name: Check lint
-        run: yarn lint
-
       - name: Generate Environment Variables File for Production
         run: |
-          echo "API_HOSTNAME=$API_HOSTNAME" >> .env.production
-          echo "API_PORT=$API_PORT" >> .env.production
-          echo "API_VERSION=$API_VERSION" >> .env.production
-          echo "API_HOST=$API_HOST" >> .env.production
-          cp .env.production .env.test
+          echo "API_HOSTNAME=$API_HOSTNAME" >> .env
+          echo "API_PORT=$API_PORT" >> .env
+          echo "API_VERSION=$API_VERSION" >> .env
+          echo "API_HOST=$API_HOST" >> .env
         env:
           API_HOSTNAME: ${{ secrets.API_HOSTNAME }}
           API_PORT: ${{ secrets.API_PORT }}
           API_VERSION: ${{ secrets.API_VERSION }}
           API_HOST: ${{ secrets.API_HOST }}
+
+      - name: yarn install
+        run: yarn install
+
+      - name: Check lint
+        run: yarn lint
 
       - name: Check test coverage
         run: yarn test:coverage

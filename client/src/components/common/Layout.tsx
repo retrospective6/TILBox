@@ -1,13 +1,11 @@
-import React, { ReactNode, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { ReactNode } from 'react';
 
 import Header from '@/components/common/Header/Header';
-import LoginModal, {
-  LoginFormProps,
-} from '@/components/common/Modal/LoginModal';
 
-import apis from '@/apis';
-import cookie from '@/utils/cookie';
+import useProfile from '@/hooks/queries/user/useProfile';
+import { useRouter } from 'next/router';
+import useModal from '@/hooks/useModal';
+import styled from '@emotion/styled';
 
 export interface LayoutProps {
   children: ReactNode;
@@ -16,30 +14,11 @@ export interface LayoutProps {
 export default function Layout(props: LayoutProps): JSX.Element {
   const { children } = props;
   const router = useRouter();
-  const [loginModal, setLoginModal] = useState<boolean>(false);
-
-  const handleSignUp = () => {
-    // TODO: 회원가입 버튼 클릭 시 로직
-  };
+  const { profile } = useProfile();
+  const { openModal } = useModal();
 
   const handleOpenLoginModal = () => {
-    setLoginModal(true);
-  };
-
-  const handleCloseLoginModal = () => {
-    setLoginModal(false);
-  };
-
-  const handleLogin = async (values: LoginFormProps) => {
-    try {
-      const { accessToken } = await apis.users.login(values);
-      if (accessToken) {
-        cookie.setAuth(accessToken);
-        await router.reload();
-      }
-    } catch (error) {
-      return;
-    }
+    openModal('login');
   };
 
   const handleSearch = () => {
@@ -51,18 +30,20 @@ export default function Layout(props: LayoutProps): JSX.Element {
   };
 
   return (
-    <>
+    <Container>
       <Header
         active={router.pathname}
-        onSignUp={handleSignUp}
         onLogin={handleOpenLoginModal}
         onSearch={handleSearch}
         onWrite={handleWrite}
+        profile={profile}
       />
       {children}
-      {loginModal && (
-        <LoginModal onClose={handleCloseLoginModal} onSubmit={handleLogin} />
-      )}
-    </>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  // TODO: 반응형 적용 후 제거
+  min-width: 1280px;
+`;

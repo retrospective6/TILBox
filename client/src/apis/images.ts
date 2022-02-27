@@ -1,11 +1,14 @@
-import { tilAxios } from '@/apis/utils';
+import client from '@/apis/utils/client';
 
 export interface UploadResponse {
   url: string;
 }
 
-export function upload(imageFile: FormData): Promise<UploadResponse> {
-  return tilAxios
+export function upload(image: string): Promise<UploadResponse> {
+  const imageFile = new FormData();
+  imageFile.append('imageFile', image);
+
+  return client
     .post('/images/upload', imageFile, {
       headers: { 'content-type': 'multipart/form-data' },
     })

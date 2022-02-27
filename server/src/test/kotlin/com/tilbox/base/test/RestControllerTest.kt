@@ -63,6 +63,12 @@ abstract class RestControllerTest {
         }
     }
 
+    protected fun post(path: String): ResultActionsDsl {
+        return mockMvc.post(path) {
+            accept = MediaType.APPLICATION_JSON
+        }
+    }
+
     protected fun post(path: String, request: Any): ResultActionsDsl {
         return mockMvc.post(path) {
             content = objectMapper.writeValueAsBytes(request)

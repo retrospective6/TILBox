@@ -15,3 +15,13 @@ export const Default = Template.bind({});
 Default.args = {
   children: 'Layout',
 };
+Default.parameters = {
+  cookie: {
+    accessToken: 'test',
+  },
+};
+
+export const WithoutUser = Template.bind({});
+WithoutUser.args = {
+  children: 'Layout',
+};

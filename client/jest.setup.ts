@@ -6,8 +6,12 @@ const projectDir = process.cwd();
 loadEnvConfig(projectDir);
 
 import { server } from '@mocks/apis/server';
+import cookie from '@mocks/cookie';
 beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers();
+  cookie.clear();
+});
 afterAll(() => server.close());
 
 Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });

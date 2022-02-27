@@ -1,7 +1,10 @@
-import React from 'react';
-import '@/styles/global.css';
+import React, { useRef } from 'react';
 import type { AppProps } from 'next/app';
+import '@/styles/global.css';
 import styled from '@emotion/styled';
+
+import { ModalProvider } from '@/hooks/useModal';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 if (process.env.NODE_ENV === 'development') {
   if (typeof window === 'undefined') {
@@ -21,10 +24,19 @@ export default function TILApp({
   Component,
   pageProps,
 }: AppProps): JSX.Element {
+  const queryClientRef = useRef<QueryClient>();
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
+
   return (
-    <Container>
-      <Component {...pageProps} />
-    </Container>
+    <QueryClientProvider client={queryClientRef.current}>
+      <ModalProvider>
+        <Container>
+          <Component {...pageProps} />
+        </Container>
+      </ModalProvider>
+    </QueryClientProvider>
   );
 }
 

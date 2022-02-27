@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import FONT from '@/styles/font';
 
-export const Container = styled.form`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
