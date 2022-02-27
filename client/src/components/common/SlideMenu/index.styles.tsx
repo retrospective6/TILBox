@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import Image from 'next/image';
 import FONT from '@/styles/font';
 
 export const Wrapper = styled.div`
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;
@@ -23,7 +23,9 @@ export const Container = styled.menu`
   background-color: #ffffff;
 `;
 
-export const ProfileImage = styled(Image)`
+export const ProfileImage = styled.img`
+  width: 82px;
+  height: 82px;
   border-radius: 50%;
 `;
 

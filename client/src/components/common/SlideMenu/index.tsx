@@ -12,10 +12,11 @@ import useNoScroll from '@/hooks/useNoScroll';
 
 export interface SlideMenuProps {
   profile: Profile;
+  onClose: () => void;
 }
 
 export default function SlideMenu(props: SlideMenuProps): JSX.Element {
-  const { profile } = props;
+  const { profile, onClose } = props;
   const router = useRouter();
   useNoScroll();
 
@@ -26,7 +27,7 @@ export default function SlideMenu(props: SlideMenuProps): JSX.Element {
 
   return (
     <Portal type="slide-menu-root">
-      <Styled.Wrapper>
+      <Styled.Wrapper onClick={onClose}>
         <Styled.Container>
           <Styled.ProfileImage src={profile.image} alt={profile.nickname} />
           <Styled.Nickname>{profile.nickname}</Styled.Nickname>
