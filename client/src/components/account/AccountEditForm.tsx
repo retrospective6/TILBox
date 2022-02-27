@@ -8,7 +8,7 @@ import Button from '@/components/common/Button';
 import RadioChecked from '@/assets/icon/RadioChecked.svg';
 import EditIcon from '@/assets/icon/EditIcon.svg';
 
-import User, { Notification } from '@/types/User';
+import User from '@/types/User';
 import { copyToClipboard } from '@/utils';
 import MESSAGES from '@/constants/messages';
 import validators from '@/utils/validators';
@@ -17,7 +17,7 @@ export interface AccountEditFormData {
   image: string;
   nickname: string;
   password: string;
-  notification?: Notification;
+  emailNotificationTime?: string;
 }
 
 export interface AccountEditFormProps {
@@ -35,12 +35,12 @@ export default function AccountEditForm(
   props: AccountEditFormProps,
 ): JSX.Element {
   const { user, onSubmit, onSignOut } = props;
-  const { myTilAddress, email, profile, notification } = user;
+  const { myTilAddress, email, profile, emailNotificationTime } = user;
   const [formData, setFromData] = useState<AccountEditFormData>({
     image: profile.image,
     nickname: profile.nickname,
     password: '',
-    notification,
+    emailNotificationTime: '',
   });
   const [errorMessage, setErrorMessage] = useState<ErrorMessage>({});
 
@@ -88,10 +88,10 @@ export default function AccountEditForm(
     }));
   };
 
-  const handleChangeNotification = (value?: Notification) => {
+  const handleChangeNotification = (value?: string) => {
     setFromData({
       ...formData,
-      notification: value,
+      emailNotificationTime: value,
     });
   };
 
@@ -150,8 +150,8 @@ export default function AccountEditForm(
           onChange={handleChange}
         />
         <NotificationInput
-          value={notification}
-          checked={!!notification}
+          value={emailNotificationTime}
+          checked={!!emailNotificationTime}
           onChange={handleChangeNotification}
         />
         <Styled.OptionContainer>

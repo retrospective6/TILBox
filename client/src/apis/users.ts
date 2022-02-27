@@ -7,7 +7,7 @@ interface SignupRequest {
   nickname: string;
   email: string;
   password: string;
-  notification?: User['notification'];
+  emailNotificationTime?: string;
 }
 
 export async function signup(data: SignupRequest): Promise<void> {
@@ -32,10 +32,10 @@ export async function signOut(): Promise<void> {
 }
 
 export interface UpdateUserRequest {
-  image: User['profile']['image'];
-  nickname: User['profile']['nickname'];
+  image: string;
+  nickname: string;
   password: string;
-  notification?: User['notification'];
+  emailNotificationTime?: string;
 }
 
 export async function update(data: UpdateUserRequest): Promise<User> {

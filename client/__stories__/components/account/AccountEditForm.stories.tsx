@@ -16,6 +16,6 @@ export const Default = Template.bind({});
 Default.args = {
   user: {
     ...USER,
-    notification: { hour: 14, minute: 30 },
+    emailNotificationTime: '14:30',
   },
 };

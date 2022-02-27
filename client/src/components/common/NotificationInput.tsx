@@ -3,37 +3,52 @@ import * as Styled from './NotificationInput.styles';
 
 import CheckBox from '@/components/common/CheckBox';
 
-import { limitInputNumber } from '@/utils';
-import { Notification } from '@/types/User';
+import {
+  convertToEmailNotificationTime,
+  limitInputNumber,
+  splitEmailNotificationTime,
+} from '@/utils';
 
 export interface NotificationInputProps
   extends Omit<
     InputHTMLAttributes<HTMLInputElement>,
     'onChange' | 'value' | 'defaultValue'
   > {
-  value?: Notification;
-  defaultValue?: Notification;
-  onChange: (value?: Notification) => void;
+  value?: string;
+  defaultValue?: string;
+  onChange: (value?: string) => void;
 }
 
 export default function NotificationInput(
   props: NotificationInputProps,
 ): JSX.Element {
-  const { value, defaultValue, defaultChecked, checked, onChange } = props;
+  const {
+    value,
+    defaultValue = '23:00',
+    defaultChecked,
+    checked,
+    onChange,
+  } = props;
   const [check, setCheck] = useState<boolean>(
     checked || defaultChecked || false,
   );
   const [hour, setHour] = useState<number>(
-    value?.hour || defaultValue?.hour || 0,
+    splitEmailNotificationTime(value || defaultValue)[0],
   );
   const [minute, setMinute] = useState<number>(
-    value?.minute || defaultValue?.minute || 0,
+    splitEmailNotificationTime(value || defaultValue)[1],
   );
 
   const handleClick = () => {
     const newValue = !check;
     setCheck(newValue);
-    onChange(newValue ? { hour, minute } : undefined);
+    onChange(
+      newValue ? convertToEmailNotificationTime(hour, minute) : undefined,
+    );
+  };
+
+  const handleClickInput = () => {
+    setCheck(true);
   };
 
   const handleChangeHour = (event: ChangeEvent<HTMLInputElement>) => {
@@ -47,10 +62,7 @@ export default function NotificationInput(
   };
 
   const handleBlurInput = () => {
-    onChange({
-      hour: hour,
-      minute: minute,
-    });
+    onChange(convertToEmailNotificationTime(hour, minute));
   };
 
   return (
@@ -65,7 +77,7 @@ export default function NotificationInput(
           checked={check}
           onClick={handleClick}
         />
-        <Styled.TimeInputContainer>
+        <Styled.TimeInputContainer onClick={handleClickInput}>
           <Styled.TimeInput
             name="hour"
             value={hour.toString().padStart(2, '0')}

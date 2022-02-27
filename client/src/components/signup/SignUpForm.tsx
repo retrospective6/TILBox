@@ -7,7 +7,6 @@ import NotificationInput from '@/components/common/NotificationInput';
 import Button from '@/components/common/Button';
 
 import apis from '@/apis';
-import { Notification } from '@/types/User';
 import MESSAGES from '@/constants/messages';
 import validators from '@/utils/validators';
 
@@ -18,7 +17,7 @@ interface FormData {
   email: string;
   password: string;
   passwordCheck: string;
-  notification?: Notification;
+  emailNotificationTime?: string;
 }
 
 interface ErrorMessage {
@@ -94,10 +93,10 @@ export default function SignUpForm(): JSX.Element {
     }));
   };
 
-  const handleChangeNotification = (value?: Notification) => {
+  const handleChangeNotification = (value?: string) => {
     setFormData({
       ...formData,
-      notification: value,
+      emailNotificationTime: value,
     });
   };
 
