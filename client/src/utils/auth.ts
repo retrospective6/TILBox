@@ -1,14 +1,19 @@
 import cookie from '@/utils/cookie';
 
+const KEY = 'accessToken';
+
 const auth = {
   set(value: string): void {
-    cookie.set('accessToken', value);
+    cookie.set(KEY, value);
   },
   get(): string | undefined {
-    return cookie.get('accessToken');
+    return cookie.get(KEY);
   },
   isLoggedIn(): boolean {
     return !!auth.get();
+  },
+  logout(): void {
+    cookie.remove(KEY);
   },
 };
 

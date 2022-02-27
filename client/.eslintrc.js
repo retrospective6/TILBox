@@ -30,5 +30,11 @@ module.exports = {
         'import/no-anonymous-default-export': 'off',
       },
     },
+    {
+      files: ['**/*.test.*'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
   ],
 };
