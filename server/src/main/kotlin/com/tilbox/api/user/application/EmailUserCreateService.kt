@@ -10,6 +10,7 @@ import com.tilbox.core.user.domain.UserRole
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 @Transactional
 @Service
@@ -34,6 +35,7 @@ class EmailUserCreateService(
                 password = Password(value = request.password, passwordEncodingStrategy),
                 registrationType = RegistrationType.EMAIL,
                 userRole = UserRole.USER,
+                emailNotificationTime = LocalTime.parse(request.emailNotificationTime),
                 createdAt = currentDateTime,
                 updatedAt = currentDateTime,
                 deletedAt = null

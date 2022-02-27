@@ -16,6 +16,7 @@ class GlobalExceptionHandler {
     @ExceptionHandler(value = [ConstraintViolationException::class, IllegalArgumentException::class])
     fun handleInvalidArgumentException(exception: Exception): ApiErrorResponse {
         log.error { exception.message }
+        exception.printStackTrace()
         return ApiErrorResponse(message = "입력값이 올바르지 않습니다.")
     }
 
@@ -23,6 +24,7 @@ class GlobalExceptionHandler {
     @ExceptionHandler(value = [IllegalStateException::class])
     fun handleIllegalStateException(exception: Exception): ApiErrorResponse {
         log.error { exception.message }
+        exception.printStackTrace()
         return ApiErrorResponse(message = "요청을 처리할 수 없는 상태입니다.")
     }
 
@@ -30,13 +32,15 @@ class GlobalExceptionHandler {
     @ExceptionHandler(value = [IOException::class])
     fun handleIOExceptionException(exception: Exception): ApiErrorResponse {
         log.error { exception.message }
+        exception.printStackTrace()
         return ApiErrorResponse(message = "파일 처리 중 에러가 발생했습니다.")
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = [Exception::class])
     fun handleInternalException(exception: Exception): ApiErrorResponse {
-        log.error { exception.stackTrace }
+        log.error { exception.message }
+        exception.printStackTrace()
         return ApiErrorResponse(message = "알 수 없는 에러가 발생했습니다.")
     }
 }

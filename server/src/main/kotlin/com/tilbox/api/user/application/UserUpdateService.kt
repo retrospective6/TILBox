@@ -4,6 +4,7 @@ import com.tilbox.core.user.domain.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 @Transactional
 @Service
@@ -19,6 +20,7 @@ class UserUpdateService(private val userRepository: UserRepository) {
             userUpdateRequest.nickname,
             userUpdateRequest.image,
             userUpdateRequest.description,
+            LocalTime.parse(userUpdateRequest.emailNotificationTime),
             currentDateTime
         )
         userRepository.save(user)

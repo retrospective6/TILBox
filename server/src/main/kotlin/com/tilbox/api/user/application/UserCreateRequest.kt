@@ -32,4 +32,7 @@ data class UserCreateRequest(
     @ApiModelProperty("비밀번호", required = true, example = "hello12##@@")
     @field:Pattern(regexp = "(?=.*[A-Za-z])(?=.*\\d)(?=.*[\$@!%*#?&])[A-Za-z\\d\$@!%*#?&]{8,24}")
     val password: String,
+
+    @ApiModelProperty("이메일 수신 시간", example = "12:00")
+    val emailNotificationTime: String?
 )

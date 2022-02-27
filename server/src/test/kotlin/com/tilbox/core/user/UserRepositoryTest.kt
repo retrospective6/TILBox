@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.TestConstructor
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 @DataJpaTest
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
@@ -31,6 +32,7 @@ internal class UserRepositoryTest(private val userRepository: UserRepository) {
             UserStatus.UNAUTHENTICATED,
             RegistrationType.EMAIL,
             UserRole.USER,
+            LocalTime.of(12, 0),
             LocalDateTime.now(),
             LocalDateTime.now(),
             null

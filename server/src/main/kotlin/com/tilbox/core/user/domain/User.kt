@@ -2,6 +2,7 @@ package com.tilbox.core.user.domain
 
 import com.tilbox.core.base.BaseRootEntity
 import java.time.LocalDateTime
+import java.time.LocalTime
 import javax.persistence.Column
 import javax.persistence.Embedded
 import javax.persistence.Entity
@@ -34,6 +35,9 @@ class User(
     @Column(name = "role", nullable = false)
     val userRole: UserRole,
 
+    @Column(name = "email_notification_time", nullable = true)
+    var emailNotificationTime: LocalTime?,
+
     @Column(name = "created_at", nullable = false, updatable = false)
     val createdAt: LocalDateTime,
 
@@ -54,9 +58,11 @@ class User(
         nickname: String,
         image: String?,
         description: String,
+        emailNotificationTime: LocalTime?,
         updatedAt: LocalDateTime
     ) {
         this.profile = Profile(nickname, image, description, this.profile.subscribeCount)
+        this.emailNotificationTime = emailNotificationTime
         this.updatedAt = updatedAt
     }
 
