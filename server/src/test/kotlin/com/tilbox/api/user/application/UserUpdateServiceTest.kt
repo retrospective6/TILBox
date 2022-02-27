@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import java.time.LocalDateTime
+import java.time.LocalTime
 import javax.transaction.Transactional
 
 @Transactional
@@ -35,7 +36,14 @@ class UserUpdateServiceTest(
 
         // when
         val actual =
-            userUpdateService.updateUser(UserUpdateRequest("hello", "https://s3.image.url/", "desc"), user.id)
+            userUpdateService.updateUser(
+                UserUpdateRequest(
+                    "hello",
+                    "https://s3.image.url/",
+                    "desc",
+                    "12:00"
+                ), user.id
+            )
 
         // then
         actual.profile.nickname shouldBe "hello"
@@ -51,7 +59,14 @@ class UserUpdateServiceTest(
 
         // when
         val exception = shouldThrow<IllegalStateException> {
-            userUpdateService.updateUser(UserUpdateRequest("hello", "https://s3.image.url/", "desc"), user.id)
+            userUpdateService.updateUser(
+                UserUpdateRequest(
+                    "hello",
+                    "https://s3.image.url/",
+                    "desc",
+                    "12:00",
+                ), user.id
+            )
         }
 
         // then
@@ -72,6 +87,7 @@ class UserUpdateServiceTest(
                 userStatus,
                 RegistrationType.EMAIL,
                 UserRole.USER,
+                LocalTime.of(12, 0),
                 LocalDateTime.now(),
                 LocalDateTime.now(),
                 null

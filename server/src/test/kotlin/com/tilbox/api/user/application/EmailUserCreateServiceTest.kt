@@ -18,7 +18,7 @@ class EmailUserCreateServiceTest(private val emailUserCreateService: EmailUserCr
     @Test
     fun `회원가입 성공시 가입된 유저 정보를 반환한다`() {
         val request =
-            UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password12##")
+            UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password12##", "12:00")
 
         val actual = emailUserCreateService.createUser(request)
 
@@ -33,7 +33,8 @@ class EmailUserCreateServiceTest(private val emailUserCreateService: EmailUserCr
                 "nullable@kakao.com",
                 "ks-kim",
                 null,
-                "password12##"
+                "password12##",
+                "12:00"
             )
         )
 
@@ -44,7 +45,8 @@ class EmailUserCreateServiceTest(private val emailUserCreateService: EmailUserCr
                     "nullable@kakao.com",
                     "ks-kim",
                     null,
-                    "password"
+                    "password",
+                    "12:00"
                 )
             )
         }
@@ -60,7 +62,8 @@ class EmailUserCreateServiceTest(private val emailUserCreateService: EmailUserCr
                 "nullable@kakao.com",
                 "ks-kim",
                 null,
-                "password12##"
+                "password12##",
+                "12:00"
             )
         )
 
@@ -71,7 +74,8 @@ class EmailUserCreateServiceTest(private val emailUserCreateService: EmailUserCr
                     "mintjordy@kakao.com",
                     "tj.seok",
                     null,
-                    "password12##"
+                    "password12##",
+                    "12:00"
                 )
             )
         }

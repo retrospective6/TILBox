@@ -36,13 +36,22 @@ class UserRestControllerTest : RestControllerTest() {
     @MockkBean
     private lateinit var userUpdateService: UserUpdateService
 
-    private val `회원가입 요청` = UserCreateRequest("nullable", "nullable@kakao.com", "ks-kim", null, "password2021##")
+    private val `회원가입 요청` =
+        UserCreateRequest(
+            "nullable",
+            "nullable@kakao.com",
+            "ks-kim",
+            null,
+            "password2021##",
+            "12:00"
+        )
 
     private val `회원가입 응답` = UserCreateResponse(
         "nullable",
         "nullable@kakao.com",
         Profile("ks-kim", null, "", 0L),
         UserStatus.UNAUTHENTICATED,
+        "12:00",
         LocalDateTime.now(),
         LocalDateTime.now()
     )
@@ -50,13 +59,19 @@ class UserRestControllerTest : RestControllerTest() {
     private val `인증 코드 응답` = ""
 
     private val `회원정보 수정 요청` =
-        UserUpdateRequest("hello", "https://amazonaws.s3-northeast-2.com/image.jpg", "description")
+        UserUpdateRequest(
+            "hello",
+            "https://amazonaws.s3-northeast-2.com/image.jpg",
+            "description",
+            "12:00"
+        )
 
     private val `회원정보 수정 응답` = UserUpdateResponse(
         "nullable",
         "nullable@kakao.com",
         Profile("hello", "https://amazonaws.s3-northeast-2.com/image.jpg", "description", 0L),
         UserStatus.AUTHENTICATED,
+        "12:00",
         LocalDateTime.now(),
         LocalDateTime.now()
     )

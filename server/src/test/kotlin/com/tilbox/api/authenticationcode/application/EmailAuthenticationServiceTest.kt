@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import java.time.LocalDateTime
+import java.time.LocalTime
 import javax.transaction.Transactional
 
 @Transactional
@@ -45,6 +46,7 @@ class EmailAuthenticationServiceTest(
                 status = UserStatus.UNAUTHENTICATED,
                 RegistrationType.EMAIL,
                 UserRole.USER,
+                LocalTime.of(12, 0),
                 createdAt = LocalDateTime.now(),
                 updatedAt = LocalDateTime.now(),
                 null

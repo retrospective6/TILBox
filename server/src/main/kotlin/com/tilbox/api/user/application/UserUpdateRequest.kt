@@ -18,5 +18,8 @@ data class UserUpdateRequest(
 
     @ApiModelProperty("자기소개", required = true, example = "안녕하세요. 저를 소개합니다.")
     @field:NotNull
-    val description: String
+    val description: String,
+
+    @ApiModelProperty("이메일 수신 시간", example = "12:00")
+    val emailNotificationTime: String?
 )

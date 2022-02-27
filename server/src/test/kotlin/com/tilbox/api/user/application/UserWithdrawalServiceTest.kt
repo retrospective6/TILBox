@@ -20,6 +20,7 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 @Transactional
 @ActiveProfiles("test")
@@ -73,6 +74,7 @@ class UserWithdrawalServiceTest(
                 userStatus,
                 RegistrationType.EMAIL,
                 UserRole.USER,
+                LocalTime.of(12, 0),
                 LocalDateTime.now(),
                 LocalDateTime.now(),
                 null
