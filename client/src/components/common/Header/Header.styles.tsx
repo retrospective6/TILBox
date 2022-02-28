@@ -3,13 +3,25 @@ import styled from '@emotion/styled';
 export const Header = styled.header`
   display: flex;
   width: 100%;
-  height: 64px;
-  justify-content: center;
+  min-height: 64px;
+  justify-content: start;
   padding: 0 48px 0 76px;
   white-space: nowrap;
 `;
 
-export const Navbar = styled.div`
+export const Left = styled.div`
+  display: flex;
+  justify-content: center;
+  @media (max-width: 1280px) {
+    height: 96px;
+    flex-direction: column;
+    justify-content: start;
+  }
+`;
+
+export const Navbar = styled.nav`
+  min-height: 64px;
+  margin-right: 18px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -35,8 +47,9 @@ export const NavItem = styled.div<NavItemProps>`
 `;
 
 export const UserInfo = styled.div`
-  display: flex;
   margin-left: auto;
+  height: 64px;
+  display: flex;
   align-items: center;
 `;
 
