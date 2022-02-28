@@ -23,29 +23,31 @@ export default function Header(props: HeaderProps): JSX.Element {
 
   return (
     <Styled.Header>
-      <Styled.Navbar>
-        <Link href="/" passHref>
-          <Styled.Logo data-testid="logo">
-            <LogoIcon />
-            <LogoTitle />
-          </Styled.Logo>
-        </Link>
-        {NAV_ITEMS.map((item) => (
-          <Styled.NavItem
-            key={item.testId}
-            data-testid={item.testId}
-            active={active === item.href}
-          >
-            <Link href={item.href}>{item.title}</Link>
-          </Styled.NavItem>
-        ))}
+      <Styled.Left>
+        <Styled.Navbar>
+          <Link href="/" passHref>
+            <Styled.Logo data-testid="logo">
+              <LogoIcon />
+              <LogoTitle />
+            </Styled.Logo>
+          </Link>
+          {NAV_ITEMS.map((item) => (
+            <Styled.NavItem
+              key={item.testId}
+              data-testid={item.testId}
+              active={active === item.href}
+            >
+              <Link href={item.href}>{item.title}</Link>
+            </Styled.NavItem>
+          ))}
+        </Styled.Navbar>
         <SearchInput
           onSearch={onSearch}
           placeholder={
             '아이디, 닉네임, 태그, 텍스트와 본문을 검색해볼 수 있습니다'
           }
         />
-      </Styled.Navbar>
+      </Styled.Left>
       <Styled.UserInfo>
         {profile ? (
           <>

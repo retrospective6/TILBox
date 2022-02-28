@@ -13,7 +13,7 @@ interface ContainerProps {
 
 const activeCSS = css`
   width: 42.5vw;
-  padding: 0 12px;
+  padding: 0 4px 0 12px;
   border: 1px solid #cdcdcd;
   background-color: #ffffff;
   span:first-of-type {
@@ -21,20 +21,24 @@ const activeCSS = css`
   }
   input {
     visibility: visible;
-    width: 37.5vw;
+    width: 90%;
+  }
+  @media (max-width: 1280px) {
+    width: 60vw;
   }
 `;
 
 export const Container = styled.div<ContainerProps>`
   position: absolute;
-  display: flex;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   width: 60px;
-  height: 30px;
-  margin: 18px;
   border: 0 solid #cdcdcd;
   border-radius: 8px;
-  background-color: transparent;
+  display: flex;
   align-items: center;
+  background-color: transparent;
   transition: width 0.35s;
 
   input {
@@ -55,6 +59,7 @@ export const Container = styled.div<ContainerProps>`
 export const Text = styled.span`
   position: absolute;
   white-space: nowrap;
+  font-size: 18px;
 `;
 
 export const Input = styled.input`
@@ -70,7 +75,7 @@ export const Input = styled.input`
 `;
 
 export const Icon = styled.span`
-  margin-top: 4px;
   margin-left: auto;
+  padding-top: 2px;
   cursor: pointer;
 `;
